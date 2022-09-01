@@ -1,0 +1,13 @@
+.field {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+}
+
+.Vacancies {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

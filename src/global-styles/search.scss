@@ -1,0 +1,11 @@
+.search {
+  &__dropdown {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+  }
+
+  &__dropdown-row {
+    width: 100%;
+  }
+}
