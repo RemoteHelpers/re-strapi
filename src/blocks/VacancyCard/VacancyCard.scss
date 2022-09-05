@@ -1,0 +1,142 @@
+@import '../../utils/mixins.scss';
+
+.VacancyCard {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border: 2px solid #3d3d3d;
+  padding: 25px 18px 25px 27px;
+
+  @include on1440 {
+    padding: 34px 24px 34px 36px;
+    gap: 43px;
+  }
+
+  @include on1920 {
+    padding: 51px 36px 51px 54px;
+    border: 3px;
+  }
+
+  &__title {
+    margin: 0;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 115%;
+    margin-bottom: 7px;
+
+    @include on1440 {
+      font-size: 27px;
+      margin-bottom: 11px;
+    }
+  
+    @include on1920 {
+      font-size: 36px;
+      margin-bottom: 14px;
+    }
+  }
+
+  &__description {
+    width: 65%;
+    line-height: 140%;
+    color: #616161;
+    font-size: 10px;
+
+    @include on1440 {
+      font-size: 15px;
+    }
+  
+    @include on1920 {
+      font-size: 20px;
+    }
+  }
+
+  &__button {
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 166%;
+    color: #fff;
+
+    background: #fbbf13;
+    width: 154px;
+    height: 31px;
+    box-shadow: 0px 0px 17px 5px rgba(255, 101, 1, 0.25);
+    border-radius: 15px;
+    border: none;
+
+    transition: 0.3s all;
+
+    &:hover {
+      cursor: pointer;
+      background: #ff6501;
+    }
+
+    @include on1440 {
+      font-size: 15px;
+      width: 205px;
+      height: 41px;
+    }
+  
+    @include on1920 {
+      font-size: 20px;
+      width: 308px;
+      height: 62px;
+    }
+  }
+
+  &__banner {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 6.5px;
+    padding: 5.5px 11px;
+    background: #ff5757;
+    border-radius: 15px;
+
+    font-size: 8px;
+    line-height: 115%;
+    color: #fff;
+
+    @include on1440 {
+      font-size: 12px;
+      padding: 7px 16.5px;
+      gap: 9px;
+
+      top: 34px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  
+    @include on1920 {
+      font-size: 16px;
+      padding: 11px 22px;
+      gap: 13px;
+
+      top: 51px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &__fireIcon {
+    width: 8.59px;
+    height: 10.92px;
+
+    @include on1440 {
+      width: 11.46px;
+      height: 14.56px;
+    }
+  
+    @include on1920 {
+      width: 17.19px;
+      height: 21.84px;
+    }
+  }
+}
