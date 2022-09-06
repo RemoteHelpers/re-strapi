@@ -1,5 +1,7 @@
 /* eslint-disable no-console */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {
+  useCallback, useEffect, useState, useRef,
+} from 'react';
 import './Vacancies.scss';
 import '../../global-styles/search.scss';
 import axios from 'axios';
@@ -11,20 +13,31 @@ import {
 import VacancyCard from '../VacancyCard/VacancyCard';
 
 import Find from '../../images/findIcon.svg';
+import useOutsideAlerter from '../../hooks/useClickOutside';
+
+const API = 'http://beta.fv-a.com:1337/api';
+
+let searchTime: any;
 
 export const Vacancies = () => {
+  const searchRef = useRef<HTMLDivElement>(null);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [currentCategory, setCurrentCategory] = useState<string>('Choose a category');
-  const [currentType, setCurrentType] = useState<string>('Choose a work type');
-  const [vacancies, setVacancies] = useState<Vacancy[]>([]);
+  const [currentCategory, setCurrentCategory] = useState<string>('');
+  const [currentType, setCurrentType] = useState<string>('');
+  // const [vacancies, setVacancies] = useState<Vacancy[]>([]);
   const [selectedVacancies, setSelectedVacancies] = useState<Vacancy[]>([]);
   const [query, setQuery] = useState<string>('');
   const [searchCollection, setSearchCollection] = useState<Collection[]>([]);
+  const [selectedCollection, setSelectedCollection] = useState<Collection>();
 
-  const [isFocused, setIsFocused] = useState(false);
+  const [isDropdown, setIsDropdown] = useState<boolean>(false);
+
+  useOutsideAlerter(searchRef, () => {
+    setIsDropdown(false);
+  });
 
   useEffect(() => {
-    axios.get('http://beta.fv-a.com:1337/api/categories')
+    axios.get(`${API}/categories`)
       .then(res => {
         setCategories(res.data.data);
         console.log(res.data.data);
@@ -32,66 +45,49 @@ export const Vacancies = () => {
       .catch(err => {
         console.log(err);
       });
-
-    axios.get('http://beta.fv-a.com:1337/api/vacancies?populate=*')
-      .then(res => {
-        setVacancies(res.data.data);
-        console.log(res.data.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-
-    // const vacancyEndpoint = `http://beta.fv-a.com:1337/api/vacancies?populate=*&filters[categories][categoryTitle][$contains]=${currentCategory}`;
-
-    // axios.get(vacancyEndpoint)
-    //   .then(res => {
-    //     setSelectedVacancies(res.data.data);
-    //     console.log(res.data.data);
-    //     console.log(res);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
-
-    axios.get('http://beta.fv-a.com:1337/api/keyword-tags')
-      .then(res => {
-        setSearchCollection(res.data.data);
-        console.log(res.data.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
   }, []);
 
-  // useEffect(() => {
-  //   setSelectedVacancies(vacancies.filter(vacancy => {
-  //     const temp = vacancy.attributes.keyword_tags.data
-  //       .find(el => query.toLowerCase().includes(el.attributes.keyPhrase.toLowerCase()));
-
-  //     return temp;
-  //   }));
-  // }, [query]);
-
   useEffect(() => {
-    console.log(vacancies.filter(vacancy => (
-      vacancy.attributes.keyword_tags.data
-        .find(el => query.toLowerCase().includes(el.attributes.keyPhrase.toLowerCase()))
-    )).filter(vacancy => (
-      vacancy.attributes.categories.data[0].attributes.categoryTitle === currentCategory
-    )).map(vacancy => (
-      <h1 key={vacancy.id}>{vacancy.attributes.title}</h1>
-    )));
-    if (query) {
-      setSelectedVacancies(selectedVacancies.filter(vacancy => (
-        vacancy.attributes.categories.data[0].attributes.categoryTitle === currentCategory
-      )));
-    } else {
-      setSelectedVacancies(vacancies.filter(vacancy => (
-        vacancy.attributes.categories.data[0].attributes.categoryTitle === currentCategory
-      )));
-    }
-  }, [currentCategory]);
+    (async () => {
+      let queryFilters = '';
+
+      if (currentCategory) {
+        queryFilters += `&filters[categories][categoryTitle][$contains]=${currentCategory}`;
+      }
+
+      if (currentType) {
+        queryFilters += `&filters[workType][$contains]=${currentType}`;
+      }
+
+      if (selectedCollection?.attributes.keyPhrase) {
+        queryFilters += `&filters[keyword_tags][keyPhrase][$containsi]=${selectedCollection.attributes.keyPhrase}`;
+      }
+
+      const res = await axios.get(`${API}/vacancies?populate=*${queryFilters}`);
+
+      setSelectedVacancies(res.data.data);
+    })();
+  }, [selectedCollection, currentCategory, currentType]);
+
+  // useEffect(() => {
+  //   console.log(vacancies.filter(vacancy => (
+  //     vacancy.attributes.keyword_tags.data
+  //       .find(el => query.toLowerCase().includes(el.attributes.keyPhrase.toLowerCase()))
+  //   )).filter(vacancy => (
+  //     vacancy.attributes.categories.data[0].attributes.categoryTitle === currentCategory
+  //   )).map(vacancy => (
+  //     <h1 key={vacancy.id}>{vacancy.attributes.title}</h1>
+  //   )));
+  //   if (query) {
+  //     setSelectedVacancies(selectedVacancies.filter(vacancy => (
+  //       vacancy.attributes.categories.data[0].attributes.categoryTitle === currentCategory
+  //     )));
+  //   } else {
+  //     setSelectedVacancies(vacancies.filter(vacancy => (
+  //       vacancy.attributes.categories.data[0].attributes.categoryTitle === currentCategory
+  //     )));
+  //   }
+  // }, [currentCategory]);
 
   // useEffect(() => {
   //   if (query) {
@@ -113,20 +109,21 @@ export const Vacancies = () => {
     setCurrentType(event.target.value);
   }, []);
 
-  const searchHandler = (event:React.ChangeEvent<HTMLInputElement>) => {
+  const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
+    clearTimeout(searchTime);
+    searchTime = setTimeout(async () => {
+      const res = await axios.get(`${API}/keyword-tags?filters[keyPhrase][$contains]=${event.target.value}`);
+
+      setIsDropdown(true);
+      setSearchCollection(res?.data?.data || []);
+    }, 300);
   };
 
-  const onCollection = (searchTerm: React.SetStateAction<string>) => {
-    setQuery(searchTerm);
-  };
-
-  const focusHandler = () => {
-    setIsFocused(true);
-  };
-
-  const blurHandler = () => {
-    setIsFocused(false);
+  const onCollection = (collection: Collection) => {
+    setQuery(collection.attributes.keyPhrase);
+    setSelectedCollection(collection);
+    setIsDropdown(false);
   };
 
   return (
@@ -146,7 +143,7 @@ export const Vacancies = () => {
                 onChange={handleCategorySelect}
                 className="Vacancies__filter"
               >
-                <option selected disabled>Choose a category</option>
+                <option selected value="">Choose a category</option>
                 {categories.map(category => (
                   <option
                     key={category.id}
@@ -165,79 +162,111 @@ export const Vacancies = () => {
                 onChange={handleWorkTypeSelect}
                 className="Vacancies__filter"
               >
-                <option selected disabled>Choose a work type</option>
+                <option selected value="">Choose a work type</option>
                 <option value="FullTime">FullTime</option>
                 <option value="PartTime">PartTime</option>
               </select>
             </label>
           </div>
 
-          <div className="search-container">
+          <div className="search-container" ref={searchRef}>
             <div className="search-inner">
-              {!isFocused && !query && (
-                <img src={Find} alt="find" className="search-icon" />
-              )}
               <input
                 type="text"
                 value={query}
                 onChange={searchHandler}
                 placeholder="Job Search"
                 className="search-input"
-                onFocus={() => focusHandler()}
-                onBlur={() => blurHandler()}
               />
+              {!query && (
+                <img src={Find} alt="find" className="search-icon" />
+              )}
             </div>
+            {/* {isDropdown && (
+              <div className="search__dropdown">
+                {searchCollection.filter(collection => {
+                  const searchTerm = query.toLowerCase();
+                  const vacation = collection.attributes.keyPhrase.toLowerCase();
 
-            <div className="search__dropdown">
-              {searchCollection.filter(collection => {
-                const searchTerm = query.toLowerCase();
-                const vacation = collection.attributes.keyPhrase.toLowerCase();
-
-                return searchTerm && vacation.includes(searchTerm) && vacation !== searchTerm;
-              }).slice(0, 10).map(collection => (
-                <button
-                  type="button"
-                  key={collection.id}
-                  onClick={() => onCollection(collection.attributes.keyPhrase)}
-                  className="search__dropdown-row"
-                >
-                  {collection.attributes.keyPhrase}
-                </button>
-              ))}
-            </div>
+                  return searchTerm && vacation.includes(searchTerm) && vacation !== searchTerm;
+                }).slice(0, 10).map(collection => (
+                  <button
+                    type="button"
+                    key={collection.id}
+                    onClick={() => onCollection(collection.attributes.keyPhrase)}
+                    className="search__dropdown-row"
+                  >
+                    {collection.attributes.keyPhrase}
+                  </button>
+                ))}
+              </div>
+            )} */}
+            {isDropdown && (
+              <div className="search__dropdown">
+                {searchCollection.length !== 0 ? (
+                  searchCollection.map(collection => (
+                    <button
+                      type="button"
+                      key={collection.id}
+                      onClick={() => onCollection(collection)}
+                      className="search__dropdown-row"
+                    >
+                      {collection.attributes.keyPhrase}
+                    </button>
+                  ))
+                ) : 'Not found'}
+              </div>
+            )}
           </div>
         </div>
 
         <div className="Vacancies__cards">
-          {!query && currentCategory === 'Choose a category' && vacancies.map(vacancy => (
+          {/* {!query && currentCategory === 'Choose a category' && vacancies.map(vacancy => (
+            <VacancyCard
+              key={vacancy.id}
+              title={vacancy.attributes.title}
+            />
+          ))} */}
+
+          {/* {currentCategory !== 'Choose a category' && query !== ''} */}
+
+          {/* {!query && vacancies.filter(vacancy => (
+            vacancy.attributes.categories.data[0].attributes.categoryTitle === currentCategory
+          )).map(vacancy => (
+            <VacancyCard
+              key={vacancy.id}
+              title={vacancy.attributes.title}
+            />
+          ))} */}
+
+          {/* {query && currentCategory === 'Choose a category' && vacancies.filter(vacancy => (
+            vacancy.attributes.keyword_tags.data
+              .find(el => query.toLowerCase() === (el.attributes.keyPhrase.toLowerCase()))
+          )).map(vacancy => (
+            <VacancyCard
+              key={vacancy.id}
+              title={vacancy.attributes.title}
+            />
+          ))} */}
+
+          {/* {query && currentCategory !== 'Choose a category' && vacancies.filter(vacancy => (
+            vacancy.attributes.keyword_tags.data
+              .find(el => query.toLowerCase() === (el.attributes.keyPhrase.toLowerCase()))
+          )).filter(vacancy => (
+            vacancy.attributes.categories.data[0].attributes.categoryTitle === currentCategory
+          )).map(vacancy => (
+            <VacancyCard
+              key={vacancy.id}
+              title={vacancy.attributes.title}
+            />
+          ))} */}
+          {selectedVacancies.map(vacancy => (
             <VacancyCard
               key={vacancy.id}
               title={vacancy.attributes.title}
             />
           ))}
         </div>
-
-        {!query && vacancies.filter(vacancy => (
-          vacancy.attributes.categories.data[0].attributes.categoryTitle === currentCategory
-        )).map(vacancy => (
-          <h1 key={vacancy.id}>{vacancy.attributes.title}</h1>
-        ))}
-
-        {query && currentCategory === 'Choose a category' && vacancies.filter(vacancy => (
-          vacancy.attributes.keyword_tags.data
-            .find(el => query.toLowerCase().includes(el.attributes.keyPhrase.toLowerCase()))
-        )).map(vacancy => (
-          <h1 key={vacancy.id}>{vacancy.attributes.title}</h1>
-        ))}
-
-        {query && currentCategory !== 'Choose a category' && vacancies.filter(vacancy => (
-          vacancy.attributes.keyword_tags.data
-            .find(el => query.toLowerCase().includes(el.attributes.keyPhrase.toLowerCase()))
-        )).filter(vacancy => (
-          vacancy.attributes.categories.data[0].attributes.categoryTitle === currentCategory
-        )).map(vacancy => (
-          <h1 key={vacancy.id}>{vacancy.attributes.title}</h1>
-        ))}
       </div>
     </div>
   );
