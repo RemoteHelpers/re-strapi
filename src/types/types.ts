@@ -51,3 +51,9 @@ export interface KeyWord {
 export interface KeyWordAttributes {
   keyPhrase: string,
 }
+
+export interface IFeedbackFormData {
+  name: string;
+  description: string;
+  email: string;
+}
