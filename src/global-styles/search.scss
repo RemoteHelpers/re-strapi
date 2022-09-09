@@ -2,6 +2,7 @@
 
 .search {
   &__dropdown {
+    background-color: #fff;
     position: relative;
     z-index: 5;
     display: flex;
@@ -10,14 +11,17 @@
   }
 
   &__dropdown-row {
+    padding: 6px 4px;
     width: 100%;
     border: none;
     text-align: left;
-    margin-bottom: 1px;
-    background-color: transparent;
+    margin-bottom: 2px;
+    background-color: rgb(240, 240, 240);
+    transition: 0.3s all;
 
     &:hover {
       cursor: pointer;
+      border-radius: 5px;
     }
   }
 
@@ -96,6 +100,23 @@
       font-size: 18px;
       width: 19px;
       height: 19px;
+    }
+  }
+
+  &__button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 21px;
+
+    @include on1440 {
+      font-size: 14px;
+      height: 28px;
+    }
+
+    @include on1920 {
+      height: 42px;
+      font-size: 18px;
     }
   }
 }

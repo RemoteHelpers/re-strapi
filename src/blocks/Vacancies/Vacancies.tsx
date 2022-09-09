@@ -2,9 +2,11 @@
 import React, {
   useCallback, useEffect, useState, useRef,
 } from 'react';
+import ReactPaginate from 'react-paginate';
 import './Vacancies.scss';
 import '../../global-styles/search.scss';
 import axios from 'axios';
+import Select, { components } from 'react-select';
 import {
   Category,
   Vacancy,
@@ -13,31 +15,64 @@ import {
 import VacancyCard from '../VacancyCard/VacancyCard';
 
 import Find from '../../images/findIcon.svg';
+import SelectIcon from '../../images/selectArrow.svg';
 import useOutsideAlerter from '../../hooks/useClickOutside';
 
 const API = 'http://beta.fv-a.com:1337/api';
+const itemsPerPage = 6;
 
 let searchTime: any;
+let vacationTime: any;
 
 export const Vacancies = () => {
   const searchRef = useRef<HTMLDivElement>(null);
+
+  const [localization, setLocalization] = useState('en');
   const [categories, setCategories] = useState<Category[]>([]);
   const [currentCategory, setCurrentCategory] = useState<string>('');
   const [currentType, setCurrentType] = useState<string>('');
-  // const [vacancies, setVacancies] = useState<Vacancy[]>([]);
   const [selectedVacancies, setSelectedVacancies] = useState<Vacancy[]>([]);
   const [query, setQuery] = useState<string>('');
   const [searchCollection, setSearchCollection] = useState<Collection[]>([]);
-  const [selectedCollection, setSelectedCollection] = useState<Collection>();
-
   const [isDropdown, setIsDropdown] = useState<boolean>(false);
+  const [currentItems, setCurrentItems] = useState<any>(null);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+
+  const selectType = [
+    { value: 'FullTime', label: 'FullTime' },
+    { value: 'PrtTime', label: 'PartTime' },
+  ];
+
+  const selectCategories = categories.map(category => (
+    {
+      value: category.attributes.categoryTitle.toLowerCase(),
+      label: category.attributes.categoryTitle,
+    }
+  ));
+
+  const selectLocalization = [
+    { value: 'en', label: 'English' },
+    { value: 'uk', label: 'Ukrainian' },
+    { value: 'ru', label: 'Russian' },
+  ];
+
+  const DropdownIndicator = (
+    props: any,
+  ) => {
+    return (
+      <components.DropdownIndicator {...props}>
+        <img src={SelectIcon} alt="dropdown" />
+      </components.DropdownIndicator>
+    );
+  };
 
   useOutsideAlerter(searchRef, () => {
     setIsDropdown(false);
   });
 
   useEffect(() => {
-    axios.get(`${API}/categories`)
+    axios.get(`${API}/categories?locale=${localization}`)
       .then(res => {
         setCategories(res.data.data);
         console.log(res.data.data);
@@ -45,10 +80,11 @@ export const Vacancies = () => {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [localization]);
 
   useEffect(() => {
-    (async () => {
+    clearTimeout(vacationTime);
+    vacationTime = setTimeout(async () => {
       let queryFilters = '';
 
       if (currentCategory) {
@@ -59,54 +95,30 @@ export const Vacancies = () => {
         queryFilters += `&filters[workType][$contains]=${currentType}`;
       }
 
-      if (selectedCollection?.attributes.keyPhrase) {
-        queryFilters += `&filters[keyword_tags][keyPhrase][$containsi]=${selectedCollection.attributes.keyPhrase}`;
+      if (query.length > 0) {
+        queryFilters += `&filters[keyword_tags][keyPhrase][$containsi]=${query}`;
       }
 
-      const res = await axios.get(`${API}/vacancies?populate=*${queryFilters}`);
+      const res = await axios.get(`${API}/vacancies?locale=${localization}&populate=*${queryFilters}`);
 
       setSelectedVacancies(res.data.data);
-    })();
-  }, [selectedCollection, currentCategory, currentType]);
+    }, 400);
+  }, [query, currentCategory, currentType, localization]);
 
-  // useEffect(() => {
-  //   console.log(vacancies.filter(vacancy => (
-  //     vacancy.attributes.keyword_tags.data
-  //       .find(el => query.toLowerCase().includes(el.attributes.keyPhrase.toLowerCase()))
-  //   )).filter(vacancy => (
-  //     vacancy.attributes.categories.data[0].attributes.categoryTitle === currentCategory
-  //   )).map(vacancy => (
-  //     <h1 key={vacancy.id}>{vacancy.attributes.title}</h1>
-  //   )));
-  //   if (query) {
-  //     setSelectedVacancies(selectedVacancies.filter(vacancy => (
-  //       vacancy.attributes.categories.data[0].attributes.categoryTitle === currentCategory
-  //     )));
-  //   } else {
-  //     setSelectedVacancies(vacancies.filter(vacancy => (
-  //       vacancy.attributes.categories.data[0].attributes.categoryTitle === currentCategory
-  //     )));
-  //   }
-  // }, [currentCategory]);
-
-  // useEffect(() => {
-  //   if (query) {
-  //     setSelectedVacancies(selectedVacancies.filter(vacancy => (
-  //       vacancy.attributes.workType === currentType
-  //     )));
-  //   } else {
-  //     setSelectedVacancies(vacancies.filter(vacancy => (
-  //       vacancy.attributes.workType === currentType
-  //     )));
-  //   }
-  // }, [currentType]);
-
-  const handleCategorySelect = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
-    setCurrentCategory(event.target.value);
+  const handleLocalizationSelect = useCallback((selected: any) => {
+    setLocalization(selected.value);
   }, []);
 
-  const handleWorkTypeSelect = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
-    setCurrentType(event.target.value);
+  const handleCategorySelect = useCallback((selected: any) => {
+    setCurrentCategory(selected.label);
+  }, []);
+
+  const handleWorkTypeSelect = useCallback((selected: any) => {
+    setCurrentType(selected.label);
+  }, []);
+
+  const handleClear = useCallback(() => {
+    setQuery('');
   }, []);
 
   const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -122,13 +134,51 @@ export const Vacancies = () => {
 
   const onCollection = (collection: Collection) => {
     setQuery(collection.attributes.keyPhrase);
-    setSelectedCollection(collection);
+    // setSelectedCollection(collection);
     setIsDropdown(false);
+  };
+
+  const getCategory = () => {
+    return currentCategory ? selectCategories.find(c => c.value === currentCategory) : '';
+  };
+
+  const getType = () => {
+    return currentType ? selectType.find(c => c.value === currentType) : '';
+  };
+
+  const getLocalization = () => {
+    return localization ? selectLocalization.find(c => c.value === localization) : '';
+  };
+
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+
+    setCurrentItems(selectedVacancies.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(selectedVacancies.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage, selectedVacancies]);
+
+  const handlePageClick = (event: { selected: number; }) => {
+    const newOffset = (event.selected * itemsPerPage) % selectedVacancies.length;
+
+    setItemOffset(newOffset);
   };
 
   return (
     <div className="Vacancies">
       <div className="container">
+        <Select
+          classNamePrefix="custom-select custom-select--locale"
+          options={selectLocalization}
+          value={getLocalization()}
+          onChange={handleLocalizationSelect}
+          placeholder={localization}
+          components={
+            {
+              DropdownIndicator,
+            }
+          }
+
+        />
         <h2 className="Vacancies__title">
           Current
           <br />
@@ -136,37 +186,30 @@ export const Vacancies = () => {
         </h2>
         <div className="Vacancies__navigation">
           <div className="Vacancies__selects">
-            <label>
-              <select
-                name="categories"
-                value={currentCategory}
-                onChange={handleCategorySelect}
-                className="Vacancies__filter"
-              >
-                <option selected value="">Choose a category</option>
-                {categories.map(category => (
-                  <option
-                    key={category.id}
-                    value={category.attributes.categoryTitle}
-                  >
-                    {category.attributes.categoryTitle}
-                  </option>
-                ))}
-              </select>
-            </label>
-
-            <label>
-              <select
-                name="typeOfWork"
-                value={currentType}
-                onChange={handleWorkTypeSelect}
-                className="Vacancies__filter"
-              >
-                <option selected value="">Choose a work type</option>
-                <option value="FullTime">FullTime</option>
-                <option value="PartTime">PartTime</option>
-              </select>
-            </label>
+            <Select
+              classNamePrefix="custom-select"
+              options={selectCategories}
+              value={getCategory()}
+              onChange={handleCategorySelect}
+              placeholder="Choose a category"
+              components={
+                {
+                  DropdownIndicator,
+                }
+              }
+            />
+            <Select
+              classNamePrefix="custom-select"
+              options={selectType}
+              value={getType()}
+              onChange={handleWorkTypeSelect}
+              placeholder="Choose a work type"
+              components={
+                {
+                  DropdownIndicator,
+                }
+              }
+            />
           </div>
 
           <div className="search-container" ref={searchRef}>
@@ -181,30 +224,18 @@ export const Vacancies = () => {
               {!query && (
                 <img src={Find} alt="find" className="search-icon" />
               )}
+              <button
+                className="search__button"
+                type="button"
+                onClick={handleClear}
+              >
+                Clear
+              </button>
             </div>
-            {/* {isDropdown && (
-              <div className="search__dropdown">
-                {searchCollection.filter(collection => {
-                  const searchTerm = query.toLowerCase();
-                  const vacation = collection.attributes.keyPhrase.toLowerCase();
-
-                  return searchTerm && vacation.includes(searchTerm) && vacation !== searchTerm;
-                }).slice(0, 10).map(collection => (
-                  <button
-                    type="button"
-                    key={collection.id}
-                    onClick={() => onCollection(collection.attributes.keyPhrase)}
-                    className="search__dropdown-row"
-                  >
-                    {collection.attributes.keyPhrase}
-                  </button>
-                ))}
-              </div>
-            )} */}
             {isDropdown && (
               <div className="search__dropdown">
                 {searchCollection.length !== 0 ? (
-                  searchCollection.map(collection => (
+                  searchCollection.slice(0, 10).map(collection => (
                     <button
                       type="button"
                       key={collection.id}
@@ -221,52 +252,35 @@ export const Vacancies = () => {
         </div>
 
         <div className="Vacancies__cards">
-          {/* {!query && currentCategory === 'Choose a category' && vacancies.map(vacancy => (
+          {currentItems && (
+            currentItems.map((vacancy: any) => (
+              <VacancyCard
+                key={vacancy.id}
+                title={vacancy.attributes.title}
+              />
+            ))
+          )}
+          {/* {currentItems.map((vacancy: any) => (
             <VacancyCard
               key={vacancy.id}
               title={vacancy.attributes.title}
             />
           ))} */}
-
-          {/* {currentCategory !== 'Choose a category' && query !== ''} */}
-
-          {/* {!query && vacancies.filter(vacancy => (
-            vacancy.attributes.categories.data[0].attributes.categoryTitle === currentCategory
-          )).map(vacancy => (
-            <VacancyCard
-              key={vacancy.id}
-              title={vacancy.attributes.title}
-            />
-          ))} */}
-
-          {/* {query && currentCategory === 'Choose a category' && vacancies.filter(vacancy => (
-            vacancy.attributes.keyword_tags.data
-              .find(el => query.toLowerCase() === (el.attributes.keyPhrase.toLowerCase()))
-          )).map(vacancy => (
-            <VacancyCard
-              key={vacancy.id}
-              title={vacancy.attributes.title}
-            />
-          ))} */}
-
-          {/* {query && currentCategory !== 'Choose a category' && vacancies.filter(vacancy => (
-            vacancy.attributes.keyword_tags.data
-              .find(el => query.toLowerCase() === (el.attributes.keyPhrase.toLowerCase()))
-          )).filter(vacancy => (
-            vacancy.attributes.categories.data[0].attributes.categoryTitle === currentCategory
-          )).map(vacancy => (
-            <VacancyCard
-              key={vacancy.id}
-              title={vacancy.attributes.title}
-            />
-          ))} */}
-          {selectedVacancies.map(vacancy => (
-            <VacancyCard
-              key={vacancy.id}
-              title={vacancy.attributes.title}
-            />
-          ))}
         </div>
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel=""
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={3}
+          pageCount={pageCount}
+          previousLabel=""
+          containerClassName="pagination"
+          pageLinkClassName="page-num"
+          previousLinkClassName="page-num"
+          nextLinkClassName="page-num"
+          activeLinkClassName="page-num--active"
+          // renderOnZeroPageCount={null}
+        />
       </div>
     </div>
   );

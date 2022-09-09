@@ -18,6 +18,7 @@
     text-decoration-line: underline;
     font-size: 24px;
     margin: 35px 0;
+    color: #3f455b;
 
     @include on1440 {
       font-size: 36px;
@@ -49,13 +50,122 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
+    margin-bottom: 66.5px;
 
     @include on1440 {
       gap: 43px;
+      margin-bottom: 89px;
     }
 
     @include on1920 {
       gap: 64px;
+      margin-bottom: 133px;
+    }
+  }
+
+  &__selects {
+    display: flex;
+    gap: 25px;
+
+    @include on1440 {
+      gap: 38px;
+    }
+
+    @include on1920 {
+      gap: 50px;
+    }
+  }
+}
+
+.custom-select {
+  &--locale {
+    display: flex !important;
+  }
+
+  &__control {
+    border: none !important;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &--menu-is-open .custom-select__indicators .custom-select__indicator {
+      transition: 0.2s all;
+      transform: rotate(180deg);
+    }
+  }
+
+  &__placeholder {
+    font-weight: 700 !important;
+    font-size: 10px !important;
+    line-height: 115% !important;
+    color: #000 !important;
+
+    @include on1440 {
+      font-size: 15px !important;
+    }
+
+    @include on1920 {
+      font-size: 20px !important;
+    }
+  }
+
+  &__indicator-separator {
+    display: none;
+  }
+}
+
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  @include on1440 {
+    font-size: 15px;
+  }
+
+  @include on1920 {
+    font-size: 20px;
+  }
+}
+
+.page-num {
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 115%;
+
+  @include on1440 {
+    font-size: 15px;
+  }
+
+  @include on1920 {
+    font-size: 20px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &--active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    color: #fff;
+    background-color: #ff6501;
+
+    @include on1440 {
+      width: 23px;
+      height: 23px;
+    }
+  
+    @include on1920 {
+      width: 34px;
+      height: 34px;
     }
   }
 }
