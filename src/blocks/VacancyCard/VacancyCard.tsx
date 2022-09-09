@@ -9,6 +9,11 @@ interface Props {
 const VacancyCard:React.FC<Props> = ({ title }) => {
   return (
     <div className="VacancyCard">
+      <div className="VacancyCard__banner VacancyCard__banner--mobile">
+        <img src={FireIcon} className="VacancyCard__fireIcon" alt="icon" />
+        <span className="VacancyCard__banner-text">Urgent</span>
+      </div>
+
       <div className="VacancyCard__info">
         <h3 className="VacancyCard__title">{title}</h3>
         <p className="VacancyCard__salary">Salary based on interview results</p>
@@ -25,7 +30,7 @@ const VacancyCard:React.FC<Props> = ({ title }) => {
         See more
       </button>
 
-      <div className="VacancyCard__banner">
+      <div className="VacancyCard__banner VacancyCard__banner--desktop">
         <img src={FireIcon} className="VacancyCard__fireIcon" alt="icon" />
         <span className="VacancyCard__banner-text">Urgent</span>
       </div>

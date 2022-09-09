@@ -4,12 +4,18 @@
   position: relative;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
 
   border: 1px solid #8f8f8f;
   border-radius: 20px; 
-  padding: 25px 18px 25px 27px;
+  padding: 40px 21px 40px 25px;
   box-sizing: border-box;
+
+  @include onDesktop {
+    align-items: center;
+    flex-direction: row;
+    padding: 25px 18px 25px 27px;
+  }
 
   @include on1440 {
     padding: 34px 24px 34px 36px;
@@ -28,10 +34,16 @@
 
   &__title {
     margin: 0;
-    font-weight: 700;
-    font-size: 18px;
+    font-weight: 600;
+    font-size: 24px;
     line-height: 115%;
-    margin-bottom: 7px;
+    margin-bottom: 10px;
+
+    @include onDesktop {
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 7px;
+    }
 
     @include on1440 {
       font-size: 27px;
@@ -44,11 +56,38 @@
     }
   }
 
+  &__salary {
+    margin: 0 0 20px 0;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 150%;
+
+    @include onDesktop {
+      margin: 0 0 13px 0;
+      font-size: 10px;
+    }
+  
+    @include on1440 {
+      font-size: 15px;
+    }
+  
+    @include on1920 {
+      font-size: 20px;
+    }
+  }
+
   &__description {
-    width: 65%;
+    width: 100%;
     line-height: 140%;
     color: #616161;
-    font-size: 10px;
+    font-size: 14px;
+    margin: 0 0 36px 0;
+
+    @include onDesktop {
+      margin: 0;
+      font-size: 10px;
+      width: 65%;
+    }
 
     @include on1440 {
       font-size: 15px;
@@ -61,13 +100,13 @@
 
   &__button {
     font-weight: 600;
-    font-size: 10px;
+    font-size: 16px;
     line-height: 166%;
     color: #fff;
 
     background: #fbbf13;
-    width: 154px;
-    height: 31px;
+    width: 100%;
+    height: 56px;
     box-shadow: 0px 0px 17px 5px rgba(255, 101, 1, 0.25);
     border-radius: 15px;
     border: none;
@@ -77,6 +116,12 @@
     &:hover {
       cursor: pointer;
       background: #ff6501;
+    }
+
+    @include onDesktop {
+      font-size: 10px;
+      width: 154px;
+      height: 31px;
     }
 
     @include on1440 {
@@ -93,23 +138,45 @@
   }
 
   &__banner {
-    position: absolute;
-    top: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    gap: 6.5px;
-    padding: 5.5px 11px;
+    gap: 13px;
+    padding: 9px 11px 9px 24px;
     background: #ff5757;
     border-radius: 15px;
 
-    font-size: 8px;
+    font-size: 16px;
     line-height: 115%;
     color: #fff;
+
+    &--desktop {
+      display: none;
+      position: absolute;
+      top: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      @include onDesktop {
+        display: flex;
+      }
+    }
+
+    &--mobile {
+      margin-bottom: 30px;
+      width: 133px;
+      height: 40px;
+      @include onDesktop {
+        display: none;
+      }
+    }
+
+    @include onDesktop {
+      gap: 6.5px;
+      padding: 5.5px 11px;
+      font-size: 8px;
+    }
 
     @include on1440 {
       font-size: 12px;
@@ -133,8 +200,13 @@
   }
 
   &__fireIcon {
-    width: 8.59px;
-    height: 10.92px;
+    width: 17.19px;
+    height: 21.84px;
+
+    @include onDesktop {
+      width: 8.59px;
+      height: 10.92px;
+    }
 
     @include on1440 {
       width: 11.46px;

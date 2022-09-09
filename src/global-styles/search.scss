@@ -26,8 +26,13 @@
   }
 
   &-container {
-    width: 232px;
-    height: 21px;
+    width: 100%;
+    height: 42px;
+
+    @include onDesktop {
+      width: 232px;
+      height: 21px;
+    }
 
     @include on1440 {
       width: 309px;
@@ -43,6 +48,7 @@
   &-inner {
     position: relative;
     height: 100%;
+    width: 100%;
   }
 
   &-input {
@@ -66,9 +72,13 @@
 
     &::placeholder {
       text-align: center;
-      font-size: 9px;
+      font-size: 16px;
       line-height: 115%;
       color: #6f6f6f;
+
+      @include onDesktop {
+        font-size: 9px;
+      }
 
       @include on1440 {
         font-size: 14px;
@@ -87,8 +97,13 @@
     left: 0;
     margin: auto 0 auto 24%;
 
-    width: 9.5px;
-    height: 9.5px;
+    width: 19px;
+    height: 19px;
+
+    @include onDesktop {
+      width: 9.5px;
+      height: 9.5px;
+    }
 
     @include on1440 {
       font-size: 14px;
@@ -107,7 +122,11 @@
     position: absolute;
     top: 0;
     right: 0;
-    height: 21px;
+    height: 42px;
+
+    @include onDesktop {
+      height: 21px;
+    }
 
     @include on1440 {
       font-size: 14px;
