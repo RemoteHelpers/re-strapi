@@ -1,0 +1,259 @@
+@import '../../utils/mixins.scss';
+
+.Header {
+  width: 92%;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+
+  padding: 17px 0;
+
+  @include onDesktop {
+    padding: 24px 0;
+  }
+
+  @include on1440 {
+    padding: 32px 0;
+  }
+
+  @include on1920 {
+    padding: 48px 0;
+  }
+
+  &__functionality {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 28.5px;
+
+    @include onDesktop {
+      gap: 40px;
+    }
+
+    @include on1440 {
+      gap: 60px;
+    }
+
+    @include on1920 {
+      gap: 80px;
+    }
+  }
+  
+  &__logo {
+    width: 103px;
+    height: 33px;
+
+    @include onDesktop {
+      width: 138.5px;
+      height: 43.5px;
+    }
+
+    @include on1440 {
+      width: 185px;
+      height: 58px;
+    }
+
+    @include on1920 {
+      width: 277px;
+      height: 87px;
+    }
+  }
+
+  &__navbar {
+    display: none;
+
+    @include onDesktop {
+      display: flex;
+      gap: 25px;
+      height: 12px;
+    }
+
+    @include on1440 {
+      gap: 38px;
+      height: 17px;
+    }
+
+    @include on1920 {
+      gap: 50px;
+      height: 23px;
+    }
+
+    &--mobile {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__menu-button {
+    position: relative;
+    border: none;
+    background-color: #fff;
+    padding: 4px;
+    z-index: 10;
+
+    @include onDesktop {
+      display: none;
+    }
+  }
+
+  &__menu-icon {
+    width: 24px;
+    height: 2px;
+    background-color: #000;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: #000;
+      transform: translateY(-7px);
+      
+      transition: all 0.3s;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: #000;
+      transform: translateY(6px);
+
+      transition: all 0.3s;
+    }
+
+    &--active {
+      background-color: transparent;
+
+      &::before {
+        transform: rotate(45deg) translateX(1px);
+
+        transition: all 0.3s;
+      }
+
+      &::after {
+        transform: rotate(-45deg) translateX(1px);
+
+        transition: all 0.3s;
+      }
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 115%;
+    color: #000;
+    border-bottom: none;
+
+    transition: 0.3s all;
+
+    &:hover {
+      background-color: #ff5757;
+      color: #fff;
+    }
+
+    @include onDesktop {
+      font-size: 10px;
+    }
+
+    @include on1440 {
+      font-size: 15px;
+    }
+
+    @include on1920 {
+      font-size: 20px;
+    }
+
+    &--mobile {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 115%;
+      border-bottom: none;
+      margin-bottom: 10px;
+
+      color: #000;
+    }
+  }
+
+  &__drop-menu {
+    // display: none;
+    text-align: center;
+    padding: 100px;
+    background-color: #fff;
+    transform: translateX(100%);
+    z-index: 9;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    transition: 0.3s linear all;
+
+    &--active {
+      transform: translateX(0);
+      // display: block;
+    }
+  }
+}
+
+.custom-select-header {
+  order: 0;
+  &__control {
+    border: none !important;
+    display: flex !important;
+    gap: 1px !important;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &--menu-is-open .custom-select__indicators .custom-select__indicator {
+      transition: 0.2s all;
+      transform: rotate(180deg);
+    }
+  }
+
+  &__menu {
+    font-size: 10px !important;
+
+    @include on1440 {
+      font-size: 15px !important;
+    }
+
+    @include on1920 {
+      font-size: 20px !important;
+    }
+  }
+
+  &__single-value {
+    font-weight: 500 !important;
+    font-size: 10px !important;
+    line-height: 115% !important;
+    color: #000 !important;
+
+    @include onDesktop {
+      font-size: 10px !important;
+    }
+
+    @include on1440 {
+      font-size: 15px !important;
+    }
+
+    @include on1920 {
+      font-size: 20px !important;
+    }
+  }
+
+  &__indicator-separator {
+    display: none;
+  }
+
+  &__indicator {
+    padding: 0 !important;
+  }
+}

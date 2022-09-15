@@ -32,7 +32,7 @@ function FeedbackForm() {
   } = useForm<IFeedbackFormData>();
   const [phone, setPhone] = useState('');
 
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = handleSubmit(async (data: IFeedbackFormData) => {
     try {
       const arrFile = await Api.uploadFile({
         files: data.file[0],
