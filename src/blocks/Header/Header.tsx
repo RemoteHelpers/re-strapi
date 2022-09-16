@@ -6,7 +6,6 @@ import { useStateContext } from '../../context/StateContext';
 
 import Logo from '../../images/Logo.png';
 import SelectIcon from '../../images/selectArrow.svg';
-// import Menu from '../../images/menu.png';
 
 const Header = () => {
   const { localization, setLocalization } = useStateContext();
@@ -74,25 +73,21 @@ const Header = () => {
           onClick={handleMenuClick}
           className="Header__menu-button"
         >
-          {/* <img
-            src={Menu}
-            alt="open menu"
-            className="Header__menu-icon"
-          /> */}
           <div className={classNames('Header__menu-icon', { 'Header__menu-icon--active': isMenuOpened })}></div>
         </button>
       </div>
 
       <div className={classNames('Header__drop-menu', { 'Header__drop-menu--active': isMenuOpened })}>
+        <h4 className="Header__drop-menu--title">Меню</h4>
         <nav className="Header__navbar--mobile">
           <a href="http://localhost:3000/" className="Header__link--mobile">
-            Вакансии
+            Вакансії
           </a>
           <a href="http://localhost:3000/" className="Header__link--mobile">
-            О Нас
+            Про нас
           </a>
           <a href="http://localhost:3000/" className="Header__link--mobile">
-            Видеоинтервью
+            Інтерв’ю
           </a>
         </nav>
       </div>

@@ -9,9 +9,14 @@
 ul {
   padding: 0;
 }
-body {
+body, html {
+  width: 100%;
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   position: relative;
-  // overflow: hidden;
+  overflow-x: hidden;
+}
+
+.container {
+  padding: 0 29px;
 }
