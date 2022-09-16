@@ -1,13 +1,14 @@
 import React from 'react';
 import './App.scss';
-// import { Vacancies } from './blocks/Vacancies/Vacancies';
-import FeedbackForm from './components/forms/feedbackForm';
+import { Vacancies } from './blocks/Vacancies/Vacancies';
+// import FeedbackForm from './components/forms/feedbackForm';
 
 export const App: React.FC = () => {
   return (
     <>
-      {/* <Vacancies /> */}
-      <FeedbackForm />
+      <Vacancies />
+      Vacancy branch
+      {/* <FeedbackForm /> */}
     </>
   );
 };

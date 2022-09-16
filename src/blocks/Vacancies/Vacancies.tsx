@@ -279,7 +279,7 @@ export const Vacancies = () => {
           previousLinkClassName="page-num"
           nextLinkClassName="page-num"
           activeLinkClassName="page-num--active"
-          // renderOnZeroPageCount={null}
+        // renderOnZeroPageCount={null}
         />
       </div>
     </div>

@@ -9,7 +9,10 @@
 ul {
   padding: 0;
 }
-body {
+body,
+html {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
