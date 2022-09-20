@@ -1,9 +1,17 @@
-* {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
 .starter {
   font-size: 18px;
+}
+
+.container {
+  width: 85% !important;
+  height: auto;
+  margin: 0 auto;
 }
 
 ul {

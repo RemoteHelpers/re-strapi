@@ -2,14 +2,18 @@
 /* eslint-disable no-console */
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import '../../App.scss';
+import cl from './vacancyDetails.module.scss';
 
 export const VacancyDetails = () => {
   const valueParams = useParams();
 
   return (
-    <div>
-      <div><strong>Vacancy:</strong> {valueParams.title}</div>
-      <div><strong>ID:</strong> {valueParams.id}</div>
+    <div className="container">
+      <div className={cl.card}>
+        <h1>{valueParams.title}</h1>
+        <div><strong>ID:</strong> {valueParams.id}</div>
+      </div>
     </div>
   );
 };
