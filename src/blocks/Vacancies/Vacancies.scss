@@ -120,7 +120,6 @@
   }
 
   &__control {
-    border: none !important;
     display: flex !important;
     gap: 1px !important;
 
@@ -159,10 +158,6 @@
 
   &__indicator-separator {
     display: none;
-  }
-
-  &__indicator {
-    padding: 0 !important;
   }
 }
 

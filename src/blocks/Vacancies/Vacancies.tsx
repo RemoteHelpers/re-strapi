@@ -24,9 +24,8 @@ const itemsPerPage = 6;
 let searchTime: any;
 let vacationTime: any;
 
-export const Vacancies = () => {
+export const Vacancies: React.FC = () => {
   const searchRef = useRef<HTMLDivElement>(null);
-
   const [localization, setLocalization] = useState('en');
   const [categories, setCategories] = useState<Category[]>([]);
   const [currentCategory, setCurrentCategory] = useState<string>('');
@@ -75,7 +74,7 @@ export const Vacancies = () => {
     axios.get(`${API}/categories?locale=${localization}`)
       .then(res => {
         setCategories(res.data.data);
-        console.log(res.data.data);
+        // console.log(res.data.data);
       })
       .catch(err => {
         console.log(err);
@@ -250,13 +249,13 @@ export const Vacancies = () => {
             )}
           </div>
         </div>
-
         <div className="Vacancies__cards">
           {currentItems && (
             currentItems.map((vacancy: any) => (
               <VacancyCard
                 key={vacancy.id}
                 title={vacancy.attributes.title}
+                id={vacancy.id}
               />
             ))
           )}

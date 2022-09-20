@@ -1,14 +1,19 @@
+/* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import './App.scss';
-import { Vacancies } from './blocks/Vacancies/Vacancies';
-// import FeedbackForm from './components/forms/feedbackForm';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import HomePage from './pages/homePage';
+import VacancyDetails from './pages/vacancyDetails';
 
-export const App: React.FC = () => {
+const App: React.FC = () => {
   return (
-    <>
-      <Vacancies />
-      Vacancy branch
-      {/* <FeedbackForm /> */}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="vacancy/:title/:id" element={<VacancyDetails />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
+
+export default App;

@@ -1,12 +1,16 @@
+/* eslint-disable max-len */
+/* eslint-disable no-console */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './VacancyCard.scss';
 import FireIcon from '../../images/fireIcon.svg';
 
 interface Props {
   title: string,
+  id: number
 }
 
-const VacancyCard:React.FC<Props> = ({ title }) => {
+const VacancyCard: React.FC<Props> = ({ title, id }) => {
   return (
     <div className="VacancyCard">
       <div className="VacancyCard__banner VacancyCard__banner--mobile">
@@ -22,13 +26,9 @@ const VacancyCard:React.FC<Props> = ({ title }) => {
           and information on the Internet, work with social networks.
         </p>
       </div>
-
-      <button
-        className="VacancyCard__button"
-        type="button"
-      >
+      <Link className="VacancyCard__button" to={`/vacancy/${title}/${id}`}>
         See more
-      </button>
+      </Link>
 
       <div className="VacancyCard__banner VacancyCard__banner--desktop">
         <img src={FireIcon} className="VacancyCard__fireIcon" alt="icon" />
