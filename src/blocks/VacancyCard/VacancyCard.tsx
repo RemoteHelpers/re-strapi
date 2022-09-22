@@ -26,7 +26,7 @@ const VacancyCard: React.FC<Props> = ({ title, id }) => {
           and information on the Internet, work with social networks.
         </p>
       </div>
-      <Link className="VacancyCard__button" to={`/vacancy/${title}/${id}`}>
+      <Link className="VacancyCard__button" to={`/vacancies/${title}/${id}`}>
         See more
       </Link>
 

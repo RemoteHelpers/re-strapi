@@ -2,7 +2,7 @@
 import React from 'react';
 import Vacancies from '../../blocks/Vacancies';
 
-export const HomePage = () => {
+export const VacaniesPage = () => {
   return (
     <>
       <Vacancies />
