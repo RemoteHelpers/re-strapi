@@ -5,18 +5,25 @@
   }
 }
 
+.to_top {
+  display: inherit;
+  align-self: flex-end;
+  margin: 3rem 0 0 0;
+}
+
 img {
   max-width: 100%;
 }
 
 .feedback{
-  padding: 50px 0;
   width: 100%;
+  padding: 10rem 0 6rem;
 
   &-wr {
-    width: 1490px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     margin: 0 auto;
-    padding: 0 15px;
 
     &_title {
       font-weight: 800;
@@ -35,6 +42,7 @@ img {
       align-items: center;
       width: 100%;
       border: 3px #FF6501 solid;
+      background-color: #fff;
       padding: 70px 40px;
       border-radius: 30px;
       margin-top: 100px;
@@ -43,7 +51,7 @@ img {
 
   &-img {
     position: absolute;
-    width: 35%;
+    width: 33%;
     top: 0;
     left: 0;
     height: 100%;
@@ -153,7 +161,7 @@ img {
 
 
       &__control:hover,
-      &__control--menu-is-open:hover, {
+      &__control--menu-is-open:hover {
         border: 2px #00DCFF solid;
         box-shadow: none;
       }

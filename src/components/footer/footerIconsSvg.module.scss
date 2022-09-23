@@ -1,0 +1,8 @@
+.footer_icon {
+  transition: .3s ease-in-out;
+  cursor: pointer;
+  border-radius: 50%;
+  &:hover {
+    box-shadow: 0 0 1rem rgb(155, 155, 155);
+  }
+}

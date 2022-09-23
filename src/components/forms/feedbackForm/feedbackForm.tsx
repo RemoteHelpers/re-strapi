@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import InputMask from 'react-input-mask';
@@ -9,6 +11,7 @@ import { IFeedbackFormData } from '../../../types/types';
 import './feedbackForm.scss';
 // img
 import formImg from '../../../images/formImg.png';
+import { FormsSvg } from './FormsSvg';
 
 type TOption = {
   value: string;
@@ -31,6 +34,13 @@ function FeedbackForm() {
     register, handleSubmit, watch, formState: { errors, isSubmitting }, reset, setValue,
   } = useForm<IFeedbackFormData>();
   const [phone, setPhone] = useState('');
+
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   const onSubmit = handleSubmit(async (data) => {
     try {
@@ -76,7 +86,7 @@ function FeedbackForm() {
     <div className="feedback">
       <div className="feedback-wr">
         <div className="feedback-wr_title">
-          Готовы присоединиться прямо сейчас?
+          Готові приєднатися прямо зараз?
         </div>
         <div className="feedback-wr_form">
           <form className="feedback-form" onSubmit={onSubmit}>
@@ -161,6 +171,15 @@ function FeedbackForm() {
             </div>
           </form>
         </div>
+
+        <div className="to_top" onClick={scrollTop}>
+          <FormsSvg
+            id="top"
+          >
+            Scroll Top
+          </FormsSvg>
+        </div>
+
       </div>
     </div>
 
