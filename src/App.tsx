@@ -7,6 +7,7 @@ import VacancyDetails from './pages/vacancyDetails';
 import AboutPage from './pages/about';
 import NavBar from './components/NavBar';
 import VacanciesPage from './pages/vacanciesPage';
+import VideoInterview from './pages/videoInterview';
 
 const App: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         <Route path="/vacancies" element={<VacanciesPage />} />
         <Route path="vacancies/:title/:id" element={<VacancyDetails />} />
         <Route path="about" element={<AboutPage />} />
+        <Route path="videoInterview" element={<VideoInterview />} />
       </Routes>
     </BrowserRouter>
   );

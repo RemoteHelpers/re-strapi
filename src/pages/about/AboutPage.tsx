@@ -16,6 +16,7 @@ import card6 from '../../icons/whatWeDo/card6.png';
 
 import memberTeam from '../../icons/team_member.png';
 import { AboutPageSvg } from './AboutPageSvg';
+import formImg from '../../images/formImg.png';
 
 export const AboutPage = () => {
   return (
@@ -188,7 +189,7 @@ export const AboutPage = () => {
       </div>
       <div className={cl.footer_decoration}>
         <div className={cl.container}>
-          <FeedbackForm />
+          <FeedbackForm img={formImg} />
         </div>
       </div>
       <Footer />

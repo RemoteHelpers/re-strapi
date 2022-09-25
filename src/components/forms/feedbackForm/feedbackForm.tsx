@@ -10,7 +10,6 @@ import { IFeedbackFormData } from '../../../types/types';
 // styles
 import './feedbackForm.scss';
 // img
-import formImg from '../../../images/formImg.png';
 import { FormsSvg } from './FormsSvg';
 
 type TOption = {
@@ -28,7 +27,11 @@ const EnglishLevel = [
   { value: 'Proficiency', label: 'Proficiency' },
 ];
 
-function FeedbackForm() {
+interface Props {
+  img: string
+}
+
+function FeedbackForm({ img }: Props) {
   const [selectedOption, setSelectedOption] = useState<TOption | null>();
   const {
     register, handleSubmit, watch, formState: { errors, isSubmitting }, reset, setValue,
@@ -141,7 +144,7 @@ function FeedbackForm() {
               />
             </div>
             <div className="feedback-img">
-              <img src={formImg} alt="#" />
+              <img src={img} alt="#" />
             </div>
             <div className="feedback-form_btn">
               <label className="feedback-form_file">
