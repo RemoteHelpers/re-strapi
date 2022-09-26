@@ -13,6 +13,8 @@ import Footer from '../../components/footer';
 import FeedbackForm from '../../components/forms/feedbackForm';
 import interviewKitekat from '../../icons/interview_form_kitekat.png';
 import { ArrowSvg } from './ArrowSvg';
+import interviewCat from '../../icons/interview_kitekat.png';
+import play from '../../icons/play.png';
 
 export const VideoInterview = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
@@ -44,6 +46,9 @@ export const VideoInterview = () => {
             <p>
               Відеоінтерв’ю економить Ваш час. Замість того, щоб їздити кілька разів на тиждень на співбесіди та перекроювати всі свої плани, Ви записуєте інтерв’ю лише 1 раз і спите спокійно.
             </p>
+            <div className={cl.absoluted_interview_cat}>
+              <img src={interviewCat} alt="" />
+            </div>
           </div>
         </div>
       </div>
@@ -55,7 +60,10 @@ export const VideoInterview = () => {
             <Accordion
               expanded={expanded === 'panel1'}
               onChange={handleChange('panel1')}
-              sx={{ boxShadow: 0 }}
+              sx={{
+                boxShadow: 0,
+                backgroundColor: 'transparent',
+              }}
             >
               <AccordionSummary
                 aria-controls="panel1bh-content"
@@ -64,9 +72,7 @@ export const VideoInterview = () => {
                   paddingLeft: 0,
                 }}
               >
-                <Typography
-                  className={cl.accordion_title}
-                >
+                <Typography className={cl.accordion_title}>
                   <div className={((expanded === 'panel1') ? cl.expanded_show : cl.accordion_arrow)}>
                     <ArrowSvg id="arrow" />
                   </div>
@@ -99,6 +105,7 @@ export const VideoInterview = () => {
                 '&::before': {
                   display: 'none',
                 },
+                backgroundColor: 'transparent',
               }}
             >
               <AccordionSummary
@@ -133,6 +140,7 @@ export const VideoInterview = () => {
                 '&::before': {
                   display: 'none',
                 },
+                backgroundColor: 'transparent',
               }}
             >
               <AccordionSummary
@@ -172,6 +180,7 @@ export const VideoInterview = () => {
                 '&::before': {
                   display: 'none',
                 },
+                backgroundColor: 'transparent',
               }}
             >
               <AccordionSummary
@@ -247,6 +256,7 @@ export const VideoInterview = () => {
                 '&::before': {
                   display: 'none',
                 },
+                backgroundColor: 'transparent',
               }}
             >
               <AccordionSummary
@@ -278,6 +288,39 @@ export const VideoInterview = () => {
           </div>
         </div>
       </main>
+
+      <div className={cl.container}>
+        <div className={cl.video_block}>
+
+          <div className={cl.video_instruction_block}>
+            <div className={cl.instruction_video_title}>
+              <img src={play} alt="" />
+            </div>
+            <div className={cl.video_instruction}>
+              <h1>Чому нам важливе якісне відео?</h1>
+              <p>
+                Пам’ятай – твоє відео зберігатиметься на наших ресурсах тривалий час, а перше враження можна зробити лише один раз. Використовуй наш відеоролик із підказками, щоб записати гарне відео для тривалого користування.
+              </p>
+            </div>
+          </div>
+
+          <div className={cl.video_examples}>
+            <h1>Приклади відеоінтерв'ю співробітників</h1>
+            <div className={cl.video_examples_wrapper}>
+              <div className={cl.instruction_video_title}>
+                <img src={play} alt="" />
+              </div>
+              <div className={cl.instruction_video_title}>
+                <img src={play} alt="" />
+              </div>
+              <div className={cl.instruction_video_title}>
+                <img src={play} alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className={cl.container}>
         <FeedbackForm img={interviewKitekat} />
       </div>

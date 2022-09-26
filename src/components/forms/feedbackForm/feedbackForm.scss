@@ -17,7 +17,7 @@ img {
 
 .feedback{
   width: 100%;
-  padding: 10rem 0 6rem;
+  padding-bottom: 6rem;
 
   &-wr {
     display: flex;
@@ -55,6 +55,7 @@ img {
     top: 0;
     left: 0;
     height: 100%;
+    pointer-events: none;
     img {
       display: block;
       max-height: 100%;
