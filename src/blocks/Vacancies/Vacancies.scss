@@ -8,43 +8,33 @@
   right: 50px;
 }
 
-.container {
-  width: 100%;
-  padding: 0 29px;
-  margin: 0 auto;
-  
-  @include onDesktop {
-    width: 76%;
-  }
-}
-
 .Vacancies {
   &__title {
     font-weight: 900;
     line-height: 115%;
     text-decoration-line: underline;
     font-size: 28px;
-    margin: 50px 0;
+    margin: 0 0 50px 0;
     color: #3f455b;
 
     @include onTablet {
-      font-size: 26px;
-      margin: 43px 0;
+      font-size: 38px;
+      margin: 0 0 72px 0;
     }
 
     @include onDesktop {
       font-size: 24px;
-      margin: 35px 0;
+      margin: 0 0 35px 0;
     }
 
     @include on1440 {
       font-size: 36px;
-      margin: 47px 0;
+      margin: 0 0 53px 0;
     }
 
     @include on1920 {
       font-size: 48px;
-      margin: 70px 0;
+      margin: 0 0 70px 0;
     }
   }
 
@@ -57,7 +47,7 @@
     gap: 33px;
 
     @include onTablet {
-      margin-bottom: 77px;
+      margin-bottom: 40px;
     }
 
     @include onDesktop {
@@ -100,7 +90,7 @@
     order: 2;
     gap: 40px !important;
 
-    @include onDesktop {
+    @include onTablet {
       order: 0;
     }
 
@@ -120,9 +110,27 @@
   }
 
   &__control {
+    width: auto;
+    height: auto;
+    padding: 0 10px;
     border: none !important;
     display: flex !important;
     gap: 1px !important;
+
+    @include onDesktop {
+      width: 160px;
+      height: 27px;
+    }
+
+    @include on1440 {
+      width: 213px;
+      height: 36px;
+    }
+    
+    @include on1920 {
+      width: 319px;
+      height: 54px;
+    }
 
     &:hover {
       cursor: pointer;
@@ -132,9 +140,43 @@
       transition: 0.2s all;
       transform: rotate(180deg);
     }
+
+    &--menu-is-open {
+      background: #D8FAFF !important;
+      border-radius: 15px !important;
+      outline: none !important;
+      box-shadow: 0 !important;
+    }
+  }
+
+  &__value-container {
+    padding-left: 0 !important;
   }
 
   &__placeholder {
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    line-height: 115% !important;
+    color: #000 !important;
+
+    @include onTablet {
+      font-size: 20px !important;
+    }
+
+    @include onDesktop {
+      font-size: 10px !important;
+    }
+
+    @include on1440 {
+      font-size: 15px !important;
+    }
+
+    @include on1920 {
+      font-size: 20px !important;
+    }
+  }
+
+  &__single-value {
     font-weight: 700 !important;
     font-size: 16px !important;
     line-height: 115% !important;
@@ -163,6 +205,36 @@
 
   &__indicator {
     padding: 0 !important;
+  }
+
+  &__menu {
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    line-height: 130% !important;
+
+    color: #000000 !important;
+
+    background: #FFFFFF !important;
+    border: 1px solid #616161 !important;
+    border-radius: 30px !important;
+
+    @include onDesktop {
+      font-size: 12px !important;
+    }
+
+    @include on1440 {
+      font-size: 18px !important;
+    }
+
+    @include on1920 {
+      font-size: 24px !important;
+    }
+  }
+
+  &__option {
+    border-radius: 30px !important;
+    // &:hover, :active {
+    // }
   }
 }
 

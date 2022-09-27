@@ -1,0 +1,164 @@
+@import '../../utils/mixins.scss';
+
+.FAQ {
+  padding-top: 120px;
+
+  @include onTablet {
+    padding-top: 200px;
+  }
+
+  @include onDesktop {
+    padding-top: 133px;
+  }
+
+  @include on1440 {
+    padding-top: 178px;
+  }
+
+  @include on1920 {
+    padding-top: 266px;
+  }
+
+  &__title {
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 130%;
+    text-decoration-line: underline;
+
+    color: #3f455b;
+    margin: 0 0 50px;
+
+    @include onTablet {
+      font-size: 38px;
+      margin: 0 0 70px;
+    }
+
+    @include onDesktop {
+      font-size: 24px;
+    }
+  
+    @include on1440 {
+      font-size: 36px;
+      margin: 0 0 75px;
+    }
+  
+    @include on1920 {
+      font-size: 48px;
+      margin: 0 0 100px;
+    }
+  }
+
+  &__item {
+    margin-bottom: 40px;
+
+    @include onDesktop {
+      margin-bottom: 25px;
+    }
+  
+    @include on1440 {
+      margin-bottom: 38px;
+    }
+  
+    @include on1920 {
+      margin-bottom: 50px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__accordion-title {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    line-height: 115%;
+    gap: 17px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    @include onTablet {
+      font-size: 24px;
+    }
+
+    @include onDesktop {
+      gap: 11px;
+    }
+  
+    @include on1440 {
+      gap: 17px;
+    }
+  
+    @include on1920 {
+      gap: 22px;
+    }
+  }
+
+  &__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+
+    font-size: 14px;
+    line-height: 150%;
+    padding-left: 50px;
+
+    @include onDesktop {
+      font-size: 10px;
+    }
+  
+    @include on1440 {
+      font-size: 15px;
+    }
+  
+    @include on1920 {
+      font-size: 20px;
+    }
+  }
+
+  &__content.show {
+    height: auto;
+    max-height: 100px;
+    padding-top: 30px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &__question {
+    margin: 0;
+
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 130%;
+
+    @include onDesktop {
+      font-size: 16px;
+    }
+  
+    @include on1440 {
+      font-size: 24px;
+    }
+  
+    @include on1920 {
+      font-size: 32px;
+    }
+  }
+
+  &__icon {
+    @include onDesktop {
+      width: 23px;
+      height: 23px;
+    }
+  
+    @include on1440 {
+      width: 34px;
+      height: 34px;
+    }
+  
+    @include on1920 {
+      width: 45px;
+      height: 45px;
+    }
+  }
+}

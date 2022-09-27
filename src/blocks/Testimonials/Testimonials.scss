@@ -1,0 +1,317 @@
+@import '../../utils/mixins.scss';
+
+.Testimonials {
+  padding: 120px 29px;
+
+  @include onDesktop {
+    padding-top: 100px;
+    padding-left: 0;
+    padding-bottom: 125px;
+  }
+
+  @include on1440 {
+    padding-top: 150px;
+    padding-bottom: 188px;
+  }
+
+  @include on1920 {
+    padding-top: 200px;
+    padding-bottom: 250px;
+  }
+
+  &__title {
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 130%;
+    text-decoration-line: underline;
+
+    color: #3f455b;
+    margin: 0 0 50px 0;
+
+    @include onTablet {
+      margin: 0 0 92px 0;
+      font-size: 38px;
+    }
+
+    @include onDesktop {
+      font-size: 24px;
+      margin: 0 0 36px 5.5%;
+    }
+  
+    @include on1440 {
+      font-size: 36px;
+      margin: 0 0 55px 12%;
+    }
+  
+    @include on1920 {
+      font-size: 48px;
+      margin: 0 0 73px 11%;
+    }
+  }
+
+  &__slide-head {
+    display: flex;
+    align-items: center;
+    gap: 23px;
+  }
+
+  &__person {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    @include onDesktop {
+      gap: 7px;
+    }
+  
+    @include on1440 {
+      gap: 11px;
+    }
+  
+    @include on1920 {
+      gap: 15px;
+    }
+  }
+
+  &__name {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 130%;
+
+    @include onTablet {
+      font-size: 32px;
+    }
+
+    @include onDesktop {
+      font-size: 16px;
+      line-height: 115%;
+    }
+  
+    @include on1440 {
+      font-size: 24px;
+    }
+  
+    @include on1920 {
+      font-size: 32px;
+    }
+  }
+
+  &__vacancy {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 130%;
+
+    @include onTablet {
+      font-size: 20px;
+    }
+
+    @include onDesktop {
+      font-size: 10px;
+      line-height: 115%;
+    }
+  
+    @include on1440 {
+      font-size: 15px;
+    }
+  
+    @include on1920 {
+      font-size: 20px;
+    }
+
+    &--bold {
+      font-weight: 600;
+    }
+  }
+
+  &__paragraph {
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 150%;
+
+    @include onTablet {
+      font-size: 18px;
+    }
+
+    @include onDesktop {
+      font-size: 9px;
+    }
+  
+    @include on1440 {
+      font-size: 13.5px;
+    }
+  
+    @include on1920 {
+      font-size: 18px;
+    }
+  }
+
+  &__slider {
+    padding-bottom: 100px;
+  }
+
+  &__image {
+    width: 80px;
+    height: 80px;
+    background: #d8faff;
+    border-radius: 50%;
+
+    @include onTablet {
+      width: 102px;
+      height: 102px;
+    }
+
+    @include onDesktop {
+      width: 51px;
+      height: 51px;
+  
+    @include on1440 {
+      width: 77px;
+      height: 77px;
+    }
+  
+    @include on1920 {
+      width: 102px;
+      height: 102px;
+    }
+  }
+}
+
+.swiper-pagination {
+  bottom: 1.3%;
+
+  @include onDesktop {
+    bottom: 1.5%;
+  }
+
+  // @include on1440 {
+  //   bottom: 2%;
+  // }
+  &-bullet {
+    border: 2px solid #FF6501;
+    background-color: white;
+    width: 24px;
+    height: 24px;
+    opacity: 1;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    @include onDesktop {
+      width: 12px;
+      height: 12px
+    }
+  
+    @include on1440 {
+      width: 18px;
+      height: 18px
+    }
+  
+    @include on1920 {
+      width: 24px;
+      height: 24px
+    }
+
+    &-active {
+      background: #ff6501;
+    }
+  }
+}
+
+.swiper-button-next {
+  width: 45px;
+  height: 45px;
+  background-image: url('../../images/Slider/next.svg');
+  background-size: cover;
+  top: inherit;
+  bottom: 0;
+  right: 0%;
+  z-index: 11;
+
+  @include onTablet {
+    right: 25%;
+  }
+
+  @include onDesktop {
+    width: 25px;
+    height: 25px;
+    right: 40%;
+  }
+
+  @include on1440 {
+    width: 38px;
+    height: 38px;
+  }
+
+  @include on1920 {
+    width: 50px;
+    height: 50px;
+  }
+
+  &::after {
+    display: none;
+  }
+}
+
+.swiper-slide {
+  padding: 40px 25px;
+  border: 1px solid #000000;
+  border-radius: 15px;
+  opacity: 0.35;
+
+  @include onDesktop {
+    padding: 13px 20px;
+  }
+
+  @include on1440 {
+    padding: 19px 30px;
+    border: 2px solid #000000;
+  }
+
+  @include on1920 {
+    padding: 25px 40px;
+    border: 3px solid #000000;
+  }
+
+  &-active {
+    opacity: 1;
+  }
+}
+
+.swiper-button-prev {
+  width: 45px;
+  height: 45px;
+  top: inherit;
+  bottom: 0;
+  left: 0%;
+  z-index: 11;
+
+  background-image: url('../../images/Slider/next.svg');
+  background-size: cover;
+  transform: rotate(180deg);
+  
+  @include onTablet {
+    left: 25%;
+  }
+
+  @include onDesktop {
+    width: 25px;
+    height: 25px;
+    left: 40%;
+  }
+
+  @include on1440 {
+    width: 38px;
+    height: 38px
+  }
+
+  @include on1920 {
+    width: 50px;
+    height: 50px
+  }
+
+  &::after {
+    display: none;
+  }
+}
+}

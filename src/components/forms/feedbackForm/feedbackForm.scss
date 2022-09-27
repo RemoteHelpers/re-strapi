@@ -1,3 +1,5 @@
+@import '../../../utils/mixins.scss';
+
 * {
   box-sizing: border-box;
   &:after, &:before {
@@ -10,7 +12,7 @@ img {
 }
 
 .feedback{
-  padding: 50px 0;
+  // padding: 0 0 150px;
   @media screen and (max-width: 768px) {
     padding: 20px 0;
   }
@@ -19,7 +21,7 @@ img {
     max-width: 1490px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0;
     @media screen and (max-width: 768px) {
       padding: 0 30px;
     }
@@ -31,9 +33,9 @@ img {
       color: #3F455B;
       line-height: 1.3;
       text-decoration: underline;
-      padding: 50px 0 120px;
-      @media screen and (max-width: 1200px) {
-        padding: 20px 0 50px;
+      padding: 0 0 120px;
+      @media screen and (max-width: 1440px) {
+        padding: 20px 0 80px;
         font-size: 38px;
       }
       @media screen and (max-width: 768px) {
@@ -71,6 +73,7 @@ img {
     img {
       display: block;
       max-height: 100%;
+      pointer-events: none;
       margin: 0 auto;
     }
     @media screen and (max-width: 1200px) {
@@ -112,6 +115,9 @@ img {
         border-radius: 8px;
         background: #D8FAFF;
         resize: none;
+        @media screen and (max-width: 1440px) {
+          font-size: 17px;
+        }
         @media screen and (max-width: 768px) {
           font-size: 14px;
           padding: 18px;
@@ -216,7 +222,7 @@ img {
 
 
       &__control:hover,
-      &__control--menu-is-open:hover, {
+      &__control--menu-is-open:hover {
         border: 2px #00DCFF solid;
         box-shadow: none;
       }
@@ -295,8 +301,9 @@ img {
       z-index: 0;
       display: block;
       position: relative;
-      width: 35%;
+      width: 40%;
       max-width: 308px;
+      font-size: clamp(16px, 1.2vw, 20px);
       @media screen and (max-width: 768px) {
         width: 100%;
         padding-bottom: 15px;
@@ -387,6 +394,28 @@ img {
       &:active {
         transform: translateY(2px);
       }
+    }
+  }
+}
+
+.up {
+  display: flex;
+  padding: 50px 0;
+  justify-content: center;
+
+  @include onDesktop {
+    justify-content: flex-end;
+  }
+
+  &-link {
+    display: block;
+    background-image: url('../../../images/Form/Up.svg');
+    width: 50px;
+    height: 50px;
+    transition: all 0.3s;
+
+    &:hover {
+      transform: scale(110%);
     }
   }
 }

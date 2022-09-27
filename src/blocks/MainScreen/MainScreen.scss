@@ -1,6 +1,192 @@
+@import '../../utils/mixins.scss';
+
 .MainScreen {
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+  padding: 33px 29px 60px;
+
+  background-image: url('../../images/mainScreen/background-desktop.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top 610px left 0;
+
+  @include onTablet {
+    padding: 50px 40px 57px;
+    background-position: top 630px left 0;
+  }
+
+  @include onDesktop {
+    flex-direction: row;
+    align-items: center;
+    gap: 12%;
+    padding: 33px 12% 100px;
+    margin: 0 auto;
+    background-image: url('../../images/mainScreen/background-desktop.png');
+    background-position: top 260px left 0;
+  }
+
   &__image {
     height: 369px;
     width: 352.79px;
+
+    @include onTablet {
+      align-self: center;
+      width: 416px;
+      height: 436.18px;
+    }
+
+    @include onDesktop {
+      text-align: inherit;
+      width: 333px;
+      height: 349.2px;
+    }
+
+    @include on1440 {
+      width: 444px;
+      height: 465.54px;
+    }
+
+    @include on1920 {
+      width: 666px;
+      height: 698.31px;
+    }
+  }
+
+  &__title {
+    margin: 0 0 30px 0;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 130%;
+    text-decoration-line: underline;
+
+    @include onTablet {
+      width: 70%;
+      font-size: 45px;
+    }
+    
+    @include onDesktop {
+      width: inherit;
+      font-size: 32px;
+      margin: 0 0 26px 0;
+    }
+
+    @include on1440 {
+      font-size: 43px;
+      margin: 0 0 39px 0;
+    }
+
+    @include on1920 {
+      font-size: 64px;
+      margin: 0 0 52px 0;
+    }
+  }
+
+  &__paragraph {
+    margin: 0 0 20px 0;
+    font-size: 14px;
+    line-height: 150%;
+
+    &--strong {
+      font-weight: 600;
+    }
+
+    @include onTablet {
+      margin: 0 0 30px 0;
+      font-size: 20px;
+    }
+
+    @include onDesktop {
+      font-size: 10px;
+      margin: 0 0 25px 0;
+    }
+
+    @include on1440 {
+      font-size: 15px;
+      margin: 0 0 38px 0;
+    }
+
+    @include on1920 {
+      font-size: 20px;
+      margin: 0 0 50px 0;
+    }
+  }
+
+  &__button {
+    padding: 19px 30px;
+    margin-bottom: 56px;
+    background: #FF6501;
+    box-shadow: 0px 0px 17px 5px rgba(255, 101, 1, 0.25);
+    border-radius: 15px;
+    border: none;
+
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 115%;
+
+    color: #fff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 17px;
+
+    transition: all 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      background: #fbbf13;
+    }
+
+    @include onTablet {
+      padding: 0;
+      width: 302px;
+      height: 62px;
+      font-size: 20px;
+      margin-bottom: 57px;
+    }
+
+    @include onDesktop {
+      padding: 0;
+      width: 151px;
+      height: 31px;
+      font-size: 10px;
+      margin-bottom: 0;
+    }
+
+    @include on1440 {
+      width: 202px;
+      height: 42px;
+      font-size: 15px;
+    }
+
+    @include on1920 {
+      width: 302px;
+      height: 62px;
+      font-size: 20px;
+    }
+  }
+
+  &__button-icon {
+    @include onTablet {
+      width: 20px;
+      height: 19px;
+    }
+
+    @include onDesktop {
+      width: 12px;
+      height: 12px;
+    }
+
+    @include on1440 {
+      width: 18px;
+      height: 18px;
+    }
+
+    @include on1920 {
+      width: 24px;
+      height: 24px;
+    }
   }
 }

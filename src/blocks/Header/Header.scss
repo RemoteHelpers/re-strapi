@@ -1,14 +1,18 @@
 @import '../../utils/mixins.scss';
 
 .Header {
-  width: 89%;
   display: flex;
   margin: 0 auto;
   justify-content: space-between;
 
-  padding: 17px 0;
+  padding: 17px 29px;
+
+  @include onTablet {
+    padding: 30px 40px;
+  }
 
   @include onDesktop {
+    width: 89%;
     padding: 24px 0;
   }
 
@@ -26,6 +30,10 @@
     align-items: center;
     gap: 28.5px;
 
+    @include onTablet {
+      gap: 50px;
+    }
+
     @include onDesktop {
       gap: 40px;
     }
@@ -42,6 +50,11 @@
   &__logo {
     width: 103px;
     height: 33px;
+
+    @include onTablet {
+      width: 277px;
+      height: 87px;
+    }
 
     @include onDesktop {
       width: 138.5px;
@@ -103,15 +116,23 @@
     height: 2px;
     background-color: #000;
 
+    @include onTablet {
+      width: 54px;
+    }
+
     &::before {
       content: '';
       display: block;
       width: 24px;
       height: 2px;
       background-color: #000;
-      transform: translateY(-7px);
+      transform: translateY(-18px);
       
       transition: all 0.3s;
+
+      @include onTablet {
+        width: 54px;
+      }
     }
 
     &::after {
@@ -120,9 +141,13 @@
       width: 24px;
       height: 2px;
       background-color: #000;
-      transform: translateY(6px);
+      transform: translateY(17px);
 
       transition: all 0.3s;
+
+      @include onTablet {
+        width: 54px;
+      } 
     }
 
     &--active {
@@ -206,6 +231,11 @@
     &--title {
       padding: 23px 0;
       margin-bottom: 0;
+
+      @include onTablet {
+        padding: 52px 0;
+        font-size: 22px;
+      }
     }
   }
 }
@@ -244,6 +274,10 @@
     font-size: 10px !important;
     line-height: 115% !important;
     color: #000 !important;
+
+    @include onTablet {
+      font-size: 20px !important;
+    }
 
     @include onDesktop {
       font-size: 10px !important;

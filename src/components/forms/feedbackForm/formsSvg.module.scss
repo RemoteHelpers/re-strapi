@@ -1,0 +1,12 @@
+.arrow {
+  cursor: pointer;
+  circle {
+    transition: .3s ease-in-out;
+    &:hover {
+      fill: #00DCFF;
+      + path {
+        fill: #fff;
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@ import React, {
 const Context = createContext();
 
 export const StateContext = ({ children }) => {
-  const [localization, setLocalization] = useState('ru');
+  const [localization, setLocalization] = useState('uk');
 
   return (
     <Context.Provider

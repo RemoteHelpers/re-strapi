@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import InputMask from 'react-input-mask';
@@ -9,6 +13,7 @@ import { IFeedbackFormData } from '../../../types/types';
 import './feedbackForm.scss';
 // img
 import formImg from '../../../images/formImg.png';
+import { FormsSvg } from './FormsSvg';
 
 type TOption = {
   value: string;
@@ -32,6 +37,13 @@ function FeedbackForm() {
   } = useForm<IFeedbackFormData>();
 
   const [phone, setPhone] = useState('');
+
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   const onSubmit = handleSubmit(async (data: IFeedbackFormData) => {
     try {
@@ -163,8 +175,18 @@ function FeedbackForm() {
           </form>
         </div>
       </div>
-    </div>
 
+      <div
+        className="up"
+        onClick={scrollTop}
+      >
+        <FormsSvg
+          id="top"
+          // eslint-disable-next-line react/no-children-prop
+          children={undefined}
+        />
+      </div>
+    </div>
   );
 }
 

@@ -1,0 +1,110 @@
+@import '../../utils/mixins.scss';
+
+.Spheres {
+  padding: 120px 0;
+
+  @include onTablet {
+    padding: 200px 0;
+  }
+
+  @include onDesktop {
+    padding: 125px 0;
+  }
+
+  @include on1440 {
+    padding: 188px 0;
+  }
+
+  @include on1920 {
+    padding: 250px 0;
+  }
+
+  &__title {
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 130%;
+    text-decoration-line: underline;
+    margin-top: 0;
+    margin-bottom: 50px;
+
+    color: #3f455b;
+
+    @include onTablet {
+      font-size: 38px;
+      margin-bottom: 70px;
+    }
+
+    @include onDesktop {
+      font-size: 24px;
+      margin-bottom: 45px;
+    }
+
+    @include on1440 {
+      font-size: 36px;
+      margin-bottom: 68px;
+    }
+
+    @include on1920 {
+      font-size: 48px;
+      margin-bottom: 90px;
+    }
+  }
+
+  &__icon {
+    width: 154px;
+    height: 154px;
+
+    border: 2px solid #ff6501;
+    border-radius: 15px;
+
+    @include onDesktop {
+      width: 77px;
+      height: 77px;
+    }
+
+    @include on1440 {
+      width: 103px;
+      height: 103px;
+    }
+
+    @include on1920 {
+      width: 154px;
+      height: 154px;
+    }
+  }
+
+  &__sphere {
+    text-align: center;
+    transition: all 0.3s;
+
+    &:hover {
+      transform: scale(105%);
+    }
+  }
+
+  &__sphere-title {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 115%;
+    margin: 15px 0 30px;
+
+    @include onTablet {
+      font-size: 20px;
+    }
+
+    @include onDesktop {
+      font-size: 10px;
+      margin: 15px 0 0;
+    }
+
+    @include on1440 {
+      font-size: 15px;
+      margin: 23px 0 0;
+    }
+
+    @include on1920 {
+      font-size: 20px;
+      margin: 30px 0 0;
+    }
+  }
+}

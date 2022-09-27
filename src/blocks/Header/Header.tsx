@@ -1,20 +1,25 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import Select, { components } from 'react-select';
 import './Header.scss';
 import { useStateContext } from '../../context/StateContext';
 
-import Logo from '../../images/Logo.png';
+import Logo from '../../images/mainScreen/Logo.png';
 import SelectIcon from '../../images/selectArrow.svg';
 
 const Header = () => {
   const { localization, setLocalization } = useStateContext();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
 
+  useEffect(() => {
+    // document.body.classList.toggle('no-overflow');
+    document.documentElement.classList.toggle('no-overflow');
+  }, [isMenuOpened]);
+
   const selectLocalization = [
-    { value: 'en', label: 'English' },
-    { value: 'uk', label: 'Ukrainian' },
-    { value: 'ru', label: 'Russian' },
+    { value: 'en', label: 'EN' },
+    { value: 'uk', label: 'UA' },
+    { value: 'ru', label: 'RU' },
   ];
 
   const getLocalization = () => {
@@ -41,7 +46,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="Header">
+    <div id="header" className="Header">
       <img src={Logo} alt="logo" className="Header__logo" />
       <div className="Header__functionality">
         <nav className="Header__navbar">
