@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable max-len */
 /* eslint-disable no-console */
 import React from 'react';
@@ -7,7 +8,7 @@ import FireIcon from '../../images/fireIcon.svg';
 
 interface Props {
   title: string,
-  id: number
+  id: any,
 }
 
 const VacancyCard: React.FC<Props> = ({ title, id }) => {
@@ -26,7 +27,7 @@ const VacancyCard: React.FC<Props> = ({ title, id }) => {
           and information on the Internet, work with social networks.
         </p>
       </div>
-      <Link className="VacancyCard__button" to={`/vacancies/${title}/${id}`}>
+      <Link className="VacancyCard__button" to={`/vacancies/${id}`}>
         See more
       </Link>
 

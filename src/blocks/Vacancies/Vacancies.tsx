@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 import React, {
   useCallback, useEffect, useState, useRef,
@@ -18,18 +19,17 @@ import Find from '../../images/findIcon.svg';
 import SelectIcon from '../../images/selectArrow.svg';
 import useOutsideAlerter from '../../hooks/useClickOutside';
 
-const API = 'http://beta.fv-a.com:1337/api';
+const API = 'http://testseven.rh-s.com:1733/api';
 const itemsPerPage = 6;
 
 let searchTime: any;
 let vacationTime: any;
 
-export const Vacancies: React.FC = () => {
+export const Vacancies = () => {
   const searchRef = useRef<HTMLDivElement>(null);
-  const [localization, setLocalization] = useState('en');
+
   const [categories, setCategories] = useState<Category[]>([]);
   const [currentCategory, setCurrentCategory] = useState<string>('');
-  const [currentType, setCurrentType] = useState<string>('');
   const [selectedVacancies, setSelectedVacancies] = useState<Vacancy[]>([]);
   const [query, setQuery] = useState<string>('');
   const [searchCollection, setSearchCollection] = useState<Collection[]>([]);
@@ -38,23 +38,12 @@ export const Vacancies: React.FC = () => {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
 
-  const selectType = [
-    { value: 'FullTime', label: 'FullTime' },
-    { value: 'PrtTime', label: 'PartTime' },
-  ];
-
   const selectCategories = categories.map(category => (
     {
       value: category.attributes.categoryTitle.toLowerCase(),
       label: category.attributes.categoryTitle,
     }
   ));
-
-  const selectLocalization = [
-    { value: 'en', label: 'English' },
-    { value: 'uk', label: 'Ukrainian' },
-    { value: 'ru', label: 'Russian' },
-  ];
 
   const DropdownIndicator = (
     props: any,
@@ -71,15 +60,15 @@ export const Vacancies: React.FC = () => {
   });
 
   useEffect(() => {
-    axios.get(`${API}/categories?locale=${localization}`)
+    axios.get(`${API}/categories?populate=*`)
       .then(res => {
         setCategories(res.data.data);
-        // console.log(res.data.data);
+        console.log(res);
       })
       .catch(err => {
         console.log(err);
       });
-  }, [localization]);
+  }, []);
 
   useEffect(() => {
     clearTimeout(vacationTime);
@@ -90,30 +79,29 @@ export const Vacancies: React.FC = () => {
         queryFilters += `&filters[categories][categoryTitle][$contains]=${currentCategory}`;
       }
 
-      if (currentType) {
-        queryFilters += `&filters[workType][$contains]=${currentType}`;
-      }
-
       if (query.length > 0) {
         queryFilters += `&filters[keyword_tags][keyPhrase][$containsi]=${query}`;
       }
 
-      const res = await axios.get(`${API}/vacancies?locale=${localization}&populate=*${queryFilters}`);
+      if (!currentCategory && query.length === 0) {
+        const res = await axios.get(`${API}/vacancies?filters[isHot][$eq]=${true}`);
 
-      setSelectedVacancies(res.data.data);
+        setSelectedVacancies(res.data.data);
+      } else {
+        const res = await axios.get(`${API}/vacancies?populate=*${queryFilters}`);
+
+        setSelectedVacancies(res.data.data);
+      }
+
+      // const res = await axios.get(`${API}/vacancies?
+      // locale=${localization}&populate=*${queryFilters}`);
+
+      // setSelectedVacancies(res.data.data);
     }, 400);
-  }, [query, currentCategory, currentType, localization]);
-
-  const handleLocalizationSelect = useCallback((selected: any) => {
-    setLocalization(selected.value);
-  }, []);
+  }, [query, currentCategory]);
 
   const handleCategorySelect = useCallback((selected: any) => {
     setCurrentCategory(selected.label);
-  }, []);
-
-  const handleWorkTypeSelect = useCallback((selected: any) => {
-    setCurrentType(selected.label);
   }, []);
 
   const handleClear = useCallback(() => {
@@ -141,14 +129,6 @@ export const Vacancies: React.FC = () => {
     return currentCategory ? selectCategories.find(c => c.value === currentCategory) : '';
   };
 
-  const getType = () => {
-    return currentType ? selectType.find(c => c.value === currentType) : '';
-  };
-
-  const getLocalization = () => {
-    return localization ? selectLocalization.find(c => c.value === localization) : '';
-  };
-
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
 
@@ -163,21 +143,8 @@ export const Vacancies: React.FC = () => {
   };
 
   return (
-    <div className="Vacancies">
-      <div className="container">
-        <Select
-          classNamePrefix="custom-select custom-select--locale"
-          options={selectLocalization}
-          value={getLocalization()}
-          onChange={handleLocalizationSelect}
-          placeholder={localization}
-          components={
-            {
-              DropdownIndicator,
-            }
-          }
-
-        />
+    <div className="container">
+      <div className="Vacancies">
         <h2 className="Vacancies__title">
           Current
           <br />
@@ -191,18 +158,6 @@ export const Vacancies: React.FC = () => {
               value={getCategory()}
               onChange={handleCategorySelect}
               placeholder="Choose a category"
-              components={
-                {
-                  DropdownIndicator,
-                }
-              }
-            />
-            <Select
-              classNamePrefix="custom-select"
-              options={selectType}
-              value={getType()}
-              onChange={handleWorkTypeSelect}
-              placeholder="Choose a work type"
               components={
                 {
                   DropdownIndicator,
@@ -249,22 +204,19 @@ export const Vacancies: React.FC = () => {
             )}
           </div>
         </div>
+
         <div className="Vacancies__cards">
           {currentItems && (
             currentItems.map((vacancy: any) => (
               <VacancyCard
                 key={vacancy.id}
-                title={vacancy.attributes.title}
                 id={vacancy.id}
+                title={vacancy.attributes.title}
+              // subTitle={vacancy.attributes.subTitle}
+              // isHot={vacancy.attributes.isHot}
               />
             ))
           )}
-          {/* {currentItems.map((vacancy: any) => (
-            <VacancyCard
-              key={vacancy.id}
-              title={vacancy.attributes.title}
-            />
-          ))} */}
         </div>
         <ReactPaginate
           breakLabel="..."
