@@ -8,8 +8,8 @@ import HomePage from "./pages/homePage";
 import VacancyDetails from "./pages/vacancyDetails";
 import AboutPage from "./pages/about";
 import NavBar from "./components/NavBar";
-import VacanciesPage from "./pages/vacanciesPage";
 import VideoInterview from "./pages/videoInterview";
+import VacanciesPage from "./pages/vacanciesPage";
 
 const App: React.FC = () => {
   return (
