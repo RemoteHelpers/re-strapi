@@ -2,6 +2,7 @@ export type WorkType = 'fullTime' | 'halfTime';
 
 export interface AttributesCategory {
   categoryTitle: string,
+  slug: string,
 }
 
 export interface Category {

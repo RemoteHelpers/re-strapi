@@ -126,11 +126,12 @@
       width: 24px;
       height: 2px;
       background-color: #000;
-      transform: translateY(-18px);
+      transform: translateY(-8px);
       
       transition: all 0.3s;
 
       @include onTablet {
+        transform: translateY(-18px);
         width: 54px;
       }
     }
@@ -141,11 +142,12 @@
       width: 24px;
       height: 2px;
       background-color: #000;
-      transform: translateY(17px);
+      transform: translateY(7px);
 
       transition: all 0.3s;
 
       @include onTablet {
+        transform: translateY(17px);
         width: 54px;
       } 
     }
@@ -196,6 +198,7 @@
 
     &--mobile {
       text-decoration: none;
+      display: block;
       text-align: left;
       font-weight: 600;
       font-size: 24px;
@@ -233,8 +236,9 @@
       margin-bottom: 0;
 
       @include onTablet {
-        padding: 52px 0;
-        font-size: 22px;
+        margin: 0;
+        height: 161px;
+        font-size: 0;
       }
     }
   }
@@ -298,5 +302,47 @@
 
   &__indicator {
     padding: 0 !important;
+  }
+}
+
+.menu {
+  width: 100%;
+
+  &-primary-enter {
+    position: absolute;
+    transform: translateX(110%);
+
+    &-active {
+      transform: translateX(0%);
+      transition: all 0.6s ease-in-out;
+    }
+  }
+
+  &-primary-exit {
+    position: absolute;
+
+    &-active {
+      transform: translateX(110%);
+      transition: all 0.6s ease-in-out;
+    }
+  }
+
+  &-secondary-enter {
+    position: absolute;
+    transform: translateX(110%);
+
+    &-active {
+      transform: translateX(0%);
+      transition: all 0.6s ease-in-out;
+    }
+  }
+
+  &-secondary-exit {
+    position: absolute;
+
+    &-active {
+      transform: translateX(-110%);
+      transition: all 0.6s ease-in-out;
+    }
   }
 }

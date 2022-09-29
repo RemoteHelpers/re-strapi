@@ -14,7 +14,7 @@
 
   @include onTablet {
     padding: 50px 40px 57px;
-    background-position: top 630px left 0;
+    background-position: top -100% left 0;
   }
 
   @include onDesktop {
@@ -24,7 +24,7 @@
     padding: 33px 12% 100px;
     margin: 0 auto;
     background-image: url('../../images/mainScreen/background-desktop.png');
-    background-position: top 260px left 0;
+    background-position: top -15% left 0;
   }
 
   &__image {
