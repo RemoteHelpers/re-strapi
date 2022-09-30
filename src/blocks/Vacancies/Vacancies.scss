@@ -1,4 +1,5 @@
-@import '../../utils/mixins.scss';
+@import "../../utils/mixins.scss";
+@import "../../global-styles/colors.scss";
 
 // we need to use "!important" to work with library "React Select"
 
@@ -12,7 +13,7 @@
   width: 90%;
   padding: 0 29px;
   margin: 0 auto;
-  
+
   @include onDesktop {
     width: 76%;
   }
@@ -24,27 +25,27 @@
     line-height: 115%;
     text-decoration-line: underline;
     font-size: 28px;
-    margin: 50px 0;
+    margin-bottom: 50px;
     color: #3f455b;
 
     @include onTablet {
       font-size: 26px;
-      margin: 43px 0;
+      margin-bottom: 43px;
     }
 
     @include onDesktop {
       font-size: 24px;
-      margin: 35px 0;
+      margin-bottom: 35px;
     }
 
     @include on1440 {
       font-size: 36px;
-      margin: 47px 0;
+      margin-bottom: 47px;
     }
 
     @include on1920 {
       font-size: 48px;
-      margin: 70px 0;
+      margin-bottom: 70px;
     }
   }
 
@@ -217,10 +218,185 @@
       width: 23px;
       height: 23px;
     }
-  
+
     @include on1920 {
       width: 34px;
       height: 34px;
+    }
+  }
+}
+
+.Vacancies__about {
+  &__list {
+    width: 100%;
+    padding: 3rem 0 6.25rem 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    row-gap: 6.25rem;
+    @include onTablet {
+      padding: 2.75rem 0 12.5rem 0;
+    }
+  }
+  &__item {
+    position: relative;
+    display: grid;
+    row-gap: 5rem;
+    @include onTablet {
+      align-items: center;
+      justify-content: space-between;
+      row-gap: 5rem;
+      column-gap: 6rem;
+    }
+    @include on1440 {
+      grid-auto-flow: column;
+      column-gap: 9rem;
+    }
+
+    &.accent {
+      border-radius: 1.75rem;
+      padding: 3.75rem 1.25rem;
+      background-color: $secondaryColor2;
+      display: flex;
+      flex-direction: column-reverse;
+      @include onTablet {
+        padding: 6.25rem 2.5rem;
+      }
+
+      @include on1440 {
+        flex-direction: initial;
+      }
+      @include on1920 {
+        padding: 5.25rem 3.5rem;
+      }
+    }
+  }
+
+  &__textWrapper {
+    display: grid;
+    row-gap: 2rem;
+    width: 100%;
+
+    &--short {
+      display: grid;
+      row-gap: 2rem;
+      width: 100%;
+      @include on1440 {
+        width: 80%;
+      }
+    }
+  }
+  &__title {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 1.75rem;
+    line-height: 1.3;
+    color: $typography2;
+    text-decoration-line: underline;
+    @include onTablet {
+      font-size: 2.25rem;
+    }
+    @include on1920 {
+      font-size: 3rem;
+    }
+    &.bold {
+      font-weight: 900;
+      color: $typography1;
+      font-size: 2rem;
+
+      @include onTablet {
+        font-size: 3rem;
+      }
+
+      @include on1920 {
+        font-size: 4rem;
+      }
+    }
+  }
+  &__text {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: $typography1;
+    @include onTablet {
+      font-size: 1.25rem;
+    }
+  }
+  &__img {
+    display: block;
+    margin: 0 auto;
+    @include onDesktop {
+      max-width: 30rem;
+      height: auto;
+    }
+  }
+}
+.Vacancies__about__item {
+  &__requirements__list {
+    display: grid;
+    row-gap: 1rem;
+    list-style: disc;
+    padding-left: 1.25rem;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: $typography1;
+    @include onTablet {
+      font-size: 1.25rem;
+    }
+  }
+  &__img {
+    display: block;
+    margin: 0 auto;
+    @include onTablet {
+      position: relative;
+      max-width: 30rem;
+      height: auto;
+    }
+  }
+}
+.Vacancies__about__imgWrapper {
+  position: relative;
+}
+.Vacancies__about__decoration {
+  &--small {
+    position: absolute;
+    width: 16rem;
+    height: 16rem;
+    top: -10%;
+
+    z-index: -1;
+    border-radius: 50%;
+    background-color: $secondaryColor2;
+    @include onTablet {
+      width: 20rem;
+      height: 20rem;
+      top: -10%;
+      right: 55%;
+    }
+    @include on1440 {
+      width: 25rem;
+      height: 25rem;
+      top: -20%;
+      right: 40%;
+    }
+  }
+  &--big {
+    display: none;
+    @include on1440 {
+      position: absolute;
+      display: block;
+      bottom: 10%;
+      right: -50%;
+      width: 755px;
+      height: 755px;
+      border-radius: 50%;
+
+      z-index: -1;
+      background-color: $secondaryColor2;
+    }
+    @include on1920 {
+      right: -45%;
     }
   }
 }
