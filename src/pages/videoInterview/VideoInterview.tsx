@@ -9,7 +9,6 @@ import Typography from '@mui/material/Typography';
 import cl from './videoInterview.module.scss';
 import '../../global-styles/colors.scss';
 import cameraKitekat from '../../icons/kitekat_camera.png';
-import Footer from '../../components/footer';
 import FeedbackForm from '../../components/forms/feedbackForm';
 import interviewKitekat from '../../icons/interview_form_kitekat.png';
 import { ArrowSvg } from './ArrowSvg';
@@ -324,7 +323,6 @@ export const VideoInterview = () => {
       <div className={cl.container}>
         <FeedbackForm img={interviewKitekat} />
       </div>
-      <Footer />
     </>
   );
 };

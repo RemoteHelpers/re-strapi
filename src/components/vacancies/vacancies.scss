@@ -1,0 +1,302 @@
+@import '../../utils/mixins.scss';
+@import '../../global-styles/colors.scss';
+
+// we need to use "!important" to work with library "React Select"
+
+.field {
+  position: absolute;
+  top: 1.2rem;
+  right: 3.1rem;
+}
+
+.Vacancies {
+  &__title {
+    font-weight: 900;
+    line-height: 115%;
+    text-decoration-line: underline;
+    font-size: 1.7rem;
+    margin: 0 0 3.1rem 0;
+    color: $typography2;
+
+    @include onTablet {
+      font-size: 2.4rem;
+      margin: 0 0 4.5rem 0;
+    }
+
+    @include onDesktop {
+      font-size: 1.5rem;
+      margin: 0 0 2.2rem 0;
+    }
+
+    @include on1440 {
+      font-size: 2.2rem;
+      margin: 0 0 3.3rem 0;
+    }
+
+    @include on1920 {
+      font-size: 3rem;
+      margin: 0 0 4.4rem 0;
+    }
+  }
+
+  &__navigation {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4.2rem;
+    gap: 2.1rem;
+
+    @include onTablet {
+      margin-bottom: 2.5rem;
+    }
+
+    @include onDesktop {
+      margin-bottom: 5.3rem;
+      flex-direction: row;
+    }
+
+    @include on1440 {
+      margin-bottom: 7.1rem;
+    }
+
+    @include on1920 {
+      margin-bottom: 10.6rem;
+    }
+  }
+
+  &__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 3.1rem;
+
+    @include onDesktop {
+      margin-bottom: 4.2rem;
+    }
+
+    @include on1440 {
+      gap: 2.7rem;
+      margin-bottom: 5.6rem;
+    }
+
+    @include on1920 {
+      gap: 4rem;
+      margin-bottom: 8.3rem;
+    }
+  }
+
+  &__selects {
+    display: flex;
+    order: 2;
+    gap: 2.5rem !important;
+
+    @include onTablet {
+      order: 0;
+    }
+
+    @include on1440 {
+      gap: 2.4rem;
+    }
+
+    @include on1920 {
+      gap: 3.1rem;
+    }
+  }
+}
+
+.custom-select {
+  &--locale {
+    display: flex !important;
+  }
+
+  &__control {
+    width: auto;
+    height: auto;
+    padding: 0 0.6rem;
+    border: none !important;
+    display: flex !important;
+    gap: 0.1rem !important;
+
+    @include onDesktop {
+      width: 10rem;
+      height: 1.7rem;
+    }
+
+    @include on1440 {
+      width: 13.3rem;
+      height: 2.2rem;
+    }
+    
+    @include on1920 {
+      width: 19.9rem;
+      height: 3.4rem;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &--menu-is-open .custom-select__indicators .custom-select__indicator {
+      transition: 0.2s all;
+      transform: rotate(180deg);
+    }
+
+    &--menu-is-open {
+      background: $primaryColor4 !important;
+      border-radius: 0.9rem !important;
+      outline: none !important;
+      box-shadow: 0 !important;
+    }
+  }
+
+  &__value-container {
+    padding-left: 0 !important;
+  }
+
+  &__placeholder {
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    line-height: 115% !important;
+    color: $typography1 !important;
+
+    @include onTablet {
+      font-size: 1.2rem !important;
+    }
+
+    @include onDesktop {
+      font-size: 0.6rem !important;
+    }
+
+    @include on1440 {
+      font-size: 0.9rem !important;
+    }
+
+    @include on1920 {
+      font-size: 1.2rem !important;
+    }
+  }
+
+  &__single-value {
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    line-height: 115% !important;
+    color: $typography1 !important;
+
+    @include onTablet {
+      font-size: 0.8rem !important;
+    }
+
+    @include onDesktop {
+      font-size: 0.6rem !important;
+    }
+
+    @include on1440 {
+      font-size: 0.9rem !important;
+    }
+
+    @include on1920 {
+      font-size: 1.2rem !important;
+    }
+  }
+
+  &__indicator-separator {
+    display: none;
+  }
+
+  &__indicator {
+    padding: 0 !important;
+  }
+
+  &__menu {
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    line-height: 130% !important;
+
+    color: $typography1 !important;
+
+    background: $secondaryColor5 !important;
+    border: 0.1rem solid $secondaryColor4 !important;
+    border-radius: 1.9rem !important;
+
+    @include onDesktop {
+      font-size: 0.7rem !important;
+    }
+
+    @include on1440 {
+      font-size: 1.1rem !important;
+    }
+
+    @include on1920 {
+      font-size: 1.5rem !important;
+    }
+  }
+
+  &__option {
+    border-radius: 1.9rem !important;
+  }
+}
+
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+
+  @include on1440 {
+    font-size: 0.9rem;
+  }
+
+  @include on1920 {
+    font-size: 1.2rem;
+  }
+}
+
+.page-num {
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 115%;
+
+  @include onDesktop {
+    font-size: 0.6rem;
+  }
+
+  @include on1440 {
+    font-size: 0.9rem;
+  }
+
+  @include on1920 {
+    font-size: 1.2rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &--active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+    color: $secondaryColor5;
+    background-color: $primaryColor1;
+
+    @include onDesktop {
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+
+    @include on1440 {
+      width: 1.4rem;
+      height: 1.4rem;
+    }
+  
+    @include on1920 {
+      width: 2.1rem;
+      height: 2.1rem;
+    }
+  }
+}

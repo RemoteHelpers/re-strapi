@@ -13,7 +13,8 @@ export const NavBar = () => {
             <img src={logo} alt="" />
           </div>
           <nav>
-            <NavLink className={({ isActive }) => (isActive ? 'active-link' : 'link')} end to="/">Vacancies</NavLink>
+            <NavLink className={({ isActive }) => (isActive ? 'active-link' : 'link')} end to="/">Home</NavLink>
+            <NavLink className={({ isActive }) => (isActive ? 'active-link' : 'link')} end to="/vacancies">Vacancies</NavLink>
             <NavLink className={({ isActive }) => (isActive ? 'active-link' : 'link')} end to="/about">
               About us
             </NavLink>

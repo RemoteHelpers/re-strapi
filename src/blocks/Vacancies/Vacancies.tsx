@@ -29,7 +29,6 @@ import cat1 from "../../images/cat1_vacancy_list.png";
 import cat2 from "../../images/cat2_vacancy_list.png";
 import cat3 from "../../images/cat3_vacancy_list.png";
 import FeedbackForm from "../../components/forms/feedbackForm";
-import Footer from "../../components/footer";
 import formImg from '../../images/formImg.png';
 
 const API = "http://testseven.rh-s.com:1733/api";
@@ -433,7 +432,6 @@ export const Vacancies = () => {
         </div>
         <FeedbackForm img={formImg} />
       </div>
-      <Footer />
     </>
   );
 };

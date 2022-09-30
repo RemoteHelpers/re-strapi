@@ -1,3 +1,1 @@
-import FeedbackForm from './feedbackForm';
-
-export default FeedbackForm;
+export { default } from './feedbackForm';

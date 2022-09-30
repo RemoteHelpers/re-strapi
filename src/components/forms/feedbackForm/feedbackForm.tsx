@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import InputMask from 'react-input-mask';
@@ -9,8 +11,9 @@ import Api from '../../../api';
 import { IFeedbackFormData } from '../../../types/types';
 
 // styles
-import './feedbackForm.scss';
+import cl from './feedbackForm.module.scss';
 // img
+// import formImg from '../../../images/formImg.png';
 import { FormsSvg } from './FormsSvg';
 
 type TOption = {
@@ -37,6 +40,7 @@ function FeedbackForm({ img }: Props) {
   const {
     register, handleSubmit, watch, formState: { errors, isSubmitting }, reset, setValue,
   } = useForm<IFeedbackFormData>();
+
   const [phone, setPhone] = useState('');
 
   const scrollTop = () => {
@@ -46,7 +50,7 @@ function FeedbackForm({ img }: Props) {
     });
   };
 
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = handleSubmit(async (data: IFeedbackFormData) => {
     try {
       const arrFile = await Api.uploadFile({
         files: data.file[0],
@@ -87,17 +91,17 @@ function FeedbackForm({ img }: Props) {
   };
 
   return (
-    <div className="feedback">
-      <div className="feedback-wr">
-        <div className="feedback-wr_title">
+    <div className={cl.feedback}>
+      <div className={cl.feedback_wr}>
+        <div className={cl.feedback_wr_title}>
           Готові приєднатися прямо зараз?
         </div>
-        <div className="feedback-wr_form">
-          <form className="feedback-form" onSubmit={onSubmit}>
-            <div className="feedback-form_input">
-              <div className="feedback-form_input_name retreat">
+        <div className={cl.feedback_wr_form}>
+          <form className={cl.feedback_form} onSubmit={onSubmit}>
+            <div className={cl.feedback_form_input}>
+              <div className={`${cl.feedback_form_zinput_name} ${cl.retreat}`}>
                 <input
-                  className={`${errors.name ? 'invalid' : ''} ${watch('name') && 'valid'}`}
+                  className={`${errors.name ? cl.invalid : ''} ${watch('name') && 'valid'}`}
                   type="text"
                   placeholder="ПІБ"
                   {...register('name', { required: true })}
@@ -183,10 +187,8 @@ function FeedbackForm({ img }: Props) {
             Scroll Top
           </FormsSvg>
         </div>
-
       </div>
     </div>
-
   );
 }
 

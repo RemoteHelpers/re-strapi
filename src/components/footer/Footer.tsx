@@ -1,38 +1,32 @@
 import React from 'react';
 import cl from './footer.module.scss';
-// eslint-disable-next-line import/extensions
-import logo from '../../icons/footer_logo.png';
+
+import Logo from '../../images/Footer/logo.png';
 import { FooterIconsSVG } from './FooterIconsSVG';
 
 export const Footer = () => {
   return (
-    <footer className={cl.footer}>
-      <div className={cl.container}>
-        <div className={cl.wrapper}>
-          <div className={cl.social_block}>
-            <div>
-              <img src={logo} alt="" />
-            </div>
-            <div className={cl.social_icons}>
-              <span className={cl.icon_circle}>
-                <FooterIconsSVG id="inst" />
-              </span>
-              <span className={cl.icon_circle}>
-                <FooterIconsSVG id="face" />
-              </span>
-              <span className={cl.icon_circle}>
-                <FooterIconsSVG id="telega" />
-              </span>
-            </div>
-          </div>
-          <div className={cl.info_block}>
-            <h2>Контакти</h2>
-            <p>м, Харків вул. Римарська, 22</p>
-            <p>+3 (098) 000-00-00</p>
-            <p>info@remote.employees.com.ua</p>
-          </div>
+    <div className={cl.Footer}>
+      <div className={cl.Footer__links}>
+        <img src={Logo} alt="Logo" className={cl.Footer__logo} />
+        <div className={cl.Footer__socialWrapper}>
+          <a href="google.com" className={cl.Footer__link}>
+            <FooterIconsSVG id="inst" />
+          </a>
+          <a href="google.com" className={cl.Footer__link}>
+            <FooterIconsSVG id="face" />
+          </a>
+          <a href="google.com" className={cl.Footer__link}>
+            <FooterIconsSVG id="telega" />
+          </a>
         </div>
       </div>
-    </footer>
+      <div className={cl.Footer__contacts}>
+        <h4 className={cl.Footer__title}>Контакти</h4>
+        <span className={cl.Footer__contactsText}>м, Харків вул. Римарська, 22</span>
+        <a href="google.com" className={cl.Footer__contactsText}>+3 (098) 000-00-00</a>
+        <a href="google.com" className={cl.Footer__contactsText}>info@remote.employees.com.ua</a>
+      </div>
+    </div>
   );
 };

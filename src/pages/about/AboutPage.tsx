@@ -4,7 +4,6 @@ import cl from './aboutPage.module.scss';
 import kitekat from '../../icons/kitekat.png';
 import play from '../../icons/play.png';
 import FeedbackForm from '../../components/forms/feedbackForm';
-import Footer from '../../components/footer';
 
 // Cards for section "What we do"
 import card1 from '../../icons/whatWeDo/card1.png';
@@ -192,7 +191,6 @@ export const AboutPage = () => {
           <FeedbackForm img={formImg} />
         </div>
       </div>
-      <Footer />
     </>
   );
 };
