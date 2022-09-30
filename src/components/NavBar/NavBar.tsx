@@ -13,9 +13,11 @@ export const NavBar = () => {
             <img src={logo} alt="" />
           </div>
           <nav>
-            <NavLink className={({ isActive }) => (isActive ? 'active-link' : 'link')} to="/vacancies">Vacancies</NavLink>
-            <NavLink className={({ isActive }) => (isActive ? 'active-link' : 'link')} to="/about">About us</NavLink>
-            <NavLink className={({ isActive }) => (isActive ? 'active-link' : 'link')} to="/videoInterview">Video interview</NavLink>
+            <NavLink className={({ isActive }) => (isActive ? 'active-link' : 'link')} end to="/">Vacancies</NavLink>
+            <NavLink className={({ isActive }) => (isActive ? 'active-link' : 'link')} end to="/about">
+              About us
+            </NavLink>
+            <NavLink className={({ isActive }) => (isActive ? 'active-link' : 'link')} end to="/videoInterview">Video interview</NavLink>
           </nav>
         </div>
       </div>

@@ -10,13 +10,12 @@
 }
 
 .container {
-  width: 90%;
-  padding: 0 29px;
+  width: 80%;
   margin: 0 auto;
 
-  @include onDesktop {
-    width: 76%;
-  }
+  // @include onDesktop {
+  //   width: 76%;
+  // }
 }
 
 .Vacancies {
@@ -338,7 +337,7 @@
     list-style: disc;
     padding-left: 1.25rem;
     font-weight: 400;
-    font-size: 1rem;
+    font-size: clamp(14px, 1vw, 20px);
     line-height: 1.5;
     color: $typography1;
     @include onTablet {

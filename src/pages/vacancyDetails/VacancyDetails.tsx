@@ -48,6 +48,3 @@ export const VacancyDetails = () => {
     </div>
   );
 };
-
-// {params.currentVacancy}
-// {params.id}
