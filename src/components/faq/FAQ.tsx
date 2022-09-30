@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import Arrow from '../../images/FAQ/arrow.svg';
 import ReversedArrow from '../../images/FAQ/reversedArrow.svg';
 
-import './FAQ.scss';
+import cl from './faq.module.scss';
 
 const data = [
   {
@@ -43,22 +43,22 @@ const FAQ = () => {
   };
 
   return (
-    <div className="FAQ">
-      <h3 className="FAQ__title">Вопрос - Ответ</h3>
-      <div className="FAQ__accordion">
+    <div className={cl.FAQ}>
+      <h3 className={cl.FAQ__title}>Вопрос - Ответ</h3>
+      <div className={cl.FAQ__accordion}>
         {data.map((item, i) => (
-          <div key={i} className="FAQ__item" onClick={() => toggle(i)}>
-            <div className="FAQ__accordion-title">
+          <div key={i} className={cl.FAQ__item} onClick={() => toggle(i)}>
+            <div className={cl.FAQ__accordionTitle}>
               {selected === i && (
-                <img className="FAQ__icon" src={ReversedArrow} alt="open" />
+                <img className={cl.FAQ__icon} src={ReversedArrow} alt="open" />
               )}
               {selected !== i && (
-                <img className="FAQ__icon" src={Arrow} alt="open" />
+                <img className={cl.FAQ__icon} src={Arrow} alt="open" />
               )}
-              <h4 className="FAQ__question">{item.question}</h4>
+              <h4 className={cl.FAQ__question}>{item.question}</h4>
               {/* <span>{selected === i}</span> */}
             </div>
-            <div className={selected === i ? 'FAQ__content show' : 'FAQ__content'}>
+            <div className={(selected === i) ? `${cl.show} ${cl.FAQ__content}` : cl.FAQ__content}>
               {item.answer}
             </div>
           </div>

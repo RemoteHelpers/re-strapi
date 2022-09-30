@@ -1,5 +1,5 @@
 import React from 'react';
-import './VacancyCard.scss';
+import './vacancyCard.scss';
 import FireIcon from '../../images/fireIcon.svg';
 
 interface Props {

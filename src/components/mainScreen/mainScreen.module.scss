@@ -1,19 +1,20 @@
 @import '../../utils/mixins.scss';
+@import '../../global-styles/colors.scss';
 
 .MainScreen {
   display: flex;
   flex-direction: column;
 
   overflow: hidden;
-  padding: 33px 29px 60px;
+  padding: 2.1rem 1.8rem 3.7rem;
 
   background-image: url('../../images/mainScreen/background-desktop.png');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: top 610px left 0;
+  background-position: top 38.1rem left 0;
 
   @include onTablet {
-    padding: 50px 40px 57px;
+    padding: 3.1rem 2.5rem 3.6rem;
     background-position: top -100% left 0;
   }
 
@@ -21,172 +22,172 @@
     flex-direction: row;
     align-items: center;
     gap: 12%;
-    padding: 33px 12% 100px;
+    padding: 2.1rem 12% 6.2rem;
     margin: 0 auto;
     background-image: url('../../images/mainScreen/background-desktop.png');
     background-position: top -15% left 0;
   }
 
   &__image {
-    height: 369px;
-    width: 352.79px;
+    height: 23.1rem;
+    width: 22rem;
 
     @include onTablet {
       align-self: center;
-      width: 416px;
-      height: 436.18px;
+      width: 26rem;
+      height: 27.3rem;
     }
 
     @include onDesktop {
       text-align: inherit;
-      width: 333px;
-      height: 349.2px;
+      width: 20.8rem;
+      height: 21.8rem;
     }
 
     @include on1440 {
-      width: 444px;
-      height: 465.54px;
+      width: 27.7rem;
+      height: 29.1rem;
     }
 
     @include on1920 {
-      width: 666px;
-      height: 698.31px;
+      width: 41.6rem;
+      height: 43.6rem;
     }
   }
 
   &__title {
-    margin: 0 0 30px 0;
+    margin: 0 0 1.9rem 0;
     font-weight: 900;
-    font-size: 32px;
+    font-size: 2rem;
     line-height: 130%;
     text-decoration-line: underline;
 
     @include onTablet {
       width: 70%;
-      font-size: 45px;
+      font-size: 2.8rem;
     }
     
     @include onDesktop {
       width: inherit;
-      font-size: 32px;
-      margin: 0 0 26px 0;
+      font-size: 2rem;
+      margin: 0 0 1.6rem 0;
     }
 
     @include on1440 {
-      font-size: 43px;
-      margin: 0 0 39px 0;
+      font-size: 2.7rem;
+      margin: 0 0 2.4rem 0;
     }
 
     @include on1920 {
-      font-size: 64px;
-      margin: 0 0 52px 0;
+      font-size: 4rem;
+      margin: 0 0 3.2rem 0;
     }
   }
 
   &__paragraph {
-    margin: 0 0 20px 0;
-    font-size: 14px;
+    margin: 0 0 1.2rem 0;
+    font-size: 0.9rem;
     line-height: 150%;
 
-    &--strong {
+    &_strong {
       font-weight: 600;
     }
 
     @include onTablet {
-      margin: 0 0 30px 0;
-      font-size: 20px;
+      margin: 0 0 1.9rem 0;
+      font-size: 1.2rem;
     }
 
     @include onDesktop {
-      font-size: 10px;
-      margin: 0 0 25px 0;
+      font-size: 0.6rem;
+      margin: 0 0 1.6rem 0;
     }
 
     @include on1440 {
-      font-size: 15px;
-      margin: 0 0 38px 0;
+      font-size: 0.9rem;
+      margin: 0 0 2.4rem 0;
     }
 
     @include on1920 {
-      font-size: 20px;
-      margin: 0 0 50px 0;
+      font-size: 1.2rem;
+      margin: 0 0 3.1rem 0;
     }
   }
 
   &__button {
-    padding: 19px 30px;
-    margin-bottom: 56px;
-    background: #FF6501;
-    box-shadow: 0px 0px 17px 5px rgba(255, 101, 1, 0.25);
-    border-radius: 15px;
+    padding: 1.2rem 1.9rem;
+    margin-bottom: 3.5rem;
+    background: $primaryColor1;
+    box-shadow: 0px 0px 1.1rem 0.3rem rgba(255, 101, 1, 0.25);
+    border-radius: 0.9rem;
     border: none;
 
     font-weight: 700;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 115%;
 
-    color: #fff;
+    color: $secondaryColor5;
 
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 17px;
+    gap: 1.1rem;
 
     transition: all 0.3s;
 
     &:hover {
       cursor: pointer;
-      background: #fbbf13;
+      background: $primaryColor2;
     }
 
     @include onTablet {
       padding: 0;
-      width: 302px;
-      height: 62px;
-      font-size: 20px;
-      margin-bottom: 57px;
+      width: 18.9rem;
+      height: 3.9rem;
+      font-size: 1.2rem;
+      margin-bottom: 3.6rem;
     }
 
     @include onDesktop {
       padding: 0;
-      width: 151px;
-      height: 31px;
-      font-size: 10px;
+      width: 9.4rem;
+      height: 1.9rem;
+      font-size: 0.6rem;
       margin-bottom: 0;
     }
 
     @include on1440 {
-      width: 202px;
-      height: 42px;
-      font-size: 15px;
+      width: 12.6rem;
+      height: 2.6rem;
+      font-size: 0.9rem;
     }
 
     @include on1920 {
-      width: 302px;
-      height: 62px;
-      font-size: 20px;
+      width: 18.9rem;
+      height: 3.9rem;
+      font-size: 1.2rem;
     }
   }
 
-  &__button-icon {
+  &__buttonIcon {
     @include onTablet {
-      width: 20px;
-      height: 19px;
+      width: 1.2rem;
+      height: 1.2rem;
     }
 
     @include onDesktop {
-      width: 12px;
-      height: 12px;
+      width: 0.7rem;
+      height: 0.7rem;
     }
 
     @include on1440 {
-      width: 18px;
-      height: 18px;
+      width: 1.1rem;
+      height: 1.1rem;
     }
 
     @include on1920 {
-      width: 24px;
-      height: 24px;
+      width: 1.5rem;
+      height: 1.5rem;
     }
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -6,15 +7,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import Select, { components } from 'react-select';
-import './Header.scss';
 import { CSSTransition } from 'react-transition-group';
 import axios from 'axios';
+import cl from './header.module.scss';
 import { useStateContext } from '../../context/StateContext';
-
 import {
   Category, Vacancy,
 } from '../../types/types';
-
 import Logo from '../../images/mainScreen/Logo.png';
 import SelectIcon from '../../images/selectArrow.svg';
 
@@ -91,22 +90,22 @@ const Header = () => {
   }, []);
 
   return (
-    <div id="header" className="Header">
-      <img src={Logo} alt="logo" className="Header__logo" />
-      <div className="Header__functionality">
-        <nav className="Header__navbar">
+    <div id="header" className={cl.Header}>
+      <img src={Logo} alt="logo" className={cl.Header__logo} />
+      <div className={cl.Header__functionality}>
+        <nav className={cl.Header__navbar}>
           <a
             href="http://localhost:3000/"
-            className="Header__link"
+            className={cl.Header__link}
             onMouseOver={() => setIsDesktopMenuOpened(true)}
             onMouseLeave={() => setIsDesktopMenuOpened(false)}
           >
             Вакансии
           </a>
-          <a href="http://localhost:3000/" className="Header__link">
+          <a href="http://localhost:3000/" className={cl.Header__link}>
             О Нас
           </a>
-          <a href="http://localhost:3000/" className="Header__link">
+          <a href="http://localhost:3000/" className={cl.Header__link}>
             Видеоинтервью
           </a>
         </nav>
@@ -126,33 +125,38 @@ const Header = () => {
         <button
           type="button"
           onClick={handleMenuClick}
-          className="Header__menu-button"
+          className={cl.Header__menuButton}
         >
-          <div className={classNames('Header__menu-icon', { 'Header__menu-icon--active': isMenuOpened })}></div>
+          <div className={classNames(cl.Header__menuIcon, {
+            [cl.Header__menuIcon_active]: isMenuOpened })}
+          >
+          </div>
         </button>
       </div>
 
-      <div className={classNames('Header__drop-menu', { 'Header__drop-menu--active': isMenuOpened })}>
-        <h4 className="Header__drop-menu--title">Меню</h4>
-        <nav className="Header__navbar--mobile">
+      <div className={classNames(cl.Header__dropMenu, {
+        [cl.Header__dropMenu_active]: isMenuOpened })}
+      >
+        <h4 className={cl.Header__dropMenu_title}>Меню</h4>
+        <nav className={cl.Header__navbar_mobile}>
           <CSSTransition
             in={activeMenu === 'main'}
             unmountOnExit
             timeout={500}
-            classNames="menu-primary"
+            classNames={cl.menu_primary}
           >
-            <div className="menu">
+            <div className={cl.menu}>
               <a
                 href="#"
-                className="Header__link--mobile"
+                className={cl.Header__link_mobile}
                 onClick={() => 'categories' && setActiveMenu('categories')}
               >
                 Вакансії
               </a>
-              <a href="http://localhost:3000/" className="Header__link--mobile">
+              <a href="http://localhost:3000/" className={cl.Header__link_mobile}>
                 Про нас
               </a>
-              <a href="http://localhost:3000/" className="Header__link--mobile">
+              <a href="http://localhost:3000/" className={cl.Header__link_mobile}>
                 Інтерв’ю
               </a>
             </div>
@@ -162,12 +166,12 @@ const Header = () => {
             in={activeMenu === 'categories'}
             unmountOnExit
             timeout={500}
-            classNames="menu-secondary"
+            classNames={cl.menu_Secondary}
           >
-            <div className="menu">
+            <div className={cl.menu}>
               <a
                 href="#"
-                className="Header__link--mobile"
+                className={cl.Header__link_mobile}
                 onClick={() => 'main' && setActiveMenu('main')}
               >
                 Назад до меню
@@ -176,7 +180,7 @@ const Header = () => {
                 <a
                   key={category.id}
                   href="#"
-                  className="Header__link--mobile"
+                  className={cl.Header__link_mobile}
                   onClick={handleCategorySelect}
                 >
                   {category.attributes.categoryTitle}
@@ -189,12 +193,12 @@ const Header = () => {
             in={activeMenu === 'vacancies'}
             unmountOnExit
             timeout={500}
-            classNames="menu-thirdly"
+            classNames={cl.menu_Thirdly}
           >
-            <div className="menu">
+            <div className={cl.menu}>
               <a
                 href="#"
-                className="Header__link--mobile"
+                className={cl.Header__link_mobile}
                 onClick={() => 'categories' && setActiveMenu('categories')}
               >
                 Назад до категорій
@@ -204,7 +208,7 @@ const Header = () => {
                 <a
                   key={vacancy.id}
                   href="#"
-                  className="Header__link--mobile"
+                  className={cl.Header__link_mobile}
                   onClick={handleCategorySelect}
                 >
                   {vacancy.attributes.title}

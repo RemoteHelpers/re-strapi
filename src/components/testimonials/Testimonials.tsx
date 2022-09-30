@@ -7,7 +7,7 @@ import 'swiper/swiper.scss';
 import 'swiper/modules/pagination/pagination.scss';
 import 'swiper/modules/navigation/navigation.scss';
 
-import './Testimonials.scss';
+import './testimonials.scss';
 
 const Testimonials = () => {
   return (
