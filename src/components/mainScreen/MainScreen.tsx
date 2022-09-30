@@ -1,18 +1,18 @@
 import React from 'react';
-import './MainScreen.scss';
+import cl from './mainScreen.module.scss';
 import MainImage from '../../images/mainScreen/MainScreen.png';
 
 import buttonIcon from '../../images/mainScreen/button-icon.svg';
 
 const MainScreen = () => {
   return (
-    <div className="MainScreen">
-      <div className="MainScreen__info">
-        <h3 className="MainScreen__title">Хочешь pаботать в сфере IT удаленно?</h3>
-        <p className="MainScreen__paragraph">
+    <div className={cl.MainScreen}>
+      <div className={cl.MainScreen__info}>
+        <h3 className={cl.MainScreen__title}>Хочешь pаботать в сфере IT удаленно?</h3>
+        <p className={cl.MainScreen__paragraph}>
           Аутстаффинговая компания
           {' '}
-          <span className="MainScreen__paragraph--strong">
+          <span className={cl.MainScreen__paragraph_strong}>
             RemotEmployees
           </span>
           {' '}
@@ -21,14 +21,14 @@ const MainScreen = () => {
         </p>
         <button
           type="button"
-          className="MainScreen__button"
+          className={cl.MainScreen__button}
         >
           Получить работу
-          <img src={buttonIcon} alt="button icon" className="MainScreen__button-icon" />
+          <img src={buttonIcon} alt="button icon" className={cl.MainScreen__buttonIcon} />
         </button>
       </div>
 
-      <img src={MainImage} alt="cat with idea" className="MainScreen__image" />
+      <img src={MainImage} alt="cat with idea" className={cl.MainScreen__image} />
     </div>
   );
 };

@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.scss';
-import { Vacancies } from './blocks/Vacancies/Vacancies';
-import Header from './blocks/Header/Header';
-import MainScreen from './blocks/MainScreen/MainScreen';
+import { Vacancies } from './components/vacancies/Vacancies';
+import Header from './components/header/Header';
+import MainScreen from './components/mainScreen/MainScreen';
 import FeedbackForm from './components/forms/feedbackForm';
-import Spheres from './blocks/Spheres/Spheres';
-import FAQ from './blocks/FAQ/FAQ';
-import Partners from './blocks/Partners/Partners';
-import Testimonials from './blocks/Testimonials/Testimonials';
-import Footer from './blocks/Footer/Footer';
+import Spheres from './components/spheres/Spheres';
+import FAQ from './components/faq/FAQ';
+import Partners from './components/partners/Partners';
+import Testimonials from './components/testimonials/Testimonials';
+import Footer from './components/footer/Footer';
 
 export const App: React.FC = () => {
   return (

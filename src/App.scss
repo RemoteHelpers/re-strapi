@@ -5,7 +5,7 @@
 }
 
 .starter {
-  font-size: 18px;
+  font-size: 1.1rem;
 }
 
 ul {
@@ -22,7 +22,7 @@ body, html {
 }
 
 .container {
-  padding: 0 29px;
+  padding: 0 1.8rem;
 
   @include onDesktop {
     padding: 0 12%;

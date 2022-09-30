@@ -3,7 +3,7 @@ import React, {
   useCallback, useEffect, useState, useRef,
 } from 'react';
 import ReactPaginate from 'react-paginate';
-import './Vacancies.scss';
+import './vacancies.scss';
 import '../../global-styles/search.scss';
 import axios from 'axios';
 import Select, { components } from 'react-select';
@@ -12,7 +12,7 @@ import {
   Vacancy,
   Collection,
 } from '../../types/types';
-import VacancyCard from '../VacancyCard/VacancyCard';
+import VacancyCard from '../vacancyCard/VacancyCard';
 
 import Find from '../../images/findIcon.svg';
 import SelectIcon from '../../images/selectArrow.svg';

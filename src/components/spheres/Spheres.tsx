@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Spheres.scss';
+import './spheres.scss';
 import '../../global-styles/grid.scss';
 
 import Marketing from '../../images/Spheres/Marketing.png';
@@ -21,11 +21,11 @@ const Spheres = () => {
         сферы деятельности
       </h3>
       <div className="Spheres__block grid">
-        <div className="
+        <div className={`
           Spheres__sphere grid__item--desktop-1-2
           grid__item--1
           Spheres__sphere grid__item--tablet-1
-          "
+          `}
         >
           <img src={Marketing} alt="Marketing" className="Spheres__icon" />
           <h5 className="Spheres__sphere-title">Маркетинг</h5>

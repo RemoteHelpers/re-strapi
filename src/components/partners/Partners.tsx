@@ -1,8 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import './Partners.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper';
+import cl from './partners.module.scss';
 
 // Import Swiper styles
 import 'swiper/swiper.scss';
@@ -94,8 +94,8 @@ const data = [
 
 const Partners = () => {
   return (
-    <div className="Partners">
-      <h3 className="Partners__title">
+    <div className={cl.Partners}>
+      <h3 className={cl.Partners__title}>
         Компании с
         {' '}
         <br />
@@ -117,8 +117,8 @@ const Partners = () => {
       >
         {data.map((el, i) => (
           <SwiperSlide key={i}>
-            <div className="Partners__image-wrapper">
-              <img src={el.image} alt="company" className="Partners__image" />
+            <div className={cl.Partners__imageWrapper}>
+              <img src={el.image} alt="company" className={cl.Partners__image} />
             </div>
           </SwiperSlide>
         ))}
