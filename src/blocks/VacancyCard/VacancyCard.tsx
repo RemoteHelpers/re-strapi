@@ -8,10 +8,10 @@ import FireIcon from '../../images/fireIcon.svg';
 
 interface Props {
   title: string,
-  id: any,
+  currentVacancy: string
 }
 
-const VacancyCard: React.FC<Props> = ({ title, id }) => {
+const VacancyCard: React.FC<Props> = ({ title, currentVacancy }) => {
   return (
     <div className="VacancyCard">
       <div className="VacancyCard__banner VacancyCard__banner--mobile">
@@ -27,7 +27,10 @@ const VacancyCard: React.FC<Props> = ({ title, id }) => {
           and information on the Internet, work with social networks.
         </p>
       </div>
-      <Link className="VacancyCard__button" to={`/vacancies/${id}`}>
+      <Link
+        className="VacancyCard__button"
+        to={`/vacancies/${currentVacancy}`}
+      >
         See more
       </Link>
 

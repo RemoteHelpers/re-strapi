@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type WorkType = 'fullTime' | 'halfTime';
 
 export interface AttributesCategory {
@@ -59,4 +60,16 @@ export interface IFeedbackFormData {
   EnglishLevel: string;
   email: string;
   file: FileList;
+}
+
+export interface VacancyArray {
+  id: number;
+  attributes: any;
+}
+
+export interface vacancyTypes {
+  id: number,
+  attributes: {
+    title: string,
+  }
 }
