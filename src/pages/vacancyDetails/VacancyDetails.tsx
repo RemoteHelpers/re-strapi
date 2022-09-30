@@ -41,6 +41,7 @@ export const VacancyDetails = () => {
         {responseState.map((vacancy: vacancyTypes) => (
           <div key={vacancy.id}>
             <h1>{vacancy.attributes.title}</h1>
+            <h1>{vacancy.id}</h1>
           </div>
         ))}
       </div>
