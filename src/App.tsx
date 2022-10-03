@@ -7,7 +7,7 @@ import './App.scss';
 
 import VacancyDetails from "./pages/vacancyDetails";
 import AboutPage from "./pages/about";
-import NavBar from "./components/NavBar";
+import Header from './components/header/Header';
 import VideoInterview from "./pages/videoInterview";
 import VacanciesPage from "./pages/vacanciesPage";
 import Footer from './components/footer';
@@ -18,7 +18,7 @@ const App: React.FC = () => {
   return (
     <>
       <BrowserRouter>
-        <NavBar />
+        <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/vacancies" element={<VacanciesPage />} />

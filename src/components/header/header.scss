@@ -233,7 +233,7 @@
     }
 
     &_title {
-      padding: 1.4rem 0;
+      padding: 3rem 0 1.7rem;
       margin-bottom: 0;
 
       @include onTablet {
@@ -243,6 +243,10 @@
       }
     }
   }
+}
+
+.active-link {
+  font-weight: 700;
 }
 
 .customSelectHeader {
