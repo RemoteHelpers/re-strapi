@@ -247,7 +247,7 @@
       row-gap: 5rem;
       column-gap: 6rem;
     }
-    @include on1440 {
+    @include on1280 {
       grid-auto-flow: column;
       column-gap: 9rem;
     }
@@ -314,15 +314,14 @@
   }
   &__text {
     font-weight: 400;
-    font-size: 1rem;
+    font-size: clamp(14px, 1.2vw, 20px);
     line-height: 1.5;
     color: $typography1;
-    @include onTablet {
-      font-size: 1.25rem;
-    }
   }
   &__img {
     display: block;
+    max-width: 100%;
+    height: auto;
     margin: 0 auto;
     @include onDesktop {
       max-width: 30rem;
@@ -346,11 +345,12 @@
   }
   &__img {
     display: block;
+    max-width: 100%;
+    height: auto;
     margin: 0 auto;
     @include onTablet {
       position: relative;
       max-width: 30rem;
-      height: auto;
     }
   }
 }
