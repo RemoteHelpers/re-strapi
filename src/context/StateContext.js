@@ -9,12 +9,15 @@ const Context = createContext();
 
 export const StateContext = ({ children }) => {
   const [localization, setLocalization] = useState('uk');
+  const [currentVacancy, setCurrentVacancy] = useState('');
 
   return (
     <Context.Provider
       value={{
         localization,
         setLocalization,
+        currentVacancy,
+        setCurrentVacancy,
       }}
     >
       {children}

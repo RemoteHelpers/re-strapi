@@ -5,18 +5,26 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './VacancyCard.scss';
 import FireIcon from '../../images/fireIcon.svg';
+import { useStateContext } from '../../context/StateContext';
 
 interface Props {
   title: string,
-  currentVacancy: string
+  slug: string,
+  isHot: string;
 }
 
-const VacancyCard: React.FC<Props> = ({ title, currentVacancy }) => {
+const VacancyCard: React.FC<Props> = ({ title, slug, isHot }) => {
+  const { setCurrentVacancy } = useStateContext();
+
+  const handleSlug = () => {
+    setCurrentVacancy(slug);
+  };
+
   return (
     <div className="VacancyCard">
       <div className="VacancyCard__banner VacancyCard__banner--mobile">
         <img src={FireIcon} className="VacancyCard__fireIcon" alt="icon" />
-        <span className="VacancyCard__banner-text">Urgent</span>
+        <span className="VacancyCard__banner-text">{isHot}</span>
       </div>
 
       <div className="VacancyCard__info">
@@ -29,7 +37,8 @@ const VacancyCard: React.FC<Props> = ({ title, currentVacancy }) => {
       </div>
       <Link
         className="VacancyCard__button"
-        to={`/vacancies/${currentVacancy}`}
+        to={`/vacancy/${slug}`}
+        onClick={handleSlug}
       >
         See more
       </Link>

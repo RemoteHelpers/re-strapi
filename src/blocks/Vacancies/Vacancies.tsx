@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable padding-line-between-statements */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable import/newline-after-import */
@@ -41,8 +42,6 @@ export const Vacancies = () => {
   const searchRef = useRef<HTMLDivElement>(null);
 
   const [categories, setCategories] = useState<Category[]>([]);
-  const [vacancies, setVacancies] = useState<VacancyArray[]>([]);
-  const [currentVacancy, setCurrentVacancy] = useState<string>('');
   const [currentCategory, setCurrentCategory] = useState<string>('');
   const [selectedVacancies, setSelectedVacancies] = useState<Vacancy[]>([]);
   const [query, setQuery] = useState<string>("");
@@ -79,24 +78,6 @@ export const Vacancies = () => {
         console.log(err);
       });
   }, []);
-
-  useEffect(() => {
-    axios.get(`${API}/vacancies?populate=*`)
-      .then(res => {
-        setVacancies(res.data.data);
-        // console.log(res.data.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
-
-  // useEffect(() => {
-  //   vacancies.map(vacancy => {
-  //     setCurrentVacancy(vacancy.attributes.vacancySlug);
-  //     console.log(vacancy.attributes.vacancySlug);
-  //   });
-  // }, [vacancies]);
 
   useEffect(() => {
     clearTimeout(vacationTime);
@@ -407,11 +388,9 @@ export const Vacancies = () => {
               currentItems.map((vacancy: any) => (
                 <VacancyCard
                   key={vacancy.id}
-                  // id={vacancy.id}
                   title={vacancy.attributes.title}
-                  currentVacancy={currentVacancy}
-                // subTitle={vacancy.attributes.subTitle}
-                // isHot={vacancy.attributes.isHot}
+                  slug={vacancy.attributes.vacancySlug}
+                  isHot={vacancy.attributes.isHot}
                 />
               ))}
           </div>
