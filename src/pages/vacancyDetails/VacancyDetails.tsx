@@ -9,6 +9,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import '../../App.scss';
+import { Breadcrumbs, Link, Typography } from '@mui/material';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import cl from './vacancyDetails.module.scss';
 import { useStateContext } from '../../context/StateContext';
 import { LocalVacancyType } from '../../types/types';
@@ -39,6 +41,22 @@ export const VacancyDetails = () => {
         {localVacancy && (
           localVacancy.map(item => (
             <div key={item.id}>
+              <Breadcrumbs
+                separator={<NavigateNextIcon fontSize="small" />}
+                aria-label="breadcrumb"
+              >
+                <Link underline="hover" color="inherit" href="/">
+                  Головна
+                </Link>
+                <Link
+                  underline="hover"
+                  color="inherit"
+                  href="/vacancies"
+                >
+                  Vacancy
+                </Link>
+                <Typography color="text.primary">{item.attributes.title}</Typography>
+              </Breadcrumbs>
               <span className={item.attributes.isHot ? cl.hotVacancy : cl.coldVacancy}>
                 <VacancyFireSvg id="hot" />
                 Гаряча
