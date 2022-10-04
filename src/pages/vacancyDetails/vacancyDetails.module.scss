@@ -124,3 +124,40 @@
     }
   }
 }
+
+.headerCard {
+  width: 100%;
+  margin-bottom: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.activeCrumb {
+  color: $primaryColorVacancy;
+  font-weight: 700 !important;
+  font-size: clamp(16px, 1vw, 20px);
+  line-height: 115%;
+}
+.crumbArrow {
+  color: $primaryColorVacancy;
+}
+.normalCrumb {
+  color: $secondaryColor4;
+  font-weight: 500 !important;
+  font-size: clamp(16px, 1vw, 20px);
+  line-height: 115%;
+}
+
+
+.addToFavorite {
+  display: flex;
+  align-items: center;
+  column-gap: 2.5rem;
+  cursor: pointer;
+
+  color: $secondaryColor4;
+  font-weight: 500 !important;
+  font-size: clamp(16px, 1vw, 20px);
+  line-height: 115%;
+}

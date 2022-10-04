@@ -16,7 +16,7 @@ import { useStateContext } from '../../context/StateContext';
 import { LocalVacancyType } from '../../types/types';
 
 import play from '../../icons/play.png';
-import { VacancyFireSvg } from './VacancyFireSvg';
+import { VacancySvg } from './VacancyFireSvg';
 
 const API = 'http://testseven.rh-s.com:1733/api';
 
@@ -41,24 +41,36 @@ export const VacancyDetails = () => {
         {localVacancy && (
           localVacancy.map(item => (
             <div key={item.id}>
-              <Breadcrumbs
-                separator={<NavigateNextIcon fontSize="small" />}
-                aria-label="breadcrumb"
-              >
-                <Link underline="hover" color="inherit" href="/">
-                  Головна
-                </Link>
-                <Link
-                  underline="hover"
-                  color="inherit"
-                  href="/vacancies"
+              <div className={cl.headerCard}>
+                <Breadcrumbs
+                  separator={<NavigateNextIcon className={cl.crumbArrow} fontSize="medium" />}
+                  aria-label="breadcrumb"
                 >
-                  Vacancy
-                </Link>
-                <Typography color="text.primary">{item.attributes.title}</Typography>
-              </Breadcrumbs>
+                  <Link
+                    className={cl.normalCrumb}
+                    underline="none"
+                    color="inherit"
+                    href="/"
+                  >
+                    Головна
+                  </Link>
+                  <Link
+                    className={cl.normalCrumb}
+                    underline="none"
+                    color="inherit"
+                    href="/vacancies"
+                  >
+                    Vacancy
+                  </Link>
+                  <Typography className={cl.activeCrumb}>{item.attributes.title}</Typography>
+                </Breadcrumbs>
+                <div className={cl.addToFavorite}>
+                  Додати у закладки
+                  <VacancySvg id="star" />
+                </div>
+              </div>
               <span className={item.attributes.isHot ? cl.hotVacancy : cl.coldVacancy}>
-                <VacancyFireSvg id="hot" />
+                <VacancySvg id="hot" />
                 Гаряча
               </span>
               <div className={cl.shortVacancyWrapper}>
