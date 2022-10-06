@@ -1,25 +1,30 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable object-curly-newline */
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 import Select, { components } from 'react-select';
 import { CSSTransition } from 'react-transition-group';
 import axios from 'axios';
-import cl from './header.module.scss';
+import './header.scss';
 import { useStateContext } from '../../context/StateContext';
 import {
   Category, Vacancy,
 } from '../../types/types';
 import Logo from '../../images/mainScreen/Logo.png';
 import SelectIcon from '../../images/selectArrow.svg';
+import useOutsideAlerter from '../../hooks/useClickOutside';
 
 const API = 'http://testseven.rh-s.com:1733/api';
 
 const Header = () => {
+  const searchRef = useRef<HTMLDivElement>(null);
   const { localization, setLocalization } = useStateContext();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -27,10 +32,16 @@ const Header = () => {
   const [selectedVacancies, setSelectedVacancies] = useState<Vacancy[]>([]);
   const [activeMenu, setActiveMenu] = useState('main');
   const [isDesktopMenuOpened, setIsDesktopMenuOpened] = useState(false);
+  const [currentMenuCategory, setCurrentMenuCategory] = useState('Розробка');
+  const [selectedMenuVacancies, setSelectedMenuVacancies] = useState<Vacancy[]>([]);
 
   // useEffect(() => {
   //   document.documentElement.classList.toggle('no-overflow');
   // }, [isMenuOpened]);
+
+  useOutsideAlerter(searchRef, () => {
+    setIsDesktopMenuOpened(false);
+  });
 
   useEffect(() => {
     axios.get(`${API}/categories`)
@@ -42,6 +53,10 @@ const Header = () => {
         console.log(err);
       });
   }, []);
+
+  // useEffect(() => {
+  //   document.documentElement.classList.toggle('darken');
+  // }, [isDesktopMenuOpened]);
 
   const selectLocalization = [
     { value: 'en', label: 'EN' },
@@ -89,25 +104,44 @@ const Header = () => {
     setActiveMenu('vacancies');
   }, []);
 
+  let isActiveCategory: boolean;
+
+  const handleCategoryMenuSelect = useCallback((event: any) => {
+    setCurrentMenuCategory(event.target.name);
+  }, []);
+
+  useEffect(() => {
+    axios.get(`${API}/vacancies?populate=*&filters[categories][categoryTitle][$eq]=${currentMenuCategory}`)
+      .then(arr => {
+        setSelectedMenuVacancies(arr.data.data);
+        console.log(arr.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [currentMenuCategory]);
+
   return (
-    <div id="header" className={cl.Header}>
-      <img src={Logo} alt="logo" className={cl.Header__logo} />
-      <div className={cl.Header__functionality}>
-        <nav className={cl.Header__navbar}>
-          <a
-            href="http://localhost:3000/"
-            className={cl.Header__link}
+    <div id="header" className="Header">
+      <NavLink to="/">
+        <img src={Logo} alt="logo" className="Header__logo" />
+      </NavLink>
+      <div className="Header__functionality">
+        <nav className="Header__navbar">
+          <NavLink className={({ isActive }) => (isActive ? 'active-link Header__link' : 'link Header__link')} end to="/">Home</NavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? 'active-link Header__link' : 'link Header__link')}
+            end
+            to="/vacancies"
             onMouseOver={() => setIsDesktopMenuOpened(true)}
-            onMouseLeave={() => setIsDesktopMenuOpened(false)}
+            // onMouseLeave={() => setIsDesktopMenuOpened(false)}
           >
-            Вакансии
-          </a>
-          <a href="http://localhost:3000/" className={cl.Header__link}>
-            О Нас
-          </a>
-          <a href="http://localhost:3000/" className={cl.Header__link}>
-            Видеоинтервью
-          </a>
+            Vacancies
+          </NavLink>
+          <NavLink className={({ isActive }) => (isActive ? 'active-link Header__link' : 'link Header__link')} end to="/about">
+            About us
+          </NavLink>
+          <NavLink className={({ isActive }) => (isActive ? 'active-link Header__link' : 'link Header__link')} end to="/videoInterview">Video interview</NavLink>
         </nav>
         <Select
           classNamePrefix="custom-select-header"
@@ -125,40 +159,57 @@ const Header = () => {
         <button
           type="button"
           onClick={handleMenuClick}
-          className={cl.Header__menuButton}
+          className="Header__menuButton"
         >
-          <div className={classNames(cl.Header__menuIcon, {
-            [cl.Header__menuIcon_active]: isMenuOpened })}
+          <div className={classNames('Header__menuIcon', {
+            Header__menuIcon_active: isMenuOpened })}
           >
           </div>
         </button>
       </div>
 
-      <div className={classNames(cl.Header__dropMenu, {
-        [cl.Header__dropMenu_active]: isMenuOpened })}
+      <div className={classNames('Header__dropMenu', {
+        Header__dropMenu_active: isMenuOpened })}
       >
-        <h4 className={cl.Header__dropMenu_title}>Меню</h4>
-        <nav className={cl.Header__navbar_mobile}>
+        <h4 className="Header__dropMenu_title">Меню</h4>
+        <nav className="Header__navbar_mobile">
           <CSSTransition
             in={activeMenu === 'main'}
             unmountOnExit
             timeout={500}
-            classNames={cl.menu_primary}
+            classNames="menu_primary"
           >
-            <div className={cl.menu}>
+            <div className="menu">
+              <NavLink
+                className={({ isActive }) => (isActive ? 'active-link Header__link_mobile' : 'link Header__link_mobile')}
+                end
+                to="/"
+                onClick={() => setIsMenuOpened(false)}
+              >
+                Home
+              </NavLink>
               <a
-                href="#"
-                className={cl.Header__link_mobile}
+                className="Header__link_mobile"
                 onClick={() => 'categories' && setActiveMenu('categories')}
               >
-                Вакансії
+                Vacancies
               </a>
-              <a href="http://localhost:3000/" className={cl.Header__link_mobile}>
-                Про нас
-              </a>
-              <a href="http://localhost:3000/" className={cl.Header__link_mobile}>
-                Інтерв’ю
-              </a>
+              <NavLink
+                className={({ isActive }) => (isActive ? 'active-link Header__link_mobile' : 'link Header__link_mobile')}
+                end
+                to="/about"
+                onClick={() => setIsMenuOpened(false)}
+              >
+                About us
+              </NavLink>
+              <NavLink
+                className={({ isActive }) => (isActive ? 'active-link Header__link_mobile' : 'link Header__link_mobile')}
+                end
+                to="/videoInterview"
+                onClick={() => setIsMenuOpened(false)}
+              >
+                Video interview
+              </NavLink>
             </div>
           </CSSTransition>
 
@@ -166,12 +217,12 @@ const Header = () => {
             in={activeMenu === 'categories'}
             unmountOnExit
             timeout={500}
-            classNames={cl.menu_Secondary}
+            classNames="menu_Secondary"
           >
-            <div className={cl.menu}>
+            <div className="menu">
               <a
                 href="#"
-                className={cl.Header__link_mobile}
+                className="Header__link_mobile"
                 onClick={() => 'main' && setActiveMenu('main')}
               >
                 Назад до меню
@@ -180,7 +231,7 @@ const Header = () => {
                 <a
                   key={category.id}
                   href="#"
-                  className={cl.Header__link_mobile}
+                  className="Header__link_mobile"
                   onClick={handleCategorySelect}
                 >
                   {category.attributes.categoryTitle}
@@ -193,12 +244,12 @@ const Header = () => {
             in={activeMenu === 'vacancies'}
             unmountOnExit
             timeout={500}
-            classNames={cl.menu_Thirdly}
+            classNames="menu_Thirdly"
           >
-            <div className={cl.menu}>
+            <div className="menu">
               <a
                 href="#"
-                className={cl.Header__link_mobile}
+                className="Header__link_mobile"
                 onClick={() => 'categories' && setActiveMenu('categories')}
               >
                 Назад до категорій
@@ -208,7 +259,7 @@ const Header = () => {
                 <a
                   key={vacancy.id}
                   href="#"
-                  className={cl.Header__link_mobile}
+                  className="Header__link_mobile"
                   onClick={handleCategorySelect}
                 >
                   {vacancy.attributes.title}
@@ -217,6 +268,44 @@ const Header = () => {
             </div>
           </CSSTransition>
         </nav>
+      </div>
+
+      <div
+        className={classNames('Header__dropMenuDesktop', {
+          Header__dropMenuDesktop_active: isDesktopMenuOpened })}
+        ref={searchRef}
+      >
+        <div className="Header__dropMenuDesktop_categories">
+          {categories.map(category => (
+            <>
+              <input
+                type="checkbox"
+                checked={currentMenuCategory === category.attributes.categoryTitle}
+                key={category.id}
+                id={category.id}
+                name={category.attributes.categoryTitle}
+                value={currentMenuCategory}
+                onChange={handleCategoryMenuSelect}
+                className={classNames('Header__link_desktop')}
+              />
+              <label className="label" htmlFor={category.id}>
+                {category.attributes.categoryTitle}
+              </label>
+            </>
+          ))}
+        </div>
+        <div className="Header__dropMenuDesktop_vacancies">
+          {selectedMenuVacancies.map(vacancy => (
+            <a
+              key={vacancy.id}
+              href="#"
+              className="Header__link_desktop--vacancy"
+              onClick={handleCategorySelect}
+            >
+              {vacancy.attributes.title}
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import buttonIcon from '../../images/mainScreen/button-icon.svg';
 
 const MainScreen = () => {
   return (
-    <div className={cl.MainScreen}>
+    <div className={cl.MainScreen} id="mainScreen">
       <div className={cl.MainScreen__info}>
         <h3 className={cl.MainScreen__title}>Хочешь pаботать в сфере IT удаленно?</h3>
         <p className={cl.MainScreen__paragraph}>

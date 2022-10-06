@@ -1,4 +1,5 @@
-@import "./utils/mixins.scss";
+@import './utils/mixins.scss';
+@import './global-styles/colors.scss';
 
 * {
   box-sizing: border-box;
@@ -21,6 +22,15 @@
   font-size: 1.1rem;
   transition: 0.2s ease;
 }
+
+.darken {
+  background: rgba(10, 69, 79, 0.4);
+  backdrop-filter: blur(5px);
+  position: relative;
+  z-index: 9999;
+}
+
+
 
 /* width */
 ::-webkit-scrollbar {
