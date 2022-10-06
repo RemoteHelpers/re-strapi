@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable padding-line-between-statements */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable import/newline-after-import */
@@ -13,7 +14,7 @@
 
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import ReactPaginate from "react-paginate";
-import { useWindowWidth } from '@react-hook/window-size';
+import { useWindowWidth } from "@react-hook/window-size";
 import "./Vacancies.scss";
 import "../../global-styles/search.scss";
 import axios from "axios";
@@ -29,7 +30,7 @@ import cat1 from "../../images/cat1_vacancy_list.png";
 import cat2 from "../../images/cat2_vacancy_list.png";
 import cat3 from "../../images/cat3_vacancy_list.png";
 import FeedbackForm from "../../components/forms/feedbackForm";
-import formImg from '../../images/formImg.png';
+import formImg from "../../images/formImg.png";
 
 const API = "http://testseven.rh-s.com:1733/api";
 const itemsPerPage = 6;
@@ -42,8 +43,8 @@ export const Vacancies = () => {
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [vacancies, setVacancies] = useState<VacancyArray[]>([]);
-  const [currentVacancy, setCurrentVacancy] = useState<string>('');
-  const [currentCategory, setCurrentCategory] = useState<string>('');
+  const [currentVacancy, setCurrentVacancy] = useState<string>("");
+  const [currentCategory, setCurrentCategory] = useState<string>("");
   const [selectedVacancies, setSelectedVacancies] = useState<Vacancy[]>([]);
   const [query, setQuery] = useState<string>("");
   const [searchCollection, setSearchCollection] = useState<Collection[]>([]);
@@ -70,8 +71,9 @@ export const Vacancies = () => {
   });
 
   useEffect(() => {
-    axios.get(`${API}/categories`)
-      .then(res => {
+    axios
+      .get(`${API}/categories`)
+      .then((res) => {
         setCategories(res.data.data);
         // console.log(res);
       })
@@ -81,12 +83,13 @@ export const Vacancies = () => {
   }, []);
 
   useEffect(() => {
-    axios.get(`${API}/vacancies?populate=*`)
-      .then(res => {
+    axios
+      .get(`${API}/vacancies?populate=*`)
+      .then((res) => {
         setVacancies(res.data.data);
         // console.log(res.data.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
@@ -193,9 +196,10 @@ export const Vacancies = () => {
                 </h1>
                 <p className="Vacancies__about__text">
                   Открыты вакансии на удалённую работу. Требуются сотрудники на
-                  полную ставку, с опытом или без опыта работы, но с обязательным
-                  знанием английского на уровне восприятия английской речи и
-                  способности вести переписки по рабочим моментам без словаря.
+                  полную ставку, с опытом или без опыта работы, но с
+                  обязательным знанием английского на уровне восприятия
+                  английской речи и способности вести переписки по рабочим
+                  моментам без словаря.
                   <br />
                   <br />
                   5-дневная рабочая неделя и 9-часовой рабочий день. Возможность
@@ -213,7 +217,7 @@ export const Vacancies = () => {
               </div>
             </li>
             <li className="Vacancies__about__item">
-              {onlyWidth >= 1440 && (
+              {onlyWidth >= 1430 && (
                 <img
                   className="Vacancies__about__img"
                   src={cat2}
@@ -252,8 +256,8 @@ export const Vacancies = () => {
                   должностных обязанностей и способов их выполнения.
                   <br />
                   <br />
-                  Еженедельно в отделах происходят онлайн-собрания, на которых вы
-                  сможете задать интересующие вас вопросы. Также, вы сможете
+                  Еженедельно в отделах происходят онлайн-собрания, на которых
+                  вы сможете задать интересующие вас вопросы. Также, вы сможете
                   попробовать себя на разных вакансиях на удаленную работу и
                   расширить свои профессиональные знания.
                 </p>
@@ -303,19 +307,19 @@ export const Vacancies = () => {
                   Преимущества удаленной работы в компании RemotEmployees
                 </h2>
                 <p className="Vacancies__about__text">
-                  Так как мы предоставляем вакансии на удаленную работу, основным
-                  преимуществом будет то, что вы сами в праве выбирать место
-                  работы. Всё что вам нужно для эффективной работы – это компьютер
-                  и подключение к интернету. Работая у нас, вы получаете
-                  стабильную заработную плату, выплаты происходят два раза в
-                  месяц.
+                  Так как мы предоставляем вакансии на удаленную работу,
+                  основным преимуществом будет то, что вы сами в праве выбирать
+                  место работы. Всё что вам нужно для эффективной работы – это
+                  компьютер и подключение к интернету. Работая у нас, вы
+                  получаете стабильную заработную плату, выплаты происходят два
+                  раза в месяц.
                   <br />
                   <br />
-                  График работы вы также можете выбирать самостоятельно (утренний
-                  или вечерний) поэтому, наши вакансии подойдут даже студентам. В
-                  добавок ко всему вы получите дружный коллектив, поддержку от
-                  руководителей и сотрудников компании, а также дружескую
-                  атмосферу в отделе.
+                  График работы вы также можете выбирать самостоятельно
+                  (утренний или вечерний) поэтому, наши вакансии подойдут даже
+                  студентам. В добавок ко всему вы получите дружный коллектив,
+                  поддержку от руководителей и сотрудников компании, а также
+                  дружескую атмосферу в отделе.
                 </p>
               </div>
             </li>
@@ -326,19 +330,19 @@ export const Vacancies = () => {
                   предоставляем
                 </h2>
                 <p className="Vacancies__about__text">
-                  Так как мы предоставляем вакансии на удаленную работу, основным
-                  преимуществом будет то, что вы сами в праве выбирать место
-                  работы. Всё что вам нужно для эффективной работы – это компьютер
-                  и подключение к интернету. Работая у нас, вы получаете
-                  стабильную заработную плату, выплаты происходят два раза в
-                  месяц.
+                  Так как мы предоставляем вакансии на удаленную работу,
+                  основным преимуществом будет то, что вы сами в праве выбирать
+                  место работы. Всё что вам нужно для эффективной работы – это
+                  компьютер и подключение к интернету. Работая у нас, вы
+                  получаете стабильную заработную плату, выплаты происходят два
+                  раза в месяц.
                   <br />
                   <br />
-                  График работы вы также можете выбирать самостоятельно (утренний
-                  или вечерний) поэтому, наши вакансии подойдут даже студентам. В
-                  добавок ко всему вы получите дружный коллектив, поддержку от
-                  руководителей и сотрудников компании, а также дружескую
-                  атмосферу в отделе.
+                  График работы вы также можете выбирать самостоятельно
+                  (утренний или вечерний) поэтому, наши вакансии подойдут даже
+                  студентам. В добавок ко всему вы получите дружный коллектив,
+                  поддержку от руководителей и сотрудников компании, а также
+                  дружескую атмосферу в отделе.
                 </p>
               </div>
               <div className="Vacancies__about__decoration--big"></div>
@@ -374,7 +378,9 @@ export const Vacancies = () => {
                   placeholder="Job Search"
                   className="search-input"
                 />
-                {!query && <img src={Find} alt="find" className="search-icon" />}
+                {!query && (
+                  <img src={Find} alt="find" className="search-icon" />
+                )}
                 <button
                   className="search__button"
                   type="button"
@@ -387,15 +393,15 @@ export const Vacancies = () => {
                 <div className="search__dropdown">
                   {searchCollection.length !== 0
                     ? searchCollection.slice(0, 10).map((collection) => (
-                      <button
-                        type="button"
-                        key={collection.id}
-                        onClick={() => onCollection(collection)}
-                        className="search__dropdown-row"
-                      >
-                        {collection.attributes.keyPhrase}
-                      </button>
-                    ))
+                        <button
+                          type="button"
+                          key={collection.id}
+                          onClick={() => onCollection(collection)}
+                          className="search__dropdown-row"
+                        >
+                          {collection.attributes.keyPhrase}
+                        </button>
+                      ))
                     : "Not found"}
                 </div>
               )}
@@ -407,11 +413,9 @@ export const Vacancies = () => {
               currentItems.map((vacancy: any) => (
                 <VacancyCard
                   key={vacancy.id}
-                  // id={vacancy.id}
                   title={vacancy.attributes.title}
-                  currentVacancy={currentVacancy}
-                // subTitle={vacancy.attributes.subTitle}
-                // isHot={vacancy.attributes.isHot}
+                  slug={vacancy.attributes.vacancySlug}
+                  isHot={vacancy.attributes.isHot}
                 />
               ))}
           </div>
@@ -427,7 +431,7 @@ export const Vacancies = () => {
             previousLinkClassName="page-num"
             nextLinkClassName="page-num"
             activeLinkClassName="page-num--active"
-          // renderOnZeroPageCount={null}
+            // renderOnZeroPageCount={null}
           />
         </div>
         <FeedbackForm img={formImg} />

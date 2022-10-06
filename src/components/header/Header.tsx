@@ -39,7 +39,7 @@ const Header = () => {
     axios.get(`${API}/categories`)
       .then(res => {
         setCategories(res.data.data);
-        console.log(res.data.data);
+        // console.log(res.data.data);
       })
       .catch(err => {
         console.log(err);
