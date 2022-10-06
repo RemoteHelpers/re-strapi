@@ -74,3 +74,9 @@ export interface vacancyTypes {
     title: string,
   }
 }
+
+export interface LocalVacancyType {
+  attributes: any;
+  id: number;
+  description: string;
+}

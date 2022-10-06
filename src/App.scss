@@ -13,14 +13,14 @@
   font-style: normal;
   font-weight: 500;
   font-size: 1.1rem;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 .active-link {
   font-weight: bold;
   text-decoration: none;
   color: #000;
   font-size: 1.1rem;
-  transition: .2s ease;
+  transition: 0.2s ease;
 }
 
 .darken {
@@ -34,7 +34,7 @@
 
 /* width */
 ::-webkit-scrollbar {
-  width: .6rem;
+  width: 0.6rem;
 }
 
 /* Track */
@@ -45,14 +45,13 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: rgb(196, 196, 196);
-  border-radius: .25rem;
+  border-radius: 0.25rem;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(156, 156, 156);
 }
-
 
 .starter {
   font-size: 1.1rem;
@@ -61,17 +60,17 @@
 ul {
   padding: 0;
 }
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   width: 100%;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   position: relative;
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
-
 
 .no-overflow {
   overflow-y: hidden;
