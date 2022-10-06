@@ -115,7 +115,7 @@ const Testimonials = () => {
               <div className="Testimonials__image"></div>
               <div className="Testimonials__person">
                 <span className="Testimonials__name">
-                  Тимур
+                  Софія
                 </span>
                 <span className="Testimonials__vacancy">
                   <span className="Testimonials__vacancy--bold">
@@ -167,7 +167,7 @@ const Testimonials = () => {
               <div className="Testimonials__image"></div>
               <div className="Testimonials__person">
                 <span className="Testimonials__name">
-                  Тимур
+                  Andrew
                 </span>
                 <span className="Testimonials__vacancy">
                   <span className="Testimonials__vacancy--bold">

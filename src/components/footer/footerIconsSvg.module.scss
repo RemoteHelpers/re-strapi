@@ -1,8 +1,31 @@
+@import '../../utils/mixins.scss';
+
 .footer_icon {
   transition: .3s ease-in-out;
   cursor: pointer;
   border-radius: 50%;
+
+  width: 2.5rem;
+  height: 2.5rem;
+
+  transition: all 0.3s;
+
+  @include onDesktop {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  @include on1440 {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  @include on1920 {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
   &:hover {
+    transform: scale(115%);
     box-shadow: 0 0 1rem rgb(155, 155, 155);
   }
 }

@@ -6,7 +6,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 import Select, { components } from 'react-select';
@@ -19,10 +19,12 @@ import {
 } from '../../types/types';
 import Logo from '../../images/mainScreen/Logo.png';
 import SelectIcon from '../../images/selectArrow.svg';
+import useOutsideAlerter from '../../hooks/useClickOutside';
 
 const API = 'http://testseven.rh-s.com:1733/api';
 
 const Header = () => {
+  const searchRef = useRef<HTMLDivElement>(null);
   const { localization, setLocalization } = useStateContext();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -30,10 +32,16 @@ const Header = () => {
   const [selectedVacancies, setSelectedVacancies] = useState<Vacancy[]>([]);
   const [activeMenu, setActiveMenu] = useState('main');
   const [isDesktopMenuOpened, setIsDesktopMenuOpened] = useState(false);
+  const [currentMenuCategory, setCurrentMenuCategory] = useState('Розробка');
+  const [selectedMenuVacancies, setSelectedMenuVacancies] = useState<Vacancy[]>([]);
 
   // useEffect(() => {
   //   document.documentElement.classList.toggle('no-overflow');
   // }, [isMenuOpened]);
+
+  useOutsideAlerter(searchRef, () => {
+    setIsDesktopMenuOpened(false);
+  });
 
   useEffect(() => {
     axios.get(`${API}/categories`)
@@ -45,6 +53,10 @@ const Header = () => {
         console.log(err);
       });
   }, []);
+
+  // useEffect(() => {
+  //   document.documentElement.classList.toggle('darken');
+  // }, [isDesktopMenuOpened]);
 
   const selectLocalization = [
     { value: 'en', label: 'EN' },
@@ -92,9 +104,28 @@ const Header = () => {
     setActiveMenu('vacancies');
   }, []);
 
+  let isActiveCategory: boolean;
+
+  const handleCategoryMenuSelect = useCallback((event: any) => {
+    setCurrentMenuCategory(event.target.name);
+  }, []);
+
+  useEffect(() => {
+    axios.get(`${API}/vacancies?populate=*&filters[categories][categoryTitle][$eq]=${currentMenuCategory}`)
+      .then(arr => {
+        setSelectedMenuVacancies(arr.data.data);
+        console.log(arr.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [currentMenuCategory]);
+
   return (
     <div id="header" className="Header">
-      <img src={Logo} alt="logo" className="Header__logo" />
+      <NavLink to="/">
+        <img src={Logo} alt="logo" className="Header__logo" />
+      </NavLink>
       <div className="Header__functionality">
         <nav className="Header__navbar">
           <NavLink className={({ isActive }) => (isActive ? 'active-link Header__link' : 'link Header__link')} end to="/">Home</NavLink>
@@ -103,7 +134,7 @@ const Header = () => {
             end
             to="/vacancies"
             onMouseOver={() => setIsDesktopMenuOpened(true)}
-            onMouseLeave={() => setIsDesktopMenuOpened(false)}
+            // onMouseLeave={() => setIsDesktopMenuOpened(false)}
           >
             Vacancies
           </NavLink>
@@ -237,6 +268,44 @@ const Header = () => {
             </div>
           </CSSTransition>
         </nav>
+      </div>
+
+      <div
+        className={classNames('Header__dropMenuDesktop', {
+          Header__dropMenuDesktop_active: isDesktopMenuOpened })}
+        ref={searchRef}
+      >
+        <div className="Header__dropMenuDesktop_categories">
+          {categories.map(category => (
+            <>
+              <input
+                type="checkbox"
+                checked={currentMenuCategory === category.attributes.categoryTitle}
+                key={category.id}
+                id={category.id}
+                name={category.attributes.categoryTitle}
+                value={currentMenuCategory}
+                onChange={handleCategoryMenuSelect}
+                className={classNames('Header__link_desktop')}
+              />
+              <label className="label" htmlFor={category.id}>
+                {category.attributes.categoryTitle}
+              </label>
+            </>
+          ))}
+        </div>
+        <div className="Header__dropMenuDesktop_vacancies">
+          {selectedMenuVacancies.map(vacancy => (
+            <a
+              key={vacancy.id}
+              href="#"
+              className="Header__link_desktop--vacancy"
+              onClick={handleCategorySelect}
+            >
+              {vacancy.attributes.title}
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   );
