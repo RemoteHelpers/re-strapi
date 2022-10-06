@@ -72,7 +72,7 @@
 
   &__socialWrapper {
     display: flex;
-    gap: 0.9rem;
+    column-gap: 4rem;
 
     @include onDesktop {
       gap: 0.5rem;

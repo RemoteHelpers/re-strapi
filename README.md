@@ -1,1 +1,4 @@
 # re-strapi
+
+<!-- Project Instructions -->
+

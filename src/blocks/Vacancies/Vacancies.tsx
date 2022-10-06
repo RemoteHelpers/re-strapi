@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable padding-line-between-statements */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable import/newline-after-import */
@@ -412,11 +413,9 @@ export const Vacancies = () => {
               currentItems.map((vacancy: any) => (
                 <VacancyCard
                   key={vacancy.id}
-                  // id={vacancy.id}
                   title={vacancy.attributes.title}
-                  currentVacancy={currentVacancy}
-                  // subTitle={vacancy.attributes.subTitle}
-                  // isHot={vacancy.attributes.isHot}
+                  slug={vacancy.attributes.vacancySlug}
+                  isHot={vacancy.attributes.isHot}
                 />
               ))}
           </div>
