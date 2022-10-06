@@ -1,4 +1,4 @@
 # re-strapi
 
-<!-- Project Instructions -->
+Remote Employees
 
