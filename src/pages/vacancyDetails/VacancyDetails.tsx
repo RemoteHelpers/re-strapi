@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable react/no-children-prop */
 /* eslint-disable max-len */
 /* eslint-disable padding-line-between-statements */
@@ -60,11 +61,13 @@ export const VacancyDetails = () => {
                     color="inherit"
                     href="/vacancies"
                   >
-                    Vacancy
+                    Vacancies
                   </Link>
                   <Typography className={cl.activeCrumb}>{item.attributes.title}</Typography>
                 </Breadcrumbs>
-                <div className={cl.addToFavorite}>
+                <div
+                  className={cl.addToFavorite}
+                >
                   Додати у закладки
                   <VacancySvg id="star" />
                 </div>
