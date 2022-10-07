@@ -290,7 +290,8 @@ const Header = () => {
                   className="Header__link_mobile"
                   onClick={handleCategorySelect}
                 >
-                  {category.attributes.categoryTitle}
+                  <span>{category.attributes.categoryTitle}</span>
+                  <img src={NextIcon} alt="" />
                 </a>
               ))}
             </div>
@@ -318,7 +319,8 @@ const Header = () => {
                   className="Header__link_mobile"
                   onClick={handleCategorySelect}
                 >
-                  {vacancy.attributes.title}
+                  <span>{vacancy.attributes.title}</span>
+                  <img src={NextIcon} alt="" />
                 </a>
               ))}
             </div>
@@ -348,7 +350,8 @@ const Header = () => {
                 className={classNames("Header__link_desktop")}
               />
               <label className="label" htmlFor={category.id}>
-                {category.attributes.categoryTitle}
+                <span className="label-title">{category.attributes.categoryTitle}</span>
+                <img className="label-icon" src={NextIcon} alt="" />
               </label>
             </React.Fragment>
           ))}
