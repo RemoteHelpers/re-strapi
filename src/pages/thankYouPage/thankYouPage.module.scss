@@ -5,7 +5,7 @@
   position: relative;
   padding: 3rem 1.8rem 6rem;
 
-  @media (min-width: 1360px) {
+  @include onDesktop {
     margin: 0 auto;
     padding: 3rem 12% 6rem;
   }
@@ -17,10 +17,10 @@
   color: $typography1;
   font-size: clamp(28px, 3.1vw, 64px);
   margin-bottom: 5rem;
-  @media (min-width: 768px) {
+  @include onTablet {
     margin-bottom: 3rem;
   }
-  @media (min-width: 1360px) {
+  @include onDesktop {
     margin-bottom: 4rem;
   }
 }
@@ -28,7 +28,7 @@
   display: flex;
   flex-direction: column;
   row-gap: 6rem;
-  @media (min-width: 1360px) {
+  @include onDesktop {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -72,7 +72,7 @@
     @include onTablet {
       display: none;
     }
-    @media (min-width: 1360px) {
+    @include onDesktop {
       display: block;
       left: 20%;
       bottom: 60%;

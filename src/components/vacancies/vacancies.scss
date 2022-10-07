@@ -19,15 +19,15 @@
     margin: 0 0 3.1rem 0;
     color: $typography2;
 
-    @media (min-width: 768px) {
+    @include onTablet {
       margin: 0 0 4.5rem 0;
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       margin: 0 0 3.3rem 0;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       margin: 0 0 4.4rem 0;
     }
   }
@@ -40,16 +40,16 @@
     margin-bottom: 4.2rem;
     gap: 2.1rem;
 
-    @media (min-width: 768px) {
+    @include onTablet {
       margin-bottom: 2.5rem;
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       margin-bottom: 7.1rem;
       flex-direction: row;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       margin-bottom: 10.6rem;
     }
   }
@@ -60,12 +60,12 @@
     gap: 2rem;
     margin-bottom: 3.1rem;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       gap: 2.7rem;
       margin-bottom: 5.6rem;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       gap: 4rem;
       margin-bottom: 8.3rem;
     }
@@ -76,11 +76,11 @@
     order: 2;
     gap: 2.5rem !important;
 
-    @media (min-width: 768px) {
+    @include onTablet {
       order: 0;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       gap: 3.1rem;
     }
   }
@@ -99,12 +99,12 @@
     display: flex !important;
     gap: 0.1rem !important;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       width: 10rem;
       height: 1.7rem;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       width: 19.9rem;
       height: 3.4rem;
     }
@@ -136,15 +136,15 @@
     line-height: 115% !important;
     color: $typography1 !important;
 
-    @media (min-width: 768px) {
+    @include onTablet {
       font-size: 1.2rem !important;
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       font-size: 0.9rem !important;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       font-size: 1.2rem !important;
     }
   }
@@ -155,15 +155,15 @@
     line-height: 115% !important;
     color: $typography1 !important;
 
-    @media (min-width: 768px) {
+    @include onTablet {
       font-size: 0.8rem !important;
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       font-size: 0.9rem !important;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       font-size: 1.2rem !important;
     }
   }
@@ -187,11 +187,11 @@
     border: 0.1rem solid $secondaryColor4 !important;
     border-radius: 1.9rem !important;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       font-size: 1.1rem !important;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       font-size: 1.5rem !important;
     }
   }
@@ -208,11 +208,11 @@
   align-items: center;
   gap: 0.6rem;
 
-  @media (min-width: 1360px) {
+  @include onDesktop {
     font-size: 0.9rem;
   }
 
-  @media (min-width: 1920px) {
+  @include on1920 {
     font-size: 1.2rem;
   }
 }
@@ -222,11 +222,11 @@
   font-size: 1.2rem;
   line-height: 115%;
 
-  @media (min-width: 1360px) {
+  @include onDesktop {
     font-size: 0.9rem;
   }
 
-  @media (min-width: 1920px) {
+  @include on1920 {
     font-size: 1.2rem;
   }
 
@@ -244,12 +244,12 @@
     color: $secondaryColor5;
     background-color: $primaryColor1;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       width: 1.4rem;
       height: 1.4rem;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       width: 2.1rem;
       height: 2.1rem;
     }

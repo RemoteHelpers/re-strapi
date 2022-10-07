@@ -5,15 +5,15 @@
 .container {
   padding-top: 7.5rem;
 
-  @media (min-width: 768px) {
+  @include onTablet {
     padding-top: 12.5rem;
   }
 
-  @media (min-width: 1360px) {
+  @include onDesktop {
     padding-top: 11.7rem;
   }
 
-  @media (min-width: 1920px) {
+  @include on1920 {
     padding-top: 15.6rem;
   }
 }
@@ -21,7 +21,7 @@
   max-height: 3.7rem;
   text-align: center;
 
-  @media (min-width: 768px) {
+  @include onTablet {
     max-height: 5.5rem;
   }
 }
@@ -39,15 +39,15 @@
   color: $typography2;
   margin: 0 0 3.4rem;
 
-  @media (min-width: 768px) {
+  @include onTablet {
     margin: 0 0 4.4rem;
   }
 
-  @media (min-width: 1360px) {
+  @include onDesktop {
     margin: 0 0 3.4rem;
   }
 
-  @media (min-width: 1920px) {
+  @include on1920 {
     margin: 0 0 4.6rem;
   }
 }

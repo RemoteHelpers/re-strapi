@@ -1,5 +1,5 @@
-@import '../../utils/mixins.scss';
-@import '../../global-styles/colors.scss';
+@import "../../utils/mixins.scss";
+@import "../../global-styles/colors.scss";
 
 .Header {
   display: flex;
@@ -8,16 +8,16 @@
 
   padding: 1.1rem 1.8rem;
 
-  @media (min-width: 768px) {
+  @include onTablet {
     padding: 1.9rem 2.5rem;
   }
 
-  @media (min-width: 1360px) {
+  @include onDesktop {
     width: 89%;
     padding: 2rem 0;
   }
 
-  @media (min-width: 1920px) {
+  @include on1920 {
     padding: 3rem 0;
   }
 
@@ -27,34 +27,34 @@
     align-items: center;
     gap: 1.8rem;
 
-    @media (min-width: 768px) {
+    @include onTablet {
       gap: 3.1rem;
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       gap: 3.7rem;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       gap: 5rem;
     }
   }
-  
+
   &__logo {
     width: 6.4rem;
     height: 2.1rem;
 
-    @media (min-width: 768px) {
+    @include onTablet {
       width: 17.3rem;
       height: 5.4rem;
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       width: 11.6rem;
       height: 3.6rem;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       width: 17.3rem;
       height: 5.4rem;
     }
@@ -63,13 +63,13 @@
   &__navbar {
     display: none;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       display: flex;
       gap: 2.4rem;
       height: 1.1rem;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       gap: 3.1rem;
       height: 1.4rem;
     }
@@ -89,7 +89,7 @@
 
     transition: all 0s 0.3s;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       display: none;
     }
   }
@@ -99,28 +99,28 @@
     height: 0.1rem;
     background-color: $typography1;
 
-    @media (min-width: 768px) {
+    @include onTablet {
       width: 3.3rem;
     }
 
     &::before {
-      content: '';
+      content: "";
       display: block;
       width: 1.5rem;
       height: 0.1rem;
       background-color: $typography1;
       transform: translateY(-0.5rem);
-      
+
       transition: all 0.3s;
 
-      @media (min-width: 768px) {
+      @include onTablet {
         transform: translateY(-1.1rem);
         width: 3.4rem;
       }
     }
 
     &::after {
-      content: '';
+      content: "";
       display: block;
       width: 1.5rem;
       height: 0.1rem;
@@ -129,7 +129,7 @@
 
       transition: all 0.3s;
 
-      @media (min-width: 768px) {
+      @include onTablet {
         transform: translateY(1.1rem);
         width: 3.4rem;
       }
@@ -167,11 +167,11 @@
       color: $secondaryColor5;
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       font-size: 0.9rem;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       font-size: 1.2rem;
     }
 
@@ -217,11 +217,11 @@
         line-height: 115%;
         color: $typography1;
 
-        @media (min-width: 1360px) {
+        @include onDesktop {
           font-size: 15px;
         }
-    
-        @media (min-width: 1920px) {
+
+        @include on1920 {
           font-size: 20px;
         }
       }
@@ -248,7 +248,7 @@
       padding: 3rem 0 1.7rem;
       margin-bottom: 0;
 
-      @media (min-width: 768px) {
+      @include onTablet {
         margin: 0;
         height: 10.1rem;
         font-size: 0;
@@ -261,10 +261,10 @@
     border-radius: 0 0 0.5rem 0.5rem;
     text-align: center;
     width: 76%;
-    left: 0; 
-    right: 0; 
-    margin-left: auto; 
-    margin-right: auto; 
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     height: 500px;
     background-color: white;
     z-index: 9;
@@ -291,7 +291,7 @@
       padding: 3% 3% 3%;
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       top: 100px;
     }
   }
@@ -321,11 +321,11 @@
   &__menu {
     font-size: 0.6rem !important;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       font-size: 0.9rem !important;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       font-size: 1.2rem !important;
     }
   }
@@ -336,15 +336,15 @@
     line-height: 115% !important;
     color: #000 !important;
 
-    @media (min-width: 768px) {
+    @include onTablet {
       font-size: 1.2rem !important;
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       font-size: 0.9rem !important;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       font-size: 1.2rem !important;
     }
   }
@@ -409,16 +409,16 @@
   border-right: 2px solid $primaryColor1;
 
   color: $secondaryColor4;
-  
+
   &:hover {
     cursor: pointer;
   }
 
-  @media (min-width: 1360px) {
+  @include onDesktop {
     font-size: 24px;
   }
 
-  @media (min-width: 1920px) {
+  @include on1920 {
     font-size: 32px;
   }
 }
