@@ -28,17 +28,17 @@
     margin-bottom: 50px;
     color: #3f455b;
 
-    @media (min-width: 768px) {
+    @include onTablet {
       font-size: 26px;
       margin-bottom: 43px;
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       font-size: 36px;
       margin-bottom: 47px;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       font-size: 48px;
       margin-bottom: 70px;
     }
@@ -52,16 +52,16 @@
     margin-bottom: 68px;
     gap: 33px;
 
-    @media (min-width: 768px) {
+    @include onTablet {
       flex-direction: row;
       margin-bottom: 77px;
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       margin-bottom: 113px;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       margin-bottom: 170px;
     }
   }
@@ -72,12 +72,12 @@
     gap: 32px;
     margin-bottom: 50px;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       gap: 43px;
       margin-bottom: 89px;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       gap: 64px;
       margin-bottom: 133px;
     }
@@ -88,12 +88,12 @@
     order: 2;
     gap: 40px !important;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       order: 0;
       gap: 38px;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       gap: 50px;
     }
   }
@@ -124,15 +124,15 @@
     line-height: 115% !important;
     color: #000 !important;
 
-    @media (min-width: 768px) {
+    @include onTablet {
       font-size: 13px !important;
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       font-size: 15px !important;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       font-size: 20px !important;
     }
   }
@@ -177,12 +177,12 @@
     color: #fff;
     background-color: #ff6501;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       width: 23px;
       height: 23px;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       width: 34px;
       height: 34px;
     }
@@ -197,7 +197,7 @@
     display: flex;
     flex-direction: column;
     row-gap: 6.25rem;
-    @media (min-width: 768px) {
+    @include onTablet {
       padding: 2.75rem 0 12.5rem 0;
     }
   }
@@ -205,13 +205,13 @@
     position: relative;
     display: grid;
     row-gap: 5rem;
-    @media (min-width: 768px) {
+    @include onTablet {
       align-items: center;
       justify-content: space-between;
       row-gap: 5rem;
       column-gap: 6rem;
     }
-    @media (min-width: 1360px) {
+    @include onDesktop {
       grid-auto-flow: column;
       column-gap: 9rem;
     }
@@ -222,14 +222,14 @@
       background-color: $secondaryColor2;
       display: flex;
       flex-direction: column-reverse;
-      @media (min-width: 768px) {
+      @include onTablet {
         padding: 6.25rem 2.5rem;
       }
 
-      @media (min-width: 1360px) {
+      @include onDesktop {
         flex-direction: initial;
       }
-      @media (min-width: 1920px) {
+      @include on1920 {
         padding: 5.25rem 3.5rem;
       }
     }
@@ -244,7 +244,7 @@
       display: grid;
       row-gap: 2rem;
       width: 100%;
-      @media (min-width: 1360px) {
+      @include onDesktop {
         width: 80%;
       }
     }
@@ -273,7 +273,7 @@
     max-width: 100%;
     height: auto;
     margin: 0 auto;
-    @media (min-width: 1360px) {
+    @include onDesktop {
       max-width: 30rem;
       height: auto;
     }
@@ -289,7 +289,7 @@
     font-size: $typography4;
     line-height: 1.5;
     color: $typography1;
-    @media (min-width: 768px) {
+    @include onTablet {
       font-size: 1.25rem;
     }
   }
@@ -298,7 +298,7 @@
     max-width: 100%;
     height: auto;
     margin: 0 auto;
-    @media (min-width: 768px) {
+    @include onTablet {
       position: relative;
       max-width: 30rem;
     }
@@ -317,13 +317,13 @@
     z-index: -1;
     border-radius: 50%;
     background-color: $secondaryColor2;
-    @media (min-width: 768px) {
+    @include onTablet {
       width: 20rem;
       height: 20rem;
       top: -10%;
       right: 55%;
     }
-    @media (min-width: 1360px) {
+    @include onDesktop {
       width: 25rem;
       height: 25rem;
       top: -20%;
@@ -332,7 +332,7 @@
   }
   &--big {
     display: none;
-    @media (min-width: 1360px) {
+    @include onDesktop {
       position: absolute;
       display: block;
       bottom: 10%;
@@ -344,7 +344,7 @@
       z-index: -1;
       background-color: $secondaryColor2;
     }
-    @media (min-width: 1920px) {
+    @include on1920 {
       right: -45%;
     }
   }

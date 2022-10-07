@@ -5,15 +5,15 @@
 .Spheres {
   padding: 7.5rem 0;
 
-  @media (min-width: 768px) {
+  @include onTablet {
     padding: 12.5rem 0;
   }
 
-  @media (min-width: 1360px) {
+  @include onDesktop {
     padding: 11.7rem 0;
   }
 
-  @media (min-width: 1920px) {
+  @include on1920 {
     padding: 15.6rem 0;
   }
 
@@ -27,15 +27,15 @@
 
     color: $typography2;
 
-    @media (min-width: 768px) {
+    @include onTablet {
       margin-bottom: 4.4rem;
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       margin-bottom: 4.2rem;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       margin-bottom: 5.6rem;
     }
   }
@@ -47,12 +47,12 @@
     border: 0.1rem solid $primaryColor1;
     border-radius: 0.9rem;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       width: 6.4rem;
       height: 6.4rem;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       width: 9.6rem;
       height: 9.6rem;
     }
@@ -73,11 +73,11 @@
     line-height: 115%;
     margin: 0.9rem 0 1.9rem;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       margin: 1.4rem 0 0;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       margin: 1.9rem 0 0;
     }
   }

@@ -5,7 +5,7 @@
 .Testimonials {
   padding: 7.5rem 1.8rem;
 
-  @include on1440 {
+  @include onDesktop {
     padding-left: 0;
     padding-top: 9.4rem;
     padding-bottom: 11.7rem;
@@ -25,15 +25,15 @@
     color: $typography2;
     margin: 0 0 3.1rem 0;
 
-    @media (min-width: 768px) {
+    @include onTablet {
       margin: 0 0 5.7rem 0;
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       margin: 0 0 3.4rem 12%;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       font-size: 3rem;
       margin: 0 0 4.6rem 11%;
     }
@@ -50,11 +50,11 @@
     flex-direction: column;
     gap: 0.1rem;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       gap: 0.7rem;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       gap: 0.9rem;
     }
   }
@@ -64,7 +64,7 @@
     font-size: $typography3;
     line-height: 130%;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       line-height: 115%;
     }
   }
@@ -74,7 +74,7 @@
     font-size: $typography4;
     line-height: 130%;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       line-height: 115%;
     }
 
@@ -100,12 +100,12 @@
     background: $primaryColor4;
     border-radius: 50%;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       width: 4.8rem;
       height: 4.8rem;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       width: 6.4rem;
       height: 6.4rem;
     }
@@ -129,12 +129,12 @@
         cursor: pointer;
       }
 
-      @media (min-width: 1360px) {
+      @include onDesktop {
         width: 1.1rem;
         height: 1.1rem;
       }
 
-      @media (min-width: 1920px) {
+      @include on1920 {
         width: 1.5rem;
         height: 1.5rem;
       }
@@ -155,17 +155,17 @@
     right: 0%;
     z-index: 11;
 
-    @media (min-width: 768px) {
+    @include onTablet {
       right: 25%;
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       width: 2.4rem;
       height: 2.4rem;
       right: 40%;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       width: 3.1rem;
       height: 3.1rem;
     }
@@ -181,12 +181,12 @@
     border-radius: 0.9rem;
     opacity: 0.35;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       padding: 1.2rem 1.9rem;
       border: 0.1rem solid $typography1;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       padding: 1.6rem 2.5rem;
       border: 0.2rem solid $typography1;
     }
@@ -208,17 +208,17 @@
     background-size: cover;
     transform: rotate(180deg);
 
-    @media (min-width: 768px) {
+    @include onTablet {
       left: 25%;
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       width: 2.4rem;
       height: 2.4rem;
       left: 40%;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       width: 3.1rem;
       height: 3.1rem;
     }

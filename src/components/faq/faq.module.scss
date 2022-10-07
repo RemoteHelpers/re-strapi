@@ -1,18 +1,18 @@
-@import '../../utils/mixins.scss';
-@import '../../global-styles/colors.scss';
+@import "../../utils/mixins.scss";
+@import "../../global-styles/colors.scss";
 
 .FAQ {
   padding-top: 7.5rem;
 
-  @media (min-width: 768px) {
+  @include onTablet {
     padding-top: 12.5rem;
   }
 
-  @media (min-width: 1360px) {
+  @include onDesktop {
     padding-top: 11.1rem;
   }
 
-  @media (min-width: 1920px) {
+  @include on1920 {
     padding-top: 16.6rem;
   }
 
@@ -25,17 +25,17 @@
     color: $typography2;
     margin: 0 0 3.1rem;
 
-    @media (min-width: 768px) {
+    @include onTablet {
       font-size: 2.4rem;
       margin: 0 0 4.4rem;
     }
-  
-    @media (min-width: 1360px) {
+
+    @include onDesktop {
       font-size: 2.2rem;
       margin: 0 0 4.7rem;
     }
-  
-    @media (min-width: 1920px) {
+
+    @include on1920 {
       font-size: 3rem;
       margin: 0 0 6.2rem;
     }
@@ -44,11 +44,11 @@
   &__item {
     margin-bottom: 2.5rem;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       margin-bottom: 2.4rem;
     }
-  
-    @media (min-width: 1920px) {
+
+    @include on1920 {
       margin-bottom: 3.1rem;
     }
 
@@ -68,15 +68,15 @@
       cursor: pointer;
     }
 
-    @media (min-width: 768px) {
+    @include onTablet {
       font-size: 1.5rem;
     }
-  
-    @media (min-width: 1360px) {
+
+    @include onDesktop {
       gap: 1rem;
     }
-  
-    @media (min-width: 1920px) {
+
+    @include on1920 {
       gap: 1.4rem;
     }
   }
@@ -89,12 +89,12 @@
     font-size: 0.9rem;
     line-height: 150%;
     transition: all 0.3s ease-in-out;
-  
-    @media (min-width: 1360px) {
+
+    @include onDesktop {
       font-size: 0.9rem;
     }
-  
-    @media (min-width: 1920px) {
+
+    @include on1920 {
       font-size: 1.2rem;
     }
   }
@@ -113,22 +113,22 @@
     font-size: 1.2rem;
     line-height: 130%;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       font-size: 1.5rem;
     }
-  
-    @media (min-width: 1920px) {
+
+    @include on1920 {
       font-size: 2rem;
     }
   }
 
   &__icon {
-    @media (min-width: 1360px) {
+    @include onDesktop {
       width: 2.1rem;
       height: 2.1rem;
     }
-  
-    @media (min-width: 1920px) {
+
+    @include on1920 {
       width: 2.8rem;
       height: 2.8rem;
     }

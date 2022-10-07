@@ -13,18 +13,18 @@
   padding: 2.5rem 1.3rem 2.5rem 1.6rem;
   box-sizing: border-box;
 
-  @media (min-width: 768px) {
+  @include onTablet {
     padding: 2.5rem;
   }
 
-  @media (min-width: 1360px) {
+  @include onDesktop {
     align-items: center;
     flex-direction: row;
     padding: 2.1rem 1.5rem 2.1rem 2.2rem;
     gap: 2.7rem;
   }
 
-  @media (min-width: 1920px) {
+  @include on1920 {
     padding: 3.2rem 2.2rem 3.2rem 3.4rem;
   }
 
@@ -36,7 +36,7 @@
   &__info {
     width: 100%;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       width: 65%;
     }
   }
@@ -48,16 +48,16 @@
     line-height: 115%;
     margin-bottom: 0.6rem;
 
-    @media (min-width: 768px) {
+    @include onTablet {
       font-weight: 700;
       margin-bottom: 0.9rem;
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       margin-bottom: 0.7rem;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       margin-bottom: 0.9rem;
     }
   }
@@ -68,7 +68,7 @@
     font-size: $typography3;
     line-height: 150%;
 
-    @media (min-width: 768px) {
+    @include onTablet {
       margin: 0 0 1.9rem 0;
     }
   }
@@ -80,11 +80,11 @@
     font-size: $typography3;
     margin: 0 0 2.2rem 0;
 
-    @media (min-width: 768px) {
+    @include onTablet {
       line-height: 150%;
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       margin: 0;
     }
   }
@@ -109,17 +109,17 @@
       background: $primaryColor1;
     }
 
-    @media (min-width: 768px) {
+    @include onTablet {
       width: 19.2rem;
       height: 3.9rem;
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       width: 12.8rem;
       height: 2.6rem;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       width: 19.2rem;
       height: 3.9rem;
     }
@@ -147,16 +147,11 @@
         display: flex;
         right: 0;
         top: 1.6rem;
-        width: 4.2rem;
-        height: 1.2rem;
-      }
-
-      @media (min-width: 1360px) {
         width: 5.5rem;
         height: 1.9rem;
       }
 
-      @media (min-width: 1920px) {
+      @include on1920 {
         width: 8.3rem;
         height: 2.5rem;
       }
@@ -166,12 +161,12 @@
       margin-bottom: 1.9rem;
       width: 8.3rem;
       height: 2.5rem;
-      @media (min-width: 768px) {
+      @include onTablet {
         display: none;
       }
     }
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       font-size: 0.7rem;
       padding: 0.4rem 1rem;
       gap: 0.6rem;
@@ -181,7 +176,7 @@
       transform: translateX(-50%);
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       font-size: 1rem;
       padding: 0.7rem 1.4rem;
       gap: 0.8rem;
@@ -196,12 +191,12 @@
     width: 1.1rem;
     height: 1.4rem;
 
-    @media (min-width: 1360px) {
+    @include onDesktop {
       width: 0.7rem;
       height: 0.9rem;
     }
 
-    @media (min-width: 1920px) {
+    @include on1920 {
       width: 1.1rem;
       height: 1.4rem;
     }

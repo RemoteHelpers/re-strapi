@@ -24,7 +24,6 @@ import { IFeedbackFormData } from "../../../types/types";
 import cl from "./feedbackForm.module.scss";
 import "./feedbackFormSelect.scss";
 // img
-// import formImg from '../../../images/formImg.png';
 import { FormsSvg } from "../../../icons/form/FormsSvg";
 
 type TOption = {

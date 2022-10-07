@@ -1,7 +1,7 @@
-@import '../../utils/mixins.scss';
+@import "../../utils/mixins.scss";
 
 .footer_icon {
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
   cursor: pointer;
   border-radius: 50%;
 
@@ -10,12 +10,12 @@
 
   transition: all 0.3s;
 
-  @media (min-width: 1360px) {
+  @include onDesktop {
     width: 1.6rem;
     height: 1.6rem;
   }
 
-  @media (min-width: 1920px) {
+  @include on1920 {
     width: 2.4rem;
     height: 2.4rem;
   }

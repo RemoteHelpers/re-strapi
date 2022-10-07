@@ -8,7 +8,7 @@ import { useStateContext } from "./context/StateContext";
 import "./App.scss";
 
 import Footer from "./components/footer";
-import Header from './components/header';
+import Header from "./components/header";
 
 import HomePage from "./pages/homePage";
 import AboutPage from "./pages/about";
