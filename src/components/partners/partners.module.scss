@@ -1,65 +1,53 @@
-@import '../../utils/mixins.scss';
-@import '../../global-styles/colors.scss';
+@import "../../utils/mixins.scss";
+@import "../../global-styles/colors.scss";
+@import "../../global-styles/fonts.scss";
 
-.Partners {
+.container {
   padding-top: 7.5rem;
 
-  @include onTablet {
+  @media (min-width: 768px) {
     padding-top: 12.5rem;
   }
 
-  @include onDesktop {
-    padding-top: 7.8rem;
-  }
-
-  @include on1440 {
+  @media (min-width: 1360px) {
     padding-top: 11.7rem;
   }
 
-  @include on1920 {
+  @media (min-width: 1920px) {
     padding-top: 15.6rem;
   }
+}
+.imageWrapper {
+  max-height: 3.7rem;
+  text-align: center;
 
-  &__imageWrapper {
-    max-height: 3.7rem;
-    text-align: center;
+  @media (min-width: 768px) {
+    max-height: 5.5rem;
+  }
+}
 
-    @include onTablet {
-      max-height: 5.5rem;
-    }
+.image {
+  max-height: 3.7rem;
+}
+
+.title {
+  font-weight: 800;
+  font-size: $typography2;
+  line-height: 130%;
+  text-decoration-line: underline;
+
+  color: $typography2;
+  margin: 0 0 3.4rem;
+
+  @media (min-width: 768px) {
+    margin: 0 0 4.4rem;
   }
 
-  &__image {
-    max-height: 3.7rem;
-  }
-
-  &__title {
-    font-weight: 800;
-    font-size: 1.7rem;
-    line-height: 130%;
-    text-decoration-line: underline;
-
-    color: $typography2;
+  @media (min-width: 1360px) {
     margin: 0 0 3.4rem;
+  }
 
-    @include onTablet {
-      font-size: 2.4rem;
-      margin: 0 0 4.4rem;
-    }
-
-    @include onDesktop {
-      font-size: 1.5rem;
-      margin: 0 0 2.2rem;
-    }
-  
-    @include on1440 {
-      font-size: 2.2rem;
-      margin: 0 0 3.4rem;
-    }
-  
-    @include on1920 {
-      font-size: 3rem;
-      margin: 0 0 4.6rem;
-    }
+  @media (min-width: 1920px) {
+    margin: 0 0 4.6rem;
   }
 }

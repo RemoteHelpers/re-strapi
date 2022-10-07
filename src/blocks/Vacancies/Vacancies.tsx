@@ -26,9 +26,9 @@ import Find from "../../images/findIcon.svg";
 import SelectIcon from "../../images/selectArrow.svg";
 import useOutsideAlerter from "../../hooks/useClickOutside";
 
-import cat1 from "../../images/cat1_vacancy_list.png";
-import cat2 from "../../images/cat2_vacancy_list.png";
-import cat3 from "../../images/cat3_vacancy_list.png";
+import cat1 from "../../images/vacancy_list/cat1_vacancy_list.png";
+import cat2 from "../../images/vacancy_list/cat2_vacancy_list.png";
+import cat3 from "../../images/vacancy_list/cat3_vacancy_list.png";
 import FeedbackForm from "../../components/forms/feedbackForm";
 import formImg from "../../images/formImg.png";
 
@@ -38,7 +38,7 @@ const itemsPerPage = 6;
 let searchTime: any;
 let vacationTime: any;
 
-export const Vacancies = () => {
+export default function Vacancies() {
   const searchRef = useRef<HTMLDivElement>(null);
 
   const [categories, setCategories] = useState<Category[]>([]);
@@ -438,4 +438,4 @@ export const Vacancies = () => {
       </div>
     </>
   );
-};
+}

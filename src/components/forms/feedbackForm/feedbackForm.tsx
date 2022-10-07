@@ -22,10 +22,10 @@ import { IFeedbackFormData } from "../../../types/types";
 
 // styles
 import cl from "./feedbackForm.module.scss";
-import "./feedbackFormSelecr.scss";
+import "./feedbackFormSelect.scss";
 // img
 // import formImg from '../../../images/formImg.png';
-import { FormsSvg } from "./FormsSvg";
+import { FormsSvg } from "../../../icons/form/FormsSvg";
 
 type TOption = {
   value: string;

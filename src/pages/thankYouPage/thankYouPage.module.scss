@@ -1,0 +1,114 @@
+@import "../../utils/mixins.scss";
+@import "../../global-styles/colors.scss";
+
+.container {
+  position: relative;
+  padding: 3rem 1.8rem 6rem;
+
+  @media (min-width: 1360px) {
+    margin: 0 auto;
+    padding: 3rem 12% 6rem;
+  }
+}
+
+.title {
+  text-decoration-line: underline;
+  font-weight: 900;
+  color: $typography1;
+  font-size: clamp(28px, 3.1vw, 64px);
+  margin-bottom: 5rem;
+  @media (min-width: 768px) {
+    margin-bottom: 3rem;
+  }
+  @media (min-width: 1360px) {
+    margin-bottom: 4rem;
+  }
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 6rem;
+  @media (min-width: 1360px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.item {
+  max-width: 20rem;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  row-gap: 1.25rem;
+}
+.subtitle {
+  font-style: normal;
+  font-weight: 700;
+  font-size: clamp(24px, 1.9vw, 36px);
+  color: $typography1;
+}
+.text {
+  font-weight: 400;
+  font-size: clamp(14px, 1.2vw, 20px);
+  line-height: 1.5;
+  color: $typography1;
+}
+.img_wr {
+  position: relative;
+  margin: 0 auto;
+  & .img {
+    @media screen and (max-width: 428px) {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    background-color: #eefdff;
+    @include onTablet {
+      display: none;
+    }
+    @media (min-width: 1360px) {
+      display: block;
+      left: 20%;
+      bottom: 60%;
+      width: 400px;
+      height: 400px;
+    }
+  }
+}
+.decoration {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40vh;
+  border-radius: 70% 70% 0% 0%;
+  z-index: -1;
+  background-color: #d8faff;
+}
+.button {
+  max-width: 18.75rem;
+  background: #fff;
+  text-align: center;
+  cursor: pointer;
+  border: 0.2rem #000 solid;
+  border-radius: 0.9rem;
+  font-size: clamp(16px, 1vw, 20px);
+  padding: 0.9rem;
+  color: #000;
+  font-weight: 700;
+  transition: all ease-in-out 0.25s;
+  &:hover {
+    background: #ff6501;
+    border: 0.2rem #ff6501 solid;
+    color: #fff;
+  }
+  &:active {
+    transform: translateY(0.1rem);
+  }
+}
