@@ -72,10 +72,10 @@
 }
 
 .instruction {
-  padding: 18rem 0 10rem;
+  padding: 15rem 0 10rem;
   position: relative;
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -86,7 +86,7 @@
     z-index: -1;
   }
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     right: 0;
@@ -94,7 +94,7 @@
     height: 50%;
     background-color: $primaryColor3;
     z-index: -2;
-    border-radius: 72% 28% 0% 0% / 62% 5% 95% 38% ;
+    border-radius: 72% 28% 0% 0% / 62% 5% 95% 38%;
   }
 }
 
@@ -127,7 +127,7 @@
   margin-right: 1rem;
   display: flex;
   align-items: center;
-  transition: .5s ease-in-out;
+  transition: 0.5s ease-in-out;
   width: 40px;
   height: 40px;
 }
@@ -137,7 +137,7 @@
   margin-right: 1rem;
   display: flex;
   align-items: center;
-  transition: .5s ease-in-out;
+  transition: 0.5s ease-in-out;
   width: 40px;
   height: 40px;
 }
@@ -192,7 +192,7 @@
   h1 {
     font-style: normal;
     font-weight: 800;
-    font-size: clamp(28px, 2.5vw,48px);
+    font-size: clamp(28px, 2.5vw, 48px);
     line-height: 130%;
     color: $typography2;
     text-decoration: underline;
@@ -223,7 +223,7 @@
   h1 {
     font-style: normal;
     font-weight: 800;
-    font-size: clamp(28px, 2.5vw,48px);
+    font-size: clamp(28px, 2.5vw, 48px);
     line-height: 130%;
     color: $typography2;
     text-decoration: underline;

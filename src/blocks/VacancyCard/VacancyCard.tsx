@@ -1,15 +1,16 @@
+/* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable max-len */
 /* eslint-disable no-console */
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './VacancyCard.scss';
-import FireIcon from '../../images/fireIcon.svg';
-import { useStateContext } from '../../context/StateContext';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./VacancyCard.scss";
+import FireIcon from "../../images/fireIcon.svg";
+import { useStateContext } from "../../context/StateContext";
 
 interface Props {
-  title: string,
-  slug: string,
+  title: string;
+  slug: string;
   isHot: string;
 }
 
@@ -31,8 +32,8 @@ const VacancyCard: React.FC<Props> = ({ title, slug, isHot }) => {
         <h3 className="VacancyCard__title">{title}</h3>
         <p className="VacancyCard__salary">Salary based on interview results</p>
         <p className="VacancyCard__description">
-          Our company is in search of a lead generator who will search for new customers
-          and information on the Internet, work with social networks.
+          Our company is in search of a lead generator who will search for new
+          customers and information on the Internet, work with social networks.
         </p>
       </div>
       <Link

@@ -1,193 +1,166 @@
-@import '../../utils/mixins.scss';
-@import '../../global-styles/colors.scss';
+@import "../../utils/mixins.scss";
+@import "../../global-styles/colors.scss";
 
-.MainScreen {
+.mainScreen {
   display: flex;
   flex-direction: column;
 
   overflow: hidden;
   padding: 2.1rem 1.8rem 3.7rem;
 
-  background-image: url('../../images/mainScreen/background-desktop.png');
+  background-image: url("../../images/mainScreen/background-desktop.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top 38.1rem left 0;
 
-  @include onTablet {
+  @media (min-width: 768px) {
     padding: 3.1rem 2.5rem 3.6rem;
-    background-position: top -100% left 0;
   }
 
-  @include onDesktop {
+  @media (min-width: 1360px) {
     flex-direction: row;
     align-items: center;
     gap: 12%;
     padding: 2.1rem 12% 6.2rem;
     margin: 0 auto;
-    background-image: url('../../images/mainScreen/background-desktop.png');
+    background-image: url("../../images/mainScreen/background-desktop.png");
     background-position: top -15% left 0;
   }
+}
+.image {
+  height: 23.1rem;
+  width: 22rem;
 
-  &__image {
-    height: 23.1rem;
-    width: 22rem;
-
-    @include onTablet {
-      align-self: center;
-      width: 26rem;
-      height: 27.3rem;
-    }
-
-    @include onDesktop {
-      text-align: inherit;
-      width: 20.8rem;
-      height: 21.8rem;
-    }
-
-    @include on1440 {
-      width: 27.7rem;
-      height: 29.1rem;
-    }
-
-    @include on1920 {
-      width: 41.6rem;
-      height: 43.6rem;
-    }
+  @media (min-width: 768px) {
+    align-self: center;
+    width: 26rem;
+    height: 27.3rem;
   }
 
-  &__title {
+  @media (min-width: 1360px) {
+    text-align: inherit;
+    width: 27.7rem;
+    height: 29.1rem;
+  }
+
+  @media (min-width: 1920px) {
+    width: 41.6rem;
+    height: 43.6rem;
+  }
+}
+
+.title {
+  margin: 0 0 1.9rem 0;
+  font-weight: 900;
+  font-size: 2rem;
+  line-height: 130%;
+  text-decoration-line: underline;
+
+  @media (min-width: 768px) {
+    width: 70%;
+    font-size: 2.8rem;
+  }
+
+  @media (min-width: 1360px) {
+    width: inherit;
+    font-size: 2.7rem;
+    margin: 0 0 2.4rem 0;
+  }
+
+  @media (min-width: 1920px) {
+    font-size: 4rem;
+    margin: 0 0 3.2rem 0;
+  }
+}
+
+.paragraph {
+  margin: 0 0 1.2rem 0;
+  font-size: 0.9rem;
+  line-height: 150%;
+
+  &_strong {
+    font-weight: 600;
+  }
+
+  @media (min-width: 768px) {
+    width: 90%;
     margin: 0 0 1.9rem 0;
-    font-weight: 900;
-    font-size: 2rem;
-    line-height: 130%;
-    text-decoration-line: underline;
-
-    @include onTablet {
-      width: 70%;
-      font-size: 2.8rem;
-    }
-    
-    @include onDesktop {
-      width: inherit;
-      font-size: 2rem;
-      margin: 0 0 1.6rem 0;
-    }
-
-    @include on1440 {
-      font-size: 2.7rem;
-      margin: 0 0 2.4rem 0;
-    }
-
-    @include on1920 {
-      font-size: 4rem;
-      margin: 0 0 3.2rem 0;
-    }
+    font-size: 1.2rem;
   }
 
-  &__paragraph {
-    margin: 0 0 1.2rem 0;
+  @media (min-width: 1360px) {
     font-size: 0.9rem;
-    line-height: 150%;
-
-    &_strong {
-      font-weight: 600;
-    }
-
-    @include onTablet {
-      margin: 0 0 1.9rem 0;
-      font-size: 1.2rem;
-    }
-
-    @include onDesktop {
-      font-size: 0.6rem;
-      margin: 0 0 1.6rem 0;
-    }
-
-    @include on1440 {
-      font-size: 0.9rem;
-      margin: 0 0 2.4rem 0;
-    }
-
-    @include on1920 {
-      font-size: 1.2rem;
-      margin: 0 0 3.1rem 0;
-    }
+    margin: 0 0 2.4rem 0;
   }
 
-  &__button {
-    padding: 1.2rem 1.9rem;
-    margin-bottom: 3.5rem;
-    background: $primaryColor1;
-    box-shadow: 0px 0px 1.1rem 0.3rem rgba(255, 101, 1, 0.25);
-    border-radius: 0.9rem;
-    border: none;
+  @media (min-width: 1920px) {
+    width: 100%;
+    font-size: 1.2rem;
+    margin: 0 0 3.1rem 0;
+  }
+}
 
-    font-weight: 700;
-    font-size: 1rem;
-    line-height: 115%;
+.button {
+  padding: 1.2rem 1.9rem;
+  margin-bottom: 3.5rem;
+  background: $primaryColor1;
+  box-shadow: 0px 0px 1.1rem 0.3rem rgba(255, 101, 1, 0.25);
+  border-radius: 0.9rem;
+  border: none;
 
-    color: $secondaryColor5;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 115%;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.1rem;
+  color: $secondaryColor5;
 
-    transition: all 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.1rem;
 
-    &:hover {
-      cursor: pointer;
-      background: $primaryColor2;
-    }
+  transition: all 0.3s;
 
-    @include onTablet {
-      padding: 0;
-      width: 18.9rem;
-      height: 3.9rem;
-      font-size: 1.2rem;
-      margin-bottom: 3.6rem;
-    }
-
-    @include onDesktop {
-      padding: 0;
-      width: 9.4rem;
-      height: 1.9rem;
-      font-size: 0.6rem;
-      margin-bottom: 0;
-    }
-
-    @include on1440 {
-      width: 12.6rem;
-      height: 2.6rem;
-      font-size: 0.9rem;
-    }
-
-    @include on1920 {
-      width: 18.9rem;
-      height: 3.9rem;
-      font-size: 1.2rem;
-    }
+  &:hover {
+    cursor: pointer;
+    background: $primaryColor2;
   }
 
-  &__buttonIcon {
-    @include onTablet {
-      width: 1.2rem;
-      height: 1.2rem;
-    }
+  @media (min-width: 768px) {
+    padding: 0;
+    width: 18.9rem;
+    height: 3.9rem;
+    font-size: 1.2rem;
+    margin-bottom: 3.6rem;
+  }
+  @media (min-width: 1360px) {
+    width: 12.6rem;
+    height: 2.6rem;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    padding: 0;
+  }
 
-    @include onDesktop {
-      width: 0.7rem;
-      height: 0.7rem;
-    }
+  @media (min-width: 1920px) {
+    width: 18.9rem;
+    height: 3.9rem;
+    font-size: 1.2rem;
+  }
+}
 
-    @include on1440 {
-      width: 1.1rem;
-      height: 1.1rem;
-    }
+.buttonIcon {
+  @media (min-width: 768px) {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
 
-    @include on1920 {
-      width: 1.5rem;
-      height: 1.5rem;
-    }
+  @media (min-width: 1360px) {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  @media (min-width: 1920px) {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
