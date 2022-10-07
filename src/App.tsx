@@ -9,7 +9,7 @@ import './App.scss';
 
 import VacancyDetails from "./pages/vacancyDetails";
 import AboutPage from "./pages/about";
-import Header from './components/header/Header';
+import Header from './components/header';
 import VideoInterview from "./pages/videoInterview";
 import VacanciesPage from "./pages/vacanciesPage";
 import Footer from './components/footer';
@@ -23,13 +23,15 @@ const App: React.FC = () => {
     <>
       <BrowserRouter>
         <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/vacancies" element={<VacanciesPage />} />
-          <Route path={`/vacancy/:${currentVacancy}`} element={<VacancyDetails />} />
-          <Route path="about" element={<AboutPage />} />
-          <Route path="videoInterview" element={<VideoInterview />} />
-        </Routes>
+        <main>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/vacancies" element={<VacanciesPage />} />
+            <Route path={`/vacancy/:${currentVacancy}`} element={<VacancyDetails />} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="videoInterview" element={<VideoInterview />} />
+          </Routes>
+        </main>
         <Footer />
       </BrowserRouter>
     </>

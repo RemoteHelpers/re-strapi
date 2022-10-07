@@ -9,17 +9,13 @@
   justify-content: space-between;
   flex-direction: column;
 
-  @include onDesktop {
+  @media (min-width: 1360px) {
+    padding: 3rem 12% 3.6rem;
     flex-direction: row;
-    padding: 2rem 12% 2.4rem;
     margin: 0 auto;
   }
 
-  @include on1440 {
-    padding: 3rem 12% 3.6rem;
-  }
-
-  @include on1920 {
+  @media (min-width: 1920px) {
     padding: 4rem 12% 4.7rem;
   }
 
@@ -28,7 +24,7 @@
     justify-content: space-between;
     margin-bottom: 1.9rem;
 
-    @include onDesktop {
+    @media (min-width: 1360px) {
       flex-direction: column;
       margin-bottom: 0;
     }
@@ -45,7 +41,7 @@
       text-decoration: none;
     }
 
-    @include onDesktop {
+    @media (min-width: 1360px) {
       text-align: right;
     }
   }
@@ -54,17 +50,12 @@
     width: 8.1rem;
     height: 2.6rem;
 
-    @include onDesktop {
-      width: 8.1rem;
-      height: 2.7rem;
-    }
-  
-    @include on1440 {
+    @media (min-width: 1360px) {
       width: 10.8rem;
       height: 3.6rem;
     }
   
-    @include on1920 {
+    @media (min-width: 1920px) {
       width: 16.1rem;
       height: 5.4rem;
     }
@@ -74,15 +65,11 @@
     display: flex;
     column-gap: 4rem;
 
-    @include onDesktop {
-      gap: 0.5rem;
-    }
-
-    @include on1440 {
+    @media (min-width: 1360px) {
       gap: 0.7rem;
     }
-
-    @include on1920 {
+  
+    @media (min-width: 1920px) {
       gap: 0.9rem;
     }
   }
@@ -93,17 +80,12 @@
 
     transition: all 0.3s;
 
-    @include onDesktop {
-      width: 1.2rem;
-      height: 1.2rem;
-    }
-
-    @include on1440 {
+    @media (min-width: 1360px) {
       width: 1.6rem;
       height: 1.6rem;
     }
-
-    @include on1920 {
+  
+    @media (min-width: 1920px) {
       width: 2.4rem;
       height: 2.4rem;
     }
@@ -120,18 +102,13 @@
     font-weight: 600;
     font-size: 1.5rem;
 
-    @include onDesktop {
+    @media (min-width: 1360px) {
       line-height: 140%;
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-    }
-
-    @include on1440 {
       font-size: 1.4rem;
       margin-bottom: 0.7rem;
     }
-
-    @include on1920 {
+  
+    @media (min-width: 1920px) {
       font-size: 1.9rem;
       margin-bottom: 0.9rem;
     }
@@ -143,18 +120,13 @@
     line-height: 120%;
     margin-bottom: 0.9rem;
 
-    @include onDesktop {
-      font-size: 0.6rem;
-      line-height: 115%;
-      margin-bottom: 0.3rem;
-    }
-
-    @include on1440 {
+    @media (min-width: 1360px) {
       font-size: 0.9rem;
+      line-height: 115%;
       margin-bottom: 0.5rem;
     }
-
-    @include on1920 {
+  
+    @media (min-width: 1920px) {
       font-size: 1.2rem;
       margin-bottom: 0.6rem;
     }

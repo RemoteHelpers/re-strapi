@@ -20,6 +20,7 @@ import {
 import Logo from '../../images/mainScreen/Logo.png';
 import SelectIcon from '../../images/selectArrow.svg';
 import useOutsideAlerter from '../../hooks/useClickOutside';
+import NextIcon from '../../images/header/nextIcon.svg';
 
 const API = 'http://testseven.rh-s.com:1733/api';
 
@@ -122,7 +123,7 @@ const Header = () => {
   }, [currentMenuCategory]);
 
   return (
-    <div id="header" className="Header">
+    <header id="header" className="Header">
       <NavLink to="/">
         <img src={Logo} alt="logo" className="Header__logo" />
       </NavLink>
@@ -180,19 +181,12 @@ const Header = () => {
             classNames="menu_primary"
           >
             <div className="menu">
-              <NavLink
-                className={({ isActive }) => (isActive ? 'active-link Header__link_mobile' : 'link Header__link_mobile')}
-                end
-                to="/"
-                onClick={() => setIsMenuOpened(false)}
-              >
-                Home
-              </NavLink>
               <a
                 className="Header__link_mobile"
                 onClick={() => 'categories' && setActiveMenu('categories')}
               >
-                Vacancies
+                <span>Vacancies</span>
+                <img src={NextIcon} alt="" />
               </a>
               <NavLink
                 className={({ isActive }) => (isActive ? 'active-link Header__link_mobile' : 'link Header__link_mobile')}
@@ -200,7 +194,8 @@ const Header = () => {
                 to="/about"
                 onClick={() => setIsMenuOpened(false)}
               >
-                About us
+                <span>About us</span>
+                <img src={NextIcon} alt="" />
               </NavLink>
               <NavLink
                 className={({ isActive }) => (isActive ? 'active-link Header__link_mobile' : 'link Header__link_mobile')}
@@ -208,7 +203,8 @@ const Header = () => {
                 to="/videoInterview"
                 onClick={() => setIsMenuOpened(false)}
               >
-                Video interview
+                <span>Video interview</span>
+                <img src={NextIcon} alt="" />
               </NavLink>
             </div>
           </CSSTransition>
@@ -277,7 +273,7 @@ const Header = () => {
       >
         <div className="Header__dropMenuDesktop_categories">
           {categories.map(category => (
-            <>
+            <React.Fragment key={category.id}>
               <input
                 type="checkbox"
                 checked={currentMenuCategory === category.attributes.categoryTitle}
@@ -291,7 +287,7 @@ const Header = () => {
               <label className="label" htmlFor={category.id}>
                 {category.attributes.categoryTitle}
               </label>
-            </>
+            </React.Fragment>
           ))}
         </div>
         <div className="Header__dropMenuDesktop_vacancies">
@@ -307,7 +303,7 @@ const Header = () => {
           ))}
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

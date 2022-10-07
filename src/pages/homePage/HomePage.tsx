@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import { Vacancies } from '../../components/vacancies/Vacancies';
-import FAQ from '../../components/faq/FAQ';
+import FAQ from '../../components/faq';
 import FeedbackForm from '../../components/forms/feedbackForm';
 import MainScreen from '../../components/mainScreen/MainScreen';
 import Partners from '../../components/partners/Partners';
