@@ -5,8 +5,7 @@
 * React
 * TypeScript
 * Scss
-* Strapi 
-
+* Strapi
 ## A brief overview:
 
 * Styles are written using modules;
