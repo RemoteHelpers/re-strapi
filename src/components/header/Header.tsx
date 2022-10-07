@@ -12,18 +12,21 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { NavLink } from "react-router-dom";
-import classNames from "classnames";
-import Select, { components } from "react-select";
-import { CSSTransition } from "react-transition-group";
-import axios from "axios";
-import "./header.scss";
-import { useStateContext } from "../../context/StateContext";
-import { Category, Vacancy } from "../../types/types";
-import Logo from "../../images/mainScreen/Logo.png";
-import SelectIcon from "../../images/selectArrow.svg";
-import useOutsideAlerter from "../../hooks/useClickOutside";
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import classNames from 'classnames';
+import Select, { components } from 'react-select';
+import { CSSTransition } from 'react-transition-group';
+import axios from 'axios';
+import './header.scss';
+import { useStateContext } from '../../context/StateContext';
+import {
+  Category, Vacancy,
+} from '../../types/types';
+import Logo from '../../images/mainScreen/Logo.png';
+import SelectIcon from '../../images/selectArrow.svg';
+import useOutsideAlerter from '../../hooks/useClickOutside';
+import NextIcon from '../../images/header/nextIcon.svg';
 
 const API = "http://testseven.rh-s.com:1733/api";
 
@@ -135,7 +138,7 @@ const Header = () => {
   }, [currentMenuCategory]);
 
   return (
-    <div id="header" className="Header">
+    <header id="header" className="Header">
       <NavLink to="/">
         <img src={Logo} alt="logo" className="Header__logo" />
       </NavLink>
@@ -234,7 +237,8 @@ const Header = () => {
                 className="Header__link_mobile"
                 onClick={() => "categories" && setActiveMenu("categories")}
               >
-                Vacancies
+                <span>Vacancies</span>
+                <img src={NextIcon} alt="" />
               </a>
               <NavLink
                 className={({ isActive }) =>
@@ -246,7 +250,8 @@ const Header = () => {
                 to="/about"
                 onClick={() => setIsMenuOpened(false)}
               >
-                About us
+                <span>About us</span>
+                <img src={NextIcon} alt="" />
               </NavLink>
               <NavLink
                 className={({ isActive }) =>
@@ -258,7 +263,8 @@ const Header = () => {
                 to="/videoInterview"
                 onClick={() => setIsMenuOpened(false)}
               >
-                Video interview
+                <span>Video interview</span>
+                <img src={NextIcon} alt="" />
               </NavLink>
             </div>
           </CSSTransition>
@@ -360,7 +366,7 @@ const Header = () => {
           ))}
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

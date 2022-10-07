@@ -6,7 +6,7 @@ import { FooterIconsSVG } from './FooterIconsSVG';
 
 export const Footer = () => {
   return (
-    <div className={cl.Footer}>
+    <footer className={cl.Footer}>
       <div className={cl.Footer__links}>
         <img src={Logo} alt="Logo" className={cl.Footer__logo} />
         <div className={cl.Footer__socialWrapper}>
@@ -27,6 +27,6 @@ export const Footer = () => {
         <a href="google.com" className={cl.Footer__contactsText}>+3 (098) 000-00-00</a>
         <a href="google.com" className={cl.Footer__contactsText}>info@remote.employees.com.ua</a>
       </div>
-    </div>
+    </footer>
   );
 };

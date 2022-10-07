@@ -8,20 +8,16 @@
 
   padding: 1.1rem 1.8rem;
 
-  @include onTablet {
+  @media (min-width: 768px) {
     padding: 1.9rem 2.5rem;
   }
 
-  @include onDesktop {
+  @media (min-width: 1360px) {
     width: 89%;
-    padding: 1.5rem 0;
-  }
-
-  @include on1440 {
     padding: 2rem 0;
   }
 
-  @include on1920 {
+  @media (min-width: 1920px) {
     padding: 3rem 0;
   }
 
@@ -31,19 +27,15 @@
     align-items: center;
     gap: 1.8rem;
 
-    @include onTablet {
+    @media (min-width: 768px) {
       gap: 3.1rem;
     }
 
-    @include onDesktop {
-      gap: 2.5rem;
-    }
-
-    @include on1440 {
+    @media (min-width: 1360px) {
       gap: 3.7rem;
     }
 
-    @include on1920 {
+    @media (min-width: 1920px) {
       gap: 5rem;
     }
   }
@@ -52,22 +44,17 @@
     width: 6.4rem;
     height: 2.1rem;
 
-    @include onTablet {
+    @media (min-width: 768px) {
       width: 17.3rem;
       height: 5.4rem;
     }
 
-    @include onDesktop {
-      width: 8.6rem;
-      height: 2.7rem;
-    }
-
-    @include on1440 {
+    @media (min-width: 1360px) {
       width: 11.6rem;
       height: 3.6rem;
     }
 
-    @include on1920 {
+    @media (min-width: 1920px) {
       width: 17.3rem;
       height: 5.4rem;
     }
@@ -76,18 +63,13 @@
   &__navbar {
     display: none;
 
-    @include onDesktop {
+    @media (min-width: 1360px) {
       display: flex;
-      gap: 1.6rem;
-      height: 0.7rem;
-    }
-
-    @include on1440 {
       gap: 2.4rem;
       height: 1.1rem;
     }
 
-    @include on1920 {
+    @media (min-width: 1920px) {
       gap: 3.1rem;
       height: 1.4rem;
     }
@@ -107,7 +89,7 @@
 
     transition: all 0s 0.3s;
 
-    @include onDesktop {
+    @media (min-width: 1360px) {
       display: none;
     }
   }
@@ -117,7 +99,7 @@
     height: 0.1rem;
     background-color: $typography1;
 
-    @include onTablet {
+    @media (min-width: 768px) {
       width: 3.3rem;
     }
 
@@ -131,7 +113,7 @@
       
       transition: all 0.3s;
 
-      @include onTablet {
+      @media (min-width: 768px) {
         transform: translateY(-1.1rem);
         width: 3.4rem;
       }
@@ -147,10 +129,10 @@
 
       transition: all 0.3s;
 
-      @include onTablet {
+      @media (min-width: 768px) {
         transform: translateY(1.1rem);
         width: 3.4rem;
-      } 
+      }
     }
 
     &_active {
@@ -185,27 +167,24 @@
       color: $secondaryColor5;
     }
 
-    @include onDesktop {
-      font-size: 0.6rem;
-    }
-
-    @include on1440 {
+    @media (min-width: 1360px) {
       font-size: 0.9rem;
     }
 
-    @include on1920 {
+    @media (min-width: 1920px) {
       font-size: 1.2rem;
     }
 
     &_mobile {
       text-decoration: none;
-      display: block;
+      display: flex;
+      justify-content: space-between;
       text-align: left;
       font-weight: 600;
       font-size: 1.5rem;
       line-height: 130%;
       border-bottom: 1px solid $primaryColor1;
-      padding: 2.5rem 0 2.5rem 1.8rem;
+      padding: 2.5rem 2.5rem 2.5rem 1.8rem;
 
       background-color: $secondaryColor5;
       color: $typography1;
@@ -229,7 +208,7 @@
         border: 2px solid $primaryColor1;
         border-right: 0.1rem solid transparent;
         box-shadow: 0px 5px 13px rgba(255, 101, 1, 0.25);
-        // border-radius: 50% 0 0 50%;
+        border-radius: 1rem 0 0 1rem;
       }
 
       &--vacancy {
@@ -237,16 +216,12 @@
         font-weight: 500;
         line-height: 115%;
         color: $typography1;
-  
-        @include onDesktop {
-          font-size: 10px;
-        }
-      
-        @include on1440 {
+
+        @media (min-width: 1360px) {
           font-size: 15px;
         }
-      
-        @include on1920 {
+    
+        @media (min-width: 1920px) {
           font-size: 20px;
         }
       }
@@ -273,7 +248,7 @@
       padding: 3rem 0 1.7rem;
       margin-bottom: 0;
 
-      @include onTablet {
+      @media (min-width: 768px) {
         margin: 0;
         height: 10.1rem;
         font-size: 0;
@@ -293,7 +268,7 @@
     height: 500px;
     background-color: white;
     z-index: 9;
-    opacity: 0;
+    display: none;
     position: absolute;
     top: -1.1rem;
     box-shadow: 0px 10px 19px rgba(255, 101, 1, 0.25);
@@ -301,7 +276,7 @@
     transition: 0.3s linear all;
 
     &_active {
-      opacity: 100%;
+      display: flex;
     }
 
     &_categories {
@@ -315,16 +290,8 @@
       width: 75%;
       padding: 3% 3% 3%;
     }
-  
-    @include onDesktop {
-      top: 100px;
-    }
-  
-    @include on1440 {
-      top: 100px;
-    }
-  
-    @include on1920 {
+
+    @media (min-width: 1360px) {
       top: 100px;
     }
   }
@@ -354,11 +321,11 @@
   &__menu {
     font-size: 0.6rem !important;
 
-    @include on1440 {
+    @media (min-width: 1360px) {
       font-size: 0.9rem !important;
     }
 
-    @include on1920 {
+    @media (min-width: 1920px) {
       font-size: 1.2rem !important;
     }
   }
@@ -369,19 +336,15 @@
     line-height: 115% !important;
     color: #000 !important;
 
-    @include onTablet {
+    @media (min-width: 768px) {
       font-size: 1.2rem !important;
     }
 
-    @include onDesktop {
-      font-size: 0.6rem !important;
-    }
-
-    @include on1440 {
+    @media (min-width: 1360px) {
       font-size: 0.9rem !important;
     }
 
-    @include on1920 {
+    @media (min-width: 1920px) {
       font-size: 1.2rem !important;
     }
   }
@@ -451,15 +414,11 @@
     cursor: pointer;
   }
 
-  @include on1920 {
-    font-size: 16px;
-  }
-
-  @include on1920 {
+  @media (min-width: 1360px) {
     font-size: 24px;
   }
 
-  @include on1920 {
+  @media (min-width: 1920px) {
     font-size: 32px;
   }
 }

@@ -4,19 +4,15 @@
 .FAQ {
   padding-top: 7.5rem;
 
-  @include onTablet {
+  @media (min-width: 768px) {
     padding-top: 12.5rem;
   }
 
-  @include onDesktop {
-    padding-top: 8.3rem;
-  }
-
-  @include on1440 {
+  @media (min-width: 1360px) {
     padding-top: 11.1rem;
   }
 
-  @include on1920 {
+  @media (min-width: 1920px) {
     padding-top: 16.6rem;
   }
 
@@ -29,21 +25,17 @@
     color: $typography2;
     margin: 0 0 3.1rem;
 
-    @include onTablet {
+    @media (min-width: 768px) {
       font-size: 2.4rem;
       margin: 0 0 4.4rem;
     }
-
-    @include onDesktop {
-      font-size: 1.5rem;
-    }
   
-    @include on1440 {
+    @media (min-width: 1360px) {
       font-size: 2.2rem;
       margin: 0 0 4.7rem;
     }
   
-    @include on1920 {
+    @media (min-width: 1920px) {
       font-size: 3rem;
       margin: 0 0 6.2rem;
     }
@@ -52,15 +44,11 @@
   &__item {
     margin-bottom: 2.5rem;
 
-    @include onDesktop {
-      margin-bottom: 1.6rem;
-    }
-  
-    @include on1440 {
+    @media (min-width: 1360px) {
       margin-bottom: 2.4rem;
     }
   
-    @include on1920 {
+    @media (min-width: 1920px) {
       margin-bottom: 3.1rem;
     }
 
@@ -80,41 +68,33 @@
       cursor: pointer;
     }
 
-    @include onTablet {
+    @media (min-width: 768px) {
       font-size: 1.5rem;
     }
-
-    @include onDesktop {
-      gap: 0.7rem;
-    }
   
-    @include on1440 {
+    @media (min-width: 1360px) {
       gap: 1rem;
     }
   
-    @include on1920 {
-      gap: 1.4;
+    @media (min-width: 1920px) {
+      gap: 1.4rem;
     }
   }
 
   &__content {
     max-height: 0;
+    padding-left: 3.1rem;
     overflow: hidden;
-    transition: all 0.3s ease-in-out;
 
     font-size: 0.9rem;
     line-height: 150%;
-    padding-left: 3.1rem;
-
-    @include onDesktop {
-      font-size: 0.6rem;
-    }
+    transition: all 0.3s ease-in-out;
   
-    @include on1440 {
+    @media (min-width: 1360px) {
       font-size: 0.9rem;
     }
   
-    @include on1920 {
+    @media (min-width: 1920px) {
       font-size: 1.2rem;
     }
   }
@@ -133,31 +113,22 @@
     font-size: 1.2rem;
     line-height: 130%;
 
-    @include onDesktop {
-      font-size: 1rem;
-    }
-  
-    @include on1440 {
+    @media (min-width: 1360px) {
       font-size: 1.5rem;
     }
   
-    @include on1920 {
+    @media (min-width: 1920px) {
       font-size: 2rem;
     }
   }
 
   &__icon {
-    @include onDesktop {
-      width: 1.4rem;
-      height: 1.4rem;
-    }
-  
-    @include on1440 {
+    @media (min-width: 1360px) {
       width: 2.1rem;
       height: 2.1rem;
     }
   
-    @include on1920 {
+    @media (min-width: 1920px) {
       width: 2.8rem;
       height: 2.8rem;
     }
