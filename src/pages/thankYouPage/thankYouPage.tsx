@@ -9,7 +9,12 @@ export const ThankYouPage = () => {
   return (
     <div className={cl.section}>
       <div className={cl.container}>
-        <h1 className={cl.title}>Спасибо, что оставили заявку!</h1>
+        <h1 className={cl.title}>
+          Спасибо, что
+          <br />
+          оставили заявку!
+        </h1>
+
         <ul className={cl.list}>
           <li className={cl.item}>
             <h2 className={cl.subtitle}>Запишите видеоинтервью</h2>
