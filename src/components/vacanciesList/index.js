@@ -1,2 +1,2 @@
 /* eslint-disable @typescript-eslint/quotes */
-export { default } from "./VacancyCard";
+export { default } from "./VacancyList";

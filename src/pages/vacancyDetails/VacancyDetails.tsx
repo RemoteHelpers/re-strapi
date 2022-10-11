@@ -36,6 +36,10 @@ export const VacancyDetails = () => {
       });
   }, []);
 
+  const handleClickToFavorite = () => {
+    console.log('clicked');
+  };
+
   return (
     <div className="container">
       <div className={cl.card}>
@@ -65,12 +69,14 @@ export const VacancyDetails = () => {
                   </Link>
                   <Typography className={cl.activeCrumb}>{item.attributes.title}</Typography>
                 </Breadcrumbs>
-                <div
+                <button
+                  type="button"
+                  onClick={handleClickToFavorite}
                   className={cl.addToFavorite}
                 >
                   Додати у закладки
                   <VacancySvg id="star" />
-                </div>
+                </button>
               </div>
               <span className={item.attributes.isHot ? cl.hotVacancy : cl.coldVacancy}>
                 <VacancySvg id="hot" />
