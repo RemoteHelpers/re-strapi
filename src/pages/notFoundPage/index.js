@@ -1,2 +1,3 @@
+/* eslint-disable eol-last */
 /* eslint-disable @typescript-eslint/quotes */
-export { default } from "./NotFoundPage";
+export { default } from "./notFoundPage";

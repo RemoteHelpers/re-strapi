@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default-member */
 /* eslint-disable object-curly-newline */
 /* eslint-disable import/order */
 /* eslint-disable operator-linebreak */
@@ -23,7 +24,7 @@ import VacancyDetails from "./pages/vacancyDetails";
 import VacanciesPage from "./pages/vacanciesPage";
 import ThankYouPage from "./pages/thankYouPage";
 import ChooseLanguagePage from "./pages/chooseLanguagePage";
-import NotFoundPage from "./pages/notFoundPage";
+import NotFoundPage from "./pages/notFoundPage/notFoundPage";
 
 const App: React.FC = () => {
   const {

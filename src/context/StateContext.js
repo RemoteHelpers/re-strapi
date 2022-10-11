@@ -3,6 +3,8 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react/jsx-filename-extension */
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable react/jsx-filename-extension */
 import React, { createContext, useContext, useState } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
@@ -15,8 +17,10 @@ export const StateContext = ({ children }) => {
     false
   );
 
-  const [currentVacancy, setCurrentVacancy] = useState("");
   const [isDesktopMenuOpened, setIsDesktopMenuOpened] = useState(false);
+  // const [localization, setLocalization] = useState("ua");
+  // const [isSubmitLocalization, setIsSubmitLocalization] = useState(false);
+  const [currentVacancy, setCurrentVacancy] = useState("");
 
   return (
     <Context.Provider
