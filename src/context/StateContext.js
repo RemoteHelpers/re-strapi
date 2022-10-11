@@ -10,6 +10,7 @@ const Context = createContext();
 export const StateContext = ({ children }) => {
   const [localization, setLocalization] = useState('uk');
   const [currentVacancy, setCurrentVacancy] = useState('');
+  const [isDesktopMenuOpened, setIsDesktopMenuOpened] = useState(false);
 
   return (
     <Context.Provider
@@ -18,6 +19,8 @@ export const StateContext = ({ children }) => {
         setLocalization,
         currentVacancy,
         setCurrentVacancy,
+        isDesktopMenuOpened,
+        setIsDesktopMenuOpened,
       }}
     >
       {children}

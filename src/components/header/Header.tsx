@@ -32,13 +32,17 @@ const API = "http://testseven.rh-s.com:1733/api";
 
 const Header = () => {
   const searchRef = useRef<HTMLDivElement>(null);
-  const { localization, setLocalization } = useStateContext();
+  const {
+    localization,
+    setLocalization,
+    isDesktopMenuOpened,
+    setIsDesktopMenuOpened
+  } = useStateContext();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [currentCategory, setCurrentCategory] = useState<string>("");
   const [selectedVacancies, setSelectedVacancies] = useState<Vacancy[]>([]);
   const [activeMenu, setActiveMenu] = useState("main");
-  const [isDesktopMenuOpened, setIsDesktopMenuOpened] = useState(false);
   const [currentMenuCategory, setCurrentMenuCategory] = useState("Розробка");
   const [selectedMenuVacancies, setSelectedMenuVacancies] = useState<Vacancy[]>(
     []
@@ -66,6 +70,7 @@ const Header = () => {
 
   // useEffect(() => {
   //   document.documentElement.classList.toggle('darken');
+  //   document.
   // }, [isDesktopMenuOpened]);
 
   const selectLocalization = [
@@ -278,10 +283,11 @@ const Header = () => {
             <div className="menu">
               <a
                 href="#"
-                className="Header__link_mobile"
+                className="Header__link_mobile Header__link_mobile-back"
                 onClick={() => "main" && setActiveMenu("main")}
               >
-                Назад до меню
+                <img className="Header__link_mobile-icon" src={NextIcon} alt="" />
+                <span>Назад до меню</span>
               </a>
               {categories.map((category) => (
                 <a
@@ -306,10 +312,11 @@ const Header = () => {
             <div className="menu">
               <a
                 href="#"
-                className="Header__link_mobile"
+                className="Header__link_mobile Header__link_mobile-back"
                 onClick={() => "categories" && setActiveMenu("categories")}
               >
-                Назад до категорій
+                <img className="Header__link_mobile-icon" src={NextIcon} alt="" />
+                <span>Назад до категорій</span>
               </a>
 
               {selectedVacancies.map((vacancy) => (

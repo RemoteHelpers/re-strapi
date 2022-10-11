@@ -19,13 +19,13 @@ import ThankYouPage from "./pages/thankYouPage";
 import NotFoundPage from "./pages/notFoundPage";
 
 const App: React.FC = () => {
-  const { currentVacancy } = useStateContext();
+  const { currentVacancy, isDesktopMenuOpened } = useStateContext();
 
   return (
     <>
       <BrowserRouter>
         <Header />
-        <main>
+        <main className={isDesktopMenuOpened ? 'darken' : 'not-darken'}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/vacancies" element={<VacanciesPage />} />

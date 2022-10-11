@@ -1,5 +1,6 @@
 @import "../../utils/mixins.scss";
 @import "../../global-styles/colors.scss";
+@import "../../global-styles/fonts.scss";
 
 .FAQ {
   padding-top: 7.5rem;
@@ -18,7 +19,7 @@
 
   &__title {
     font-weight: 800;
-    font-size: 1.7rem;
+    font-size: $typography2;
     line-height: 130%;
     text-decoration-line: underline;
 
@@ -26,17 +27,14 @@
     margin: 0 0 3.1rem;
 
     @include onTablet {
-      font-size: 2.4rem;
       margin: 0 0 4.4rem;
     }
 
     @include onDesktop {
-      font-size: 2.2rem;
       margin: 0 0 4.7rem;
     }
 
     @include on1920 {
-      font-size: 3rem;
       margin: 0 0 6.2rem;
     }
   }
@@ -61,15 +59,12 @@
     display: flex;
     align-items: center;
     font-weight: 600;
+    font-size: clamp(20px, 1.66vw, 32px);
     line-height: 115%;
     gap: 1rem;
 
     &:hover {
       cursor: pointer;
-    }
-
-    @include onTablet {
-      font-size: 1.5rem;
     }
 
     @include onDesktop {
@@ -86,17 +81,9 @@
     padding-left: 3.1rem;
     overflow: hidden;
 
-    font-size: 0.9rem;
+    font-size: $typography4;
     line-height: 150%;
     transition: all 0.3s ease-in-out;
-
-    @include onDesktop {
-      font-size: 0.9rem;
-    }
-
-    @include on1920 {
-      font-size: 1.2rem;
-    }
   }
 
   &__content.show {
@@ -110,7 +97,7 @@
     margin: 0;
 
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: clamp(19px, 1.66vw, 32px);
     line-height: 130%;
 
     @include onDesktop {

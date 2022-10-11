@@ -1,5 +1,6 @@
 @import "../../utils/mixins.scss";
 @import "../../global-styles/colors.scss";
+@import "../../global-styles/fonts.scss";
 
 .Header {
   display: flex;
@@ -96,12 +97,13 @@
 
   &__menuIcon {
     width: 1.5rem;
-    height: 3px;
-    background-color: $typography1;
-    border-radius: 3px;
+    height: 2px;
+    background-color: black;
+    border-radius: 2px;
 
     @include onTablet {
       width: 3.3rem;
+      border-radius: 3px;
     }
 
     &::before {
@@ -109,8 +111,8 @@
       display: block;
       width: 1.5rem;
       border-radius: 3px;
-      height: 3px;
-      background-color: $typography1;
+      height: 2px;
+      background-color: black;
       transform: translateY(-0.5rem);
 
       transition: all 0.3s;
@@ -118,6 +120,7 @@
       @include onTablet {
         transform: translateY(-1.1rem);
         width: 3.4rem;
+        height: 3px;
       }
     }
 
@@ -125,9 +128,9 @@
       content: "";
       display: block;
       width: 1.5rem;
-      border-radius: 3px;
-      height: 3px;
-      background-color: $typography1;
+      border-radius: 2px;
+      height: 2px;
+      background-color: black;
       transform: translateY(0.4rem);
 
       transition: all 0.3s;
@@ -135,6 +138,8 @@
       @include onTablet {
         transform: translateY(1.1rem);
         width: 3.4rem;
+        border-radius: 3px;
+        height: 3px;
       }
     }
 
@@ -158,9 +163,9 @@
   &__link {
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.6rem;
+    font-size: clamp(12px, 1.1vw ,20px);
     line-height: 115%;
-    color: $typography1;
+    color: black;
     border-bottom: none;
 
     transition: 0.3s all;
@@ -170,31 +175,49 @@
       color: $secondaryColor5;
     }
 
-    @include onDesktop {
-      font-size: 0.9rem;
-    }
-
-    @include on1920 {
-      font-size: 1.2rem;
-    }
-
     &_mobile {
       text-decoration: none;
       display: flex;
       justify-content: space-between;
       text-align: left;
       font-weight: 600;
-      font-size: 1.5rem;
+      font-size: clamp(16px, 3.12vw ,24px);
       line-height: 130%;
       border-bottom: 1px solid $primaryColor1;
       padding: 2.5rem 2.5rem 2.5rem 1.8rem;
 
       background-color: $secondaryColor5;
-      color: $typography1;
+      color: black;
 
       &:first-child {
         border-radius: 0.9rem 0.9rem 0px 0px;
       }
+    }
+
+    &_mobile-back {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      display: flex;
+      justify-content: start;
+      gap: 1.1rem;
+
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 150%;
+
+      color: $secondaryColor4;
+
+      @include onTablet {
+        padding-top: 2.9rem;
+        padding-bottom: 2.9rem;
+        gap: 1.6rem;
+        font-weight: 400;
+        font-size: 20px;
+      }
+    }
+
+    &_mobile-icon {
+      transform: rotate(180deg);
     }
 
     &_desktop {
