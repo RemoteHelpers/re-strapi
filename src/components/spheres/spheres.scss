@@ -46,16 +46,6 @@
 
     border: 0.1rem solid $primaryColor1;
     border-radius: 0.9rem;
-
-    @include onDesktop {
-      width: 6.4rem;
-      height: 6.4rem;
-    }
-
-    @include on1920 {
-      width: 9.6rem;
-      height: 9.6rem;
-    }
   }
 
   &__sphere {

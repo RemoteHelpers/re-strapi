@@ -1,2 +1,4 @@
 /* eslint-disable @typescript-eslint/quotes */
-export { default } from "./notFoundPage";
+// import { NotFoundPage } from "./NotFoundPage";
+
+// export default NotFoundPage;

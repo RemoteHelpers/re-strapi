@@ -163,8 +163,8 @@
     transition: 0.3s all;
 
     &:hover {
-      background-color: $secondaryColor1;
-      color: $secondaryColor5;
+      transform: scale(1.1);
+      color: $primaryColor1;
     }
 
     @include onDesktop {

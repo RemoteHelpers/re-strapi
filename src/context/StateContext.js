@@ -1,15 +1,13 @@
+/* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react/jsx-filename-extension */
-import React, {
-  createContext,
-  useContext,
-  useState,
-} from 'react';
+import React, { createContext, useContext, useState } from "react";
 
 const Context = createContext();
 
 export const StateContext = ({ children }) => {
-  const [localization, setLocalization] = useState('uk');
-  const [currentVacancy, setCurrentVacancy] = useState('');
+  const [localization, setLocalization] = useState("ua");
+  const [isSubmitLocalization, setIsSubmitLocalization] = useState(false);
+  const [currentVacancy, setCurrentVacancy] = useState("");
 
   return (
     <Context.Provider
@@ -18,6 +16,8 @@ export const StateContext = ({ children }) => {
         setLocalization,
         currentVacancy,
         setCurrentVacancy,
+        isSubmitLocalization,
+        setIsSubmitLocalization,
       }}
     >
       {children}
