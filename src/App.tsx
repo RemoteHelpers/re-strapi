@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable padding-line-between-statements */
 /* eslint-disable @typescript-eslint/indent */
@@ -23,8 +24,11 @@ import ChooseLanguagePage from "./pages/chooseLanguagePage";
 import NotFoundPage from "./pages/notFoundPage/NotFoundPage";
 
 const App: React.FC = () => {
-  const { currentVacancy, isSubmitLocalization } = useStateContext();
+  const { currentVacancy, isSubmitLocalization, localization } =
+    useStateContext();
 
+  console.log(localization);
+  console.log(isSubmitLocalization);
   return (
     <>
       {isSubmitLocalization ? (

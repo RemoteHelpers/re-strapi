@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable operator-linebreak */
 /* eslint-disable padding-line-between-statements */
 /* eslint-disable no-console */
@@ -14,6 +15,7 @@ import pl from "../../images/languages/polski.png";
 import ru from "../../images/languages/ru.png";
 import languageCat from "../../images/languages/languageCat.png";
 import { useStateContext } from "../../context/StateContext";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const selectLocalization = [
   { value: "ua", label: "Українська", img: ua },
@@ -25,15 +27,18 @@ const selectLocalization = [
 
 export default function ChooseLanguagePage() {
   const [selectedLocalization, setSelectedLocalization] = useState("ua");
-  const { setLocalization, setIsSubmitLocalization, isSubmitLocalization } =
-    useStateContext();
+
+  const [localization, setLocalization] = useLocalStorage("localization", "ua");
+  const [isSubmitLocalization, setIsSubmitLocalization] = useLocalStorage(
+    "isSubmitLocalization",
+    false
+  );
 
   const handleSelectLocalization = (event: any) => {
     setSelectedLocalization(event.target.value);
   };
 
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
+  const handleSubmit = () => {
     setLocalization(selectedLocalization);
     setIsSubmitLocalization(true);
   };
