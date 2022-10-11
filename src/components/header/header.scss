@@ -97,7 +97,7 @@
   &__menuIcon {
     width: 1.5rem;
     height: 0.1rem;
-    background-color: $typography1;
+    background-color: $typographyColor1;
 
     @include onTablet {
       width: 3.3rem;
@@ -108,7 +108,7 @@
       display: block;
       width: 1.5rem;
       height: 0.1rem;
-      background-color: $typography1;
+      background-color: $typographyColor1;
       transform: translateY(-0.5rem);
 
       transition: all 0.3s;
@@ -124,7 +124,7 @@
       display: block;
       width: 1.5rem;
       height: 0.1rem;
-      background-color: $typography1;
+      background-color: $typographyColor1;
       transform: translateY(0.4rem);
 
       transition: all 0.3s;
@@ -157,7 +157,7 @@
     font-weight: 500;
     font-size: 0.6rem;
     line-height: 115%;
-    color: $typography1;
+    color: $typographyColor1;
     border-bottom: none;
 
     transition: 0.3s all;
@@ -187,7 +187,7 @@
       padding: 2.5rem 2.5rem 2.5rem 1.8rem;
 
       background-color: $secondaryColor5;
-      color: $typography1;
+      color: $typographyColor1;
 
       &:first-child {
         border-radius: 0.9rem 0.9rem 0px 0px;
@@ -215,7 +215,7 @@
         text-decoration: none;
         font-weight: 500;
         line-height: 115%;
-        color: $typography1;
+        color: $typographyColor1;
 
         @include onDesktop {
           font-size: 15px;

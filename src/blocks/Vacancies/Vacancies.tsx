@@ -20,7 +20,6 @@ import "../../global-styles/search.scss";
 import axios from "axios";
 import Select, { components } from "react-select";
 import { Category, Vacancy, Collection, VacancyArray } from "../../types/types";
-import VacancyCard from "../VacancyCard/VacancyCard";
 
 import Find from "../../images/findIcon.svg";
 import SelectIcon from "../../images/selectArrow.svg";
@@ -31,6 +30,7 @@ import cat2 from "../../images/vacancy_list/cat2_vacancy_list.png";
 import cat3 from "../../images/vacancy_list/cat3_vacancy_list.png";
 import FeedbackForm from "../../components/forms/feedbackForm";
 import formImg from "../../images/formImg.png";
+import VacanciesList from "../../components/vacanciesList";
 
 const API = "http://testseven.rh-s.com:1733/api";
 const itemsPerPage = 6;
@@ -349,91 +349,7 @@ export default function Vacancies() {
             </li>
           </ul>
         </div>
-        <div className="Vacancies">
-          <h2 className="Vacancies__title">
-            Current
-            <br />
-            Remote Jobs
-          </h2>
-          <div className="Vacancies__navigation">
-            <div className="Vacancies__selects">
-              <Select
-                classNamePrefix="custom-select"
-                options={selectCategories}
-                value={getCategory()}
-                onChange={handleCategorySelect}
-                placeholder="Choose a category"
-                components={{
-                  DropdownIndicator,
-                }}
-              />
-            </div>
-
-            <div className="search-container" ref={searchRef}>
-              <div className="search-inner">
-                <input
-                  type="text"
-                  value={query}
-                  onChange={searchHandler}
-                  placeholder="Job Search"
-                  className="search-input"
-                />
-                {!query && (
-                  <img src={Find} alt="find" className="search-icon" />
-                )}
-                <button
-                  className="search__button"
-                  type="button"
-                  onClick={handleClear}
-                >
-                  Clear
-                </button>
-              </div>
-              {isDropdown && (
-                <div className="search__dropdown">
-                  {searchCollection.length !== 0
-                    ? searchCollection.slice(0, 10).map((collection) => (
-                        <button
-                          type="button"
-                          key={collection.id}
-                          onClick={() => onCollection(collection)}
-                          className="search__dropdown-row"
-                        >
-                          {collection.attributes.keyPhrase}
-                        </button>
-                      ))
-                    : "Not found"}
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div className="Vacancies__cards">
-            {currentItems &&
-              currentItems.map((vacancy: any) => (
-                <VacancyCard
-                  key={vacancy.id}
-                  title={vacancy.attributes.title}
-                  slug={vacancy.attributes.vacancySlug}
-                  isHot={vacancy.attributes.isHot}
-                />
-              ))}
-          </div>
-          <ReactPaginate
-            breakLabel="..."
-            nextLabel=""
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={3}
-            pageCount={pageCount}
-            previousLabel=""
-            containerClassName="pagination"
-            pageLinkClassName="page-num"
-            previousLinkClassName="page-num"
-            nextLinkClassName="page-num"
-            activeLinkClassName="page-num--active"
-            // renderOnZeroPageCount={null}
-          />
-        </div>
+        <VacanciesList />
         <FeedbackForm img={formImg} />
       </div>
     </>

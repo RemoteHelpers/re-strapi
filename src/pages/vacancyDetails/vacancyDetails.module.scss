@@ -98,7 +98,7 @@
 .cardContentWrapper {
   margin-top: 8rem;
   h2 {
-    color: $typography2;
+    color: $typographyColor2;
     text-decoration: underline;
     font-style: normal;
     font-weight: 800;
@@ -155,6 +155,8 @@
   align-items: center;
   column-gap: 2.5rem;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 
   color: $secondaryColor4;
   font-weight: 500 !important;

@@ -1,18 +1,26 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable padding-line-between-statements */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable import/newline-after-import */
+/* eslint-disable import/no-unresolved */
 /* eslint-disable object-curly-newline */
-/* eslint-disable operator-linebreak */
-/* eslint-disable @typescript-eslint/indent */
-/* eslint-disable react/jsx-indent */
 /* eslint-disable comma-dangle */
+/* eslint-disable operator-linebreak */
 /* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable react/jsx-indent */
+/* eslint-disable @typescript-eslint/indent */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
+
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import ReactPaginate from "react-paginate";
-import "./vacancies.scss";
+import { useWindowWidth } from "@react-hook/window-size";
+import "./vacancyList.scss";
 import "../../global-styles/search.scss";
 import axios from "axios";
 import Select, { components } from "react-select";
-import { Category, Vacancy, Collection } from "../../types/types";
-import VacancyCard from "../vacancyCard";
+import { Category, Vacancy, Collection, VacancyArray } from "../../types/types";
+import VacancyCard from "../vacancyCard/VacancyCard";
 
 import Find from "../../images/findIcon.svg";
 import SelectIcon from "../../images/selectArrow.svg";
@@ -28,6 +36,7 @@ export default function Vacancies() {
   const searchRef = useRef<HTMLDivElement>(null);
 
   const [categories, setCategories] = useState<Category[]>([]);
+  const [vacancies, setVacancies] = useState<VacancyArray[]>([]);
   const [currentCategory, setCurrentCategory] = useState<string>("");
   const [selectedVacancies, setSelectedVacancies] = useState<Vacancy[]>([]);
   const [query, setQuery] = useState<string>("");
@@ -59,12 +68,31 @@ export default function Vacancies() {
       .get(`${API}/categories`)
       .then((res) => {
         setCategories(res.data.data);
-        console.log(res.data.data);
+        // console.log(res);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${API}/vacancies?populate=*`)
+      .then((res) => {
+        setVacancies(res.data.data);
+        // console.log(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  // useEffect(() => {
+  //   vacancies.map(vacancy => {
+  //     setCurrentVacancy(vacancy.attributes.vacancySlug);
+  //     console.log(vacancy.attributes.vacancySlug);
+  //   });
+  // }, [vacancies]);
 
   useEffect(() => {
     clearTimeout(vacationTime);
@@ -148,48 +176,51 @@ export default function Vacancies() {
   };
 
   return (
-    <div className="Vacancies">
-      <h2 className="Vacancies__title">
-        Current
-        <br />
-        Remote Jobs
-      </h2>
-      <div className="Vacancies__navigation">
-        <div className="Vacancies__selects">
-          <Select
-            classNamePrefix="custom-select"
-            options={selectCategories}
-            value={getCategory()}
-            onChange={handleCategorySelect}
-            placeholder="Choose a category"
-            components={{
-              DropdownIndicator,
-            }}
-          />
-        </div>
-
-        <div className="search-container" ref={searchRef}>
-          <div className="search-inner">
-            <input
-              type="text"
-              value={query}
-              onChange={searchHandler}
-              placeholder="Job Search"
-              className="search-input"
+    <>
+      <div className="Vacancies">
+        <h2 className="Vacancies__title">
+          Current
+          <br />
+          Remote Jobs
+        </h2>
+        <div className="Vacancies__navigation">
+          <div className="Vacancies__selects">
+            <Select
+              classNamePrefix="custom-select"
+              options={selectCategories}
+              value={getCategory()}
+              onChange={handleCategorySelect}
+              placeholder="Choose a category"
+              components={{
+                DropdownIndicator,
+              }}
             />
-            {!query && <img src={Find} alt="find" className="search-icon" />}
-            <button
-              className="search__button"
-              type="button"
-              onClick={handleClear}
-            >
-              Clear
-            </button>
           </div>
-          {isDropdown && (
-            <div className="search__dropdown">
-              {searchCollection.length !== 0
-                ? searchCollection.slice(0, 10).map((collection) => (
+
+          <div className="search-container" ref={searchRef}>
+            <div className="search-inner">
+              <input
+                type="text"
+                value={query}
+                onChange={searchHandler}
+                placeholder="Job Search"
+                className="search-input"
+              />
+              {!query && (
+                <img src={Find} alt="find" className="search-icon" />
+              )}
+              <button
+                className="search__button"
+                type="button"
+                onClick={handleClear}
+              >
+                Clear
+              </button>
+            </div>
+            {isDropdown && (
+              <div className="search__dropdown">
+                {searchCollection.length !== 0
+                  ? searchCollection.slice(0, 10).map((collection) => (
                     <button
                       type="button"
                       key={collection.id}
@@ -199,43 +230,38 @@ export default function Vacancies() {
                       {collection.attributes.keyPhrase}
                     </button>
                   ))
-                : "Not found"}
-            </div>
-          )}
+                  : "Not found"}
+              </div>
+            )}
+          </div>
         </div>
-      </div>
 
-      <div className="Vacancies__cards">
-        {currentItems &&
-          currentItems.map((vacancy: any) => (
-            <VacancyCard
-              key={vacancy.id}
-              title={vacancy.attributes.title}
-              subTitle={vacancy.attributes.subTitle}
-              isHot={vacancy.attributes.isHot}
-            />
-          ))}
-        {/* {currentItems.map((vacancy: any) => (
-          <VacancyCard
-            key={vacancy.id}
-            title={vacancy.attributes.title}
-          />
-        ))} */}
-      </div>
-      <ReactPaginate
-        breakLabel="..."
-        nextLabel=""
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={3}
-        pageCount={pageCount}
-        previousLabel=""
-        containerClassName="pagination"
-        pageLinkClassName="page-num"
-        previousLinkClassName="page-num"
-        nextLinkClassName="page-num"
-        activeLinkClassName="page-num--active"
+        <div className="Vacancies__cards">
+          {currentItems &&
+            currentItems.map((vacancy: any) => (
+              <VacancyCard
+                key={vacancy.id}
+                title={vacancy.attributes.title}
+                slug={vacancy.attributes.vacancySlug}
+                isHot={vacancy.attributes.isHot}
+              />
+            ))}
+        </div>
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel=""
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={3}
+          pageCount={pageCount}
+          previousLabel=""
+          containerClassName="pagination"
+          pageLinkClassName="page-num"
+          previousLinkClassName="page-num"
+          nextLinkClassName="page-num"
+          activeLinkClassName="page-num--active"
         // renderOnZeroPageCount={null}
-      />
-    </div>
+        />
+      </div>
+    </>
   );
 }
