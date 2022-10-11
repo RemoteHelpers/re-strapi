@@ -16,6 +16,7 @@ export const StateContext = ({ children }) => {
   );
 
   const [currentVacancy, setCurrentVacancy] = useState("");
+  const [isDesktopMenuOpened, setIsDesktopMenuOpened] = useState(false);
 
   return (
     <Context.Provider
@@ -26,6 +27,8 @@ export const StateContext = ({ children }) => {
         setIsSubmitLocalization,
         currentVacancy,
         setCurrentVacancy,
+        isDesktopMenuOpened,
+        setIsDesktopMenuOpened,
       }}
     >
       {children}

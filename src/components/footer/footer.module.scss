@@ -1,5 +1,6 @@
 @import "../../utils/mixins.scss";
 @import "../../global-styles/colors.scss";
+@import "../../global-styles/fonts.scss";
 
 .Footer {
   padding: 3.1rem 1.8rem;
@@ -96,16 +97,14 @@
     margin-bottom: 1.4rem;
     line-height: 130%;
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: clamp(22px, 1.56vw, 30px);
 
     @include onDesktop {
       line-height: 140%;
-      font-size: 1.4rem;
       margin-bottom: 0.7rem;
     }
 
     @include on1920 {
-      font-size: 1.9rem;
       margin-bottom: 0.9rem;
     }
   }

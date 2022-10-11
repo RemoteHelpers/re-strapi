@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable import/order */
 /* eslint-disable operator-linebreak */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -25,14 +26,18 @@ import ChooseLanguagePage from "./pages/chooseLanguagePage";
 import NotFoundPage from "./pages/notFoundPage";
 
 const App: React.FC = () => {
-  const { currentVacancy, isSubmitLocalization, localization } =
-    useStateContext();
+  const {
+    currentVacancy,
+    isSubmitLocalization,
+    isDesktopMenuOpened,
+    localization,
+  } = useStateContext();
   return (
     <>
       {isSubmitLocalization ? (
         <BrowserRouter>
           <Header />
-          <main>
+          <main className={isDesktopMenuOpened ? "darken" : "not-darken"}>
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/vacancies" element={<VacanciesPage />} />
