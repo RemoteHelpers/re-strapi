@@ -109,7 +109,7 @@ const Header = () => {
       )
       .then((arr) => {
         setSelectedVacancies(arr.data.data);
-        console.log(arr.data.data);
+        // console.log(arr.data.data);
       })
       .catch((err) => {
         console.log(err);

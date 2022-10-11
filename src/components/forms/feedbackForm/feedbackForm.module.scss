@@ -15,7 +15,7 @@
   right: -8%;
   display: inherit;
   align-self: flex-end;
-  @media (min-width: 1360px) {
+  @include onDesktop {
     bottom: 4%;
   }
 }
