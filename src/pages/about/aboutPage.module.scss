@@ -1,4 +1,6 @@
 @import "../../global-styles/colors.scss";
+@import "../../utils/mixins.scss";
+@import "../../global-styles/fonts.scss";
 
 .container {
   width: 80%;
@@ -7,22 +9,33 @@
 }
 .intro_wrapper {
   display: flex;
+  flex-direction: column;
+
+  @include onTablet {
+    flex-direction: row;
+  }
 }
 .into_information {
-  width: 60%;
+  width: 100%;
   height: 100%;
+
+  @include onTablet {
+    width: 60%;
+    height: 100%;
+  }
+
   h1 {
-    font-size: clamp(28px, 3.1vw, 64px);
+    color: $typographyColor1;
+    font-size: $typography1;
     text-decoration: underline;
     margin-bottom: 2.375rem;
     font-style: normal;
     font-weight: 900;
-    color: $typographyColor1;
   }
   p {
     font-style: normal;
     font-weight: 400;
-    font-size: clamp(14px, 1.2vw, 20px);
+    font-size: $typography4;
     line-height: 150%;
     &:first-of-type {
       margin-bottom: 1rem;
@@ -32,20 +45,31 @@
 .intro_kitekat {
   position: relative;
   z-index: 1;
-  width: 50%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin-top: 9rem;
   img {
     max-width: 100%;
-    width: 80%;
+    width: 90%;
     height: auto;
+  }
+
+  @include onTablet {
+    width: 50%;
+    margin-top: 0;
+    img {
+      max-width: 100%;
+      width: 80%;
+      height: auto;
+    }
   }
 }
 
 .video_intro {
   position: relative;
-  width: 90%;
+  width: 100%;
   height: 300px;
   background: #3f455b;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
@@ -59,6 +83,11 @@
     transform: translate(-50%, -50%);
     cursor: pointer;
   }
+
+  @include onTablet {
+    width: 90%;
+    height: 300px;
+  }
 }
 
 section {
@@ -68,13 +97,13 @@ section {
   padding-bottom: 5rem;
   &::after {
     content: "";
-    display: block;
+    display: none;
     position: absolute;
     top: 0;
     right: 0;
     transform: translateX(40%);
     width: 60%;
-    height: 100%;
+    height: 10%;
     border-radius: 50%;
     background-color: #d8faff;
     z-index: 0;
@@ -86,13 +115,14 @@ section {
   margin-top: 8.75rem;
   h1 {
     color: $typographyColor2;
+    font-size: $typography2;
     text-decoration: underline;
   }
   p {
+    font-size: $typography4;
     margin-top: 1.2rem;
     font-style: normal;
     font-weight: 400;
-    font-size: 1.1rem;
   }
 }
 .activity_cards {
@@ -107,7 +137,7 @@ section {
     p {
       font-style: normal;
       font-weight: 700;
-      font-size: 18px;
+      font-size: $typography4;
       line-height: 1;
     }
   }
@@ -117,13 +147,14 @@ section {
   margin-top: 10rem;
   h1 {
     color: $typographyColor2;
+    font-size: $typography2;
     text-decoration: underline;
   }
   p {
     margin-top: 1.2rem;
     font-style: normal;
     font-weight: 400;
-    font-size: 1.1rem;
+    font-size: $typography4;
   }
 }
 
@@ -174,7 +205,7 @@ section {
   span {
     font-style: normal;
     font-weight: 600;
-    font-size: clamp(10px, 0.9vw, 18px);
+    font-size: $typography5;
     line-height: 115%;
   }
   div {

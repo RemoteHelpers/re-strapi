@@ -98,8 +98,8 @@
   &__menuIcon {
     width: 1.5rem;
     height: 2px;
-    background-color: black;
     border-radius: 2px;
+    background-color: $typographyColor1;
 
     @include onTablet {
       width: 3.3rem;
@@ -112,7 +112,7 @@
       width: 1.5rem;
       border-radius: 3px;
       height: 2px;
-      background-color: black;
+      background-color: $typographyColor1;
       transform: translateY(-0.5rem);
 
       transition: all 0.3s;
@@ -130,7 +130,7 @@
       width: 1.5rem;
       border-radius: 2px;
       height: 2px;
-      background-color: black;
+      background-color: $typographyColor1;
       transform: translateY(0.4rem);
 
       transition: all 0.3s;

@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react/jsx-filename-extension */
 import React from "react";
-
-import Vacancies from "../../components/vacancies";
+import VacancyList from "../../components/vacanciesList";
 import FAQ from "../../components/faq/FAQ";
 import FeedbackForm from "../../components/forms/feedbackForm";
 import MainScreen from "../../components/mainScreen/MainScreen";
@@ -18,7 +17,7 @@ export const HomePage = () => {
       <MainScreen />
       <div className={cl.container}>
         <Spheres />
-        <Vacancies />
+        <VacancyList />
         <FAQ />
         <Partners />
       </div>
