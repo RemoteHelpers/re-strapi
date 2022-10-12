@@ -63,15 +63,7 @@
 
   &__socialWrapper {
     display: flex;
-    column-gap: 4rem;
-
-    @include onDesktop {
-      gap: 0.7rem;
-    }
-
-    @include on1920 {
-      gap: 0.9rem;
-    }
+    column-gap: .7rem;
   }
 
   &__link {
