@@ -19,7 +19,7 @@
   display: inline-block;
   text-decoration-line: underline;
   font-weight: 900;
-  color: $typography1;
+  color: $typographyColor1;
   font-size: $typography1;
   margin-bottom: 5rem;
   @include onTablet {
@@ -79,13 +79,13 @@
   font-style: normal;
   font-weight: 700;
   font-size: clamp(24px, 1.9vw, 36px);
-  color: $typography1;
+  color: $typographyColor1;
 }
 .text {
   font-weight: 400;
   font-size: clamp(14px, 1.2vw, 20px);
   line-height: 1.5;
-  color: $typography1;
+  color: $typographyColor1;
 }
 .img_wr {
   // position: relative;
@@ -135,12 +135,12 @@
   bottom: 0;
   left: -25%;
   width: 150vw;
-  height: 45vh;
+  height: 75vh;
   border-radius: 70% 70% 0% 0%;
   z-index: -1;
   background-color: #d8faff;
   @include onTablet {
-    height: 60vh;
+    height: 75vh;
   }
   @include onDesktop {
     width: 110vw;
@@ -153,13 +153,14 @@
   max-width: 18.75rem;
   background: #fff;
   text-align: center;
-  cursor: pointer;
   border: 0.2rem #000 solid;
   border-radius: 0.9rem;
   font-size: clamp(16px, 1vw, 20px);
   padding: 0.9rem;
   color: #000;
   font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
   transition: all ease-in-out 0.1s;
   &:hover {
     background: #ff6501;

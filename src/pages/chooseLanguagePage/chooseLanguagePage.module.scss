@@ -9,12 +9,15 @@
   max-width: 100%;
   margin: 0 auto;
 
-  overflow: hidden;
+  overflow: overlay;
   background-image: url("../../images/languages/background-desktop.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top 35rem left 0;
 
+  @media screen and (max-width: 428px) {
+    height: 110vh;
+  }
   @include onTablet {
     background-image: url("../../images/languages/background-desktop-rotate.png");
   }
@@ -38,7 +41,7 @@
   margin-bottom: 2rem;
   font-style: normal;
   font-weight: 800;
-  color: $typography2;
+  color: $typographyColor2;
   font-size: clamp(32px, 3.1vw, 64px);
   line-height: 1.3;
   text-decoration-line: underline;

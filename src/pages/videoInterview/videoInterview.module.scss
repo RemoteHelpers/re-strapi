@@ -100,7 +100,7 @@
 
 .instruction_wrapper {
   h1 {
-    color: $typography2;
+    color: $typographyColor2;
     text-decoration: underline;
     font-style: normal;
     font-weight: 800;
@@ -120,7 +120,7 @@
     font-weight: 600;
     font-size: clamp(20px, 1.6vw, 32px);
     line-height: 115%;
-    color: $typography1;
+    color: $typographyColor1;
   }
 }
 .accordion_arrow {
@@ -194,7 +194,7 @@
     font-weight: 800;
     font-size: clamp(28px, 2.5vw, 48px);
     line-height: 130%;
-    color: $typography2;
+    color: $typographyColor2;
     text-decoration: underline;
   }
   p {
@@ -225,7 +225,7 @@
     font-weight: 800;
     font-size: clamp(28px, 2.5vw, 48px);
     line-height: 130%;
-    color: $typography2;
+    color: $typographyColor2;
     text-decoration: underline;
   }
 }

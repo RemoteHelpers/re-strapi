@@ -98,7 +98,7 @@
 .cardContentWrapper {
   margin-top: 8rem;
   h2 {
-    color: $typography2;
+    color: $typographyColor2;
     text-decoration: underline;
     font-style: normal;
     font-weight: 800;
@@ -148,7 +148,6 @@
   font-size: clamp(16px, 1vw, 20px);
   line-height: 115%;
 }
-
 
 .addToFavorite {
   display: flex;

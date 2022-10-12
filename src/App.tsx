@@ -21,7 +21,7 @@ import VacancyDetails from "./pages/vacancyDetails";
 import VacanciesPage from "./pages/vacanciesPage";
 import ThankYouPage from "./pages/thankYouPage";
 import ChooseLanguagePage from "./pages/chooseLanguagePage";
-import NotFoundPage from "./pages/notFoundPage/NotFoundPage";
+import NotFoundPage from "./pages/notFoundPage";
 
 const App: React.FC = () => {
   const { currentVacancy, isSubmitLocalization, localization } =
