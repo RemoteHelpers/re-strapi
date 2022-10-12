@@ -17,6 +17,10 @@
   flex-direction: column;
 
   @include onTablet {
+    flex-direction: column;
+  }
+
+  @include onDesktop {
     flex-direction: row;
   }
 
@@ -26,6 +30,11 @@
   height: 100%;
 
   @include onTablet {
+    width: 100%;
+    height: 100%;
+  }
+
+  @include onDesktop {
     width: 60%;
     height: 100%;
   }
@@ -63,6 +72,16 @@
   }
 
   @include onTablet {
+    width: 70%;
+    margin: 0 auto;
+    img {
+      max-width: 100%;
+      width: 90%;
+      height: auto;
+    }
+  }
+
+  @include onDesktop {
     width: 50%;
     margin-top: 0;
     img {
@@ -94,6 +113,14 @@
   @include onTablet {
     width: 90%;
     height: 300px;
+    margin: 7rem auto;
+    max-width: 600px;
+  }
+
+  @include onDesktop {
+    width: 90%;
+    height: 300px;
+    margin: 0 auto 0 0;
   }
 
 }
@@ -123,9 +150,14 @@ section {
     }
 
     @include onTablet {
+      display: none;
+    }
+
+    @include onDesktop {
       width: 50%;
       height: 100%;
       top: 0;
+      display: block;
     }
 
   }
