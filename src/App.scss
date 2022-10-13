@@ -23,14 +23,15 @@
   transition: 0.2s ease;
 }
 
+.lock {
+  overflow-y: hidden !important;
+}
+
 .darken {
-  background: rgba(10, 69, 79, 0.4);
-  backdrop-filter: blur(5px);
   position: fixed;
   overflow: hidden;
   width: 100vw;
-  height: 100vh;
-  z-index: 9999;
+  z-index: 100;
 }
 
 /* width */

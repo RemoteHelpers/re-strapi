@@ -33,20 +33,18 @@
   &__title {
     margin: 0;
     font-weight: 600;
-    font-size: 24px;
+    font-size: $typography3;
     line-height: 115%;
     margin-bottom: 10px;
 
-    // @include onDesktop {
-    //   font-weight: 700;
-    //   font-size: 27px;
-    //   margin-bottom: 11px;
-    // }
+    @include onDesktop {
+      font-weight: 700;
+      margin-bottom: 11px;
+    }
 
-    // @include on1920 {
-    //   font-size: 36px;
-    //   margin-bottom: 14px;
-    // }
+    @include on1920 {
+      margin-bottom: 14px;
+    }
   }
 
   &__salary {

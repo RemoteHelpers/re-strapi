@@ -206,28 +206,12 @@
   justify-content: center;
   align-items: center;
   gap: 0.6rem;
-
-  @include onDesktop {
-    font-size: 0.9rem;
-  }
-
-  @include on1920 {
-    font-size: 1.2rem;
-  }
 }
 
 .page-num {
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 115%;
-
-  @include onDesktop {
-    font-size: 0.9rem;
-  }
-
-  @include on1920 {
-    font-size: 1.2rem;
-  }
 
   &:hover {
     cursor: pointer;

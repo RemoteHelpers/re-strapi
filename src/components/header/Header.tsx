@@ -13,7 +13,7 @@
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 import Select, { components } from 'react-select';
 import { CSSTransition } from 'react-transition-group';
@@ -36,7 +36,8 @@ const Header = () => {
     localization,
     setLocalization,
     isDesktopMenuOpened,
-    setIsDesktopMenuOpened
+    setIsDesktopMenuOpened,
+    setCurrentVacancy,
   } = useStateContext();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -48,30 +49,26 @@ const Header = () => {
     []
   );
 
-  // useEffect(() => {
-  //   document.documentElement.classList.toggle('no-overflow');
-  // }, [isMenuOpened]);
-
   useOutsideAlerter(searchRef, () => {
     setIsDesktopMenuOpened(false);
   });
+
+  useEffect(() => {
+    const el = document.getElementsByTagName("html");
+
+    el[0].classList.toggle("lock");
+  }, [isDesktopMenuOpened, isMenuOpened]);
 
   useEffect(() => {
     axios
       .get(`${API}/categories`)
       .then((res) => {
         setCategories(res.data.data);
-        // console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-
-  // useEffect(() => {
-  //   document.documentElement.classList.toggle('darken');
-  //   document.
-  // }, [isDesktopMenuOpened]);
 
   const selectLocalization = [
     { value: "en", label: "EN" },
@@ -126,6 +123,14 @@ const Header = () => {
 
   const handleCategoryMenuSelect = useCallback((event: any) => {
     setCurrentMenuCategory(event.target.name);
+  }, []);
+
+  const handleVacancyMenuSelect = useCallback(() => {
+    setIsMenuOpened(false);
+  }, []);
+
+  const handleDesktopVacancyMenuSelect = useCallback(() => {
+    setIsDesktopMenuOpened(false);
   }, []);
 
   useEffect(() => {
@@ -320,15 +325,28 @@ const Header = () => {
               </a>
 
               {selectedVacancies.map((vacancy) => (
-                <a
+                // <a
+                //   key={vacancy.id}
+                //   href="#"
+                //   className="Header__link_mobile"
+                //   onClick={handleCategorySelect}
+                // >
+                //   <span>{vacancy.attributes.title}</span>
+                //   <img src={NextIcon} alt="" />
+                // </a>
+                <Link
                   key={vacancy.id}
-                  href="#"
                   className="Header__link_mobile"
-                  onClick={handleCategorySelect}
+                  to={`/vacancy/${vacancy.attributes.vacancySlug}`}
+                  // onClick={() => setCurrentVacancy(vacancy.attributes.vacancySlug)}
+                  onClick={() => {
+                    setCurrentVacancy(vacancy.attributes.vacancySlug);
+                    handleVacancyMenuSelect();
+                  }}
                 >
                   <span>{vacancy.attributes.title}</span>
                   <img src={NextIcon} alt="" />
-                </a>
+                </Link>
               ))}
             </div>
           </CSSTransition>
@@ -365,14 +383,26 @@ const Header = () => {
         </div>
         <div className="Header__dropMenuDesktop_vacancies">
           {selectedMenuVacancies.map((vacancy) => (
-            <a
+            // <a
+            //   key={vacancy.id}
+            //   href="#"
+            //   className="Header__link_desktop--vacancy"
+            //   onClick={handleCategorySelect}
+            // >
+            //   {vacancy.attributes.title}
+            // </a>
+            <Link
               key={vacancy.id}
-              href="#"
               className="Header__link_desktop--vacancy"
-              onClick={handleCategorySelect}
+              to={`/vacancy/${vacancy.attributes.vacancySlug}`}
+              // onClick={() => setCurrentVacancy(vacancy.attributes.vacancySlug)}
+              onClick={() => {
+                setCurrentVacancy(vacancy.attributes.vacancySlug);
+                handleDesktopVacancyMenuSelect();
+              }}
             >
               {vacancy.attributes.title}
-            </a>
+            </Link>
           ))}
         </div>
       </div>

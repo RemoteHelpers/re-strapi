@@ -1,5 +1,6 @@
 @import "../../utils/mixins.scss";
 @import "../../global-styles/colors.scss";
+@import "../../global-styles/fonts.scss";
 
 .mainScreen {
   display: flex;
@@ -12,6 +13,9 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top 38.1rem left 0;
+  height: 85vh;
+
+  position: relative;
 
   @include onTablet {
     padding: 3.1rem 2.5rem 3.6rem;
@@ -28,6 +32,30 @@
     background-position: top -15% left 0;
   }
 }
+
+.headerBg {
+  position: absolute;
+  transition: 0.1s all;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  visibility: visible;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 69, 79, 0.4);
+  z-index: 2;
+}
+
+.headerBgNone {
+  height: 0;
+  transition: 0.1s all;
+  width: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+}
+
 .image {
   height: 23.1rem;
   width: 22rem;
@@ -53,30 +81,27 @@
 .title {
   margin: 0 0 1.9rem 0;
   font-weight: 900;
-  font-size: 2rem;
+  font-size: $typography1;
   line-height: 130%;
   text-decoration-line: underline;
 
   @include onTablet {
     width: 70%;
-    font-size: 2.8rem;
   }
 
   @include onDesktop {
     width: inherit;
-    font-size: 2.7rem;
     margin: 0 0 2.4rem 0;
   }
 
   @include on1920 {
-    font-size: 4rem;
     margin: 0 0 3.2rem 0;
   }
 }
 
 .paragraph {
   margin: 0 0 1.2rem 0;
-  font-size: 0.9rem;
+  font-size: $typography4;
   line-height: 150%;
 
   &_strong {
@@ -86,17 +111,14 @@
   @include onTablet {
     width: 90%;
     margin: 0 0 1.9rem 0;
-    font-size: 1.2rem;
   }
 
   @include onDesktop {
-    font-size: 0.9rem;
     margin: 0 0 2.4rem 0;
   }
 
   @include on1920 {
     width: 100%;
-    font-size: 1.2rem;
     margin: 0 0 3.1rem 0;
   }
 }
@@ -110,7 +132,7 @@
   border: none;
 
   font-weight: 700;
-  font-size: 1rem;
+  font-size: clamp(16px, 1.04vw, 20px);
   line-height: 115%;
 
   color: $secondaryColor5;
@@ -131,13 +153,11 @@
     padding: 0;
     width: 18.9rem;
     height: 3.9rem;
-    font-size: 1.2rem;
     margin-bottom: 3.6rem;
   }
   @include onDesktop {
     width: 12.6rem;
     height: 2.6rem;
-    font-size: 0.9rem;
     margin-bottom: 0;
     padding: 0;
   }
@@ -145,7 +165,6 @@
   @include on1920 {
     width: 18.9rem;
     height: 3.9rem;
-    font-size: 1.2rem;
   }
 }
 
