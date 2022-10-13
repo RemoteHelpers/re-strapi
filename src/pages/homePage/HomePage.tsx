@@ -8,7 +8,7 @@ import MainScreen from "../../components/mainScreen/MainScreen";
 import Partners from "../../components/partners/Partners";
 import Spheres from "../../components/spheres";
 import Testimonials from "../../components/testimonials";
-import catWithMeshura from "../../images/formImg.png";
+import formImg from "../../images/formImg.png";
 import cl from "./HomePage.module.scss";
 
 export const HomePage = () => {
@@ -23,7 +23,7 @@ export const HomePage = () => {
       </div>
       <Testimonials />
       <div className={cl.container}>
-        <FeedbackForm img={catWithMeshura} />
+        <FeedbackForm img={formImg} />
       </div>
     </>
   );

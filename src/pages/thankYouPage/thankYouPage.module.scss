@@ -135,12 +135,12 @@
   bottom: 0;
   left: -25%;
   width: 150vw;
-  height: 45vh;
+  height: 75vh;
   border-radius: 70% 70% 0% 0%;
   z-index: -1;
   background-color: #d8faff;
   @include onTablet {
-    height: 60vh;
+    height: 75vh;
   }
   @include onDesktop {
     width: 110vw;
@@ -153,14 +153,15 @@
   max-width: 18.75rem;
   background: #fff;
   text-align: center;
-  cursor: pointer;
   border: 0.2rem #000 solid;
   border-radius: 0.9rem;
   font-size: clamp(16px, 1vw, 20px);
   padding: 0.9rem;
   color: #000;
   font-weight: 700;
-  transition: all ease-in-out 0.25s;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all ease-in-out 0.1s;
   &:hover {
     background: #ff6501;
     border: 0.2rem #ff6501 solid;

@@ -1,8 +1,9 @@
-import React from 'react';
-import cl from './footer.module.scss';
+/* eslint-disable @typescript-eslint/quotes */
+import React from "react";
+import cl from "./footer.module.scss";
 
-import Logo from '../../images/Footer/logo.png';
-import { FooterIconsSVG } from './FooterIconsSVG';
+import Logo from "../../images/Footer/logo.png";
+import { FooterIconsSVG } from "../../icons/footer/FooterIconsSVG";
 
 export const Footer = () => {
   return (
@@ -23,9 +24,25 @@ export const Footer = () => {
       </div>
       <div className={cl.Footer__contacts}>
         <h4 className={cl.Footer__title}>Контакти</h4>
-        <span className={cl.Footer__contactsText}>м, Харків вул. Римарська, 22</span>
-        <a href="google.com" className={cl.Footer__contactsText}>+3 (098) 000-00-00</a>
-        <a href="google.com" className={cl.Footer__contactsText}>info@remote.employees.com.ua</a>
+        <a
+          target="_blank"
+          href="https://goo.gl/maps/PXsdBHfVXmeLcZGt5"
+          className={cl.Footer__contactsText}
+          rel="noreferrer"
+        >
+          м, Харків вул. Римарська, 22
+        </a>
+        <a href="tel:+380980000000" className={cl.Footer__contactsText}>
+          +39 (098) 000-00-00
+        </a>
+        <a
+          target="_blank"
+          href="mailto:info@remote.employees.com.ua"
+          className={cl.Footer__contactsText}
+          rel="noreferrer"
+        >
+          info@remote.employees.com.ua
+        </a>
       </div>
     </footer>
   );
