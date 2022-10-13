@@ -9,34 +9,11 @@
   }
 
   @include onDesktop {
-    padding: 5rem 0;
+    padding: 3rem 0 5rem;
   }
 
   @include on1920 {
     padding: 7rem 0;
-  }
-
-  &__title {
-    font-weight: 800;
-    font-size: $typography2;
-    line-height: 130%;
-    text-decoration-line: underline;
-    margin-top: 0;
-    margin-bottom: 3.1rem;
-
-    color: $typography2;
-
-    @include onTablet {
-      margin-bottom: 4.4rem;
-    }
-
-    @include onDesktop {
-      margin-bottom: 4.2rem;
-    }
-
-    @include on1920 {
-      margin-bottom: 5.6rem;
-    }
   }
 
   &__icon {

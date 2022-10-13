@@ -120,7 +120,7 @@
   @include onDesktop {
     width: 90%;
     height: 300px;
-    margin: 0 auto 0 0;
+    margin: 5rem auto 0 0;
   }
 
 }
@@ -242,10 +242,17 @@ section {
   display: flex;
   flex-direction: column;
   row-gap: 0.7rem;
+  h2 {
+    font-size: $typography4;
+    color: $typographyColor1;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
+  }
   span {
     font-style: normal;
     font-weight: 600;
-    font-size: $typography4;
+    font-size: $typography5;
     line-height: 115%;
   }
   div {
