@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 /* eslint-disable operator-linebreak */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable padding-line-between-statements */
@@ -26,9 +27,6 @@ import NotFoundPage from "./pages/notFoundPage";
 const App: React.FC = () => {
   const { currentVacancy, isSubmitLocalization, localization } =
     useStateContext();
-
-  console.log(localization);
-  console.log(isSubmitLocalization);
   return (
     <>
       {isSubmitLocalization ? (

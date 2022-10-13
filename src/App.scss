@@ -1,5 +1,5 @@
-@import './utils/mixins.scss';
-@import './global-styles/colors.scss';
+@import "./utils/mixins.scss";
+@import "./global-styles/colors.scss";
 
 * {
   box-sizing: border-box;
@@ -29,8 +29,6 @@
   position: relative;
   z-index: 9999;
 }
-
-
 
 /* width */
 ::-webkit-scrollbar {
@@ -74,4 +72,12 @@ html {
 
 .no-overflow {
   overflow-y: hidden;
+}
+
+.transition-faid {
+  opacity: 1;
+  transition: 0.4s;
+}
+html.is-animating .transition-faid {
+  opacity: 0;
 }
