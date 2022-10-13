@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 /* eslint-disable import/order */
 /* eslint-disable operator-linebreak */
->>>>>>> ce318b2 (fix: add swup)
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable padding-line-between-statements */
 /* eslint-disable @typescript-eslint/indent */
@@ -29,13 +26,12 @@ import NotFoundPage from "./pages/notFoundPage/notFoundPage";
 
 const App: React.FC = () => {
   const { currentVacancy, isSubmitLocalization } = useStateContext();
-  // const { currentVacancy, isDesktopMenuOpened } = useStateContext();
+  
   return (
     <>
       {isSubmitLocalization ? (
         <BrowserRouter>
           <Header />
-          {/* <main className={isDesktopMenuOpened ? "darken" : "not-darken"}> */}
           <main>
             <Routes>
               <Route path="/" element={<HomePage />} />

@@ -111,12 +111,13 @@
 
   &__contactsText {
     font-weight: 500;
-    font-size: clamp(16px, 1vw, 20px);
+    font-size: clamp(16px, 1.04vw, 20px);
     line-height: 1.2;
     margin-bottom: 0.9rem;
 
     @include onDesktop {
       line-height: 1.15;
+
       margin-bottom: 0.5rem;
     }
 
