@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+/* eslint-disable import/order */
+/* eslint-disable operator-linebreak */
+>>>>>>> ce318b2 (fix: add swup)
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable padding-line-between-statements */
 /* eslint-disable @typescript-eslint/indent */
