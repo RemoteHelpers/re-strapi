@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react/jsx-filename-extension */
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 import img from "../../images/thankPage/cat_thankYouPage.png";
 import cl from "./thankYouPage.module.scss";
@@ -22,9 +23,9 @@ export const ThankYouPage = () => {
               Вместо собеседования запишите небольшой рассказ о себе на
               английском.
             </p>
-            <button className={cl.button} type="button">
+            <NavLink end to="/videoInterview" className={cl.button}>
               Дивитися більше
-            </button>
+            </NavLink>
           </li>
           <li className={cl.item}>
             <h2 className={cl.subtitle}>Напишите нам в Viber</h2>
@@ -32,9 +33,9 @@ export const ThankYouPage = () => {
               Чтобы получить работу, Вам осталось совсем немного - свяжитесь с
               нами в Viber.
             </p>
-            <button className={cl.button} type="button">
+            <a href="viber://chat?number=380980000000" className={cl.button}>
               Написати
-            </button>
+            </a>
           </li>
           <div className={cl.img_wr}>
             <img alt="Cat with stars" src={img} className={cl.img} />

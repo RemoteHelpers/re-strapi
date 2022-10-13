@@ -1,8 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.scss';
-import App from './App';
-import { StateContext } from './context/StateContext';
+/* eslint-disable comma-dangle */
+/* eslint-disable @typescript-eslint/quotes */
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.scss";
+import App from "./App";
+import { StateContext } from "./context/StateContext";
 
 ReactDOM.render(
   <StateContext>
@@ -10,5 +12,5 @@ ReactDOM.render(
       <App />
     </React.StrictMode>
   </StateContext>,
-  document.getElementById('root'),
+  document.getElementById("root")
 );

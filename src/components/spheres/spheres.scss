@@ -16,22 +16,35 @@
     padding: 7rem 0;
   }
 
+  &__title {
+    font-weight: 800;
+    font-size: $typography2;
+    line-height: 130%;
+    text-decoration-line: underline;
+    margin-top: 0;
+    margin-bottom: 3.1rem;
+
+    color: $typographyColor2;
+
+    @include onTablet {
+      margin-bottom: 4.4rem;
+    }
+
+    @include onDesktop {
+      margin-bottom: 4.2rem;
+    }
+
+    @include on1920 {
+      margin-bottom: 5.6rem;
+    }
+  }
+
   &__icon {
     width: 9.6rem;
     height: 9.6rem;
 
     border: 0.1rem solid $primaryColor1;
     border-radius: 0.9rem;
-
-    @include onDesktop {
-      width: 6.4rem;
-      height: 6.4rem;
-    }
-
-    @include on1920 {
-      width: 9.6rem;
-      height: 9.6rem;
-    }
   }
 
   &__sphere {

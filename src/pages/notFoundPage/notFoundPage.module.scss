@@ -1,0 +1,120 @@
+@import "../../utils/mixins.scss";
+@import "../../global-styles/colors.scss";
+@import "../../global-styles/fonts.scss";
+
+.section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 4.5rem 1rem 3rem;
+  @include onTablet {
+    padding: 5rem 1rem 7rem;
+  }
+  @include onDesktop {
+    flex-direction: row;
+    padding: 4rem 11% 8rem;
+    margin: 0 auto;
+    justify-content: space-between;
+    column-gap: 0;
+    @include on1920 {
+      padding: 4rem 12% 8rem;
+    }
+  }
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  width: min-content;
+  align-items: center;
+  text-align: center;
+
+  @include onDesktop {
+    align-items: start;
+    text-align: start;
+  }
+}
+.title {
+  color: $typographyColor1;
+  font-size: clamp(150px, 18vw, 300px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 2rem;
+  @media screen and (max-width: 428px) {
+    font-size: clamp(100px, 8vw, 150px);
+  }
+}
+.subtitle {
+  color: $typographyColor1;
+  font-size: clamp(24px, 1vw, 20px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+.text {
+  font-weight: 400;
+  font-size: $typography4;
+  @include onTablet {
+    flex-direction: row;
+    row-gap: 0;
+    column-gap: 3rem;
+  }
+  margin-bottom: 4.5rem;
+}
+.buttons_wr {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  margin-bottom: 2.5rem;
+  @include onTablet {
+    flex-direction: row;
+    row-gap: 0;
+    column-gap: 3rem;
+    margin-bottom: 5rem;
+  }
+  @include onDesktop {
+    margin-bottom: 0;
+  }
+}
+.button {
+  width: 16rem;
+  padding: 0.75rem 0;
+  border: 3px solid #ff6501;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  font-size: clamp(14px, 1.2vw, 20px);
+  font-weight: 700;
+  text-decoration: none;
+  color: $typographyColor1;
+  text-align: center;
+  transition: all 0.5ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  &:hover {
+    color: #ffffff;
+    background-color: #ff6501;
+  }
+}
+.img_wr {
+  max-width: fit-content;
+
+  @include onDesktop {
+    margin-top: 1.5rem;
+  }
+  @include on1920 {
+    margin-top: 0;
+    padding-right: 8%;
+  }
+}
+.img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  @include onDesktop {
+    display: block;
+    max-width: inherit;
+    transform: scale(1.2);
+  }
+  @include on1920 {
+    transform: scale(1.4);
+  }
+}

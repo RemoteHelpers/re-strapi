@@ -1,5 +1,6 @@
 @import "../../utils/mixins.scss";
 @import "../../global-styles/colors.scss";
+@import "../../global-styles/fonts.scss";
 
 .Footer {
   padding: 3.1rem 1.8rem;
@@ -8,9 +9,8 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-
   @include onDesktop {
-    padding: 3rem 12% 3.6rem;
+    padding: 3rem 11% 3.6rem;
     flex-direction: row;
     margin: 0 auto;
   }
@@ -23,7 +23,10 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 1.9rem;
-
+    @media screen and (max-width: 428px) {
+      flex-direction: column;
+      row-gap: 1rem;
+    }
     @include onDesktop {
       flex-direction: column;
       margin-bottom: 0;
@@ -51,17 +54,18 @@
     height: 2.6rem;
 
     @include onDesktop {
-      width: 10.8rem;
+      width: 12.5rem;
       height: 3.6rem;
     }
 
     @include on1920 {
-      width: 16.1rem;
+      width: 16rem;
       height: 5.4rem;
     }
   }
 
   &__socialWrapper {
+    width: fit-content;
     display: flex;
     column-gap: .7rem;
   }
@@ -70,20 +74,17 @@
     width: 2.5rem;
     height: 2.5rem;
 
-    transition: all 0.3s;
-
     @include onDesktop {
-      width: 1.6rem;
-      height: 1.6rem;
+      width: 2rem;
+      height: 2rem;
     }
-
     @include on1920 {
-      width: 2.4rem;
-      height: 2.4rem;
+      width: 2.5rem;
+      height: 2.5rem;
     }
-
+    transition: all 0.3s;
     &:hover {
-      transform: scale(115%);
+      transform: scale(1);
     }
   }
 
@@ -92,34 +93,31 @@
     margin-bottom: 1.4rem;
     line-height: 130%;
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: clamp(22px, 1.56vw, 30px);
 
     @include onDesktop {
       line-height: 140%;
-      font-size: 1.4rem;
       margin-bottom: 0.7rem;
     }
 
     @include on1920 {
-      font-size: 1.9rem;
       margin-bottom: 0.9rem;
     }
   }
 
   &__contactsText {
     font-weight: 500;
-    font-size: 1rem;
-    line-height: 120%;
+    font-size: clamp(16px, 1.04vw, 20px);
+    line-height: 1.2;
     margin-bottom: 0.9rem;
 
     @include onDesktop {
-      font-size: 0.9rem;
-      line-height: 115%;
+      line-height: 1.15;
+
       margin-bottom: 0.5rem;
     }
 
     @include on1920 {
-      font-size: 1.2rem;
       margin-bottom: 0.6rem;
     }
 
