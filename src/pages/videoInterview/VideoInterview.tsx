@@ -1,41 +1,25 @@
 /* eslint-disable react/no-unescaped-entities */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable padding-line-between-statements */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable import/newline-after-import */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable object-curly-newline */
-/* eslint-disable comma-dangle */
-/* eslint-disable operator-linebreak */
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable react/jsx-indent */
-/* eslint-disable @typescript-eslint/indent */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-console */
+import React from 'react';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Typography from '@mui/material/Typography';
 
-import React from "react";
-import Accordion from "@mui/material/Accordion";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import Typography from "@mui/material/Typography";
-
-import cl from "./videoInterview.module.scss";
-import "../../global-styles/colors.scss";
-import cameraKitekat from "../../icons/kitekat_camera.png";
-import FeedbackForm from "../../components/forms/feedbackForm";
-import interviewKitekat from "../../icons/interview_form_kitekat.png";
-import { ArrowSvg } from "./ArrowSvg";
-import interviewCat from "../../icons/interview_kitekat.png";
-import play from "../../icons/play.png";
+import cl from './videoInterview.module.scss';
+import '../../global-styles/colors.scss';
+import cameraKitekat from '../../icons/kitekat_camera.png';
+import FeedbackForm from '../../components/forms/feedbackForm';
+import interviewKitekat from '../../icons/interview_form_kitekat.png';
+import { ArrowSvg } from './ArrowSvg';
+import interviewCat from '../../icons/interview_kitekat.png';
+import play from '../../icons/play.png';
 
 export const VideoInterview = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
-  const handleChange =
-    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded ? panel : false);
-    };
+  const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+    setExpanded(isExpanded ? panel : false);
+  };
 
   return (
     <>
@@ -80,11 +64,11 @@ export const VideoInterview = () => {
             <h1>Сцена, камера, мотор!</h1>
 
             <Accordion
-              expanded={expanded === "panel1"}
-              onChange={handleChange("panel1")}
+              expanded={expanded === 'panel1'}
+              onChange={handleChange('panel1')}
               sx={{
                 boxShadow: 0,
-                backgroundColor: "transparent",
+                backgroundColor: 'transparent',
               }}
             >
               <AccordionSummary
@@ -97,7 +81,7 @@ export const VideoInterview = () => {
                 <Typography className={cl.accordion_title}>
                   <div
                     className={
-                      expanded === "panel1"
+                      expanded === 'panel1'
                         ? cl.expanded_show
                         : cl.accordion_arrow
                     }
@@ -141,14 +125,14 @@ export const VideoInterview = () => {
             </Accordion>
 
             <Accordion
-              expanded={expanded === "panel2"}
-              onChange={handleChange("panel2")}
+              expanded={expanded === 'panel2'}
+              onChange={handleChange('panel2')}
               sx={{
                 boxShadow: 0,
-                "&::before": {
-                  display: "none",
+                '&::before': {
+                  display: 'none',
                 },
-                backgroundColor: "transparent",
+                backgroundColor: 'transparent',
               }}
             >
               <AccordionSummary
@@ -161,7 +145,7 @@ export const VideoInterview = () => {
                 <Typography className={cl.accordion_title}>
                   <div
                     className={
-                      expanded === "panel2"
+                      expanded === 'panel2'
                         ? cl.expanded_show
                         : cl.accordion_arrow
                     }
@@ -187,14 +171,14 @@ export const VideoInterview = () => {
             </Accordion>
 
             <Accordion
-              expanded={expanded === "panel3"}
-              onChange={handleChange("panel3")}
+              expanded={expanded === 'panel3'}
+              onChange={handleChange('panel3')}
               sx={{
                 boxShadow: 0,
-                "&::before": {
-                  display: "none",
+                '&::before': {
+                  display: 'none',
                 },
-                backgroundColor: "transparent",
+                backgroundColor: 'transparent',
               }}
             >
               <AccordionSummary
@@ -207,7 +191,7 @@ export const VideoInterview = () => {
                 <Typography className={cl.accordion_title}>
                   <div
                     className={
-                      expanded === "panel3"
+                      expanded === 'panel3'
                         ? cl.expanded_show
                         : cl.accordion_arrow
                     }
@@ -245,14 +229,14 @@ export const VideoInterview = () => {
             </Accordion>
 
             <Accordion
-              expanded={expanded === "panel4"}
-              onChange={handleChange("panel4")}
+              expanded={expanded === 'panel4'}
+              onChange={handleChange('panel4')}
               sx={{
                 boxShadow: 0,
-                "&::before": {
-                  display: "none",
+                '&::before': {
+                  display: 'none',
                 },
-                backgroundColor: "transparent",
+                backgroundColor: 'transparent',
               }}
             >
               <AccordionSummary
@@ -265,7 +249,7 @@ export const VideoInterview = () => {
                 <Typography className={cl.accordion_title}>
                   <div
                     className={
-                      expanded === "panel4"
+                      expanded === 'panel4'
                         ? cl.expanded_show
                         : cl.accordion_arrow
                     }
@@ -315,14 +299,14 @@ export const VideoInterview = () => {
             </Accordion>
 
             <Accordion
-              expanded={expanded === "panel5"}
-              onChange={handleChange("panel5")}
+              expanded={expanded === 'panel5'}
+              onChange={handleChange('panel5')}
               sx={{
                 boxShadow: 0,
-                "&::before": {
-                  display: "none",
+                '&::before': {
+                  display: 'none',
                 },
-                backgroundColor: "transparent",
+                backgroundColor: 'transparent',
               }}
             >
               <AccordionSummary
@@ -335,7 +319,7 @@ export const VideoInterview = () => {
                 <Typography className={cl.accordion_title}>
                   <div
                     className={
-                      expanded === "panel5"
+                      expanded === 'panel5'
                         ? cl.expanded_show
                         : cl.accordion_arrow
                     }

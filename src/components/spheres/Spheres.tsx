@@ -14,11 +14,6 @@ import Education from "../../images/Spheres/Education.png";
 const Spheres = () => {
   return (
     <div className="Spheres">
-      <h3 className="Spheres__title">
-        Наши основные
-        <br />
-        сферы деятельности
-      </h3>
       <div className="Spheres__block grid">
         <div
           className={`
@@ -46,7 +41,7 @@ const Spheres = () => {
           Spheres__sphere grid__item--tablet-3"
         >
           <img src={Developing} alt="Developing" className="Spheres__icon" />
-          <h5 className="Spheres__sphere-title">Разработка</h5>
+          <h5 className="Spheres__sphere-title">Розробка</h5>
         </div>
         <div
           className="
@@ -65,7 +60,7 @@ const Spheres = () => {
           Spheres__sphere grid__item--tablet-2"
         >
           <img src={Translate} alt="Translate" className="Spheres__icon" />
-          <h5 className="Spheres__sphere-title">Переводы</h5>
+          <h5 className="Spheres__sphere-title">Переклади</h5>
         </div>
         <div
           className="
@@ -74,7 +69,7 @@ const Spheres = () => {
           Spheres__sphere grid__item--tablet-3"
         >
           <img src={Education} alt="Education" className="Spheres__icon" />
-          <h5 className="Spheres__sphere-title">Образование</h5>
+          <h5 className="Spheres__sphere-title">Освіта</h5>
         </div>
       </div>
     </div>

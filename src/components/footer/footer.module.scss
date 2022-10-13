@@ -67,11 +67,7 @@
   &__socialWrapper {
     width: fit-content;
     display: flex;
-    column-gap: 1rem;
-    justify-content: space-between;
-    @media screen and (max-width: 428px) {
-      justify-content: start;
-    }
+    column-gap: .7rem;
   }
 
   &__link {

@@ -16,6 +16,11 @@ export const HomePage = () => {
     <>
       <MainScreen />
       <div className={cl.container}>
+        <h1 className={cl.mainTitle}>
+          Наші основні
+          <br />
+          сфери діяльності
+        </h1>
         <Spheres />
         <VacancyList />
         <FAQ />
