@@ -26,7 +26,7 @@ import NotFoundPage from "./pages/notFoundPage/notFoundPage";
 
 const App: React.FC = () => {
   const { currentVacancy, isSubmitLocalization } = useStateContext();
-  
+
   return (
     <>
       {isSubmitLocalization ? (
