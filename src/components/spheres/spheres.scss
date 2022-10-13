@@ -3,18 +3,17 @@
 @import "../../global-styles/fonts.scss";
 
 .Spheres {
-  padding: 7.5rem 0;
 
   @include onTablet {
-    padding: 12.5rem 0;
+    padding: 3rem 0;
   }
 
   @include onDesktop {
-    padding: 11.7rem 0;
+    padding: 3rem 0 5rem;
   }
 
   @include on1920 {
-    padding: 15.6rem 0;
+    padding: 7rem 0;
   }
 
   &__title {
@@ -25,7 +24,7 @@
     margin-top: 0;
     margin-bottom: 3.1rem;
 
-    color: $typography2;
+    color: $typographyColor2;
 
     @include onTablet {
       margin-bottom: 4.4rem;
@@ -46,16 +45,6 @@
 
     border: 0.1rem solid $primaryColor1;
     border-radius: 0.9rem;
-
-    @include onDesktop {
-      width: 6.4rem;
-      height: 6.4rem;
-    }
-
-    @include on1920 {
-      width: 9.6rem;
-      height: 9.6rem;
-    }
   }
 
   &__sphere {

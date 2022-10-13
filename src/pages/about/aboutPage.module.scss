@@ -3,24 +3,37 @@
 @import "../../global-styles/fonts.scss";
 
 .container {
-  width: 80%;
+  width: 90%;
   height: auto;
   margin: 0 auto;
+
+  @include onTablet {
+    width: 80%;
+  }
+
 }
 .intro_wrapper {
   display: flex;
   flex-direction: column;
 
   @include onTablet {
-    flex-direction: row;
+    flex-direction: column;
   }
 
+  @include onDesktop {
+    flex-direction: row;
+  }
 }
 .into_information {
   width: 100%;
   height: 100%;
 
   @include onTablet {
+    width: 100%;
+    height: 100%;
+  }
+
+  @include onDesktop {
     width: 60%;
     height: 100%;
   }
@@ -32,6 +45,7 @@
     margin-bottom: 2.375rem;
     font-style: normal;
     font-weight: 900;
+    color: $typographyColor1;
   }
   p {
     font-style: normal;
@@ -58,6 +72,16 @@
   }
 
   @include onTablet {
+    width: 70%;
+    margin: 0 auto;
+    img {
+      max-width: 100%;
+      width: 90%;
+      height: auto;
+    }
+  }
+
+  @include onDesktop {
     width: 50%;
     margin-top: 0;
     img {
@@ -66,7 +90,6 @@
       height: auto;
     }
   }
-
 }
 
 .video_intro {
@@ -89,8 +112,15 @@
   @include onTablet {
     width: 90%;
     height: 300px;
+    margin: 7rem auto;
+    max-width: 600px;
   }
 
+  @include onDesktop {
+    width: 90%;
+    height: 300px;
+    margin: 5rem auto 0 0;
+  }
 }
 
 section {
@@ -100,22 +130,40 @@ section {
   padding-bottom: 5rem;
   &::after {
     content: "";
-    display: none;
+    display: block;
     position: absolute;
-    top: 0;
+    bottom: 2%;
     right: 0;
     transform: translateX(40%);
-    width: 60%;
-    height: 10%;
+    width: 120%;
+    height: 50%;
+    max-height: 620px;
     border-radius: 50%;
     background-color: #d8faff;
-    z-index: 0;
+    z-index: -1;
+
+    @media (max-width: 480px) {
+      width: 130%;
+      max-height: 500px;
+    }
+
+    @include onTablet {
+      display: none;
+    }
+
+    @include onDesktop {
+      width: 50%;
+      height: 100%;
+      top: 0;
+      display: block;
+    }
+
   }
 }
 
 .what_we_do {
   width: 100%;
-  margin-top: 8.75rem;
+  margin-top: 5rem;
   h1 {
     color: $typographyColor2;
     font-size: $typography2;
@@ -126,28 +174,14 @@ section {
     margin-top: 1.2rem;
     font-style: normal;
     font-weight: 400;
-  }
-}
-.activity_cards {
-  margin-top: 3.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  row-gap: 2rem;
-  div {
-    text-align: center;
-    p {
-      font-style: normal;
-      font-weight: 700;
-      font-size: $typography4;
-      line-height: 1;
+    &:last-of-type {
+      margin-bottom: 4rem;
     }
   }
 }
 
 .our_team {
-  margin-top: 10rem;
+  margin-top: 4rem;
   h1 {
     color: $typographyColor2;
     font-size: $typography2;
@@ -171,14 +205,6 @@ section {
   row-gap: 1.875rem;
 }
 
-.member_photo {
-  width: 30%;
-  img {
-    min-width: 90px;
-    min-height: 90px;
-  }
-}
-
 .team_card {
   width: calc(100% / 3 - 1.5rem);
   min-width: 280px;
@@ -188,6 +214,15 @@ section {
   display: flex;
   align-items: flex-start;
   column-gap: 1rem;
+}
+
+.member_photo {
+  width: 30%;
+  img {
+    width: 100%;
+    max-width: 100%;
+    min-width: 50px;
+  }
 }
 
 @media (max-width: 1280px) {
@@ -205,6 +240,13 @@ section {
   display: flex;
   flex-direction: column;
   row-gap: 0.7rem;
+  h2 {
+    font-size: $typography4;
+    color: $typographyColor1;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
+  }
   span {
     font-style: normal;
     font-weight: 600;

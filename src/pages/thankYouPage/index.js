@@ -1,4 +1,4 @@
 /* eslint-disable @typescript-eslint/quotes */
-import { ThankYouPage } from "./thankYouPage";
+import { ThankYouPage } from "./ThankYouPage";
 
 export default ThankYouPage;

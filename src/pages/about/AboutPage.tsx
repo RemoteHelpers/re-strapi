@@ -7,19 +7,57 @@ import kitekat from "../../icons/kitekat.png";
 import play from "../../icons/play.png";
 import FeedbackForm from "../../components/forms/feedbackForm";
 
-// Cards for section "What we do"
-import card1 from "../../images/whatWeDo/card1.png";
-import card2 from "../../images/whatWeDo/card2.png";
-import card3 from "../../images/whatWeDo/card3.png";
-import card4 from "../../images/whatWeDo/card4.png";
-import card5 from "../../images/whatWeDo/card5.png";
-import card6 from "../../images/whatWeDo/card6.png";
-
 import memberTeam from "../../icons/team_member.png";
 import { AboutPageSvg } from "./AboutPageSvg";
 import formImg from "../../images/formImg.png";
+import Spheres from "../../components/spheres";
 
 export const AboutPage = () => {
+  const team = [
+    {
+      id: 1,
+      name: 'Марія',
+      position: 'Recruiter',
+      email: '@MashaRemotEmployees',
+      phone: '+380987286405',
+    },
+    {
+      id: 2,
+      name: 'Ольга',
+      position: 'Recruiter',
+      email: '@RemoteEmployeesOlha',
+      phone: '+380995664454',
+    },
+    {
+      id: 3,
+      name: 'Марія',
+      position: 'Recruiter',
+      email: '@MashaRemotEmployees',
+      phone: '+380987286405',
+    },
+    {
+      id: 4,
+      name: 'Марія',
+      position: 'Recruiter',
+      email: '@MashaRemotEmployees',
+      phone: '+380987286405',
+    },
+    {
+      id: 5,
+      name: 'Ольга',
+      position: 'Recruiter',
+      email: '@RemoteEmployeesOlha',
+      phone: '+380995664454',
+    },
+    {
+      id: 6,
+      name: 'Марія',
+      position: 'Recruiter',
+      email: '@MashaRemotEmployees',
+      phone: '+380987286405',
+    },
+  ];
+
   return (
     <>
       <section>
@@ -62,32 +100,7 @@ export const AboutPage = () => {
             готові надати вам можливість отримати роботу і освоїти нову
             спеціальність.
           </p>
-          <div className={cl.activity_cards}>
-            <div>
-              <img src={card1} alt="" />
-              <p>Маркетинг</p>
-            </div>
-            <div>
-              <img src={card2} alt="" />
-              <p>Менеджмент</p>
-            </div>
-            <div>
-              <img src={card3} alt="" />
-              <p>Розробка</p>
-            </div>
-            <div>
-              <img src={card4} alt="" />
-              <p>Дизайн</p>
-            </div>
-            <div>
-              <img src={card5} alt="" />
-              <p>Переклади</p>
-            </div>
-            <div>
-              <img src={card6} alt="" />
-              <p>Освіта</p>
-            </div>
-          </div>
+          <Spheres />
         </div>
       </div>
       <div className={cl.container}>
@@ -98,108 +111,25 @@ export const AboutPage = () => {
             познайомимо з колективом.
           </p>
           <div className={cl.team_cards}>
-            <div className={cl.team_card}>
-              <div className={cl.member_photo}>
-                <img src={memberTeam} alt="" />
-              </div>
-              <div className={cl.member_info}>
-                <h2>Тетяна</h2>
-                <span>Recruiter</span>
-                <div>
-                  <AboutPageSvg id="telegram" />
-                  <span>@REmployees</span>
+            {team.map(member => (
+              <div key={member.id} className={cl.team_card}>
+                <div className={cl.member_photo}>
+                  <img src={memberTeam} alt="" />
                 </div>
-                <div>
-                  <AboutPageSvg id="viber" />
-                  <span>+380666146404</span>
-                </div>
-              </div>
-            </div>
-            <div className={cl.team_card}>
-              <div className={cl.member_photo}>
-                <img src={memberTeam} alt="" />
-              </div>
-              <div className={cl.member_info}>
-                <h2>Ольга</h2>
-                <span>Recruiter</span>
-                <div>
-                  <AboutPageSvg id="telegram" />
-                  <span>@RemoteEmployeesOlha</span>
-                </div>
-                <div>
-                  <AboutPageSvg id="viber" />
-                  <span>+380995664454</span>
+                <div className={cl.member_info}>
+                  <h2>{member.name}</h2>
+                  <span>{member.position}</span>
+                  <div>
+                    <AboutPageSvg id="telegram" />
+                    <span>{member.email}</span>
+                  </div>
+                  <div>
+                    <AboutPageSvg id="viber" />
+                    <span>{member.phone}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className={cl.team_card}>
-              <div className={cl.member_photo}>
-                <img src={memberTeam} alt="" />
-              </div>
-              <div className={cl.member_info}>
-                <h2>Марія</h2>
-                <span>Recruiter</span>
-                <div>
-                  <AboutPageSvg id="telegram" />
-                  <span>@MashaRemotEmployees</span>
-                </div>
-                <div>
-                  <AboutPageSvg id="viber" />
-                  <span>+380987286405</span>
-                </div>
-              </div>
-            </div>
-            <div className={cl.team_card}>
-              <div className={cl.member_photo}>
-                <img src={memberTeam} alt="" />
-              </div>
-              <div className={cl.member_info}>
-                <h2>Тетяна</h2>
-                <span>Recruiter</span>
-                <div>
-                  <AboutPageSvg id="telegram" />
-                  <span>@REmployees</span>
-                </div>
-                <div>
-                  <AboutPageSvg id="viber" />
-                  <span>+380666146404</span>
-                </div>
-              </div>
-            </div>
-            <div className={cl.team_card}>
-              <div className={cl.member_photo}>
-                <img src={memberTeam} alt="" />
-              </div>
-              <div className={cl.member_info}>
-                <h2>Ольга</h2>
-                <span>Recruiter</span>
-                <div>
-                  <AboutPageSvg id="telegram" />
-                  <span>@RemoteEmployeesOlha</span>
-                </div>
-                <div>
-                  <AboutPageSvg id="viber" />
-                  <span>+380995664454</span>
-                </div>
-              </div>
-            </div>
-            <div className={cl.team_card}>
-              <div className={cl.member_photo}>
-                <img src={memberTeam} alt="" />
-              </div>
-              <div className={cl.member_info}>
-                <h2>Марія</h2>
-                <span>Recruiter</span>
-                <div>
-                  <AboutPageSvg id="telegram" />
-                  <span>@MashaRemotEmployees</span>
-                </div>
-                <div>
-                  <AboutPageSvg id="viber" />
-                  <span>+380987286405</span>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

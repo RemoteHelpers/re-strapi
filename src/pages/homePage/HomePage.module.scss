@@ -1,9 +1,35 @@
+
 @import '../../utils/mixins.scss';
+@import '../../global-styles/colors.scss';
+@import '../../global-styles/fonts.scss';
+
 .container {
-  padding: 0 1.8rem;
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.mainTitle {
+  padding-top: 5rem;
+  font-weight: 800;
+  font-size: $typography2;
+  color: $typographyColor2;
+  line-height: 130%;
+  text-decoration-line: underline;
+  margin-top: 0;
+  margin-bottom: 3.1rem;
+
+  color: $typography2;
+
+  @include onTablet {
+    margin-bottom: 4.4rem;
+  }
 
   @include onDesktop {
-    padding: 0 12%;
-    margin: 0 auto;
+    margin-bottom: 4.2rem;
+  }
+
+  @include on1920 {
+    margin-bottom: 5.6rem;
   }
 }
