@@ -44,7 +44,7 @@ const App: React.FC = () => {
               <Route path="videoInterview" element={<VideoInterview />} />
               <Route path="thankyou" element={<ThankYouPage />} />
               <Route path="*" element={<NotFoundPage />} />
-            </Routes>й3
+            </Routes>
           </main>
           <Footer />
         </BrowserRouter>
