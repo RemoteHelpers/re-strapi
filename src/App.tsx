@@ -26,7 +26,7 @@ import NotFoundPage from "./pages/notFoundPage/notFoundPage";
 
 const App: React.FC = () => {
   const { currentVacancy, isSubmitLocalization } = useStateContext();
-  
+
   return (
     <>
       {isSubmitLocalization ? (
@@ -44,7 +44,7 @@ const App: React.FC = () => {
               <Route path="videoInterview" element={<VideoInterview />} />
               <Route path="thankyou" element={<ThankYouPage />} />
               <Route path="*" element={<NotFoundPage />} />
-            </Routes>
+            </Routes>й3
           </main>
           <Footer />
         </BrowserRouter>
