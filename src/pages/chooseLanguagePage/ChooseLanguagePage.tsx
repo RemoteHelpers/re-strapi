@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-curly-newline */
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable comma-dangle */
 /* eslint-disable operator-linebreak */
 /* eslint-disable padding-line-between-statements */
@@ -6,6 +8,8 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable @typescript-eslint/quotes */
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 import cl from "./chooseLanguagePage.module.scss";
 import ua from "../../images/languages/ukrainian.png";
@@ -14,11 +18,9 @@ import en from "../../images/languages/english.png";
 import pl from "../../images/languages/polski.png";
 import ru from "../../images/languages/ru.png";
 import languageCat from "../../images/languages/languageCat.png";
-import { useStateContext } from "../../context/StateContext";
-import useLocalStorage from "../../hooks/useLocalStorage";
 
 const selectLocalization = [
-  { value: "ua", label: "Українська", img: ua },
+  { value: "uk", label: "Українська", img: ua },
   { value: "pl", label: "Polski", img: pl },
   { value: "en", label: "English", img: en },
   { value: "sk", label: "Slovenský", img: sk },
@@ -26,9 +28,11 @@ const selectLocalization = [
 ];
 
 export default function ChooseLanguagePage() {
-  const [selectedLocalization, setSelectedLocalization] = useState("ua");
+  // const navigate = useNavigate();
 
-  const [localization, setLocalization] = useLocalStorage("localization", "ua");
+  const [selectedLocalization, setSelectedLocalization] = useState("uk");
+
+  const [localization, setLocalization] = useLocalStorage("localization", "uk");
   const [isSubmitLocalization, setIsSubmitLocalization] = useLocalStorage(
     "isSubmitLocalization",
     false
@@ -38,16 +42,16 @@ export default function ChooseLanguagePage() {
     setSelectedLocalization(event.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (event: any) => {
     setLocalization(selectedLocalization);
     setIsSubmitLocalization(true);
+    window.location.reload();
   };
-
   return (
     <div className={cl.section}>
       <div className={cl.container}>
         <h1 className={cl.title}>Обери мову</h1>
-        <form className={cl.form} onSubmit={handleSubmit}>
+        <form className={cl.form}>
           {selectLocalization.map(({ value, label, img }) => {
             return (
               <div className={cl.option} key={value}>
@@ -68,7 +72,7 @@ export default function ChooseLanguagePage() {
             );
           })}
           <img alt="Language Cat" src={languageCat} className={cl.mainImg} />
-          <button type="submit" className={cl.button}>
+          <button type="button" onClick={handleSubmit} className={cl.button}>
             Обрати
           </button>
         </form>
