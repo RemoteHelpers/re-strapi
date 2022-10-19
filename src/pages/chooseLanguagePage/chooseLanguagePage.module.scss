@@ -4,20 +4,14 @@
 
 .section {
   position: relative;
-  width: 100vw;
-  height: 100vh;
-  max-width: 100%;
-  margin: 0 auto;
-
-  overflow: overlay;
+  display: flex;
+  min-height: 100vh;
+  padding: 3rem 1rem;
   background-image: url("../../images/languages/background-desktop.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top 35rem left 0;
 
-  @media screen and (max-width: 428px) {
-    height: 110vh;
-  }
   @include onTablet {
     background-image: url("../../images/languages/background-desktop-rotate.png");
   }
@@ -27,14 +21,15 @@
 }
 
 .container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  // @include onDesktop {
+  //   margin-left: 5%;
+  // }
   @include on1920 {
-    transform: translate(-75%, -50%);
+    margin-left: 10%;
   }
 }
 .title {
@@ -63,10 +58,19 @@
     padding: 3rem 3.5rem;
     column-gap: 2rem;
   }
+  // @include onDesktop {
+  //   justify-content: flex-end;
+  //   max-width: 57.2rem;
+  //   grid-column-gap: 1.25rem;
+  //   column-gap: 1.25rem;
+  // }
+  // @include on1920 {
+  //   max-width: 63.2rem;
+  // }
   @include onDesktop {
     justify-content: flex-end;
     max-width: 63.2rem;
-    padding: 4.5rem 4rem;
+    grid-column-gap: 1.25rem;
     column-gap: 1.25rem;
   }
 }
@@ -86,6 +90,14 @@
     cursor: pointer;
     border: 0.25rem solid #00dcff;
   }
+  // @include onDesktop {
+  //   width: 9rem;
+  //   height: 9rem;
+  // }
+  // @include on1920 {
+  //   width: 10rem;
+  //   height: 10rem;
+  // }
 }
 .input {
   display: none;
@@ -112,6 +124,14 @@
     max-width: 16rem;
     transform: scaleX(-1);
   }
+  // @include onDesktop {
+  //   position: absolute;
+  //   display: block;
+  //   max-width: 25rem;
+  //   transform: scaleX(1);
+  //   right: 1%;
+  //   bottom: 22%;
+  // }
   @include onDesktop {
     display: none;
   }
@@ -120,8 +140,8 @@
     display: block;
     max-width: 100%;
     transform: scaleX(1);
-    right: -60%;
-    bottom: 0%;
+    right: 5%;
+    bottom: 30%;
   }
 }
 .button {

@@ -12,21 +12,19 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import classNames from 'classnames';
-import Select, { components } from 'react-select';
-import { CSSTransition } from 'react-transition-group';
-import axios from 'axios';
-import './header.scss';
-import { useStateContext } from '../../context/StateContext';
-import {
-  Category, Vacancy,
-} from '../../types/types';
-import Logo from '../../images/mainScreen/Logo.png';
-import SelectIcon from '../../images/selectArrow.svg';
-import useOutsideAlerter from '../../hooks/useClickOutside';
-import NextIcon from '../../images/header/nextIcon.svg';
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import classNames from "classnames";
+import Select, { components } from "react-select";
+import { CSSTransition } from "react-transition-group";
+import axios from "axios";
+import "./header.scss";
+import { useStateContext } from "../../context/StateContext";
+import { Category, Vacancy } from "../../types/types";
+import Logo from "../../images/mainScreen/Logo.png";
+import SelectIcon from "../../images/selectArrow.svg";
+import useOutsideAlerter from "../../hooks/useClickOutside";
+import NextIcon from "../../images/header/nextIcon.svg";
 
 const API = "http://testseven.rh-s.com:1733/api";
 
@@ -291,7 +289,11 @@ const Header = () => {
                 className="Header__link_mobile Header__link_mobile-back"
                 onClick={() => "main" && setActiveMenu("main")}
               >
-                <img className="Header__link_mobile-icon" src={NextIcon} alt="" />
+                <img
+                  className="Header__link_mobile-icon"
+                  src={NextIcon}
+                  alt=""
+                />
                 <span>Назад до меню</span>
               </a>
               {categories.map((category) => (
@@ -320,7 +322,11 @@ const Header = () => {
                 className="Header__link_mobile Header__link_mobile-back"
                 onClick={() => "categories" && setActiveMenu("categories")}
               >
-                <img className="Header__link_mobile-icon" src={NextIcon} alt="" />
+                <img
+                  className="Header__link_mobile-icon"
+                  src={NextIcon}
+                  alt=""
+                />
                 <span>Назад до категорій</span>
               </a>
 
@@ -375,7 +381,9 @@ const Header = () => {
                 className={classNames("Header__link_desktop")}
               />
               <label className="label" htmlFor={category.id}>
-                <span className="label-title">{category.attributes.categoryTitle}</span>
+                <span className="label-title">
+                  {category.attributes.categoryTitle}
+                </span>
                 <img className="label-icon" src={NextIcon} alt="" />
               </label>
             </React.Fragment>

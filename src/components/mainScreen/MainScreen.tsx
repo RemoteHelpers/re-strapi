@@ -1,18 +1,14 @@
+/* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable @typescript-eslint/quotes */
 import React from "react";
 import cl from "./mainScreen.module.scss";
 import MainImage from "../../images/mainScreen/MainScreen.png";
 
 import buttonIcon from "../../images/mainScreen/button-icon.svg";
-import { useStateContext } from "../../context/StateContext";
 
 const MainScreen = () => {
-  const { isDesktopMenuOpened } = useStateContext();
-
   return (
-    // className={isDesktopMenuOpened ? 'darken' : 'not-darken'}
     <div className={cl.mainScreen} id="mainScreen">
-      <div className={isDesktopMenuOpened ? cl.headerBg : cl.headerBgNone}></div>
       <div className={cl.info}>
         <h3 className={cl.title}>Хочешь pаботать в сфере IT удаленно?</h3>
         <p className={cl.paragraph}>
