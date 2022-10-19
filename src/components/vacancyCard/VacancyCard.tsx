@@ -1,13 +1,9 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable max-len */
-/* eslint-disable no-console */
-import React from "react";
-import { Link } from "react-router-dom";
-import "./vacancyCard.scss";
-import FireIcon from "../../images/fireIcon.svg";
-import { useStateContext } from "../../context/StateContext";
+/* eslint-disable react-hooks/rules-of-hooks */
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './vacancyCard.scss';
+import FireIcon from '../../images/fireIcon.svg';
+import { useStateContext } from '../../context/StateContext';
 
 interface Props {
   title: string;
@@ -39,7 +35,7 @@ const VacancyCard: React.FC<Props> = ({ title, slug, isHot }) => {
       </div>
       <Link
         className="VacancyCard__button"
-        to={`/vacancy/${slug}`}
+        to={`/vacancies/${slug}`}
         onClick={handleSlug}
       >
         See more

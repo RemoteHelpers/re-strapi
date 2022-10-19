@@ -1,4 +1,5 @@
 @import "../../global-styles/colors.scss";
+@import "../../utils/mixins.scss";
 
 .container {
   width: 80%;
@@ -38,6 +39,11 @@
     transform: translateX(-50%);
     width: 60%;
     z-index: -1;
+  }
+  @include onTablet {
+    .absoluted_interview_cat {
+      width: 70%;
+    }
   }
   h1 {
     font-size: clamp(32px, 3.3vw, 64px);

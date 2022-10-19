@@ -1,16 +1,12 @@
-/* eslint-disable no-param-reassign */
 /* eslint-disable react/no-children-prop */
-/* eslint-disable max-len */
-/* eslint-disable padding-line-between-statements */
-/* eslint-disable array-callback-return */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable no-console */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import '../../App.scss';
-import { Breadcrumbs, Link, Typography } from '@mui/material';
+import {
+  Alert, Breadcrumbs, Link, Typography,
+} from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import cl from './vacancyDetails.module.scss';
 import { useStateContext } from '../../context/StateContext';
@@ -18,12 +14,16 @@ import { LocalVacancyType } from '../../types/types';
 
 import play from '../../icons/play.png';
 import { VacancySvg } from './VacancyFireSvg';
+import VacancyForm from '../../components/forms/vacancyForm';
+import ToTopButton from '../../components/toTopButton';
 
 const API = 'http://testseven.rh-s.com:1733/api';
 
 export const VacancyDetails = () => {
-  const { currentVacancy } = useStateContext();
+  const { currentVacancy, setCurrentVacancy } = useStateContext();
   const [localVacancy, setLocalVacancy] = useState<LocalVacancyType[]>([]);
+  const [activeAlert, setActiveAlert] = useState(false);
+  const formSection = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     axios.get(`${API}/vacancies?populate=*&filters[vacancySlug][$eq]=${currentVacancy}`)
@@ -34,10 +34,20 @@ export const VacancyDetails = () => {
       .catch(err => {
         console.log(err);
       });
+  }, [currentVacancy]);
+
+  useEffect(() => {
+    const test = window.location.href;
+
+    setCurrentVacancy(test.split('/')[4]);
+    // console.log(test.split('/')[4]);
   }, []);
 
   const handleClickToFavorite = () => {
-    console.log('clicked');
+    setActiveAlert(true);
+    setTimeout(() => {
+      setActiveAlert(false);
+    }, 3000);
   };
 
   return (
@@ -52,7 +62,7 @@ export const VacancyDetails = () => {
                   aria-label="breadcrumb"
                 >
                   <Link
-                    className={cl.normalCrumb}
+                    className={`${cl.normalCrumb} ${cl.firstCrumb}`}
                     underline="none"
                     color="inherit"
                     href="/"
@@ -74,9 +84,16 @@ export const VacancyDetails = () => {
                   onClick={handleClickToFavorite}
                   className={cl.addToFavorite}
                 >
-                  Додати у закладки
+                  <span className={cl.favoriteTitle}>Додати у закладки</span>
                   <VacancySvg id="star" />
                 </button>
+                {activeAlert && (
+                  <div className={cl.alertWrapper}>
+                    <Alert variant="filled" severity="warning">
+                      Для того щоб додати сторінку в закладки, натисніть Ctrl + D
+                    </Alert>
+                  </div>
+                )}
               </div>
               <span className={item.attributes.isHot ? cl.hotVacancy : cl.coldVacancy}>
                 <VacancySvg id="hot" />
@@ -87,7 +104,12 @@ export const VacancyDetails = () => {
                   <h1>{item.attributes.title}</h1>
                   <p>Заробітна плата за результатами співбесіди</p>
                   <p>{item.attributes.subTitle}</p>
-                  <a href="##">Відгукнутися</a>
+                  <button
+                    type="button"
+                    onClick={() => formSection?.current?.scrollIntoView({ block: 'center', behavior: 'smooth' })}
+                  >
+                    Відгукнутися
+                  </button>
                 </div>
                 <div className={cl.shortVacancyVideo}>
                   <img src={play} alt="" />
@@ -100,6 +122,23 @@ export const VacancyDetails = () => {
             </div>
           ))
         )}
+
+        <div className={cl.vacancyForm}>
+          {localVacancy.map(form => (
+            <div key={form.id}>
+              <ReactMarkdown
+                children={form.attributes.formTitle}
+                className={cl.formStyledMarkdown}
+              />
+              <div ref={formSection}>
+                <VacancyForm />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className={cl.vacancy_top}>
+        <ToTopButton />
       </div>
     </div>
   );

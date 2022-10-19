@@ -394,7 +394,7 @@ const Header = () => {
             <Link
               key={vacancy.id}
               className="Header__link_desktop--vacancy"
-              to={`/vacancy/${vacancy.attributes.vacancySlug}`}
+              to={`/vacancies/${vacancy.attributes.vacancySlug}`}
               // onClick={() => setCurrentVacancy(vacancy.attributes.vacancySlug)}
               onClick={() => {
                 setCurrentVacancy(vacancy.attributes.vacancySlug);
