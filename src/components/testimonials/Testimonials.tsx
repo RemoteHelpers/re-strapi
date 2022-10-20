@@ -18,7 +18,7 @@ const Testimonials = () => {
       <Swiper
         className="Testimonials__slider"
         modules={[Pagination, Navigation]}
-        pagination
+        pagination={{ clickable: true }}
         navigation
         centeredSlides
         loop

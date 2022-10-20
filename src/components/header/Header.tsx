@@ -39,7 +39,7 @@ const Header = () => {
   } = useStateContext();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [currentCategory, setCurrentCategory] = useState<string>("");
+  const [currentCategory, setCurrentCategory] = useState<string>("Розробка");
   const [selectedVacancies, setSelectedVacancies] = useState<Vacancy[]>([]);
   const [vacancies, setVacancies] = useState<Vacancy[]>([]);
   const [activeMenu, setActiveMenu] = useState("main");
@@ -109,32 +109,16 @@ const Header = () => {
     setIsMenuOpened((isMenuOpened) => !isMenuOpened);
   }, []);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `${API}/vacancies?populate=*&filters[categories][categoryTitle][$eq]=${currentCategory}`
-  //     )
-  //     .then((arr) => {
-  //       setSelectedVacancies(arr.data.data);
-  //       console.log(arr.data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [currentCategory]);
-
   const handleCategorySelect = useCallback((event: any) => {
     setCurrentCategory(event.target.text);
     console.log(currentCategory);
     setActiveMenu("vacancies");
-  }, [currentCategory]);
+  }, []);
 
   useEffect(() => {
     setSelectedVacancies(vacancies.filter(el =>
       el.attributes.categories.data[0].attributes.categoryTitle === currentCategory));
-    console.log(vacancies.filter(el =>
-      el.attributes.categories.data[0].attributes.categoryTitle));
-  }, [currentCategory]);
+  }, [currentCategory, vacancies]);
 
   let isActiveCategory: boolean;
 
