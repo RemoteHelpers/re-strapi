@@ -8,26 +8,26 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react/jsx-no-bind */
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { useStateContext } from "./context/StateContext";
 import "./App.scss";
 
-import Footer from "./components/footer";
-import Header from "./components/header";
+import Footer from './components/footer';
+import Header from './components/header';
 
-import HomePage from "./pages/homePage";
-import AboutPage from "./pages/about";
-import VideoInterview from "./pages/videoInterview";
-import VacancyDetails from "./pages/vacancyDetails";
-import VacanciesPage from "./pages/vacanciesPage";
-import ThankYouPage from "./pages/thankYouPage";
-import ChooseLanguagePage from "./pages/chooseLanguagePage";
-import NotFoundPage from "./pages/notFoundPage/notFoundPage";
+import HomePage from './pages/homePage';
+import AboutPage from './pages/about';
+import VideoInterview from './pages/videoInterview';
+import VacancyDetails from './pages/vacancyDetails';
+import VacanciesPage from './pages/vacanciesPage';
+import ThankYouPage from './pages/thankYouPage';
+import ChooseLanguagePage from './pages/chooseLanguagePage';
+import NotFoundPage from './pages/notFoundPage/notFoundPage';
 
 const App: React.FC = () => {
   const {
-    localization,
+    // localization,
     currentVacancy,
     isSubmitLocalization,
     isDesktopMenuOpened,
@@ -44,7 +44,7 @@ const App: React.FC = () => {
               <Route path="/" element={<HomePage />} />
               <Route path="/vacancies" element={<VacanciesPage />} />
               <Route
-                path={`/vacancy/:${currentVacancy}`}
+                path={`/vacancies/:${currentVacancy}`}
                 element={<VacancyDetails />}
               />
               <Route path="about" element={<AboutPage />} />
@@ -57,14 +57,6 @@ const App: React.FC = () => {
         </BrowserRouter>
       ) : (
         <ChooseLanguagePage />
-        // <BrowserRouter>
-        //   <Routes>
-        //     <Route
-        //       path={`/:${localization}`}
-        //       element={<ChooseLanguagePage />}
-        //     />
-        //   </Routes>
-        // </BrowserRouter>
       )}
     </>
   );
