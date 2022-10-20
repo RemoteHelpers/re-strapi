@@ -3,18 +3,18 @@
 @import "../../global-styles/fonts.scss";
 
 .FAQ {
-  padding-top: 7.5rem;
+  padding: 3.8rem 0 3.8rem;
 
   @include onTablet {
-    padding-top: 12.5rem;
+    padding: 6.25rem 0 6.25rem;
   }
 
   @include onDesktop {
-    padding-top: 11.1rem;
+    padding: 5rem 0 5rem;
   }
 
   @include on1920 {
-    padding-top: 16.6rem;
+    padding: 7.8rem 0 7.8rem;
   }
 
   &__title {
@@ -24,18 +24,18 @@
     text-decoration-line: underline;
 
     color: $typographyColor2;
-    margin: 0 0 3.1rem;
+    margin-bottom: 3.1rem;
 
     @include onTablet {
-      margin: 0 0 4.4rem;
+      margin-bottom: 4.4rem;
     }
 
     @include onDesktop {
-      margin: 0 0 4.7rem;
+      margin-bottom: 4rem;
     }
 
     @include on1920 {
-      margin: 0 0 6.2rem;
+      margin-bottom: 5.6rem;
     }
   }
 

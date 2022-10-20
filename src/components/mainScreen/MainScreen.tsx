@@ -17,10 +17,12 @@ const MainScreen = () => {
           предлагает Вам удаленную работу на международных проектах. Мы дадим
           вам возможность работать из любой точки мира уже сейчас!
         </p>
-        <button type="button" className={cl.button}>
-          Получить работу
-          <img src={buttonIcon} alt="button icon" className={cl.buttonIcon} />
-        </button>
+        <a href="#form">
+          <button type="button" className={cl.button}>
+            Получить работу
+            <img src={buttonIcon} alt="button icon" className={cl.buttonIcon} />
+          </button>
+        </a>
       </div>
 
       <img src={MainImage} alt="cat with idea" className={cl.image} />

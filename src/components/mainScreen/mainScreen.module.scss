@@ -156,15 +156,14 @@
     margin-bottom: 3.6rem;
   }
   @include onDesktop {
-    width: 12.6rem;
-    height: 2.6rem;
+    width: 250px;
+    height: 51px;
     margin-bottom: 0;
     padding: 0;
   }
-
   @include on1920 {
-    width: 18.9rem;
-    height: 3.9rem;
+    width: 302px;
+    height: 62px;
   }
 }
 
