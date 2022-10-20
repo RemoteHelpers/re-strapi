@@ -43,11 +43,12 @@ const Header = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [currentCategory, setCurrentCategory] = useState<string>("");
   const [selectedVacancies, setSelectedVacancies] = useState<Vacancy[]>([]);
+  const [vacancies, setVacancies] = useState<Vacancy[]>([]);
   const [activeMenu, setActiveMenu] = useState("main");
-  const [currentMenuCategory, setCurrentMenuCategory] = useState("Розробка");
-  const [selectedMenuVacancies, setSelectedMenuVacancies] = useState<Vacancy[]>(
-    []
-  );
+  // const [currentMenuCategory, setCurrentMenuCategory] = useState("Розробка");
+  // const [selectedMenuVacancies, setSelectedMenuVacancies] = useState<Vacancy[]>(
+  //   []
+  // );
 
   useOutsideAlerter(searchRef, () => {
     setIsDesktopMenuOpened(false);
@@ -64,6 +65,17 @@ const Header = () => {
       .get(`${API}/categories`)
       .then((res) => {
         setCategories(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${API}/vacancies?populate=*`)
+      .then((res) => {
+        setVacancies(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -99,30 +111,37 @@ const Header = () => {
     setIsMenuOpened((isMenuOpened) => !isMenuOpened);
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(
-        `${API}/vacancies?populate=*&filters[categories][categoryTitle][$eq]=${currentCategory}`
-      )
-      .then((arr) => {
-        setSelectedVacancies(arr.data.data);
-        // console.log(arr.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [currentCategory]);
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       `${API}/vacancies?populate=*&filters[categories][categoryTitle][$eq]=${currentCategory}`
+  //     )
+  //     .then((arr) => {
+  //       setSelectedVacancies(arr.data.data);
+  //       console.log(arr.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, [currentCategory]);
 
   const handleCategorySelect = useCallback((event: any) => {
     setCurrentCategory(event.target.text);
     console.log(currentCategory);
     setActiveMenu("vacancies");
-  }, []);
+  }, [currentCategory]);
+
+  useEffect(() => {
+    setSelectedVacancies(vacancies.filter(el =>
+      el.attributes.categories.data[0].attributes.categoryTitle === currentCategory));
+    console.log(vacancies.filter(el =>
+      el.attributes.categories.data[0].attributes.categoryTitle));
+  }, [currentCategory]);
 
   let isActiveCategory: boolean;
 
   const handleCategoryMenuSelect = useCallback((event: any) => {
-    setCurrentMenuCategory(event.target.name);
+    setCurrentCategory(event.target.name);
   }, []);
 
   const handleVacancyMenuSelect = useCallback(() => {
@@ -132,20 +151,6 @@ const Header = () => {
   const handleDesktopVacancyMenuSelect = useCallback(() => {
     setIsDesktopMenuOpened(false);
   }, []);
-
-  useEffect(() => {
-    axios
-      .get(
-        `${API}/vacancies?populate=*&filters[categories][categoryTitle][$eq]=${currentMenuCategory}`
-      )
-      .then((arr) => {
-        setSelectedMenuVacancies(arr.data.data);
-        console.log(arr.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [currentMenuCategory]);
 
   return (
     <header id="header" className="Header">
@@ -325,20 +330,10 @@ const Header = () => {
               </a>
 
               {selectedVacancies.map((vacancy) => (
-                // <a
-                //   key={vacancy.id}
-                //   href="#"
-                //   className="Header__link_mobile"
-                //   onClick={handleCategorySelect}
-                // >
-                //   <span>{vacancy.attributes.title}</span>
-                //   <img src={NextIcon} alt="" />
-                // </a>
                 <Link
                   key={vacancy.id}
                   className="Header__link_mobile"
                   to={`/vacancy/${vacancy.attributes.vacancySlug}`}
-                  // onClick={() => setCurrentVacancy(vacancy.attributes.vacancySlug)}
                   onClick={() => {
                     setCurrentVacancy(vacancy.attributes.vacancySlug);
                     handleVacancyMenuSelect();
@@ -365,12 +360,12 @@ const Header = () => {
               <input
                 type="checkbox"
                 checked={
-                  currentMenuCategory === category.attributes.categoryTitle
+                  currentCategory === category.attributes.categoryTitle
                 }
                 key={category.id}
                 id={category.id}
                 name={category.attributes.categoryTitle}
-                value={currentMenuCategory}
+                value={currentCategory}
                 onChange={handleCategoryMenuSelect}
                 className={classNames("Header__link_desktop")}
               />
@@ -382,20 +377,11 @@ const Header = () => {
           ))}
         </div>
         <div className="Header__dropMenuDesktop_vacancies">
-          {selectedMenuVacancies.map((vacancy) => (
-            // <a
-            //   key={vacancy.id}
-            //   href="#"
-            //   className="Header__link_desktop--vacancy"
-            //   onClick={handleCategorySelect}
-            // >
-            //   {vacancy.attributes.title}
-            // </a>
+          {selectedVacancies.map((vacancy) => (
             <Link
               key={vacancy.id}
               className="Header__link_desktop--vacancy"
               to={`/vacancy/${vacancy.attributes.vacancySlug}`}
-              // onClick={() => setCurrentVacancy(vacancy.attributes.vacancySlug)}
               onClick={() => {
                 setCurrentVacancy(vacancy.attributes.vacancySlug);
                 handleDesktopVacancyMenuSelect();

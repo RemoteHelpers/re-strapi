@@ -3,17 +3,18 @@
 @import "../../global-styles/fonts.scss";
 
 .Spheres {
+  padding-bottom: 3.1rem;
 
   @include onTablet {
-    padding: 3rem 0;
+    padding-bottom: 4.3rem;
   }
 
   @include onDesktop {
-    padding: 3rem 0 5rem;
+    padding-bottom: 4.3rem;
   }
 
   @include on1920 {
-    padding: 7rem 0;
+    padding-bottom: 5.6rem;
   }
 
   &__title {

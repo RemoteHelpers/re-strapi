@@ -107,7 +107,7 @@ function FeedbackForm({ img }: Props) {
   const url = window.location.pathname === "/videoInterview";
 
   return (
-    <div className={cl.feedback}>
+    <div className={cl.feedback} id="form">
       <div className={cl.feedback_wr}>
         <div className={cl.title}>Готові приєднатися прямо зараз?</div>
 
