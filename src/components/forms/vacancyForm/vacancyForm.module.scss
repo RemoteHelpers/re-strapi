@@ -1,0 +1,16 @@
+
+@import '../../../utils/mixins.scss';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  column-gap: 1rem;
+  div img {
+    max-width: 100%;
+  }
+  @include onTablet {
+    flex-direction: row;
+  }
+}

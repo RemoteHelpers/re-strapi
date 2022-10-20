@@ -2,6 +2,9 @@
 @import "../../global-styles/colors.scss";
 @import "../../global-styles/fonts.scss";
 
+.section {
+  position: relative;
+}
 .container {
   position: relative;
   padding: 3rem 1.8rem 6rem;
@@ -130,7 +133,7 @@
 }
 .decoration {
   position: absolute;
-  bottom: 0;
+  bottom: -20%;
   left: -25%;
   width: 150vw;
   height: 75vh;
@@ -144,7 +147,7 @@
     width: 110vw;
     height: 70vh;
     left: -5%;
-    bottom: 0;
+    bottom: -35%;
   }
 }
 .button {

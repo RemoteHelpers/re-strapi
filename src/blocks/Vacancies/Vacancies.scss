@@ -11,8 +11,12 @@
 }
 
 .container {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
+
+  @include onTablet {
+    width: 80%;
+  }
 
   // @include onDesktop {
   //   width: 76%;
@@ -326,8 +330,8 @@
     @include onDesktop {
       width: 25rem;
       height: 25rem;
-      top: -20%;
-      right: 40%;
+      top: -10%;
+      right: 35%;
     }
   }
   &--big {
