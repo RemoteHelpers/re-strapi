@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { FormsSvg } from '../../icons/form/FormsSvg';
 import cl from './toTopButton.module.scss';
@@ -8,6 +9,7 @@ export const ToTopButton = () => {
       top: 0,
       behavior: 'smooth',
     });
+    console.log('click');
   };
 
   return (
@@ -16,7 +18,7 @@ export const ToTopButton = () => {
       className={cl.to_top_btn}
       onClick={scrollTop}
     >
-      <FormsSvg id="top">Scroll Top</FormsSvg>
+      <FormsSvg id="top" />
     </button>
   );
 };
