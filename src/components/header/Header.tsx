@@ -358,6 +358,8 @@ const Header = () => {
         className={classNames("Header__dropMenuDesktop", {
           Header__dropMenuDesktop_active: isDesktopMenuOpened,
         })}
+        onMouseOver={() => setIsDesktopMenuOpened(true)}
+        onMouseLeave={() => setIsDesktopMenuOpened(false)}
         ref={searchRef}
       >
         <div className="Header__dropMenuDesktop_categories">
