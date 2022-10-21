@@ -27,6 +27,7 @@ import NotFoundPage from './pages/notFoundPage/notFoundPage';
 
 const App: React.FC = () => {
   const {
+    scrollToTop,
     // localization,
     currentVacancy,
     isSubmitLocalization,
@@ -37,6 +38,7 @@ const App: React.FC = () => {
     <>
       {isSubmitLocalization ? (
         <BrowserRouter>
+          <div ref={scrollToTop}></div>
           <Header />
           <main className={isDesktopMenuOpened ? "desktopMenuOpened" : ""}>
             <div className={isDesktopMenuOpened ? "darken" : "no-darken"}></div>

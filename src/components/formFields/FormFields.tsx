@@ -8,6 +8,7 @@ import cl from './formFields.module.scss';
 import Api from '../../api';
 import { IFeedbackFormData } from '../../types/types';
 import { useStateContext } from '../../context/StateContext';
+import vacancyCat from '../../icons/vacancyCat.png';
 
 type TOption = {
   value: string;
@@ -81,7 +82,7 @@ export const FormFields = () => {
   const url = window.location.pathname === `/vacancies/${currentVacancy}`;
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className={cl.form_wrapper}>
       <div className={cl.wr_form}>
         <div className={cl.input_wr}>
           <div className={cl.input_name}>
@@ -130,6 +131,9 @@ export const FormFields = () => {
             onChange={changeEnglishLevel}
             options={EnglishLevel}
           />
+        </div>
+        <div className={cl.vacancy_mobile_cat}>
+          <img src={vacancyCat} alt="" />
         </div>
         <div className={cl.buttons_wr}>
           <label className={cl.label_file}>

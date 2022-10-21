@@ -14,3 +14,10 @@
     flex-direction: row;
   }
 }
+
+.vacancy_form_cat {
+  display: none;
+  @include onDesktop {
+    display: block;
+  }
+}

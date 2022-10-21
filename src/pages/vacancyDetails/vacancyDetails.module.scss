@@ -221,14 +221,28 @@
 .vacancyForm {
   border: 3px solid $primaryColor3;
   background-color: $primaryColor4;
-  padding: 3.125rem;
+  padding: 2.125rem 1.125rem;
   border-radius: 1.875rem;
   margin-top: 6rem;
+
+  @include onTablet {
+    padding: 2.125rem;
+  }
+  @include onDesktop {
+    padding: 3.125rem;
+  }
+
+
 }
 
 
 .formStyledMarkdown {
-  width: 60%;
+  width: 100%;
+
+  @include onDesktop {
+    width: 60%;
+  }
+
   p {
     margin-bottom: 1rem;
     font-size: $typography4;
@@ -247,4 +261,6 @@
   justify-content: flex-end;
   width: 100%;
   padding-bottom: 2rem;
+  background-color: transparent;
+  border: 0;
 }

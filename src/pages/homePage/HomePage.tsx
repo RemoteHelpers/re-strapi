@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react/jsx-filename-extension */
 import React from "react";
+import { useStateContext } from "../../context/StateContext";
 import VacancyList from "../../components/vacanciesList";
 import FAQ from "../../components/faq/FAQ";
 import FeedbackForm from "../../components/forms/feedbackForm";
@@ -12,6 +13,8 @@ import formImg from "../../images/formImg.png";
 import cl from "./HomePage.module.scss";
 
 export const HomePage = () => {
+  const { scrollToHomeForm } = useStateContext();
+
   return (
     <>
       <MainScreen />
@@ -27,7 +30,10 @@ export const HomePage = () => {
         <Partners />
       </div>
       <Testimonials />
-      <div className={cl.container}>
+      <div
+        className={cl.container}
+        ref={scrollToHomeForm}
+      >
         <FeedbackForm img={formImg} />
       </div>
     </>

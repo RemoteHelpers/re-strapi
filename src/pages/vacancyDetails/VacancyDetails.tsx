@@ -15,12 +15,12 @@ import { LocalVacancyType } from '../../types/types';
 import play from '../../icons/play.png';
 import { VacancySvg } from './VacancyFireSvg';
 import VacancyForm from '../../components/forms/vacancyForm';
-import ToTopButton from '../../components/toTopButton';
+import { ToTopButton } from '../../components/toTopButton/ToTopButton';
 
 const API = 'http://testseven.rh-s.com:1733/api';
 
 export const VacancyDetails = () => {
-  const { currentVacancy, setCurrentVacancy } = useStateContext();
+  const { currentVacancy, setCurrentVacancy, scrollToTop } = useStateContext();
   const [localVacancy, setLocalVacancy] = useState<LocalVacancyType[]>([]);
   const [activeAlert, setActiveAlert] = useState(false);
   const formSection = useRef<HTMLDivElement>(null);
@@ -106,7 +106,7 @@ export const VacancyDetails = () => {
                   <p>{item.attributes.subTitle}</p>
                   <button
                     type="button"
-                    onClick={() => formSection?.current?.scrollIntoView({ block: 'center', behavior: 'smooth' })}
+                    onClick={() => formSection?.current?.scrollIntoView({ block: 'start', behavior: 'smooth' })}
                   >
                     Відгукнутися
                   </button>
@@ -137,9 +137,13 @@ export const VacancyDetails = () => {
           ))}
         </div>
       </div>
-      <div className={cl.vacancy_top}>
+      <button
+        type="button"
+        className={cl.vacancy_top}
+        onClick={() => scrollToTop?.current?.scrollIntoView({ block: 'start', behavior: 'smooth' })}
+      >
         <ToTopButton />
-      </div>
+      </button>
     </div>
   );
 };

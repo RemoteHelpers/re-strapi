@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, {
-  createContext, useContext, useState,
+  createContext, useContext, useState, useRef,
 } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 
@@ -17,10 +17,14 @@ export const StateContext = ({ children }) => {
   // const [localization, setLocalization] = useState("ua");
   // const [isSubmitLocalization, setIsSubmitLocalization] = useState(false);
   const [currentVacancy, setCurrentVacancy] = useState();
+  const scrollToTop = useRef(null);
+  const scrollToHomeForm = useRef(null);
 
   return (
     <Context.Provider
       value={{
+        scrollToHomeForm,
+        scrollToTop,
         localization,
         setLocalization,
         isSubmitLocalization,

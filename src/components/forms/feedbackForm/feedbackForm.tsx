@@ -5,8 +5,9 @@ import cl from './feedbackForm.module.scss';
 import '../../formFields/feedbackFormSelect.scss';
 // img
 // import { FormsSvg } from "../../../icons/form/FormsSvg";
-import ToTopButton from '../../toTopButton';
 import FormFields from '../../formFields';
+import { ToTopButton } from '../../toTopButton/ToTopButton';
+import { useStateContext } from '../../../context/StateContext';
 
 interface Props {
   img: string;
@@ -14,6 +15,7 @@ interface Props {
 
 function FeedbackForm({ img }: Props) {
   const url = window.location.pathname === '/videoInterview';
+  const { scrollToTop } = useStateContext();
 
   return (
     <div className={cl.feedback} id="form">
@@ -22,9 +24,13 @@ function FeedbackForm({ img }: Props) {
           <img src={img} alt="Happy cat" />
         </div>
         <FormFields />
-        <div className={cl.feedback_top}>
+        <button
+          type="button"
+          className={cl.feedback_top}
+          onClick={() => scrollToTop?.current?.scrollIntoView({ block: 'center', behavior: 'smooth' })}
+        >
           <ToTopButton />
-        </div>
+        </button>
       </div>
     </div>
   );
