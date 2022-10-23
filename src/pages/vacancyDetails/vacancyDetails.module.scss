@@ -231,10 +231,23 @@
   @include onDesktop {
     padding: 3.125rem;
   }
-
-
 }
 
+.breadCrumbArrows {
+  li {
+    &:nth-child(2) {
+      display: none;
+    }
+
+    @include onTablet {
+      &:nth-child(2) {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+  }
+}
 
 .formStyledMarkdown {
   width: 100%;

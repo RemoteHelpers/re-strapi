@@ -60,6 +60,7 @@ export const VacancyDetails = () => {
                 <Breadcrumbs
                   separator={<NavigateNextIcon className={cl.crumbArrow} fontSize="medium" />}
                   aria-label="breadcrumb"
+                  className={cl.breadCrumbArrows}
                 >
                   <Link
                     className={`${cl.normalCrumb} ${cl.firstCrumb}`}
