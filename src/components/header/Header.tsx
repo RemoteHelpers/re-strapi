@@ -37,6 +37,7 @@ const Header = () => {
     setIsDesktopMenuOpened,
     setCurrentVacancy,
   } = useStateContext();
+
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [currentCategory, setCurrentCategory] = useState<string>("Розробка");
@@ -285,6 +286,13 @@ const Header = () => {
                 />
                 <span>Назад до меню</span>
               </a>
+              <Link
+                className="Header__link_mobile"
+                to="/vacancies"
+                onClick={() => setIsMenuOpened(false)}
+              >
+                <span>Всі вакансії</span>
+              </Link>
               {categories.map((category) => (
                 <a
                   key={category.id}
@@ -323,7 +331,7 @@ const Header = () => {
                 <Link
                   key={vacancy.id}
                   className="Header__link_mobile"
-                  to={`/vacancy/${vacancy.attributes.vacancySlug}`}
+                  to={`/vacancies/${vacancy.attributes.vacancySlug}`}
                   onClick={() => {
                     setCurrentVacancy(vacancy.attributes.vacancySlug);
                     handleVacancyMenuSelect();
