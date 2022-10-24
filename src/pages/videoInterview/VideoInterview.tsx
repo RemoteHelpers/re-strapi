@@ -9,7 +9,6 @@ import cl from './videoInterview.module.scss';
 import '../../global-styles/colors.scss';
 import cameraKitekat from '../../icons/kitekat_camera.png';
 import FeedbackForm from '../../components/forms/feedbackForm';
-import interviewKitekat from '../../icons/interview_form_kitekat.png';
 import { ArrowSvg } from './ArrowSvg';
 import interviewCat from '../../icons/interview_kitekat.png';
 import play from '../../icons/play.png';
@@ -23,37 +22,47 @@ export const VideoInterview = () => {
 
   return (
     <>
-      <div className={cl.container}>
-        <div className={cl.main_wrapper}>
-          <div className={cl.left_intro}>
-            <div>
-              <img src={cameraKitekat} alt="" />
+      <div className={cl.main_screen}>
+        <div className={cl.container}>
+          <div className={cl.main_wrapper}>
+            <div className={cl.top_intro}>
+              <div className={cl.interview_tv}>
+                <img src={cameraKitekat} alt="" />
+              </div>
+              <div className={cl.top_intro_text}>
+                <h1>
+                  Як записати
+                  <br />
+                  інтерв'ю?
+                </h1>
+                <p>
+                  Ми розповімо Вам, як поетапно записати Ваше інтерв’ю для нашої
+                  компанії. Для Вас це стане невеликим “вступним іспитом”, який
+                  обов’язково потрібно скласти!
+                </p>
+                <p>
+                  Відеоінтерв’ю економить Ваш час. Замість того, щоб їздити кілька
+                  разів на тиждень на співбесіди та перекроювати всі свої плани, Ви
+                  записуєте інтерв’ю лише 1 раз і спите спокійно.
+                </p>
+              </div>
             </div>
-            <p>
-              Відеоінтерв’ю – це нововведення, яке вже давно практикується у
-              багатьох західних країнах і, як правило, замінює Вашу співбесіду в
-              офісі.
-            </p>
-            <p>
-              Відео потрібно записувати в спокійній, звичній для вас атмосфері,
-              без сторонніх звуків та дратівливих факторів. Інтерв’ю має бути
-              англійською мовою та тривалістю до 3-х хвилин!
-            </p>
-          </div>
-          <div className={cl.right_intro}>
-            <h1>Як записати інтерв'ю?</h1>
-            <p>
-              Ми розповімо Вам, як поетапно записати Ваше інтерв’ю для нашої
-              компанії. Для Вас це стане невеликим “вступним іспитом”, який
-              обов’язково потрібно скласти!
-            </p>
-            <p>
-              Відеоінтерв’ю економить Ваш час. Замість того, щоб їздити кілька
-              разів на тиждень на співбесіди та перекроювати всі свої плани, Ви
-              записуєте інтерв’ю лише 1 раз і спите спокійно.
-            </p>
-            <div className={cl.absoluted_interview_cat}>
-              <img src={interviewCat} alt="" />
+            <div className={cl.bottom_intro}>
+              <div className={cl.bottom_intro_text}>
+                <p>
+                  Відеоінтерв’ю – це нововведення, яке вже давно практикується у
+                  багатьох західних країнах і, як правило, замінює Вашу співбесіду в
+                  офісі.
+                </p>
+                <p>
+                  Відео потрібно записувати в спокійній, звичній для вас атмосфері,
+                  без сторонніх звуків та дратівливих факторів. Інтерв’ю має бути
+                  англійською мовою та тривалістю до 3-х хвилин!
+                </p>
+              </div>
+              <div className={cl.absoluted_interview_cat}>
+                <img src={interviewCat} alt="" />
+              </div>
             </div>
           </div>
         </div>
@@ -386,7 +395,7 @@ export const VideoInterview = () => {
       </div>
 
       <div className={cl.container}>
-        <FeedbackForm img={interviewKitekat} />
+        <FeedbackForm />
       </div>
     </>
   );

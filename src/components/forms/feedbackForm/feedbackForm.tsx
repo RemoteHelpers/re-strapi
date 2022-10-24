@@ -9,11 +9,10 @@ import FormFields from '../../formFields';
 import { ToTopButton } from '../../toTopButton/ToTopButton';
 import { useStateContext } from '../../../context/StateContext';
 
-interface Props {
-  img: string;
-}
+import feedbackCat from '../../../images/formImg.png';
+import vacancyCat from '../../../icons/interview_form_kitekat.png';
 
-function FeedbackForm({ img }: Props) {
+function FeedbackForm() {
   const url = window.location.pathname === '/videoInterview';
   const { scrollToTop } = useStateContext();
 
@@ -21,13 +20,17 @@ function FeedbackForm({ img }: Props) {
     <div className={cl.feedback} id="form">
       <div className={cl.feedback_wr}>
         <div className={url ? cl.null_padding : cl.img_wr_desktop}>
-          <img src={img} alt="Happy cat" />
+          {url ? (
+            <img src={vacancyCat} alt="Happy cat" />
+          ) : (
+            <img src={feedbackCat} alt="Happy cat" />
+          )}
         </div>
         <FormFields />
         <button
           type="button"
           className={cl.feedback_top}
-          onClick={() => scrollToTop?.current?.scrollIntoView({ block: 'center', behavior: 'smooth' })}
+          onClick={() => scrollToTop?.current?.scrollIntoView({ block: 'start', behavior: 'smooth' })}
         >
           <ToTopButton />
         </button>

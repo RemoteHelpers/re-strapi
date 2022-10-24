@@ -8,7 +8,6 @@ export const VacaniesPage = () => {
   return (
     <>
       <Vacancies />
-      {/* <FeedbackForm /> */}
     </>
   );
 };

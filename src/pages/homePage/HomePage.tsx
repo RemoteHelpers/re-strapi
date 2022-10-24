@@ -9,7 +9,6 @@ import MainScreen from "../../components/mainScreen/MainScreen";
 import Partners from "../../components/partners/Partners";
 import Spheres from "../../components/spheres";
 import Testimonials from "../../components/testimonials";
-import formImg from "../../images/formImg.png";
 import cl from "./HomePage.module.scss";
 
 export const HomePage = () => {
@@ -34,7 +33,7 @@ export const HomePage = () => {
         className={cl.container}
         ref={scrollToHomeForm}
       >
-        <FeedbackForm img={formImg} />
+        <FeedbackForm />
       </div>
     </>
   );
