@@ -39,9 +39,10 @@ const Header = () => {
     setIsDesktopMenuOpened,
     setCurrentVacancy,
   } = useStateContext();
+
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [currentCategory, setCurrentCategory] = useState<string>("");
+  const [currentCategory, setCurrentCategory] = useState<string>("Розробка");
   const [selectedVacancies, setSelectedVacancies] = useState<Vacancy[]>([]);
   const [vacancies, setVacancies] = useState<Vacancy[]>([]);
   const [activeMenu, setActiveMenu] = useState("main");
@@ -121,43 +122,16 @@ const Header = () => {
     setIsMenuOpened(!isMenuOpened);
   }, []);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `${API}/vacancies?populate=*&filters[categories][categoryTitle][$eq]=${currentCategory}`
-  //     )
-  //     .then((arr) => {
-  //       setSelectedVacancies(arr.data.data);
-  //       console.log(arr.data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [currentCategory]);
-
-  const handleCategorySelect = useCallback(
-    (event: any) => {
-      setCurrentCategory(event.target.text);
-      console.log(currentCategory);
-      setActiveMenu("vacancies");
-    },
-    [currentCategory]
-  );
+  const handleCategorySelect = useCallback((event: any) => {
+    setCurrentCategory(event.target.text);
+    console.log(currentCategory);
+    setActiveMenu("vacancies");
+  }, []);
 
   useEffect(() => {
-    setSelectedVacancies(
-      vacancies.filter(
-        (el) =>
-          el.attributes.categories.data[0].attributes.categoryTitle ===
-          currentCategory
-      )
-    );
-    console.log(
-      vacancies.filter(
-        (el) => el.attributes.categories.data[0].attributes.categoryTitle
-      )
-    );
-  }, [currentCategory]);
+    setSelectedVacancies(vacancies.filter(el =>
+      el.attributes.categories.data[0].attributes.categoryTitle === currentCategory));
+  }, [currentCategory, vacancies]);
 
   let isActiveCategory: boolean;
 
@@ -324,6 +298,13 @@ const Header = () => {
                 />
                 <span>Назад до меню</span>
               </a>
+              <Link
+                className="Header__link_mobile"
+                to="/vacancies"
+                onClick={() => setIsMenuOpened(false)}
+              >
+                <span>Всі вакансії</span>
+              </Link>
               {categories.map((category) => (
                 <a
                   key={category.id}
@@ -362,7 +343,7 @@ const Header = () => {
                 <Link
                   key={vacancy.id}
                   className="Header__link_mobile"
-                  to={`/vacancy/${vacancy.attributes.vacancySlug}`}
+                  to={`/vacancies/${vacancy.attributes.vacancySlug}`}
                   onClick={() => {
                     setCurrentVacancy(vacancy.attributes.vacancySlug);
                     handleVacancyMenuSelect();
