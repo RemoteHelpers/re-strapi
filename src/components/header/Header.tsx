@@ -121,20 +121,6 @@ const Header = () => {
     setIsMenuOpened(!isMenuOpened);
   }, []);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `${API}/vacancies?populate=*&filters[categories][categoryTitle][$eq]=${currentCategory}`
-  //     )
-  //     .then((arr) => {
-  //       setSelectedVacancies(arr.data.data);
-  //       console.log(arr.data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [currentCategory]);
-
   const handleCategorySelect = useCallback(
     (event: any) => {
       setCurrentCategory(event.target.text);
