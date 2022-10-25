@@ -16,7 +16,7 @@ export const ToTopButton = () => {
       className={cl.to_top_btn}
       onClick={scrollTop}
     >
-      <FormsSvg id="top">Scroll Top</FormsSvg>
+      <FormsSvg id="top" />
     </button>
   );
 };

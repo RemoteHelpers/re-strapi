@@ -9,7 +9,6 @@ import FeedbackForm from "../../components/forms/feedbackForm";
 
 import memberTeam from "../../icons/team_member.png";
 import { AboutPageSvg } from "./AboutPageSvg";
-import formImg from "../../images/formImg.png";
 import Spheres from "../../components/spheres";
 
 export const AboutPage = () => {
@@ -135,7 +134,7 @@ export const AboutPage = () => {
       </div>
       <div className={cl.footer_decoration}>
         <div className={cl.container}>
-          <FeedbackForm img={formImg} />
+          <FeedbackForm />
         </div>
       </div>
     </>

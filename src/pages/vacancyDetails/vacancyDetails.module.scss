@@ -3,13 +3,14 @@
 @import "../../utils/mixins.scss";
 
 .card {
-  margin: 3rem 0 9rem;
-  border: 2px solid #616161;
+  margin: 3rem 0;
+  border: 1px solid $secondaryColor4;
   border-radius: 1.25rem;
   padding: 1.25rem 1rem;
 
   @include onTablet {
     padding: 3.25rem 3rem;
+    border: 2px solid $secondaryColor4;
   }
 
   h1 {
@@ -17,7 +18,7 @@
     font-weight: 900;
     font-size: clamp(32px, 3.3vw, 64px);
     text-decoration-line: underline;
-    color: #000000;
+    color: $typographyColor1;
     margin-top: 2rem;
   }
 }
@@ -98,7 +99,7 @@
   position: relative;
   width: calc(100% / 3 - 1rem);
   height: 200px;
-  background: #3f455b;
+  background: $typographyColor2;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
   border-radius: 0.5rem;
   margin-top: 4rem;
@@ -221,14 +222,40 @@
 .vacancyForm {
   border: 3px solid $primaryColor3;
   background-color: $primaryColor4;
-  padding: 3.125rem;
+  padding: 2.125rem 1.125rem;
   border-radius: 1.875rem;
   margin-top: 6rem;
+
+  @include onTablet {
+    padding: 2.125rem;
+  }
+  @include onDesktop {
+    padding: 3.125rem;
+  }
 }
 
+.breadCrumbArrows {
+  li {
+    &:nth-child(2) {
+      display: none;
+    }
+
+    @include onTablet {
+      &:nth-child(2) {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}
 
 .formStyledMarkdown {
-  width: 60%;
+  width: 100%;
+
+  @include onDesktop {
+    width: 60%;
+  }
+
   p {
     margin-bottom: 1rem;
     font-size: $typography4;
@@ -244,7 +271,14 @@
 
 .vacancy_top {
   display: inline-flex;
-  justify-content: flex-end;
+  justify-content: center;
   width: 100%;
   padding-bottom: 2rem;
+  background-color: transparent;
+  border: 0;
+
+  @include onTablet {
+    justify-content: flex-end;
+  }
+
 }

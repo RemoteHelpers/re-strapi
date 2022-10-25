@@ -14,7 +14,7 @@ import ReactMarkdown from "react-markdown";
 import "../../App.scss";
 import { Alert, Breadcrumbs, Link, Typography } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import cl from "./vacancyDetails.module.scss";
 import { useStateContext } from "../../context/StateContext";
 import { LocalVacancyType } from "../../types/types";
@@ -22,12 +22,12 @@ import { LocalVacancyType } from "../../types/types";
 import play from "../../icons/play.png";
 import { VacancySvg } from "./VacancyFireSvg";
 import VacancyForm from "../../components/forms/vacancyForm";
-import ToTopButton from "../../components/toTopButton";
+import { ToTopButton } from "../../components/toTopButton/ToTopButton";
 
 const API = "http://testseven.rh-s.com:1733/api";
 
 export const VacancyDetails = () => {
-  const { localization } = useStateContext();
+  const { scrollToTop, localization } = useStateContext();
   const [localVacancy, setLocalVacancy] = useState<LocalVacancyType[]>([]);
   const [activeAlert, setActiveAlert] = useState(false);
   const formSection = useRef<HTMLDivElement>(null);
@@ -47,10 +47,6 @@ export const VacancyDetails = () => {
         console.log(err);
       });
   }, []);
-
-  // useEffect(() => {
-  //   setCurrentVacancy(vacancyID);
-  // }, []);
 
   const handleClickToFavorite = () => {
     setActiveAlert(true);
@@ -74,6 +70,7 @@ export const VacancyDetails = () => {
                     />
                   }
                   aria-label="breadcrumb"
+                  className={cl.breadCrumbArrows}
                 >
                   <Link
                     className={`${cl.normalCrumb} ${cl.firstCrumb}`}
@@ -127,12 +124,7 @@ export const VacancyDetails = () => {
                   <p>{item.attributes.subTitle}</p>
                   <button
                     type="button"
-                    onClick={() =>
-                      formSection?.current?.scrollIntoView({
-                        block: "center",
-                        behavior: "smooth",
-                      })
-                    }
+                    onClick={() => formSection?.current?.scrollIntoView({ block: 'start', behavior: 'smooth' })}
                   >
                     Відгукнутися
                   </button>
@@ -162,9 +154,13 @@ export const VacancyDetails = () => {
           ))}
         </div>
       </div>
-      <div className={cl.vacancy_top}>
+      <button
+        type="button"
+        className={cl.vacancy_top}
+        onClick={() => scrollToTop?.current?.scrollIntoView({ block: 'start', behavior: 'smooth' })}
+      >
         <ToTopButton />
-      </div>
+      </button>
     </div>
   );
 };

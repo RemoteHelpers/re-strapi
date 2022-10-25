@@ -16,17 +16,34 @@
   &_wr {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    column-gap: 3rem;
     width: 100%;
     margin: 0 auto;
     border: 3px solid $primaryColorVacancy;
     border-radius: 1.875rem;
-    padding: 4.375rem 2.5rem;
     background-color: #fff;
+    padding: 2rem 1.375rem;
+
+    @include onTablet {
+      padding: 2.375rem 2.5rem;
+    }
+
+    @include onTablet {
+      padding: 4.375rem 2.5rem;
+    }
+
   }
 }
 .img_wr_desktop {
   width: 70%;
-  margin: -15rem 0 0 0;
+  margin: -10rem 0 0 0;
+  display: none;
+
+  @include onDesktop {
+    display: block;
+  }
+
   img {
     width: 100%;
     height: 100%;
@@ -35,12 +52,26 @@
 
 .null_padding {
   margin: 0;
+  width: 60%;
+  display: none;
+
+  @include onDesktop {
+    display: block;
+  }
+
 }
 
 .feedback_top {
   position: absolute;
   bottom: 1rem;
-  right: 0;
+  right: 50%;
+  transform: translate(50%);
+  border: 0;
+  background-color: transparent;
+
+  @include onTablet {
+    right: 0;
+  }
 }
 
 

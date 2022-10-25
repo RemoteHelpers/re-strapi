@@ -1,52 +1,119 @@
 @import "../../global-styles/colors.scss";
+@import "../../global-styles/fonts.scss";
 @import "../../utils/mixins.scss";
 
+img {
+  max-width: 100%;
+}
+
 .container {
-  width: 80%;
+  width: 90%;
   height: auto;
   margin: 0 auto;
+
+  @include onDesktop {
+    width: 80%;
+  }
+
 }
 .main_wrapper {
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   padding: 0 0 3.5rem 0;
+
 }
-.left_intro {
-  width: 50%;
+
+.main_screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    border-radius: 60% 63% 0% 0% / 100% 100% 0% 0%;
+    background-color: #eefdff;
+    z-index: 1;
+
+    @include onTablet {
+      height: 200px;
+    }
+
+  }
+  &::before {
+      content: "";
+      position: absolute;
+      display: none;
+      bottom: 0;
+      right: 0;
+      width: 40%;
+      height: 30%;
+      background-color: $primaryColor3;
+      z-index: -2;
+      border-radius: 72% 28% 0% 0% / 62% 5% 95% 38%;
+
+      @include onTablet {
+        display: block;
+      }
+
+    }
+}
+
+
+.interview_tv {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+
+  @include onTablet {
+    width: 50%;
+    margin-top: 0;
+    justify-content: flex-start;
+  }
+}
+
+.top_intro_text {
+  width: 100%;
+  margin-top: 4rem;
+
+  @include onTablet {
+    width: 50%;
+    margin-top: 0;
+  }
+
+}
+
+.bottom_intro_text {
+  width: 100%;
+  margin-bottom: 5rem;
+
+  @include onTablet {
+    width: 50%;
+    margin-bottom: 0;
+  }
+}
+
+
+.top_intro {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+
+  @include onTablet {
+    flex-direction: row;
+  }
+
   img {
     width: 80%;
   }
-  p {
-    margin-top: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%;
-    font-size: clamp(14px, 1.1vw, 20px);
-    &:first-of-type {
-      margin-top: 6rem;
-    }
-  }
-}
-.right_intro {
-  width: 50%;
-  position: relative;
-  .absoluted_interview_cat {
-    position: absolute;
-    bottom: -31%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
-    z-index: -1;
-  }
-  @include onTablet {
-    .absoluted_interview_cat {
-      width: 70%;
-    }
-  }
   h1 {
-    font-size: clamp(32px, 3.3vw, 64px);
+    font-size: $typography1;
     font-style: normal;
     font-weight: 900;
     line-height: 130%;
@@ -70,38 +137,47 @@
     font-style: normal;
     font-weight: 400;
     line-height: 150%;
-    font-size: clamp(14px, 1.1vw, 20px);
+    font-size: $typography4;
+    color: $typographyColor1;
+  }
+}
+
+
+.bottom_intro {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  @include onTablet {
+    flex-direction: row;
+  }
+
+  .absoluted_interview_cat {
+    display: flex;
+    justify-content: center;
+  }
+  @include onTablet {
+    .absoluted_interview_cat {
+      width: 70%;
+    }
+  }
+  p {
+    margin-top: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    font-size: $typography4;
     &:first-of-type {
-      margin-top: 2rem;
+      margin-top: 5rem;
     }
   }
 }
 
 .instruction {
-  padding: 15rem 0 10rem;
+  padding-bottom: 7rem;
   position: relative;
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: $secondaryColor2;
-    border-radius: 49% 51% 0% 0% / 35% 33% 67% 65%;
-    z-index: -1;
-  }
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 40%;
-    height: 50%;
-    background-color: $primaryColor3;
-    z-index: -2;
-    border-radius: 72% 28% 0% 0% / 62% 5% 95% 38%;
-  }
+  background-color: $secondaryColor2;
 }
 
 .instruction_wrapper {
@@ -110,7 +186,7 @@
     text-decoration: underline;
     font-style: normal;
     font-weight: 800;
-    font-size: clamp(28px, 2.5vw, 48px);
+    font-size: $typography2;
     line-height: 130%;
     &:nth-child(1) {
       margin-bottom: 2.875rem;
@@ -124,7 +200,7 @@
     font-style: normal;
     text-decoration: none;
     font-weight: 600;
-    font-size: clamp(20px, 1.6vw, 32px);
+    font-size: clamp(18px, 1.5vw, 30px);
     line-height: 115%;
     color: $typographyColor1;
   }
@@ -159,14 +235,29 @@
 .video_block {
   width: 100%;
   height: auto;
-  padding: 8rem 0;
+  padding: 2rem 0 0;
+  
+  @include onTablet {
+    padding: 4rem 0;
+  }
+
+  @include onDesktop {
+    padding: 8rem 0;
+  }
+
 }
 .video_instruction_block {
   width: 100%;
   display: flex;
+  flex-direction: column-reverse !important;
   justify-content: space-between;
   align-items: center;
   column-gap: 4rem;
+
+  @include onTablet {
+    flex-direction: row !important;
+  }
+
 }
 
 @media (max-width: 992px) {
@@ -177,11 +268,16 @@
 
 .instruction_video_title {
   position: relative;
-  width: calc(100% / 3 - 1rem);
+  width: 100%;
   height: 200px;
   background: #3f455b;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
   border-radius: 0.5rem;
+
+  @include onTablet {
+    width: calc(100% / 3 - 1rem);
+  }
+
   img {
     display: block;
     position: absolute;
@@ -194,7 +290,14 @@
   }
 }
 .video_instruction {
-  width: 70%;
+  width: 100%;
+  margin-bottom: 2rem;
+
+  @include onTablet {
+    width: 70%;
+    margin-bottom: 0;
+  }
+
   h1 {
     font-style: normal;
     font-weight: 800;
@@ -214,16 +317,33 @@
 }
 
 .video_examples {
-  padding: 13.75rem 0 0 0;
+  padding: 5rem 0 0 0;
+  
+  @include onTablet {
+    padding: 10rem 0 0 0;
+  }
+
+  @include onDesktop {
+    padding: 13rem 0 0 0;
+  }
+
 }
 
 .video_examples_wrapper {
   width: 100%;
   height: auto;
   display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
   justify-content: space-between;
   align-items: center;
   margin-top: 2.75rem;
+
+  @include onTablet {
+    flex-direction: row;
+    row-gap: 0;
+  }
+
 }
 .video_examples {
   h1 {
