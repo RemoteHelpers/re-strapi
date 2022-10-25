@@ -6,11 +6,6 @@ img {
   max-width: 100%;
 }
 
-
-.video_interview_page {
-  background-color: red;
-}
-
 .container {
   width: 90%;
   height: auto;
@@ -79,8 +74,8 @@ img {
   @include onTablet {
     width: 50%;
     margin-top: 0;
+    justify-content: flex-start;
   }
-
 }
 
 .top_intro_text {

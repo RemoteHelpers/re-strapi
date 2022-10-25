@@ -4,9 +4,14 @@
 @import '../../global-styles/fonts.scss';
 
 .container {
-  width: 80%;
+  width: 90%;
   height: auto;
   margin: 0 auto;
+
+  @include onTablet {
+    width: 80%;
+  }
+
 }
 
 .mainTitle {
