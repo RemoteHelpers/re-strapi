@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable operator-linebreak */
 /* eslint-disable comma-dangle */
 /* eslint-disable react/jsx-curly-newline */
 /* eslint-disable no-confusing-arrow */
@@ -39,7 +41,7 @@ const Header = () => {
   } = useStateContext();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [currentCategory, setCurrentCategory] = useState<string>("");
+  const [currentCategory, setCurrentCategory] = useState<string>("Розробка");
   const [selectedVacancies, setSelectedVacancies] = useState<Vacancy[]>([]);
   const [vacancies, setVacancies] = useState<Vacancy[]>([]);
   const [activeMenu, setActiveMenu] = useState("main");
@@ -81,8 +83,10 @@ const Header = () => {
   }, []);
 
   const selectLocalization = [
-    { value: "en", label: "EN" },
     { value: "uk", label: "UA" },
+    { value: "pl", label: "PL" },
+    { value: "en", label: "EN" },
+    { value: "sk", label: "SK" },
     { value: "ru", label: "RU" },
   ];
 
@@ -100,41 +104,38 @@ const Header = () => {
     );
   };
 
-  const handleLocalizationSelect = useCallback((selected: any) => {
-    setLocalization(selected.value);
-  }, []);
+  const handleLocalizationSelect = useCallback(
+    (selected: any) => {
+      setLocalization(selected.value);
+
+      const prevLanguage = window.location.pathname.split("/")[1];
+
+      if (localization !== prevLanguage) {
+        window.location.reload();
+      }
+    },
+    [localization]
+  );
 
   const handleMenuClick = useCallback(() => {
-    // eslint-disable-next-line no-shadow
-    setIsMenuOpened((isMenuOpened) => !isMenuOpened);
+    setIsMenuOpened(!isMenuOpened);
   }, []);
-
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `${API}/vacancies?populate=*&filters[categories][categoryTitle][$eq]=${currentCategory}`
-  //     )
-  //     .then((arr) => {
-  //       setSelectedVacancies(arr.data.data);
-  //       console.log(arr.data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [currentCategory]);
 
   const handleCategorySelect = useCallback((event: any) => {
     setCurrentCategory(event.target.text);
     console.log(currentCategory);
     setActiveMenu("vacancies");
-  }, [currentCategory]);
+  }, []);
 
   useEffect(() => {
-    setSelectedVacancies(vacancies.filter(el =>
-      el.attributes.categories.data[0].attributes.categoryTitle === currentCategory));
-    console.log(vacancies.filter(el =>
-      el.attributes.categories.data[0].attributes.categoryTitle));
-  }, [currentCategory]);
+    setSelectedVacancies(
+      vacancies.filter(
+        (el) =>
+          el.attributes.categories.data[0].attributes.categoryTitle ===
+          currentCategory
+      )
+    );
+  }, [currentCategory, vacancies]);
 
   let isActiveCategory: boolean;
 
@@ -301,6 +302,13 @@ const Header = () => {
                 />
                 <span>Назад до меню</span>
               </a>
+              <Link
+                className="Header__link_mobile"
+                to="/vacancies"
+                onClick={() => setIsMenuOpened(false)}
+              >
+                <span>Всі вакансії</span>
+              </Link>
               {categories.map((category) => (
                 <a
                   key={category.id}
@@ -339,7 +347,7 @@ const Header = () => {
                 <Link
                   key={vacancy.id}
                   className="Header__link_mobile"
-                  to={`/vacancy/${vacancy.attributes.vacancySlug}`}
+                  to={`/vacancies/${vacancy.attributes.vacancySlug}`}
                   onClick={() => {
                     setCurrentVacancy(vacancy.attributes.vacancySlug);
                     handleVacancyMenuSelect();
@@ -367,9 +375,7 @@ const Header = () => {
             <React.Fragment key={category.id}>
               <input
                 type="checkbox"
-                checked={
-                  currentCategory === category.attributes.categoryTitle
-                }
+                checked={currentCategory === category.attributes.categoryTitle}
                 key={category.id}
                 id={category.id}
                 name={category.attributes.categoryTitle}

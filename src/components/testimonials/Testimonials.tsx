@@ -18,10 +18,10 @@ const Testimonials = () => {
       <Swiper
         className="Testimonials__slider"
         modules={[Pagination, Navigation]}
-        pagination
         navigation
         centeredSlides
         loop
+        pagination={{ clickable: true }}
         spaceBetween={50}
         slidesPerView={1}
         breakpoints={{

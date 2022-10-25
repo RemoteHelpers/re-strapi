@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable object-curly-newline */
 /* eslint-disable react/jsx-curly-newline */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable comma-dangle */
@@ -9,7 +10,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable @typescript-eslint/quotes */
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Route, Routes } from "react-router-dom";
 import useLocalStorage from "../../hooks/useLocalStorage";
 
 import cl from "./chooseLanguagePage.module.scss";
@@ -29,8 +30,6 @@ const selectLocalization = [
 ];
 
 export default function ChooseLanguagePage() {
-  // const navigate = useNavigate();
-
   const [selectedLocalization, setSelectedLocalization] = useState("uk");
 
   const [localization, setLocalization] = useLocalStorage("localization", "uk");
@@ -43,7 +42,7 @@ export default function ChooseLanguagePage() {
     setSelectedLocalization(event.target.value);
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = () => {
     setLocalization(selectedLocalization);
     setIsSubmitLocalization(true);
     window.location.reload();
