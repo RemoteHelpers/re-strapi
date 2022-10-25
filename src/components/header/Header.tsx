@@ -39,7 +39,6 @@ const Header = () => {
     setIsDesktopMenuOpened,
     setCurrentVacancy,
   } = useStateContext();
-
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [currentCategory, setCurrentCategory] = useState<string>("Розробка");
@@ -129,8 +128,13 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    setSelectedVacancies(vacancies.filter(el =>
-      el.attributes.categories.data[0].attributes.categoryTitle === currentCategory));
+    setSelectedVacancies(
+      vacancies.filter(
+        (el) =>
+          el.attributes.categories.data[0].attributes.categoryTitle ===
+          currentCategory
+      )
+    );
   }, [currentCategory, vacancies]);
 
   let isActiveCategory: boolean;
