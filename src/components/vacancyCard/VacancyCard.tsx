@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './vacancyCard.scss';
-import FireIcon from '../../images/fireIcon.svg';
-import { useStateContext } from '../../context/StateContext';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./vacancyCard.scss";
+import FireIcon from "../../images/fireIcon.svg";
+import { useStateContext } from "../../context/StateContext";
 
 interface Props {
   title: string;
@@ -22,7 +23,9 @@ const VacancyCard: React.FC<Props> = ({ title, slug, isHot }) => {
     <div className="VacancyCard">
       <div className="VacancyCard__banner VacancyCard__banner--mobile">
         <img src={FireIcon} className="VacancyCard__fireIcon" alt="icon" />
-        <span className="VacancyCard__banner-text">{isHot ? 'Urgent' : 'Not urgent'}</span>
+        <span className="VacancyCard__banner-text">
+          {isHot ? "Urgent" : "Not urgent"}
+        </span>
       </div>
 
       <div className="VacancyCard__info">

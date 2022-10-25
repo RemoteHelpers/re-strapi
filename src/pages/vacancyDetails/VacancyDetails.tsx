@@ -1,47 +1,56 @@
+/* eslint-disable max-len */
+/* eslint-disable object-curly-newline */
+/* eslint-disable comma-dangle */
+/* eslint-disable react/jsx-curly-newline */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable operator-linebreak */
+/* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/no-children-prop */
 /* eslint-disable no-console */
-import React, { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
-import ReactMarkdown from 'react-markdown';
-import '../../App.scss';
-import {
-  Alert, Breadcrumbs, Link, Typography,
-} from '@mui/material';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import cl from './vacancyDetails.module.scss';
-import { useStateContext } from '../../context/StateContext';
-import { LocalVacancyType } from '../../types/types';
+import React, { useEffect, useState, useRef } from "react";
+import axios from "axios";
+import ReactMarkdown from "react-markdown";
+import "../../App.scss";
+import { Alert, Breadcrumbs, Link, Typography } from "@mui/material";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { useParams } from "react-router";
+import cl from "./vacancyDetails.module.scss";
+import { useStateContext } from "../../context/StateContext";
+import { LocalVacancyType } from "../../types/types";
 
-import play from '../../icons/play.png';
-import { VacancySvg } from './VacancyFireSvg';
-import VacancyForm from '../../components/forms/vacancyForm';
-import ToTopButton from '../../components/toTopButton';
+import play from "../../icons/play.png";
+import { VacancySvg } from "./VacancyFireSvg";
+import VacancyForm from "../../components/forms/vacancyForm";
+import ToTopButton from "../../components/toTopButton";
 
-const API = 'http://testseven.rh-s.com:1733/api';
+const API = "http://testseven.rh-s.com:1733/api";
 
 export const VacancyDetails = () => {
-  const { currentVacancy, setCurrentVacancy } = useStateContext();
+  const { localization } = useStateContext();
   const [localVacancy, setLocalVacancy] = useState<LocalVacancyType[]>([]);
   const [activeAlert, setActiveAlert] = useState(false);
   const formSection = useRef<HTMLDivElement>(null);
+  const { vacancyID } = useParams();
 
   useEffect(() => {
-    axios.get(`${API}/vacancies?populate=*&filters[vacancySlug][$eq]=${currentVacancy}`)
-      .then(res => {
+    axios
+      .get(
+        `${API}/vacancies?populate=*&filters[vacancySlug][$eq]=${vacancyID}`
+        // `${API}/vacancies?locale=${localization}&populate=*&filters[vacancySlug][$eq]=${vacancyID}`
+      )
+      .then((res) => {
         setLocalVacancy(res.data.data);
         console.log(res.data.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
-  }, [currentVacancy]);
-
-  useEffect(() => {
-    const test = window.location.href;
-
-    setCurrentVacancy(test.split('/')[4]);
-    // console.log(test.split('/')[4]);
   }, []);
+
+  // useEffect(() => {
+  //   setCurrentVacancy(vacancyID);
+  // }, []);
 
   const handleClickToFavorite = () => {
     setActiveAlert(true);
@@ -53,12 +62,17 @@ export const VacancyDetails = () => {
   return (
     <div className="container">
       <div className={cl.card}>
-        {localVacancy && (
-          localVacancy.map(item => (
+        {localVacancy &&
+          localVacancy.map((item) => (
             <div key={item.id}>
               <div className={cl.headerCard}>
                 <Breadcrumbs
-                  separator={<NavigateNextIcon className={cl.crumbArrow} fontSize="medium" />}
+                  separator={
+                    <NavigateNextIcon
+                      className={cl.crumbArrow}
+                      fontSize="medium"
+                    />
+                  }
                   aria-label="breadcrumb"
                 >
                   <Link
@@ -73,11 +87,13 @@ export const VacancyDetails = () => {
                     className={cl.normalCrumb}
                     underline="none"
                     color="inherit"
-                    href="/vacancies"
+                    href={`/${localization}/vacancies`}
                   >
                     Vacancies
                   </Link>
-                  <Typography className={cl.activeCrumb}>{item.attributes.title}</Typography>
+                  <Typography className={cl.activeCrumb}>
+                    {item.attributes.title}
+                  </Typography>
                 </Breadcrumbs>
                 <button
                   type="button"
@@ -90,12 +106,17 @@ export const VacancyDetails = () => {
                 {activeAlert && (
                   <div className={cl.alertWrapper}>
                     <Alert variant="filled" severity="warning">
-                      Для того щоб додати сторінку в закладки, натисніть Ctrl + D
+                      Для того щоб додати сторінку в закладки, натисніть Ctrl +
+                      D
                     </Alert>
                   </div>
                 )}
               </div>
-              <span className={item.attributes.isHot ? cl.hotVacancy : cl.coldVacancy}>
+              <span
+                className={
+                  item.attributes.isHot ? cl.hotVacancy : cl.coldVacancy
+                }
+              >
                 <VacancySvg id="hot" />
                 Гаряча
               </span>
@@ -106,7 +127,12 @@ export const VacancyDetails = () => {
                   <p>{item.attributes.subTitle}</p>
                   <button
                     type="button"
-                    onClick={() => formSection?.current?.scrollIntoView({ block: 'center', behavior: 'smooth' })}
+                    onClick={() =>
+                      formSection?.current?.scrollIntoView({
+                        block: "center",
+                        behavior: "smooth",
+                      })
+                    }
                   >
                     Відгукнутися
                   </button>
@@ -120,11 +146,10 @@ export const VacancyDetails = () => {
                 className={cl.cardContentWrapper}
               />
             </div>
-          ))
-        )}
+          ))}
 
         <div className={cl.vacancyForm}>
-          {localVacancy.map(form => (
+          {localVacancy.map((form) => (
             <div key={form.id}>
               <ReactMarkdown
                 children={form.attributes.formTitle}

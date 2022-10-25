@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable operator-linebreak */
 /* eslint-disable comma-dangle */
 /* eslint-disable react/jsx-curly-newline */
 /* eslint-disable no-confusing-arrow */
@@ -82,8 +84,10 @@ const Header = () => {
   }, []);
 
   const selectLocalization = [
-    { value: "en", label: "EN" },
     { value: "uk", label: "UA" },
+    { value: "pl", label: "PL" },
+    { value: "en", label: "EN" },
+    { value: "sk", label: "SK" },
     { value: "ru", label: "RU" },
   ];
 
@@ -101,13 +105,21 @@ const Header = () => {
     );
   };
 
-  const handleLocalizationSelect = useCallback((selected: any) => {
-    setLocalization(selected.value);
-  }, []);
+  const handleLocalizationSelect = useCallback(
+    (selected: any) => {
+      setLocalization(selected.value);
+
+      const prevLanguage = window.location.pathname.split("/")[1];
+
+      if (localization !== prevLanguage) {
+        window.location.reload();
+      }
+    },
+    [localization]
+  );
 
   const handleMenuClick = useCallback(() => {
-    // eslint-disable-next-line no-shadow
-    setIsMenuOpened((isMenuOpened) => !isMenuOpened);
+    setIsMenuOpened(!isMenuOpened);
   }, []);
 
   const handleCategorySelect = useCallback((event: any) => {
@@ -359,9 +371,7 @@ const Header = () => {
             <React.Fragment key={category.id}>
               <input
                 type="checkbox"
-                checked={
-                  currentCategory === category.attributes.categoryTitle
-                }
+                checked={currentCategory === category.attributes.categoryTitle}
                 key={category.id}
                 id={category.id}
                 name={category.attributes.categoryTitle}
