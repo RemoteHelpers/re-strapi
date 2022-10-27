@@ -22,7 +22,7 @@ import { LocalVacancyType } from "../../types/types";
 import play from "../../icons/play.png";
 import { VacancySvg } from "./VacancyFireSvg";
 import VacancyForm from "../../components/forms/vacancyForm";
-import ToTopButton from "../../components/toTopButton";
+import ToTopButton from "../../components/toTopButton/ToTopButton";
 
 const API = "http://testseven.rh-s.com:1733/api";
 
@@ -42,7 +42,9 @@ export const VacancyDetails = () => {
       )
       .then((res) => {
         setLocalVacancy(res.data.data);
-        setIsLoading(false);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
         console.log(res.data.data);
       })
       .catch((err) => {
