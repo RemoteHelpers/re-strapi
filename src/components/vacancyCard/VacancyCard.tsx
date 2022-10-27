@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from "react";
-import { Link } from "react-router-dom";
-import "./vacancyCard.scss";
-import FireIcon from "../../images/fireIcon.svg";
-import { useStateContext } from "../../context/StateContext";
+import React from 'react';
+// import { Link } from 'react-router-dom';
+import './vacancyCard.scss';
+import FireIcon from '../../images/fireIcon.svg';
+import { useStateContext } from '../../context/StateContext';
 
 interface Props {
   title: string;
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const VacancyCard: React.FC<Props> = ({ title, slug, isHot }) => {
-  const { setCurrentVacancy } = useStateContext();
+  const { setCurrentVacancy, localization } = useStateContext();
 
   const handleSlug = () => {
     setCurrentVacancy(slug);
@@ -36,13 +36,13 @@ const VacancyCard: React.FC<Props> = ({ title, slug, isHot }) => {
           customers and information on the Internet, work with social networks.
         </p>
       </div>
-      <Link
+      <a
         className="VacancyCard__button"
-        to={`/vacancies/${slug}`}
+        href={`/${localization}/vacancies/${slug}`}
         onClick={handleSlug}
       >
         See more
-      </Link>
+      </a>
 
       <div className="VacancyCard__banner VacancyCard__banner--desktop">
         <img src={FireIcon} className="VacancyCard__fireIcon" alt="icon" />

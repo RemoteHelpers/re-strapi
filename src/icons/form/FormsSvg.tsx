@@ -1,10 +1,8 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import cl from './formsSvg.module.scss';
 
 interface Props {
   id: string,
-  // eslint-disable-next-line react/no-unused-prop-types
-  children: ReactNode;
 }
 
 export const FormsSvg = ({ id }: Props) => {

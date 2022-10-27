@@ -42,22 +42,22 @@
   }
 
   &__logo {
-    width: 6.4rem;
-    height: 2.1rem;
+    width: 10rem;
+    height: auto;
 
     @include onTablet {
-      width: 17.3rem;
-      height: 5.4rem;
+      width: 12rem;
+      height: auto;
     }
 
     @include onDesktop {
-      width: 11.6rem;
-      height: 3.6rem;
+      width: 14rem;
+      height: auto;
     }
 
     @include on1920 {
-      width: 17.3rem;
-      height: 5.4rem;
+      width: 16rem;
+      height: auto;
     }
   }
 
@@ -198,7 +198,7 @@
       padding-top: 1.5rem;
       padding-bottom: 1.5rem;
       display: flex;
-      justify-content: start;
+      justify-content: flex-start;
       gap: 1.1rem;
 
       font-weight: 500;

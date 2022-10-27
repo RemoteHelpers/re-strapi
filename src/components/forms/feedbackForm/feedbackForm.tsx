@@ -5,28 +5,45 @@ import cl from './feedbackForm.module.scss';
 import '../../formFields/feedbackFormSelect.scss';
 // img
 // import { FormsSvg } from "../../../icons/form/FormsSvg";
-import ToTopButton from '../../toTopButton';
 import FormFields from '../../formFields';
+import ToTopButton from '../../toTopButton/ToTopButton';
+import { useStateContext } from '../../../context/StateContext';
 
-interface Props {
-  img: string;
-}
+import feedbackCat from '../../../images/formImg.png';
+import vacancyCat from '../../../icons/interview_form_kitekat.png';
 
-function FeedbackForm({ img }: Props) {
-  const url = window.location.pathname === '/videoInterview';
+function FeedbackForm() {
+  const { scrollToTop, localization } = useStateContext();
+
+  const url = window.location.pathname === `/${localization}/videoInterview`;
 
   return (
-    <div className={cl.feedback} id="form">
-      <div className={cl.feedback_wr}>
-        <div className={url ? cl.null_padding : cl.img_wr_desktop}>
-          <img src={img} alt="Happy cat" />
-        </div>
-        <FormFields />
-        <div className={cl.feedback_top}>
-          <ToTopButton />
+    <>
+      <h1 className={url ? cl.feedback_video_form_title : cl.feedback_form_title}>
+        Готовы присоединиться
+        <br />
+        прямо сейчас?
+      </h1>
+      <div className={cl.feedback} id="form">
+        <div className={cl.feedback_wr}>
+          <div className={url ? cl.null_padding : cl.img_wr_desktop}>
+            {url ? (
+              <img src={vacancyCat} alt="Happy cat" />
+            ) : (
+              <img src={feedbackCat} alt="Happy cat" />
+            )}
+          </div>
+          <FormFields />
+          <button
+            type="button"
+            className={cl.feedback_top}
+            onClick={() => scrollToTop?.current?.scrollIntoView({ block: 'start', behavior: 'smooth' })}
+          >
+            <ToTopButton />
+          </button>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

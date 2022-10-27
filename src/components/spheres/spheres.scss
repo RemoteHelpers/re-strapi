@@ -41,8 +41,8 @@
   }
 
   &__icon {
-    width: 9.6rem;
-    height: 9.6rem;
+    max-width: 100%;
+    height: auto;
 
     border: 0.1rem solid $primaryColor1;
     border-radius: 0.9rem;

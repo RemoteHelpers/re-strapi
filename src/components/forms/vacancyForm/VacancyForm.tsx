@@ -7,7 +7,7 @@ export const VacancyForm = () => {
   return (
     <div className={cl.wrapper}>
       <FormFields />
-      <div>
+      <div className={cl.vacancy_form_cat}>
         <img src={vacancyCat} alt="Vacancy Cat" />
       </div>
     </div>

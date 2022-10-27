@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Select from 'react-select';
 import InputMask from 'react-input-mask';
 import { useForm } from 'react-hook-form';
@@ -8,6 +9,9 @@ import cl from './formFields.module.scss';
 import Api from '../../api';
 import { IFeedbackFormData } from '../../types/types';
 import { useStateContext } from '../../context/StateContext';
+import vacancyCat from '../../icons/vacancyCat.png';
+import feedbackCat from '../../images/formImg.png';
+import interviewCat from '../../icons/interview_form_kitekat.png';
 
 type TOption = {
   value: string;
@@ -15,7 +19,8 @@ type TOption = {
 };
 
 export const FormFields = () => {
-  const { currentVacancy } = useStateContext();
+  const { localization } = useStateContext();
+  const { vacancyID } = useParams();
 
   const EnglishLevel = [
     { value: 'beginner', label: 'Beginner' },
@@ -78,10 +83,11 @@ export const FormFields = () => {
     setPhone(e.target.value);
   };
 
-  const url = window.location.pathname === `/vacancies/${currentVacancy}`;
+  const url = window.location.pathname === `/${localization}/vacancies/${vacancyID}`;
+  const interviewUrl = window.location.pathname === `/${localization}/videoInterview`;
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className={cl.form_wrapper}>
       <div className={cl.wr_form}>
         <div className={cl.input_wr}>
           <div className={cl.input_name}>
@@ -131,6 +137,24 @@ export const FormFields = () => {
             options={EnglishLevel}
           />
         </div>
+        {interviewUrl ? (
+          <div className={cl.vacancy_mobile_cat}>
+            <img src={interviewCat} alt="" />
+          </div>
+        ) : (
+          <div>
+            {url ? (
+              <div className={cl.vacancy_mobile_cat}>
+                <img src={vacancyCat} alt="" />
+              </div>
+            )
+              : (
+                <div className={cl.vacancy_mobile_cat}>
+                  <img src={feedbackCat} alt="" />
+                </div>
+              )}
+          </div>
+        )}
         <div className={cl.buttons_wr}>
           <label className={cl.label_file}>
             <input

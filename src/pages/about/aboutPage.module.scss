@@ -10,8 +10,12 @@
   @include onTablet {
     width: 80%;
   }
-
 }
+
+.about_page {
+  padding-top: 4rem;
+}
+
 .intro_wrapper {
   display: flex;
   flex-direction: column;
@@ -197,12 +201,21 @@ section {
 
 .team_cards {
   width: 100%;
-  margin-top: 3.125rem;
+  margin: 3.125rem 0 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   row-gap: 1.875rem;
+
+  @include onTablet {
+    margin: 3.125rem 0 7rem;
+  }
+
+  @include onDesktop {
+    margin: 3.125rem 0 10rem;
+  }
+
 }
 
 .team_card {

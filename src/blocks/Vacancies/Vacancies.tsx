@@ -21,7 +21,6 @@ import axios from "axios";
 import Select, { components } from "react-select";
 import { Category, Vacancy, Collection, VacancyArray } from "../../types/types";
 
-import Find from "../../images/findIcon.svg";
 import SelectIcon from "../../images/selectArrow.svg";
 import useOutsideAlerter from "../../hooks/useClickOutside";
 
@@ -350,7 +349,7 @@ export default function Vacancies() {
           </ul>
         </div>
         <VacanciesList />
-        <FeedbackForm img={formImg} />
+        <FeedbackForm />
       </div>
     </>
   );
