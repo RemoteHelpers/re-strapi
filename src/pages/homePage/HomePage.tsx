@@ -27,8 +27,8 @@ export const HomePage = () => {
         <VacancyList />
         <FAQ />
         <Partners />
+        <Testimonials />
       </div>
-      <Testimonials />
       <div
         className={cl.container}
         ref={scrollToHomeForm}

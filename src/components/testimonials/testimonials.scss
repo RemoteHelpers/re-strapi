@@ -3,6 +3,7 @@
 @import "../../global-styles/fonts.scss";
 
 .Testimonials {
+  width: 100%;
   padding: 3.8rem 0 3.8rem;
 
   @include onTablet {
@@ -26,12 +27,12 @@
     color: $typographyColor2;
 
     @include onDesktop {
-      margin: 0 0 3.4rem 12%;
+      margin: 0 0 3.4rem 0;
     }
 
     @include on1920 {
       font-size: 3rem;
-      margin: 0 0 4.6rem 11%;
+      margin: 0 0 4.6rem 0;
     }
 
     margin-bottom: 3.1rem;
@@ -41,11 +42,11 @@
     }
 
     @include onDesktop {
-      margin: 0 0 4rem 12%;
+      margin: 0 0 4rem 0;
     }
 
     @include on1920 {
-      margin: 0 0 5.6rem 11%;
+      margin: 0 0 5.6rem 0;
     }
   }
 

@@ -94,32 +94,32 @@
   }
 }
 
-.shortVacancyVideo {
+.vacancy_video {
+  position: relative;
   width: 100% !important;
   position: relative;
-  width: calc(100% / 3 - 1rem);
-  height: 200px;
-  background: $typographyColor2;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
-  border-radius: 0.5rem;
+  height: 270px;
+  border-radius: 0.6rem;
   margin-top: 4rem;
+  overflow: hidden;
+  cursor: pointer;
 
   @include onTablet {
     width: 40% !important;
     margin: 0;
   }
 
-  img {
-    display: block;
+  .video_preview_image {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 80px;
-    height: 80px;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
   }
 }
+
 .hotVacancy {
   background-color: $secondaryColor1;
   color: $secondaryColor5;
@@ -214,7 +214,7 @@
   top: 2rem;
   left: 50%;
   transform: translate(-50%);
-  width: 40%;
+  width: auto;
   height: 100%;
   transition: .3 ease;
 }
@@ -234,7 +234,7 @@
   }
 }
 
-.breadCrumbArrows {
+.breadcrumbs_arrows {
   li {
     &:nth-child(2) {
       display: none;

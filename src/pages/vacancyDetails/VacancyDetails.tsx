@@ -20,12 +20,13 @@ import cl from "./vacancyDetails.module.scss";
 import { useStateContext } from "../../context/StateContext";
 import { LocalVacancyType } from "../../types/types";
 
-import play from "../../icons/play.png";
+// import play from "../../icons/play.png";
 import { VacancySvg } from "./VacancyFireSvg";
 import VacancyForm from "../../components/forms/vacancyForm";
 import ToTopButton from "../../components/toTopButton/ToTopButton";
 
 const API = "http://testseven.rh-s.com:1733/api";
+const PhotoAPI = "http://testseven.rh-s.com:1733";
 
 export const VacancyDetails = () => {
   const { localization } = useStateContext();
@@ -80,6 +81,7 @@ export const VacancyDetails = () => {
                       />
                     }
                     aria-label="breadcrumb"
+                    className={cl.breadcrumbs_arrows}
                   >
                     <Link
                       className={`${cl.normalCrumb} ${cl.firstCrumb}`}
@@ -111,7 +113,7 @@ export const VacancyDetails = () => {
                   </button>
                   {activeAlert && (
                     <div className={cl.alertWrapper}>
-                      <Alert variant="filled" severity="warning">
+                      <Alert variant="filled" severity="info">
                         Для того щоб додати сторінку в закладки, натисніть Ctrl +
                         D
                       </Alert>
@@ -143,8 +145,9 @@ export const VacancyDetails = () => {
                       Відгукнутися
                     </button>
                   </div>
-                  <div className={cl.shortVacancyVideo}>
-                    <img src={play} alt="" />
+                  <div className={cl.vacancy_video}>
+                    <iframe width="100%" height="100%" src={item.attributes.videoLink} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                    <img className={cl.video_preview_image} src={`${PhotoAPI}${item.attributes.videoPreview.data.attributes.url}`} alt="" />
                   </div>
                 </div>
                 <ReactMarkdown
