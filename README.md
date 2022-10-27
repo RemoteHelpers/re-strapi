@@ -16,3 +16,16 @@
 * The clamp function is used for smooth scaling of fonts;
 * Folder "context" has the global context of the entire application
 * In the folder "utils" stored mixins
+
+## Adding files to the server requires a file - .htaccess
+
+File contents:
+  <IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^index.html$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-l
+    RewriteRule . /index.html [L]
+  </IfModule>
