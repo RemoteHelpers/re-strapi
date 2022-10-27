@@ -12,18 +12,18 @@
 
 .Vacancies {
 
-  padding: 3.8rem 0 3.8rem;
+  padding: 1.8rem 0;
 
   @include onTablet {
-    padding: 6.25rem 0 6.25rem;
+    padding: 3rem 0;
   }
 
   @include onDesktop {
-    padding: 5rem 0 5rem;
+    padding: 4rem 0;
   }
 
   @include on1920 {
-    padding: 7.8rem 0 7.8rem;
+    padding: 5rem 0;
   }
 
   &__title {

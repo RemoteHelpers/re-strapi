@@ -394,10 +394,10 @@ const Header = () => {
         </div>
         <div className="Header__dropMenuDesktop_vacancies">
           {selectedVacancies.map((vacancy) => (
-            <Link
+            <a
               key={vacancy.id}
               className="Header__link_desktop--vacancy"
-              to={`/vacancies/${vacancy.attributes.vacancySlug}`}
+              href={`/${localization}/vacancies/${vacancy.attributes.vacancySlug}`}
               // onClick={() => setCurrentVacancy(vacancy.attributes.vacancySlug)}
               onClick={() => {
                 setCurrentVacancy(vacancy.attributes.vacancySlug);
@@ -405,7 +405,7 @@ const Header = () => {
               }}
             >
               {vacancy.attributes.title}
-            </Link>
+            </a>
           ))}
         </div>
       </div>

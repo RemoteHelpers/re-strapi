@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Select from 'react-select';
 import InputMask from 'react-input-mask';
 import { useForm } from 'react-hook-form';
@@ -18,7 +19,8 @@ type TOption = {
 };
 
 export const FormFields = () => {
-  const { currentVacancy } = useStateContext();
+  const { localization } = useStateContext();
+  const { vacancyID } = useParams();
 
   const EnglishLevel = [
     { value: 'beginner', label: 'Beginner' },
@@ -81,8 +83,8 @@ export const FormFields = () => {
     setPhone(e.target.value);
   };
 
-  const url = window.location.pathname === `/vacancies/${currentVacancy}`;
-  const interviewUrl = window.location.pathname === '/videoInterview';
+  const url = window.location.pathname === `/${localization}/vacancies/${vacancyID}`;
+  const interviewUrl = window.location.pathname === `/${localization}/videoInterview`;
 
   return (
     <form onSubmit={onSubmit} className={cl.form_wrapper}>

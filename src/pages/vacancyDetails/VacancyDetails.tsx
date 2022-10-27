@@ -22,7 +22,7 @@ import { LocalVacancyType } from "../../types/types";
 import play from "../../icons/play.png";
 import { VacancySvg } from "./VacancyFireSvg";
 import VacancyForm from "../../components/forms/vacancyForm";
-import { ToTopButton } from "../../components/toTopButton/ToTopButton";
+import ToTopButton from "../../components/toTopButton/ToTopButton";
 
 const API = "http://testseven.rh-s.com:1733/api";
 
@@ -41,7 +41,7 @@ export const VacancyDetails = () => {
       )
       .then((res) => {
         setLocalVacancy(res.data.data);
-        console.log(res.data.data);
+        // console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -103,8 +103,7 @@ export const VacancyDetails = () => {
                 {activeAlert && (
                   <div className={cl.alertWrapper}>
                     <Alert variant="filled" severity="warning">
-                      Для того щоб додати сторінку в закладки, натисніть Ctrl +
-                      D
+                      Для того щоб додати сторінку в закладки, натисніть Ctrl + D
                     </Alert>
                   </div>
                 )}
