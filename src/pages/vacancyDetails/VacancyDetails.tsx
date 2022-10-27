@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable max-len */
 /* eslint-disable object-curly-newline */
 /* eslint-disable comma-dangle */
@@ -14,7 +15,7 @@ import ReactMarkdown from "react-markdown";
 import "../../App.scss";
 import { Alert, Breadcrumbs, Link, Typography } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import cl from "./vacancyDetails.module.scss";
 import { useStateContext } from "../../context/StateContext";
 import { LocalVacancyType } from "../../types/types";
@@ -22,7 +23,7 @@ import { LocalVacancyType } from "../../types/types";
 import play from "../../icons/play.png";
 import { VacancySvg } from "./VacancyFireSvg";
 import VacancyForm from "../../components/forms/vacancyForm";
-import ToTopButton from "../../components/toTopButton";
+import ToTopButton from "../../components/toTopButton/ToTopButton";
 
 const API = "http://testseven.rh-s.com:1733/api";
 
