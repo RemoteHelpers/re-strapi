@@ -30,6 +30,7 @@ export const VacancyDetails = () => {
   const { localization } = useStateContext();
   const [localVacancy, setLocalVacancy] = useState<LocalVacancyType[]>([]);
   const [activeAlert, setActiveAlert] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const formSection = useRef<HTMLDivElement>(null);
   const { vacancyID } = useParams();
 
@@ -41,6 +42,7 @@ export const VacancyDetails = () => {
       )
       .then((res) => {
         setLocalVacancy(res.data.data);
+        setIsLoading(false);
         console.log(res.data.data);
       })
       .catch((err) => {
@@ -61,107 +63,123 @@ export const VacancyDetails = () => {
 
   return (
     <div className="container">
-      <div className={cl.card}>
-        {localVacancy &&
-          localVacancy.map((item) => (
-            <div key={item.id}>
-              <div className={cl.headerCard}>
-                <Breadcrumbs
-                  separator={
-                    <NavigateNextIcon
-                      className={cl.crumbArrow}
-                      fontSize="medium"
-                    />
-                  }
-                  aria-label="breadcrumb"
-                >
-                  <Link
-                    className={`${cl.normalCrumb} ${cl.firstCrumb}`}
-                    underline="none"
-                    color="inherit"
-                    href="/"
+      {!isLoading ?
+        <div className={cl.card}>
+          {localVacancy &&
+            localVacancy.map((item) => (
+              <div key={item.id}>
+                <div className={cl.headerCard}>
+                  <Breadcrumbs
+                    separator={
+                      <NavigateNextIcon
+                        className={cl.crumbArrow}
+                        fontSize="medium"
+                      />
+                    }
+                    aria-label="breadcrumb"
                   >
-                    Головна
-                  </Link>
-                  <Link
-                    className={cl.normalCrumb}
-                    underline="none"
-                    color="inherit"
-                    href={`/${localization}/vacancies`}
-                  >
-                    Vacancies
-                  </Link>
-                  <Typography className={cl.activeCrumb}>
-                    {item.attributes.title}
-                  </Typography>
-                </Breadcrumbs>
-                <button
-                  type="button"
-                  onClick={handleClickToFavorite}
-                  className={cl.addToFavorite}
-                >
-                  <span className={cl.favoriteTitle}>Додати у закладки</span>
-                  <VacancySvg id="star" />
-                </button>
-                {activeAlert && (
-                  <div className={cl.alertWrapper}>
-                    <Alert variant="filled" severity="warning">
-                      Для того щоб додати сторінку в закладки, натисніть Ctrl +
-                      D
-                    </Alert>
-                  </div>
-                )}
-              </div>
-              <span
-                className={
-                  item.attributes.isHot ? cl.hotVacancy : cl.coldVacancy
-                }
-              >
-                <VacancySvg id="hot" />
-                Гаряча
-              </span>
-              <div className={cl.shortVacancyWrapper}>
-                <div className={cl.shortVacancyInfo}>
-                  <h1>{item.attributes.title}</h1>
-                  <p>Заробітна плата за результатами співбесіди</p>
-                  <p>{item.attributes.subTitle}</p>
+                    <Link
+                      className={`${cl.normalCrumb} ${cl.firstCrumb}`}
+                      underline="none"
+                      color="inherit"
+                      href="/"
+                    >
+                      Головна
+                    </Link>
+                    <Link
+                      className={cl.normalCrumb}
+                      underline="none"
+                      color="inherit"
+                      href={`/${localization}/vacancies`}
+                    >
+                      Vacancies
+                    </Link>
+                    <Typography className={cl.activeCrumb}>
+                      {item.attributes.title}
+                    </Typography>
+                  </Breadcrumbs>
                   <button
                     type="button"
-                    onClick={() =>
-                      formSection?.current?.scrollIntoView({
-                        block: "center",
-                        behavior: "smooth",
-                      })
-                    }
+                    onClick={handleClickToFavorite}
+                    className={cl.addToFavorite}
                   >
-                    Відгукнутися
+                    <span className={cl.favoriteTitle}>Додати у закладки</span>
+                    <VacancySvg id="star" />
                   </button>
+                  {activeAlert && (
+                    <div className={cl.alertWrapper}>
+                      <Alert variant="filled" severity="warning">
+                        Для того щоб додати сторінку в закладки, натисніть Ctrl +
+                        D
+                      </Alert>
+                    </div>
+                  )}
                 </div>
-                <div className={cl.shortVacancyVideo}>
-                  <img src={play} alt="" />
+                <span
+                  className={
+                    item.attributes.isHot ? cl.hotVacancy : cl.coldVacancy
+                  }
+                >
+                  <VacancySvg id="hot" />
+                  Гаряча
+                </span>
+                <div className={cl.shortVacancyWrapper}>
+                  <div className={cl.shortVacancyInfo}>
+                    <h1>{item.attributes.title}</h1>
+                    <p>Заробітна плата за результатами співбесіди</p>
+                    <p>{item.attributes.subTitle}</p>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        formSection?.current?.scrollIntoView({
+                          block: "center",
+                          behavior: "smooth",
+                        })
+                      }
+                    >
+                      Відгукнутися
+                    </button>
+                  </div>
+                  <div className={cl.shortVacancyVideo}>
+                    <img src={play} alt="" />
+                  </div>
                 </div>
+                <ReactMarkdown
+                  children={item.attributes.description}
+                  className={cl.cardContentWrapper}
+                />
               </div>
-              <ReactMarkdown
-                children={item.attributes.description}
-                className={cl.cardContentWrapper}
-              />
-            </div>
-          ))}
+            ))}
 
-        <div className={cl.vacancyForm}>
-          {localVacancy.map((form) => (
-            <div key={form.id}>
-              <ReactMarkdown
-                children={form.attributes.formTitle}
-                className={cl.formStyledMarkdown}
-              />
-              <div ref={formSection}>
-                <VacancyForm />
+          <div className={cl.vacancyForm}>
+            {localVacancy.map((form) => (
+              <div key={form.id}>
+                <ReactMarkdown
+                  children={form.attributes.formTitle}
+                  className={cl.formStyledMarkdown}
+                />
+                <div ref={formSection}>
+                  <VacancyForm />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+        : (
+          <div className="loading">
+            <div className="lds-roller">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        )
+      }
       <div className={cl.vacancy_top}>
         <ToTopButton />
       </div>
