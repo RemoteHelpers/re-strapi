@@ -12,7 +12,7 @@
 .feedback {
   position: relative;
   width: 100%;
-  padding: 6rem 0;
+  padding: 2rem 0 6rem 0;
   &_wr {
     display: flex;
     align-items: center;
@@ -23,20 +23,19 @@
     border: 3px solid $primaryColorVacancy;
     border-radius: 1.875rem;
     background-color: #fff;
-    padding: 2rem 1.375rem;
+    padding: 1.5rem 1rem;
 
     @include onTablet {
-      padding: 2.375rem 2.5rem;
+      padding: 2rem 1.5rem;
     }
 
     @include onTablet {
-      padding: 4.375rem 2.5rem;
+      padding: 3rem 2.5rem;
     }
-
   }
 }
 .img_wr_desktop {
-  width: 70%;
+  width: 80%;
   margin: -10rem 0 0 0;
   display: none;
 
@@ -46,7 +45,7 @@
 
   img {
     width: 100%;
-    height: 100%;
+    height: auto;
   }
 }
 
@@ -58,7 +57,6 @@
   @include onDesktop {
     display: block;
   }
-
 }
 
 .feedback_top {
@@ -74,18 +72,36 @@
   }
 }
 
+.feedback_form_title {
+  max-width: 100%;
+  font-style: normal;
+  font-weight: 800;
+  font-size: $typography2;
+  line-height: 1.3;
+  color: $typographyColor2;
+  text-decoration-line: underline;
+  margin-bottom: 2rem;
 
+  @include onTablet {
+    margin-bottom: 4rem;
+  }
 
+  @include onDesktop {
+    margin-bottom: 6rem;
+  }
+}
 
-// .title {
-//   max-width: 60%;
-//   font-style: normal;
-//   font-weight: 800;
-//   font-size: $typography2;
-//   line-height: 1.3;
-//   color: $typographyColor2;
-//   text-decoration-line: underline;
-//   @include onTablet {
-//     max-width: 40%;
-//   }
-// }
+.feedback_video_form_title {
+  max-width: 100%;
+  font-style: normal;
+  font-weight: 800;
+  font-size: $typography2;
+  line-height: 1.3;
+  color: $typographyColor2;
+  text-decoration-line: underline;
+  margin-bottom: 1rem;
+
+  @include onTablet {
+    margin-bottom: 2rem;
+  }
+}

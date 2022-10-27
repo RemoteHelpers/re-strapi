@@ -59,7 +59,7 @@ export const AboutPage = () => {
 
   return (
     <>
-      <section>
+      <section className={cl.about_page}>
         <div className={cl.container}>
           <div className={cl.intro_wrapper}>
             <div className={cl.into_information}>

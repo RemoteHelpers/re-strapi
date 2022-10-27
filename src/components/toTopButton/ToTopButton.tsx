@@ -2,7 +2,7 @@ import React from 'react';
 import { FormsSvg } from '../../icons/form/FormsSvg';
 import cl from './toTopButton.module.scss';
 
-export const ToTopButton = () => {
+const ToTopButton = () => {
   const scrollTop = () => {
     window.scrollTo({
       top: 0,
@@ -20,3 +20,5 @@ export const ToTopButton = () => {
     </button>
   );
 };
+
+export default ToTopButton;
