@@ -3,18 +3,14 @@
 @import "../../global-styles/fonts.scss";
 
 .container {
-  padding: 3.8rem 0 3.8rem;
+  padding: 3rem 0;
 
   @include onTablet {
-    padding: 6.25rem 0 6.25rem;
-  }
-
-  @include onDesktop {
-    padding: 5rem 0 5rem;
+    padding: 5rem 0;
   }
 
   @include on1920 {
-    padding: 7.8rem 0 7.8rem;
+    padding: 7rem 0;
   }
 }
 .imageWrapper {
@@ -33,21 +29,17 @@
 .title {
   font-weight: 800;
   font-size: $typography2;
-  color: $typographyColor2;
   line-height: 130%;
   text-decoration-line: underline;
+  color: $typographyColor2;
 
-  margin-bottom: 3.1rem;
+  margin-bottom: 3rem;
 
   @include onTablet {
-    margin-bottom: 4.4rem;
-  }
-
-  @include onDesktop {
     margin-bottom: 4rem;
   }
 
   @include on1920 {
-    margin-bottom: 5.6rem;
+    margin-bottom: 5rem;
   }
 }

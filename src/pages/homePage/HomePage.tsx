@@ -18,22 +18,27 @@ export const HomePage = () => {
     <>
       <MainScreen />
       <div className={cl.container}>
-        <h1 className={cl.mainTitle}>
-          Наші основні
-          <br />
-          сфери діяльності
-        </h1>
-        <Spheres />
-        <VacancyList />
-        <FAQ />
-        <Partners />
-      </div>
-      <Testimonials />
-      <div
-        className={cl.container}
-        ref={scrollToHomeForm}
-      >
-        <FeedbackForm />
+        <div className={cl.content_wrapper}>
+          <div className={cl.spheres_wrapper}>
+            <h1 className={cl.mainTitle}>
+              Наші основні
+              <br />
+              сфери діяльності
+            </h1>
+            <Spheres />
+          </div>
+          <VacancyList />
+          <FAQ />
+          <Partners />
+        </div>
+        <div className={cl.testimonials_wrapper}>
+          <Testimonials />
+        </div>
+        <div className={cl.content_wrapper}>
+          <div className={cl.form_wrapper} ref={scrollToHomeForm}>
+            <FeedbackForm />
+          </div>
+        </div>
       </div>
     </>
   );

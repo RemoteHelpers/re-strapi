@@ -6,15 +6,20 @@ img {
   max-width: 100%;
 }
 
+.section {
+  padding: 3.5rem 0 7rem 0;
+
+  @include onDesktop {
+    padding: 3.5rem 0 10rem 0;
+  }
+}
 .container {
   width: 90%;
   height: auto;
   margin: 0 auto;
-
   @include onDesktop {
     width: 80%;
   }
-
 }
 .main_wrapper {
   width: 100%;
@@ -22,16 +27,14 @@ img {
   display: flex;
   flex-direction: column;
   padding: 0 0 3.5rem 0;
-
 }
 
 .main_screen {
-  padding-top: 4rem;
   position: relative;
   width: 100%;
   height: 100%;
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
@@ -44,27 +47,24 @@ img {
     @include onTablet {
       height: 200px;
     }
-
   }
   &::before {
-      content: "";
-      position: absolute;
-      display: none;
-      bottom: 0;
-      right: 0;
-      width: 40%;
-      height: 30%;
-      background-color: $primaryColor3;
-      z-index: -2;
-      border-radius: 72% 28% 0% 0% / 62% 5% 95% 38%;
+    content: "";
+    position: absolute;
+    display: none;
+    bottom: 0;
+    right: 0;
+    width: 40%;
+    height: 30%;
+    background-color: $primaryColor3;
+    z-index: -2;
+    border-radius: 72% 28% 0% 0% / 62% 5% 95% 38%;
 
-      @include onTablet {
-        display: block;
-      }
-
+    @include onTablet {
+      display: block;
     }
+  }
 }
-
 
 .interview_tv {
   width: 100%;
@@ -81,29 +81,26 @@ img {
 
 .top_intro_text {
   width: 100%;
-  margin-top: 4rem;
 
   @include onTablet {
     width: 50%;
-    margin-top: 0;
   }
-
 }
 
 .bottom_intro_text {
   width: 100%;
   margin-bottom: 5rem;
-
+  z-index: 2;
   @include onTablet {
     width: 50%;
     margin-bottom: 0;
   }
 }
 
-
 .top_intro {
   width: 100%;
   display: flex;
+  gap: 3rem;
   flex-direction: column-reverse;
 
   @include onTablet {
@@ -111,7 +108,9 @@ img {
   }
 
   img {
-    width: 80%;
+    @include onDesktop {
+      width: 80%;
+    }
   }
   h1 {
     font-size: $typography1;
@@ -123,7 +122,7 @@ img {
     &::before {
       content: "";
       position: absolute;
-      top: -20%;
+      top: -10%;
       left: -30%;
       transform: translate(25%, -20%);
       width: clamp(150px, 15.6vw, 300px);
@@ -143,7 +142,6 @@ img {
   }
 }
 
-
 .bottom_intro {
   width: 100%;
   position: relative;
@@ -156,10 +154,8 @@ img {
 
   .absoluted_interview_cat {
     display: flex;
-    justify-content: center;
-  }
-  @include onTablet {
-    .absoluted_interview_cat {
+    justify-content: end;
+    @include onTablet {
       width: 70%;
     }
   }
@@ -239,16 +235,6 @@ img {
 .video_block {
   width: 100%;
   height: auto;
-  padding: 2rem 0 0;
-  
-  @include onTablet {
-    padding: 4rem 0;
-  }
-
-  @include onDesktop {
-    padding: 8rem 0;
-  }
-
 }
 .video_instruction_block {
   width: 100%;
@@ -257,15 +243,19 @@ img {
   justify-content: space-between;
   align-items: center;
   column-gap: 4rem;
+  padding: 3rem 0;
 
-  @include onTablet {
-    flex-direction: row !important;
+  @include onDesktop {
+    padding: 5rem 0;
   }
 
-}
-
-@media (max-width: 992px) {
-  .video_instruction_block {
+  @include on1920 {
+    padding: 7rem 0;
+  }
+  @include onDesktop {
+    flex-direction: row !important;
+  }
+  @media (max-width: 992px) {
     flex-direction: column;
   }
 }
@@ -279,9 +269,15 @@ img {
   border-radius: 0.5rem;
 
   @include onTablet {
+    height: 380px;
+  }
+  @include onDesktop {
+    height: 250px;
     width: calc(100% / 3 - 1rem);
   }
-
+  @include on1920 {
+    height: 275px;
+  }
   img {
     display: block;
     position: absolute;
@@ -297,7 +293,7 @@ img {
   width: 100%;
   margin-bottom: 2rem;
 
-  @include onTablet {
+  @include onDesktop {
     width: 70%;
     margin-bottom: 0;
   }
@@ -321,16 +317,15 @@ img {
 }
 
 .video_examples {
-  padding: 5rem 0;
-  
+  padding: 3rem 0;
+
   @include onTablet {
-    padding: 10rem 0 0 0;
+    padding: 5rem 0;
   }
 
-  @include onDesktop {
-    padding: 13rem 0 0 0;
+  @include on1920 {
+    padding: 7rem 0;
   }
-
 }
 
 .video_examples_wrapper {
@@ -343,11 +338,10 @@ img {
   align-items: center;
   margin-top: 2.75rem;
 
-  @include onTablet {
+  @include onDesktop {
     flex-direction: row;
     row-gap: 0;
   }
-
 }
 .video_examples {
   h1 {
@@ -357,5 +351,39 @@ img {
     line-height: 130%;
     color: $typographyColor2;
     text-decoration: underline;
+  }
+}
+
+.form_wrapper {
+  padding-top: 3rem;
+
+  @include onTablet {
+    padding-top: 5rem;
+  }
+
+  @include on1920 {
+    padding-top: 7rem;
+  }
+  position: relative;
+  width: 100%;
+  height: 100%;
+  &::after {
+    @include onTablet {
+      content: "";
+      position: absolute;
+      width: 55%;
+      top: 0%;
+      right: -25%;
+      height: 40%;
+      border-radius: 50%;
+      background-color: #d8faff;
+      z-index: -1;
+    }
+    @include onDesktop {
+      width: 60%;
+      top: -10%;
+      right: -45%;
+      height: 100%;
+    }
   }
 }

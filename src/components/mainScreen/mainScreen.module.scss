@@ -5,6 +5,7 @@
 .mainScreen {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
   overflow: hidden;
   padding: 2.1rem 1.8rem 3.7rem;
@@ -13,8 +14,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top 38.1rem left 0;
-  height: 85vh;
 
+  height: 100%;
   position: relative;
 
   @include onTablet {
@@ -24,9 +25,9 @@
   @include onDesktop {
     height: 85vh;
     flex-direction: row;
+    gap: 8rem;
     align-items: center;
-    gap: 12%;
-    padding: 2.1rem 12% 6.2rem;
+    padding: 0rem 10% 4rem;
     margin: 0 auto;
     background-image: url("../../images/mainScreen/background-desktop.png");
     background-position: top -15% left 0;

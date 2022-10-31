@@ -2,25 +2,25 @@
 @import "../../global-styles/colors.scss";
 @import "../../global-styles/fonts.scss";
 
-
 .form_wrapper {
   width: 100%;
-  padding-top: 2.5rem;
 }
 
 .vacancy_mobile_cat {
-  margin: 3.125rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
   img {
-    width: 80%;
+    width: 100%;
   }
 
   @include onDesktop {
     display: none;
   }
-
 }
 
 .buttons_wr {
@@ -71,7 +71,7 @@
   transform-style: preserve-3d;
   color: #000;
   font-weight: 700;
-  transition: .3s ease;
+  transition: 0.3s ease;
   &:hover {
     color: #3f455b;
     border: 3px #ff6501 solid;
@@ -169,7 +169,7 @@
       background-color: #fff;
     }
     &.main {
-      background-color: #D8FAFF;
+      background-color: #d8faff;
     }
   }
 }
@@ -222,5 +222,5 @@
 }
 
 .mainInput {
-  background-color: #D8FAFF;
+  background-color: #d8faff;
 }
