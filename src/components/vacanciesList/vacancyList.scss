@@ -11,19 +11,14 @@
 }
 
 .Vacancies {
-
-  padding: 1.8rem 0;
+  padding: 3rem 0;
 
   @include onTablet {
-    padding: 3rem 0;
-  }
-
-  @include onDesktop {
-    padding: 4rem 0;
+    padding: 5rem 0;
   }
 
   @include on1920 {
-    padding: 5rem 0;
+    padding: 7rem 0;
   }
 
   &__title {
@@ -33,18 +28,14 @@
     font-size: $typography2;
     color: $typographyColor2;
 
-    margin-bottom: 3.1rem;
+    margin-bottom: 3rem;
 
     @include onTablet {
-      margin-bottom: 4.4rem;
-    }
-
-    @include onDesktop {
       margin-bottom: 4rem;
     }
 
     @include on1920 {
-      margin-bottom: 5.6rem;
+      margin-bottom: 5rem;
     }
   }
 
@@ -62,12 +53,8 @@
     }
 
     @include onDesktop {
-      margin-bottom: 7.1rem;
+      margin-bottom: 8rem;
       flex-direction: row;
-    }
-
-    @include on1920 {
-      margin-bottom: 10.6rem;
     }
   }
 

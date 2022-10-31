@@ -1,21 +1,24 @@
-
-@import '../../utils/mixins.scss';
-@import '../../global-styles/colors.scss';
-@import '../../global-styles/fonts.scss';
+@import "../../utils/mixins.scss";
+@import "../../global-styles/colors.scss";
+@import "../../global-styles/fonts.scss";
 
 .container {
+  padding: 7rem 0;
+
+  @include onDesktop {
+    padding: 10rem 0;
+  }
+}
+
+.content_wrapper {
   width: 90%;
   height: auto;
   margin: 0 auto;
-
   @include onTablet {
     width: 80%;
   }
-
 }
-
 .mainTitle {
-  padding-top: 5rem;
   font-weight: 800;
   font-size: $typography2;
   color: $typographyColor2;
@@ -25,31 +28,65 @@
   margin-bottom: 3.1rem;
 
   @include onTablet {
-    padding-top: 3rem;
     margin-bottom: 4.4rem;
   }
 
   @include onDesktop {
-    padding-top: 10rem;
     margin-bottom: 4rem;
   }
 
   @include on1920 {
-    padding-top: 15rem;
     margin-bottom: 5.6rem;
   }
+}
 
-  color: $typography2;
+.form_wrapper {
+  padding-top: 3rem;
 
   @include onTablet {
-    margin-bottom: 4.4rem;
-  }
-
-  @include onDesktop {
-    margin-bottom: 4.2rem;
+    padding-top: 5rem;
   }
 
   @include on1920 {
-    margin-bottom: 5.6rem;
+    padding-top: 7rem;
+  }
+  position: relative;
+  width: 100%;
+  height: 100%;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -25%;
+    left: -25%;
+    width: 150%;
+    height: 40%;
+    border-radius: 50% 50% 0 0;
+    background-color: #d8faff;
+    z-index: -1;
+  }
+}
+
+.spheres_wrapper {
+  padding-bottom: 3rem;
+
+  @include onTablet {
+    padding-bottom: 5rem;
+  }
+
+  @include on1920 {
+    padding-bottom: 7rem;
+  }
+}
+
+.testimonials_wrapper {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+  @include onTablet {
+    width: 80%;
+  }
+  @include onDesktop {
+    width: 100%;
+    margin: 0;
   }
 }

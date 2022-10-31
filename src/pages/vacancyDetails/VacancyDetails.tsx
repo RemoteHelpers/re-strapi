@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable max-len */
 /* eslint-disable object-curly-newline */
@@ -13,7 +14,7 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import "../../App.scss";
-import { Alert, Breadcrumbs, Link, Typography } from "@mui/material";
+import { Breadcrumbs, Link, Typography } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { useParams } from "react-router-dom";
 import cl from "./vacancyDetails.module.scss";
@@ -23,6 +24,7 @@ import { LocalVacancyType } from "../../types/types";
 import play from "../../icons/play.png";
 import { VacancySvg } from "./VacancyFireSvg";
 import VacancyForm from "../../components/forms/vacancyForm";
+import Loader from "../../components/loader";
 import ToTopButton from "../../components/toTopButton/ToTopButton";
 
 const API = "http://testseven.rh-s.com:1733/api";
@@ -30,7 +32,6 @@ const API = "http://testseven.rh-s.com:1733/api";
 export const VacancyDetails = () => {
   const { localization } = useStateContext();
   const [localVacancy, setLocalVacancy] = useState<LocalVacancyType[]>([]);
-  const [activeAlert, setActiveAlert] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const formSection = useRef<HTMLDivElement>(null);
   const { vacancyID } = useParams();
@@ -46,7 +47,6 @@ export const VacancyDetails = () => {
         setTimeout(() => {
           setIsLoading(false);
         }, 1000);
-        console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -57,16 +57,9 @@ export const VacancyDetails = () => {
   //   setCurrentVacancy(vacancyID);
   // }, []);
 
-  const handleClickToFavorite = () => {
-    setActiveAlert(true);
-    setTimeout(() => {
-      setActiveAlert(false);
-    }, 3000);
-  };
-
   return (
-    <div className="container">
-      {!isLoading ?
+    <div className={cl.container}>
+      {!isLoading ? (
         <div className={cl.card}>
           {localVacancy &&
             localVacancy.map((item) => (
@@ -101,22 +94,6 @@ export const VacancyDetails = () => {
                       {item.attributes.title}
                     </Typography>
                   </Breadcrumbs>
-                  <button
-                    type="button"
-                    onClick={handleClickToFavorite}
-                    className={cl.addToFavorite}
-                  >
-                    <span className={cl.favoriteTitle}>Додати у закладки</span>
-                    <VacancySvg id="star" />
-                  </button>
-                  {activeAlert && (
-                    <div className={cl.alertWrapper}>
-                      <Alert variant="filled" severity="warning">
-                        Для того щоб додати сторінку в закладки, натисніть Ctrl +
-                        D
-                      </Alert>
-                    </div>
-                  )}
                 </div>
                 <span
                   className={
@@ -168,22 +145,10 @@ export const VacancyDetails = () => {
             ))}
           </div>
         </div>
-        : (
-          <div className="loading">
-            <div className="lds-roller">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </div>
-        )
-      }
-      <div className={cl.vacancy_top}>
+      ) : (
+        <Loader />
+      )}
+      <div className={cl.toTopButton}>
         <ToTopButton />
       </div>
     </div>

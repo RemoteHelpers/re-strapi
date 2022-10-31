@@ -3,40 +3,22 @@
 @import "../../global-styles/fonts.scss";
 
 .Spheres {
-  padding-bottom: 3.1rem;
-
-  @include onTablet {
-    padding-bottom: 4.3rem;
-  }
-
-  @include onDesktop {
-    padding-bottom: 4.3rem;
-  }
-
-  @include on1920 {
-    padding-bottom: 5.6rem;
-  }
-
   &__title {
     font-weight: 800;
     font-size: $typography2;
     line-height: 130%;
     text-decoration-line: underline;
-    margin-top: 0;
-    margin-bottom: 3.1rem;
-
     color: $typographyColor2;
 
-    @include onTablet {
-      margin-bottom: 4.4rem;
-    }
+    margin-top: 0;
+    margin-bottom: 3rem;
 
-    @include onDesktop {
-      margin-bottom: 4.2rem;
+    @include onTablet {
+      margin-bottom: 4rem;
     }
 
     @include on1920 {
-      margin-bottom: 5.6rem;
+      margin-bottom: 5rem;
     }
   }
 
