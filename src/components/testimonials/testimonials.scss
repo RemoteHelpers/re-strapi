@@ -135,10 +135,7 @@
       width: 1.5rem;
       height: 1.5rem;
       opacity: 1;
-
-      &:hover {
-        cursor: pointer;
-      }
+      cursor: pointer;
 
       @include onDesktop {
         width: 1.1rem;

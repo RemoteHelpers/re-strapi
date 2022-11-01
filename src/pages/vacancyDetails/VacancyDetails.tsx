@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/media-has-caption */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable max-len */
 /* eslint-disable object-curly-newline */
@@ -13,7 +16,7 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import "../../App.scss";
-import { Alert, Breadcrumbs, Link, Typography } from "@mui/material";
+import { Breadcrumbs, Link, Typography } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { useParams } from "react-router-dom";
 import cl from "./vacancyDetails.module.scss";
@@ -31,8 +34,9 @@ const PhotoAPI = "http://testseven.rh-s.com:1733";
 export const VacancyDetails = () => {
   const { localization } = useStateContext();
   const [localVacancy, setLocalVacancy] = useState<LocalVacancyType[]>([]);
-  const [activeAlert, setActiveAlert] = useState(false);
+  // const [activeAlert, setActiveAlert] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [videoPreview, setVideoPreview] = useState(true);
   const formSection = useRef<HTMLDivElement>(null);
   const { vacancyID } = useParams();
 
@@ -58,11 +62,15 @@ export const VacancyDetails = () => {
   //   setCurrentVacancy(vacancyID);
   // }, []);
 
-  const handleClickToFavorite = () => {
-    setActiveAlert(true);
-    setTimeout(() => {
-      setActiveAlert(false);
-    }, 3000);
+  // const handleClickToFavorite = () => {
+  //   setActiveAlert(true);
+  //   setTimeout(() => {
+  //     setActiveAlert(false);
+  //   }, 3000);
+  // };
+
+  const playVideo = () => {
+    setVideoPreview(false);
   };
 
   return (
@@ -103,7 +111,7 @@ export const VacancyDetails = () => {
                       {item.attributes.title}
                     </Typography>
                   </Breadcrumbs>
-                  <button
+                  {/* <button
                     type="button"
                     onClick={handleClickToFavorite}
                     className={cl.addToFavorite}
@@ -114,11 +122,10 @@ export const VacancyDetails = () => {
                   {activeAlert && (
                     <div className={cl.alertWrapper}>
                       <Alert variant="filled" severity="info">
-                        Для того щоб додати сторінку в закладки, натисніть Ctrl +
-                        D
+                        Для того щоб додати сторінку в закладки, натисніть Ctrl + D
                       </Alert>
                     </div>
-                  )}
+                  )} */}
                 </div>
                 <span
                   className={
@@ -137,7 +144,7 @@ export const VacancyDetails = () => {
                       type="button"
                       onClick={() =>
                         formSection?.current?.scrollIntoView({
-                          block: "center",
+                          block: "start",
                           behavior: "smooth",
                         })
                       }
@@ -145,10 +152,36 @@ export const VacancyDetails = () => {
                       Відгукнутися
                     </button>
                   </div>
-                  <div className={cl.vacancy_video}>
-                    <iframe width="100%" height="100%" src={item.attributes.videoLink} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                    <img className={cl.video_preview_image} src={`${PhotoAPI}${item.attributes.videoPreview.data.attributes.url}`} alt="" />
-                  </div>
+                  <button
+                    type="button"
+                    className={cl.vacancy_video}
+                    onClick={playVideo}
+                  >
+                    {videoPreview ?
+                      <img
+                        className={cl.video_preview_image}
+                        src={`${PhotoAPI}${item.attributes.videoPreview.data.attributes.url}`}
+                        alt=""
+                      />
+                      : (
+                        <iframe
+                          width="100%"
+                          height="100%"
+                          src={`${item.attributes.videoLink}${'?autoplay=1&mute=1'}`}
+                          title={item.attributes.title}
+                          frameBorder="0"
+                          allow="accelerometer;
+                          autoplay;
+                          clipboard-write;
+                          encrypted-media;
+                          gyroscope;
+                          picture-in-picture"
+                          allowFullScreen
+                        >
+                        </iframe>
+                      )
+                    }
+                  </button>
                 </div>
                 <ReactMarkdown
                   children={item.attributes.description}
@@ -157,6 +190,7 @@ export const VacancyDetails = () => {
               </div>
             ))}
 
+          <div ref={formSection}></div>
           <div className={cl.vacancyForm}>
             {localVacancy.map((form) => (
               <div key={form.id}>
@@ -164,9 +198,7 @@ export const VacancyDetails = () => {
                   children={form.attributes.formTitle}
                   className={cl.formStyledMarkdown}
                 />
-                <div ref={formSection}>
-                  <VacancyForm />
-                </div>
+                <VacancyForm />
               </div>
             ))}
           </div>

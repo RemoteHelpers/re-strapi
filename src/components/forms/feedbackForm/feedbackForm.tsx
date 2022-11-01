@@ -13,7 +13,7 @@ import feedbackCat from '../../../images/formImg.png';
 import vacancyCat from '../../../icons/interview_form_kitekat.png';
 
 function FeedbackForm() {
-  const { scrollToTop, localization } = useStateContext();
+  const { localization } = useStateContext();
 
   const url = window.location.pathname === `/${localization}/videoInterview`;
 
@@ -34,13 +34,9 @@ function FeedbackForm() {
             )}
           </div>
           <FormFields />
-          <button
-            type="button"
-            className={cl.feedback_top}
-            onClick={() => scrollToTop?.current?.scrollIntoView({ block: 'start', behavior: 'smooth' })}
-          >
+          <div className={cl.feedback_top}>
             <ToTopButton />
-          </button>
+          </div>
         </div>
       </div>
     </>

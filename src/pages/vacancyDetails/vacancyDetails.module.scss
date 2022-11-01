@@ -98,11 +98,13 @@
   position: relative;
   width: 100% !important;
   position: relative;
-  height: 270px;
-  border-radius: 0.6rem;
+  height: 100%;
+  border-radius: .6rem;
   margin-top: 4rem;
   overflow: hidden;
   cursor: pointer;
+  border: 0;
+  background-color: transparent;
 
   @include onTablet {
     width: 40% !important;
@@ -112,6 +114,7 @@
   .video_preview_image {
     position: absolute;
     object-fit: cover;
+    border-radius: .4rem;
     top: 0;
     left: 0;
     width: 100%;
@@ -119,6 +122,7 @@
     z-index: 1;
   }
 }
+
 
 .hotVacancy {
   background-color: $secondaryColor1;
@@ -130,13 +134,7 @@
   border-radius: 1rem;
 }
 .coldVacancy {
-  background-color: $secondaryColor4;
-  color: $secondaryColor5;
-  display: inline-flex;
-  align-items: center;
-  column-gap: 0.5rem;
-  padding: 0.6rem 1.5rem;
-  border-radius: 1rem;
+  display: none;
 }
 
 .cardContentWrapper {
