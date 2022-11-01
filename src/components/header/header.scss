@@ -46,11 +46,6 @@
     height: auto;
 
     @include onTablet {
-      width: 12rem;
-      height: auto;
-    }
-
-    @include onDesktop {
       width: 14rem;
       height: auto;
     }
@@ -102,7 +97,7 @@
     background-color: $typographyColor1;
 
     @include onTablet {
-      width: 3.3rem;
+      width: 3.25rem;
       border-radius: 3px;
     }
 
@@ -118,9 +113,8 @@
       transition: all 0.3s;
 
       @include onTablet {
-        transform: translateY(-1.1rem);
-        width: 3.4rem;
-        height: 3px;
+        transform: translateY(-0.9rem);
+        width: 3.25rem;
       }
     }
 
@@ -136,10 +130,9 @@
       transition: all 0.3s;
 
       @include onTablet {
-        transform: translateY(1.1rem);
-        width: 3.4rem;
+        transform: translateY(0.9rem);
+        width: 3.25rem;
         border-radius: 3px;
-        height: 3px;
       }
     }
 
@@ -184,13 +177,16 @@
       font-size: clamp(16px, 3.12vw, 24px);
       line-height: 130%;
       border-bottom: 1px solid $primaryColor1;
-      padding: 2.5rem 2.5rem 2.5rem 1.8rem;
+      padding: 2rem;
 
       background-color: $secondaryColor5;
       color: $typographyColor1;
 
       &:first-child {
         border-radius: 0.9rem 0.9rem 0px 0px;
+      }
+      @include onTablet {
+        padding: 3rem;
       }
     }
 
@@ -277,7 +273,7 @@
 
       @include onTablet {
         margin: 0;
-        height: 10.1rem;
+        height: 9rem;
         font-size: 0;
       }
     }
@@ -318,7 +314,7 @@
     }
 
     @include onDesktop {
-      top: 125px;
+      top: 8.5rem;
       z-index: 1000;
     }
   }
@@ -359,7 +355,7 @@
 
   &__single-value {
     font-weight: 500 !important;
-    font-size: 0.6rem !important;
+    font-size: 0.75rem !important;
     line-height: 115% !important;
     color: #000 !important;
 

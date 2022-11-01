@@ -1,6 +1,4 @@
-/* eslint-disable jsx-a11y/media-has-caption */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable max-len */
 /* eslint-disable object-curly-newline */
@@ -23,20 +21,18 @@ import cl from "./vacancyDetails.module.scss";
 import { useStateContext } from "../../context/StateContext";
 import { LocalVacancyType } from "../../types/types";
 
-// import play from "../../icons/play.png";
+import play from "../../icons/play.png";
 import { VacancySvg } from "./VacancyFireSvg";
 import VacancyForm from "../../components/forms/vacancyForm";
+import Loader from "../../components/loader";
 import ToTopButton from "../../components/toTopButton/ToTopButton";
 
 const API = "http://testseven.rh-s.com:1733/api";
-const PhotoAPI = "http://testseven.rh-s.com:1733";
 
 export const VacancyDetails = () => {
   const { localization } = useStateContext();
   const [localVacancy, setLocalVacancy] = useState<LocalVacancyType[]>([]);
-  // const [activeAlert, setActiveAlert] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [videoPreview, setVideoPreview] = useState(true);
   const formSection = useRef<HTMLDivElement>(null);
   const { vacancyID } = useParams();
 
@@ -51,7 +47,6 @@ export const VacancyDetails = () => {
         setTimeout(() => {
           setIsLoading(false);
         }, 1000);
-        console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -62,20 +57,9 @@ export const VacancyDetails = () => {
   //   setCurrentVacancy(vacancyID);
   // }, []);
 
-  // const handleClickToFavorite = () => {
-  //   setActiveAlert(true);
-  //   setTimeout(() => {
-  //     setActiveAlert(false);
-  //   }, 3000);
-  // };
-
-  const playVideo = () => {
-    setVideoPreview(false);
-  };
-
   return (
-    <div className="container">
-      {!isLoading ?
+    <div className={cl.container}>
+      {!isLoading ? (
         <div className={cl.card}>
           {localVacancy &&
             localVacancy.map((item) => (
@@ -89,7 +73,6 @@ export const VacancyDetails = () => {
                       />
                     }
                     aria-label="breadcrumb"
-                    className={cl.breadcrumbs_arrows}
                   >
                     <Link
                       className={`${cl.normalCrumb} ${cl.firstCrumb}`}
@@ -111,21 +94,6 @@ export const VacancyDetails = () => {
                       {item.attributes.title}
                     </Typography>
                   </Breadcrumbs>
-                  {/* <button
-                    type="button"
-                    onClick={handleClickToFavorite}
-                    className={cl.addToFavorite}
-                  >
-                    <span className={cl.favoriteTitle}>Додати у закладки</span>
-                    <VacancySvg id="star" />
-                  </button>
-                  {activeAlert && (
-                    <div className={cl.alertWrapper}>
-                      <Alert variant="filled" severity="info">
-                        Для того щоб додати сторінку в закладки, натисніть Ctrl + D
-                      </Alert>
-                    </div>
-                  )} */}
                 </div>
                 <span
                   className={
@@ -144,7 +112,7 @@ export const VacancyDetails = () => {
                       type="button"
                       onClick={() =>
                         formSection?.current?.scrollIntoView({
-                          block: "start",
+                          block: "center",
                           behavior: "smooth",
                         })
                       }
@@ -152,36 +120,9 @@ export const VacancyDetails = () => {
                       Відгукнутися
                     </button>
                   </div>
-                  <button
-                    type="button"
-                    className={cl.vacancy_video}
-                    onClick={playVideo}
-                  >
-                    {videoPreview ?
-                      <img
-                        className={cl.video_preview_image}
-                        src={`${PhotoAPI}${item.attributes.videoPreview.data.attributes.url}`}
-                        alt=""
-                      />
-                      : (
-                        <iframe
-                          width="100%"
-                          height="100%"
-                          src={`${item.attributes.videoLink}${'?autoplay=1&mute=1'}`}
-                          title={item.attributes.title}
-                          frameBorder="0"
-                          allow="accelerometer;
-                          autoplay;
-                          clipboard-write;
-                          encrypted-media;
-                          gyroscope;
-                          picture-in-picture"
-                          allowFullScreen
-                        >
-                        </iframe>
-                      )
-                    }
-                  </button>
+                  <div className={cl.shortVacancyVideo}>
+                    <img src={play} alt="" />
+                  </div>
                 </div>
                 <ReactMarkdown
                   children={item.attributes.description}
@@ -190,7 +131,6 @@ export const VacancyDetails = () => {
               </div>
             ))}
 
-          <div ref={formSection}></div>
           <div className={cl.vacancyForm}>
             {localVacancy.map((form) => (
               <div key={form.id}>
@@ -198,27 +138,17 @@ export const VacancyDetails = () => {
                   children={form.attributes.formTitle}
                   className={cl.formStyledMarkdown}
                 />
-                <VacancyForm />
+                <div ref={formSection}>
+                  <VacancyForm />
+                </div>
               </div>
             ))}
           </div>
         </div>
-        : (
-          <div className="loading">
-            <div className="lds-roller">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </div>
-        )
-      }
-      <div className={cl.vacancy_top}>
+      ) : (
+        <Loader />
+      )}
+      <div className={cl.toTopButton}>
         <ToTopButton />
       </div>
     </div>
