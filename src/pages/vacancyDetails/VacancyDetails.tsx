@@ -19,7 +19,7 @@ import { Breadcrumbs, Link, Typography } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { useParams } from "react-router-dom";
 import cl from "./vacancyDetails.module.scss";
-// import { useStateContext } from "../../context/StateContext";
+import { useStateContext } from "../../context/StateContext";
 import { LocalVacancyType } from "../../types/types";
 
 import { VacancySvg } from "./VacancyFireSvg";
@@ -31,7 +31,7 @@ const API = "http://testseven.rh-s.com:1733/api";
 const PhotoAPI = "http://testseven.rh-s.com:1733";
 
 export const VacancyDetails = () => {
-  // const { localization } = useStateContext();
+  const { localization } = useStateContext();
   const [localVacancy, setLocalVacancy] = useState<LocalVacancyType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [previewVideoImage, setPreviewVideoImage] = useState(true);
@@ -94,8 +94,7 @@ export const VacancyDetails = () => {
                       className={cl.normalCrumb}
                       underline="none"
                       color="inherit"
-                      href="/vacancies"
-                      // href={`/${localization}/vacancies`}
+                      href={`/${localization}/vacancies`}
                     >
                       Vacancies
                     </Link>
@@ -184,7 +183,6 @@ export const VacancyDetails = () => {
             <h2>Схожі вакансії</h2>
             <div className={cl.fetching_another_vacancies}></div>
           </div> */}
-
         </div>
       ) : (
         <Loader />

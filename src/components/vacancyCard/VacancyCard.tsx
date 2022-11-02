@@ -13,8 +13,7 @@ interface Props {
 }
 
 const VacancyCard: React.FC<Props> = ({ title, slug, isHot }) => {
-  const { setCurrentVacancy } = useStateContext();
-  // const { setCurrentVacancy, localization } = useStateContext();
+  const { setCurrentVacancy, localization } = useStateContext();
   const handleSlug = () => {
     setCurrentVacancy(slug);
   };
@@ -38,8 +37,7 @@ const VacancyCard: React.FC<Props> = ({ title, slug, isHot }) => {
       </div>
       <a
         className="VacancyCard__button"
-        href={`/vacancies/${slug}`}
-        // href={`/${localization}/vacancies/${slug}`}
+        href={`/${localization}/vacancies/${slug}`}
         onClick={handleSlug}
       >
         See more
