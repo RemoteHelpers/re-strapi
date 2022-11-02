@@ -323,9 +323,13 @@
 .active-link {
   font-weight: 700;
 }
-
+.css-b62m3t-container {
+  z-index: 9999 !important;
+}
 .custom-select-header {
+  z-index: 1 !important;
   order: 0;
+
   &__control {
     border: none !important;
     display: flex !important;
