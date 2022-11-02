@@ -1,17 +1,18 @@
+/* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import Select from 'react-select';
-import InputMask from 'react-input-mask';
-import { useForm } from 'react-hook-form';
-import cl from './formFields.module.scss';
-import Api from '../../api';
-import { IFeedbackFormData } from '../../types/types';
-import { useStateContext } from '../../context/StateContext';
-import vacancyCat from '../../icons/vacancyCat.png';
-import feedbackCat from '../../images/formImg.png';
-import interviewCat from '../../icons/interview_form_kitekat.png';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import Select from "react-select";
+import InputMask from "react-input-mask";
+import { useForm } from "react-hook-form";
+import cl from "./formFields.module.scss";
+import Api from "../../api";
+import { IFeedbackFormData } from "../../types/types";
+// import { useStateContext } from "../../context/StateContext";
+import vacancyCat from "../../icons/vacancyCat.png";
+import feedbackCat from "../../images/formImg.png";
+import interviewCat from "../../icons/interview_form_kitekat.png";
 
 type TOption = {
   value: string;
@@ -19,17 +20,17 @@ type TOption = {
 };
 
 export const FormFields = () => {
-  const { localization } = useStateContext();
+  // const { localization } = useStateContext();
   const { vacancyID } = useParams();
 
   const EnglishLevel = [
-    { value: 'beginner', label: 'Beginner' },
-    { value: 'elementary ', label: 'Elementary' },
-    { value: 'pre-intermediate', label: 'Pre-Intermediate' },
-    { value: 'intermediate', label: 'Intermediate' },
-    { value: 'upper-intermediate', label: 'Upper-Intermediate' },
-    { value: 'advanced', label: 'Advanced' },
-    { value: 'Proficiency', label: 'Proficiency' },
+    { value: "beginner", label: "Beginner" },
+    { value: "elementary ", label: "Elementary" },
+    { value: "pre-intermediate", label: "Pre-Intermediate" },
+    { value: "intermediate", label: "Intermediate" },
+    { value: "upper-intermediate", label: "Upper-Intermediate" },
+    { value: "advanced", label: "Advanced" },
+    { value: "Proficiency", label: "Proficiency" },
   ];
 
   const [selectedOption, setSelectedOption] = useState<TOption | null>();
@@ -42,7 +43,7 @@ export const FormFields = () => {
     setValue,
   } = useForm<IFeedbackFormData>();
 
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState("");
 
   const onSubmit = handleSubmit(async (data: IFeedbackFormData) => {
     try {
@@ -55,36 +56,39 @@ export const FormFields = () => {
           ...data,
           file: arrFile[0].id,
         });
-        setPhone('');
+        setPhone("");
         setSelectedOption(null);
         reset();
       }
     } catch (error) {
-      console.log(error, 'send feedBack form');
+      console.log(error, "send feedBack form");
     }
   });
 
   useEffect(() => {
-    register('EnglishLevel', {
+    register("EnglishLevel", {
       required: true,
     });
-    register('phone', {
+    register("phone", {
       required: true,
     });
   }, []);
 
   const changeEnglishLevel = (value: any) => {
-    setValue('EnglishLevel', value.value, { shouldValidate: true });
+    setValue("EnglishLevel", value.value, { shouldValidate: true });
     setSelectedOption(value);
   };
 
   const changePhone = (e: any) => {
-    setValue('phone', e.target.value, { shouldValidate: true });
+    setValue("phone", e.target.value, { shouldValidate: true });
     setPhone(e.target.value);
   };
 
-  const url = window.location.pathname === `/${localization}/vacancies/${vacancyID}`;
-  const interviewUrl = window.location.pathname === `/${localization}/videoInterview`;
+  const url = window.location.pathname === `/vacancies/${vacancyID}`;
+  const interviewUrl = window.location.pathname === "/videoInterview";
+
+  // const url = window.location.pathname === `/${localization}/vacancies/${vacancyID}`;
+  // const interviewUrl = window.location.pathname === `/${localization}/videoInterview`;
 
   return (
     <form onSubmit={onSubmit} className={cl.form_wrapper}>
@@ -92,17 +96,21 @@ export const FormFields = () => {
         <div className={cl.input_wr}>
           <div className={cl.input_name}>
             <input
-              className={`${errors.name && url ? cl.invalid : ''} ${watch('name') && cl.valid} + ${url ? cl.white : cl.main}`}
+              className={`${errors.name && url ? cl.invalid : ""} ${
+                watch("name") && cl.valid
+              } + ${url ? cl.white : cl.main}`}
               type="text"
               placeholder="ПІБ"
-              {...register('name', { required: true })}
+              {...register("name", { required: true })}
             />
           </div>
           <div className={cl.input_phone}>
             <InputMask
               mask="+380 (099) 999-999-9"
               value={phone}
-              className={`${errors.phone ? cl.invalid : ''} ${watch('phone') && cl.valid} + ${url ? cl.white : cl.main}`}
+              className={`${errors.phone ? cl.invalid : ""} ${
+                watch("phone") && cl.valid
+              } + ${url ? cl.white : cl.main}`}
               placeholder="+380"
               onChange={changePhone}
             />
@@ -110,9 +118,11 @@ export const FormFields = () => {
           <div className={cl.input_email}>
             <input
               type="email"
-              className={`${errors.email ? cl.invalid : ''} ${watch('email') && cl.valid} + ${url ? cl.white : cl.main}`}
+              className={`${errors.email ? cl.invalid : ""} ${
+                watch("email") && cl.valid
+              } + ${url ? cl.white : cl.main}`}
               placeholder="Email"
-              {...register('email', { required: true })}
+              {...register("email", { required: true })}
             />
           </div>
           <div className={cl.input_age}>
@@ -120,18 +130,22 @@ export const FormFields = () => {
               type="text"
               minLength={2}
               maxLength={2}
-              className={`${errors.age ? cl.invalid : ''} ${watch('age') && cl.valid} + ${url ? cl.white : cl.main}`}
+              className={`${errors.age ? cl.invalid : ""} ${
+                watch("age") && cl.valid
+              } + ${url ? cl.white : cl.main}`}
               placeholder="Вік"
-              {...register('age', { required: true })}
+              {...register("age", { required: true })}
             />
           </div>
         </div>
         <div className={cl.input_wr}>
           <div className={cl.input_text}>Рівень англійської</div>
           <Select
-            className={`react-select-container ${errors.EnglishLevel ? 'invalid' : ''} ${watch('EnglishLevel') ? 'valid' : ''} `}
+            className={`react-select-container ${
+              errors.EnglishLevel ? "invalid" : ""
+            } ${watch("EnglishLevel") ? "valid" : ""} `}
             placeholder="Level"
-            classNamePrefix={url ? 'react-select' : 'select'}
+            classNamePrefix={url ? "react-select" : "select"}
             defaultValue={selectedOption}
             onChange={changeEnglishLevel}
             options={EnglishLevel}
@@ -147,12 +161,11 @@ export const FormFields = () => {
               <div className={cl.vacancy_mobile_cat}>
                 <img src={vacancyCat} alt="" />
               </div>
-            )
-              : (
-                <div className={cl.vacancy_mobile_cat}>
-                  <img src={feedbackCat} alt="" />
-                </div>
-              )}
+            ) : (
+              <div className={cl.vacancy_mobile_cat}>
+                <img src={feedbackCat} alt="" />
+              </div>
+            )}
           </div>
         )}
         <div className={cl.buttons_wr}>
@@ -161,14 +174,16 @@ export const FormFields = () => {
               type="text"
               name="fileName"
               readOnly
-              className={`${errors.file ? cl.invalid : ''} ${watch('file' as any)?.[0]?.name && cl.valid} ${cl.download_btn}`}
+              className={`${errors.file ? cl.invalid : ""} ${
+                watch("file" as any)?.[0]?.name && cl.valid
+              } ${cl.download_btn}`}
               placeholder="Прикріпити резюме"
-              value={watch('file' as any)?.[0]?.name || ''}
+              value={watch("file" as any)?.[0]?.name || ""}
             />
             <input
               className={cl.attach_CV_btn}
               type="file"
-              {...register('file', { required: true })}
+              {...register("file", { required: true })}
             />
           </label>
           <button
