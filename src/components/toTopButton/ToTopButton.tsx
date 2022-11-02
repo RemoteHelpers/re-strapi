@@ -17,7 +17,7 @@ const ToTopButton = () => {
     <button
       type="button"
       className={cl.to_top_btn}
-      onClick={() => scrollToTop?.current?.scrollIntoView({ block: 'center', behavior: 'smooth' })}
+      onClick={() => scrollToTop?.current?.scrollIntoView({ block: 'start', behavior: 'smooth' })}
     >
       <FormsSvg id="top" />
     </button>

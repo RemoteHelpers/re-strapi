@@ -21,18 +21,19 @@ import cl from "./vacancyDetails.module.scss";
 import { useStateContext } from "../../context/StateContext";
 import { LocalVacancyType } from "../../types/types";
 
-import play from "../../icons/play.png";
 import { VacancySvg } from "./VacancyFireSvg";
 import VacancyForm from "../../components/forms/vacancyForm";
 import Loader from "../../components/loader";
 import ToTopButton from "../../components/toTopButton/ToTopButton";
 
 const API = "http://testseven.rh-s.com:1733/api";
+const PhotoAPI = "http://testseven.rh-s.com:1733";
 
 export const VacancyDetails = () => {
   const { localization } = useStateContext();
   const [localVacancy, setLocalVacancy] = useState<LocalVacancyType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [previewVideoImage, setPreviewVideoImage] = useState(true);
   const formSection = useRef<HTMLDivElement>(null);
   const { vacancyID } = useParams();
 
@@ -44,6 +45,7 @@ export const VacancyDetails = () => {
       )
       .then((res) => {
         setLocalVacancy(res.data.data);
+        console.log(res.data.data);
         setTimeout(() => {
           setIsLoading(false);
         }, 1000);
@@ -56,6 +58,10 @@ export const VacancyDetails = () => {
   // useEffect(() => {
   //   setCurrentVacancy(vacancyID);
   // }, []);
+
+  const playVideo = () => {
+    setPreviewVideoImage(false);
+  };
 
   return (
     <div className={cl.container}>
@@ -72,6 +78,7 @@ export const VacancyDetails = () => {
                         fontSize="medium"
                       />
                     }
+                    className={cl.breadCrumbArrows}
                     aria-label="breadcrumb"
                   >
                     <Link
@@ -112,7 +119,7 @@ export const VacancyDetails = () => {
                       type="button"
                       onClick={() =>
                         formSection?.current?.scrollIntoView({
-                          block: "center",
+                          block: "start",
                           behavior: "smooth",
                         })
                       }
@@ -120,9 +127,32 @@ export const VacancyDetails = () => {
                       Відгукнутися
                     </button>
                   </div>
-                  <div className={cl.shortVacancyVideo}>
-                    <img src={play} alt="" />
-                  </div>
+                  <button
+                    type="button"
+                    className={cl.shortVacancyVideo}
+                    onClick={playVideo}
+                  >
+                    {previewVideoImage ?
+                      <img src={`${PhotoAPI}${item.attributes.videoPreview.data.attributes.url}`} alt="" />
+                      : (
+                        <iframe
+                          width="560"
+                          height="315"
+                          src={`${item.attributes.videoLink}${'?autoplay=1&mute=1'}`}
+                          title={item.attributes.title}
+                          frameBorder="0"
+                          allow="accelerometer;
+                          autoplay;
+                          clipboard-write;
+                          encrypted-media;
+                          gyroscope;
+                          picture-in-picture"
+                          allowFullScreen
+                        >
+                        </iframe>
+                      )
+                    }
+                  </button>
                 </div>
                 <ReactMarkdown
                   children={item.attributes.description}
