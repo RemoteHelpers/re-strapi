@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable max-len */
@@ -18,7 +19,7 @@ import { Breadcrumbs, Link, Typography } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { useParams } from "react-router-dom";
 import cl from "./vacancyDetails.module.scss";
-import { useStateContext } from "../../context/StateContext";
+// import { useStateContext } from "../../context/StateContext";
 import { LocalVacancyType } from "../../types/types";
 
 import { VacancySvg } from "./VacancyFireSvg";
@@ -30,7 +31,7 @@ const API = "http://testseven.rh-s.com:1733/api";
 const PhotoAPI = "http://testseven.rh-s.com:1733";
 
 export const VacancyDetails = () => {
-  const { localization } = useStateContext();
+  // const { localization } = useStateContext();
   const [localVacancy, setLocalVacancy] = useState<LocalVacancyType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [previewVideoImage, setPreviewVideoImage] = useState(true);
@@ -93,7 +94,8 @@ export const VacancyDetails = () => {
                       className={cl.normalCrumb}
                       underline="none"
                       color="inherit"
-                      href={`/${localization}/vacancies`}
+                      href="/vacancies"
+                      // href={`/${localization}/vacancies`}
                     >
                       Vacancies
                     </Link>
@@ -132,26 +134,29 @@ export const VacancyDetails = () => {
                     className={cl.shortVacancyVideo}
                     onClick={playVideo}
                   >
-                    {previewVideoImage ?
-                      <img src={`${PhotoAPI}${item.attributes.videoPreview.data.attributes.url}`} alt="" />
-                      : (
-                        <iframe
-                          width="560"
-                          height="315"
-                          src={`${item.attributes.videoLink}${'?autoplay=1&mute=1'}`}
-                          title={item.attributes.title}
-                          frameBorder="0"
-                          allow="accelerometer;
+                    {previewVideoImage ? (
+                      <img
+                        src={`${PhotoAPI}${item.attributes.videoPreview.data.attributes.url}`}
+                        alt=""
+                      />
+                    ) : (
+                      <iframe
+                        width="560"
+                        height="315"
+                        src={`${
+                          item.attributes.videoLink
+                        }${"?autoplay=1&mute=1"}`}
+                        title={item.attributes.title}
+                        frameBorder="0"
+                        allow="accelerometer;
                           autoplay;
                           clipboard-write;
                           encrypted-media;
                           gyroscope;
                           picture-in-picture"
-                          allowFullScreen
-                        >
-                        </iframe>
-                      )
-                    }
+                        allowFullScreen
+                      ></iframe>
+                    )}
                   </button>
                 </div>
                 <ReactMarkdown

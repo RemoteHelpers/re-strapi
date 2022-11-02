@@ -37,24 +37,25 @@ const App: React.FC = () => {
     isDesktopMenuOpened,
   } = useStateContext();
 
-  if (window.location.pathname === "/") {
-    window.location.pathname = `/${localization}/`;
-  }
+  // if (window.location.pathname === "/") {
+  //   window.location.pathname = `/${localization}/`;
+  // }
 
-  useEffect(() => {
-    const prevLanguage = window.location.pathname.split("/")[1];
-    const prevURL = window.location.pathname.split("/");
-    prevURL.splice(0, 2);
-    const match = prevURL.join("/");
-    if (localization !== prevLanguage) {
-      window.location.pathname = `/${localization}/${match}`;
-    }
-  }, [localization]);
+  // useEffect(() => {
+  //   const prevLanguage = window.location.pathname.split("/")[1];
+  //   const prevURL = window.location.pathname.split("/");
+  //   prevURL.splice(0, 2);
+  //   const match = prevURL.join("/");
+  //   if (localization !== prevLanguage) {
+  //     window.location.pathname = `/${localization}/${match}`;
+  //   }
+  // }, [localization]);
 
   return (
     <>
       {isSubmitLocalization ? (
-        <BrowserRouter basename={`/${localization}`}>
+        // <BrowserRouter basename={`/${localization}`}>
+        <BrowserRouter basename="/">
           <div ref={scrollToTop}></div>
           <Header />
           <main className={isDesktopMenuOpened ? "desktopMenuOpened" : ""}>
@@ -74,7 +75,8 @@ const App: React.FC = () => {
       ) : (
         <BrowserRouter>
           <Routes>
-            <Route path={`/${localization}`} element={<ChooseLanguagePage />} />
+            <Route path="/" element={<ChooseLanguagePage />} />
+            {/* <Route path={`/${localization}`} element={<ChooseLanguagePage />} /> */}
           </Routes>
         </BrowserRouter>
       )}

@@ -347,7 +347,8 @@ const Header = () => {
                 <a
                   key={vacancy.id}
                   className="Header__link_mobile"
-                  href={`/${localization}/vacancies/${vacancy.attributes.vacancySlug}`}
+                  href={`/vacancies/${vacancy.attributes.vacancySlug}`}
+                  // href={`/${localization}/vacancies/${vacancy.attributes.vacancySlug}`}
                   onClick={() => {
                     setCurrentVacancy(vacancy.attributes.vacancySlug);
                     handleVacancyMenuSelect();
@@ -397,7 +398,8 @@ const Header = () => {
             <a
               key={vacancy.id}
               className="Header__link_desktop--vacancy"
-              href={`/${localization}/vacancies/${vacancy.attributes.vacancySlug}`}
+              href={`/vacancies/${vacancy.attributes.vacancySlug}`}
+              // href={`/${localization}/vacancies/${vacancy.attributes.vacancySlug}`}
               // onClick={() => setCurrentVacancy(vacancy.attributes.vacancySlug)}
               onClick={() => {
                 setCurrentVacancy(vacancy.attributes.vacancySlug);
