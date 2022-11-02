@@ -174,6 +174,12 @@ export const VacancyDetails = () => {
               </div>
             ))}
           </div>
+
+          {/* <div className={cl.another_vacancies}>
+            <h2>Схожі вакансії</h2>
+            <div className={cl.fetching_another_vacancies}></div>
+          </div> */}
+
         </div>
       ) : (
         <Loader />
