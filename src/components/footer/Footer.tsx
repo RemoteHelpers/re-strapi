@@ -8,8 +8,11 @@ import cl from "./footer.module.scss";
 
 import Logo from "../../images/Footer/logo.png";
 import { FooterIconsSVG } from "../../icons/footer/FooterIconsSVG";
+import { useStateContext } from "../../context/StateContext";
 
 export const Footer = () => {
+  const { footerData } = useStateContext();
+
   return (
     <footer className={cl.Footer}>
       <div className={cl.Footer__links}>
@@ -27,17 +30,17 @@ export const Footer = () => {
         </div>
       </div>
       <div className={cl.Footer__contacts}>
-        <h4 className={cl.Footer__title}>Контакти</h4>
+        <h4 className={cl.Footer__title}>{footerData?.attributes.footerContacts}</h4>
         <a
           target="_blank"
           href="https://goo.gl/maps/PXsdBHfVXmeLcZGt5"
           className={cl.Footer__contactsText}
           rel="noreferrer"
         >
-          м, Харків вул. Римарська, 22
+          {footerData?.attributes.footerAdress}
         </a>
         <a href="tel:+380980000000" className={cl.Footer__contactsText}>
-          +39 (098) 000-00-00
+          {footerData?.attributes.footerNumber}
         </a>
         <a
           target="_blank"
@@ -45,7 +48,7 @@ export const Footer = () => {
           className={cl.Footer__contactsText}
           rel="noreferrer"
         >
-          info@remote.employees.com.ua
+          {footerData?.attributes.footerMail}
         </a>
       </div>
     </footer>

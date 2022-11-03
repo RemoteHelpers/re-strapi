@@ -10,17 +10,16 @@ import "../../formFields/feedbackFormSelect.scss";
 // img
 // import { FormsSvg } from "../../../icons/form/FormsSvg";
 import FormFields from "../../formFields";
-// import { useStateContext } from "../../../context/StateContext";
+import { useStateContext } from "../../../context/StateContext";
 
 import feedbackCat from "../../../images/formImg.png";
 import vacancyCat from "../../../icons/interview_form_kitekat.png";
 import ToTopButton from "../../toTopButton/ToTopButton";
 
 function FeedbackForm() {
-  // const { localization } = useStateContext();
+  const { localization } = useStateContext();
 
-  const url = window.location.pathname === "/videoInterview";
-  // const url = window.location.pathname === `/${localization}/videoInterview`;
+  const url = window.location.pathname === `/${localization}/videoInterview`;
 
   return (
     <>

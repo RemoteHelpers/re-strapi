@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
@@ -86,6 +87,7 @@ export const FormFields = () => {
 
   const url = window.location.pathname === `/${localization}/vacancies/${vacancyID}`;
   const interviewUrl = window.location.pathname === `/${localization}/videoInterview`;
+
 
   return (
     <form onSubmit={onSubmit} className={cl.form_wrapper}>

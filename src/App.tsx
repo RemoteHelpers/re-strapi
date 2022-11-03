@@ -28,6 +28,9 @@ import VacanciesPage from "./pages/vacanciesPage";
 import ThankYouPage from "./pages/thankYouPage";
 import ChooseLanguagePage from "./pages/chooseLanguagePage";
 import NotFoundPage from "./pages/notFoundPage/notFoundPage";
+import axios from "axios";
+
+const API = "http://testseven.rh-s.com:1733/api";
 
 const App: React.FC = () => {
   const {
@@ -35,6 +38,8 @@ const App: React.FC = () => {
     localization,
     isSubmitLocalization,
     isDesktopMenuOpened,
+    setHeaderData,
+    setFooterData,
   } = useStateContext();
 
   if (window.location.pathname === "/") {
@@ -49,6 +54,30 @@ const App: React.FC = () => {
     if (localization !== prevLanguage) {
       window.location.pathname = `/${localization}/${match}`;
     }
+  }, [localization]);
+
+  useEffect(() => {
+    axios
+      .get(`${API}/header?locale=${localization}`)
+      .then((res) => {
+        setHeaderData(res.data.data);
+        console.log(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [localization]);
+
+  useEffect(() => {
+    axios
+      .get(`${API}/footer?locale=${localization}`)
+      .then((res) => {
+        setFooterData(res.data.data);
+        console.log(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [localization]);
 
   return (
