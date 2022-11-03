@@ -38,10 +38,11 @@ const Header = () => {
     isDesktopMenuOpened,
     setIsDesktopMenuOpened,
     setCurrentVacancy,
+    headerData,
   } = useStateContext();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [currentCategory, setCurrentCategory] = useState<string>("Розробка");
+  const [currentCategory, setCurrentCategory] = useState<string>();
   const [selectedVacancies, setSelectedVacancies] = useState<Vacancy[]>([]);
   const [vacancies, setVacancies] = useState<Vacancy[]>([]);
   const [activeMenu, setActiveMenu] = useState("main");
@@ -62,9 +63,10 @@ const Header = () => {
 
   useEffect(() => {
     axios
-      .get(`${API}/categories`)
+      .get(`${API}/categories?locale=${localization}`)
       .then((res) => {
         setCategories(res.data.data);
+        setCurrentCategory(res.data.data[0].attributes.categoryTitle);
       })
       .catch((err) => {
         console.log(err);
@@ -73,14 +75,14 @@ const Header = () => {
 
   useEffect(() => {
     axios
-      .get(`${API}/vacancies?populate=*`)
+      .get(`${API}/vacancies?locale=${localization}&populate=*`)
       .then((res) => {
         setVacancies(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [localization]);
 
   const selectLocalization = [
     { value: "uk", label: "UA" },
@@ -119,7 +121,8 @@ const Header = () => {
 
   const handleMenuClick = useCallback(() => {
     setIsMenuOpened(!isMenuOpened);
-  }, []);
+    console.log('Правєрка');
+  }, [isMenuOpened]);
 
   const handleCategorySelect = useCallback((event: any) => {
     setCurrentCategory(event.target.text);
@@ -165,7 +168,7 @@ const Header = () => {
             end
             to="/"
           >
-            Home
+            {headerData?.attributes.homeValue}
           </NavLink>
           <NavLink
             className={({ isActive }) =>
@@ -176,7 +179,7 @@ const Header = () => {
             onMouseOver={() => setIsDesktopMenuOpened(true)}
             // onMouseLeave={() => setIsDesktopMenuOpened(false)}
           >
-            Vacancies
+            {headerData?.attributes.vacanciesValue}
           </NavLink>
           <NavLink
             className={({ isActive }) =>
@@ -185,7 +188,7 @@ const Header = () => {
             end
             to="/about"
           >
-            About us
+            {headerData?.attributes.aboutUsValue}
           </NavLink>
           <NavLink
             className={({ isActive }) =>
@@ -194,7 +197,7 @@ const Header = () => {
             end
             to="/videoInterview"
           >
-            Video interview
+            {headerData?.attributes.videoInterviewValue}
           </NavLink>
         </nav>
         <Select
@@ -245,13 +248,13 @@ const Header = () => {
                 to="/"
                 onClick={() => setIsMenuOpened(false)}
               >
-                Home
+                {headerData?.attributes.homeValue}
               </NavLink>
               <a
                 className="Header__link_mobile"
                 onClick={() => "categories" && setActiveMenu("categories")}
               >
-                <span>Vacancies</span>
+                <span>{headerData?.attributes.vacanciesValue}</span>
                 <img src={NextIcon} alt="" />
               </a>
               <NavLink
@@ -264,7 +267,7 @@ const Header = () => {
                 to="/about"
                 onClick={() => setIsMenuOpened(false)}
               >
-                <span>About us</span>
+                <span>{headerData?.attributes.aboutUsValue}</span>
                 <img src={NextIcon} alt="" />
               </NavLink>
               <NavLink
@@ -277,7 +280,7 @@ const Header = () => {
                 to="/videoInterview"
                 onClick={() => setIsMenuOpened(false)}
               >
-                <span>Video interview</span>
+                <span>{headerData?.attributes.videoInterviewValue}</span>
                 <img src={NextIcon} alt="" />
               </NavLink>
             </div>
@@ -300,14 +303,14 @@ const Header = () => {
                   src={NextIcon}
                   alt=""
                 />
-                <span>Назад до меню</span>
+                <span>{headerData?.attributes.backValue}</span>
               </a>
               <Link
                 className="Header__link_mobile"
                 to="/vacancies"
                 onClick={() => setIsMenuOpened(false)}
               >
-                <span>Всі вакансії</span>
+                <span>{headerData?.attributes.allVacanciesValue}</span>
               </Link>
               {categories.map((category) => (
                 <a
@@ -340,7 +343,7 @@ const Header = () => {
                   src={NextIcon}
                   alt=""
                 />
-                <span>Назад до категорій</span>
+                <span>{headerData?.attributes.backValue}</span>
               </a>
 
               {selectedVacancies.map((vacancy) => (
