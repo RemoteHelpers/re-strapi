@@ -9,8 +9,10 @@ import "swiper/modules/pagination/pagination.scss";
 import "swiper/modules/navigation/navigation.scss";
 
 import "./testimonials.scss";
+import { useStateContext } from "../../context/StateContext";
 
 const Testimonials = () => {
+  const { homeData } = useStateContext();
   const personal = [
     {
       id: 1,
@@ -49,7 +51,7 @@ const Testimonials = () => {
 
   return (
     <div className="Testimonials">
-      <h3 className="Testimonials__title">Отзывы</h3>
+      <h3 className="Testimonials__title">{homeData?.attributes.testimonialsTitle}</h3>
 
       <Swiper
         className="Testimonials__slider"

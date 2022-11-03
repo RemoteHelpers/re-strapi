@@ -25,6 +25,7 @@ import Itica from "../../images/Partners/Itica.png";
 import ThreeDgency from "../../images/Partners/3Dgency.svg";
 import Metropolitans from "../../images/Partners/Metropolitans.svg";
 import Terranova from "../../images/Partners/Terranova.svg";
+import { useStateContext } from "../../context/StateContext";
 
 const data = [
   {
@@ -94,12 +95,12 @@ const data = [
 ];
 
 const Partners = () => {
+  const { homeData } = useStateContext();
+
   return (
     <div className={cl.container}>
       <h3 className={cl.title}>
-        Компании с
-        <br />
-        которыми мы работаем
+        {homeData?.attributes.partnersTitle}
       </h3>
       <Swiper
         modules={[Autoplay]}

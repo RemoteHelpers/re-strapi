@@ -81,3 +81,11 @@ export interface LocalVacancyType {
   id: number;
   description: string;
 }
+
+export interface MainScreenType {
+  attributes: any;
+  id: number;
+  mainScreenTitle: string;
+  mainScreenParagraph: any;
+  mainScreenButton: string;
+}
