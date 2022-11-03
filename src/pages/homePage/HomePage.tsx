@@ -42,9 +42,7 @@ export const HomePage = () => {
         <div className={cl.content_wrapper}>
           <div className={cl.spheres_wrapper}>
             <h1 className={cl.mainTitle}>
-              Наші основні
-              <br />
-              сфери діяльності
+              {homeData?.attributes.spheresTitle}
             </h1>
             <Spheres />
           </div>
