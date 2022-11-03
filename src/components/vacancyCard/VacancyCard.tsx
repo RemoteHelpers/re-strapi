@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "./vacancyCard.scss";
 import FireIcon from "../../images/fireIcon.svg";
 import { useStateContext } from "../../context/StateContext";
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const VacancyCard: React.FC<Props> = ({ title, slug, isHot }) => {
-  const { setCurrentVacancy, localization } = useStateContext();
+  const { setCurrentVacancy } = useStateContext();
   const handleSlug = () => {
     setCurrentVacancy(slug);
   };
@@ -35,13 +35,13 @@ const VacancyCard: React.FC<Props> = ({ title, slug, isHot }) => {
           customers and information on the Internet, work with social networks.
         </p>
       </div>
-      <a
+      <Link
         className="VacancyCard__button"
-        href={`/${localization}/vacancies/${slug}`}
+        to={`/vacancies/${slug}`}
         onClick={handleSlug}
       >
         See more
-      </a>
+      </Link>
 
       <div className="VacancyCard__banner VacancyCard__banner--desktop">
         <img src={FireIcon} className="VacancyCard__fireIcon" alt="icon" />

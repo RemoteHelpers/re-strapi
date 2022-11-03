@@ -85,10 +85,9 @@ export const FormFields = () => {
     setPhone(e.target.value);
   };
 
-  const url =
-    window.location.pathname === `/${localization}/vacancies/${vacancyID}`;
-  const interviewUrl =
-    window.location.pathname === `/${localization}/videoInterview`;
+  const url = window.location.pathname === `/${localization}/vacancies/${vacancyID}`;
+  const interviewUrl = window.location.pathname === `/${localization}/videoInterview`;
+
 
   return (
     <form onSubmit={onSubmit} className={cl.form_wrapper}>

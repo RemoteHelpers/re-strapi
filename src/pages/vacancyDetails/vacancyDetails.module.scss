@@ -2,6 +2,14 @@
 @import "../../global-styles/fonts.scss";
 @import "../../utils/mixins.scss";
 
+h2 {
+  color: $typographyColor2;
+  text-decoration: underline;
+  font-style: normal;
+  font-weight: 800;
+  font-size: clamp(24px, 2.5vw, 48px);
+}
+
 .container {
   width: 90%;
   height: auto;
@@ -109,7 +117,7 @@
   height: 100%;
   margin-top: 4rem;
   min-height: 270px;
-  border-radius: 0.5rem;
+  border-radius: .5rem;
   overflow: hidden;
   cursor: pointer;
   border: 0;
@@ -129,14 +137,15 @@
     height: 100%;
     object-fit: cover;
     background-size: 100%;
-    border-radius: .5rem;
     z-index: 1;
   }
 
   iframe {
+    display: block;
     width: 100%;
-    height: 100%;
+    height: 100% !important;
     min-height: 270px;
+    border-radius: .3rem;
   }
 }
 .hotVacancy {
@@ -161,11 +170,6 @@
 .cardContentWrapper {
   margin-top: 8rem;
   h2 {
-    color: $typographyColor2;
-    text-decoration: underline;
-    font-style: normal;
-    font-weight: 800;
-    font-size: clamp(24px, 2.5vw, 48px);
     margin: 3rem 0 1.5rem;
     &:first-of-type {
       margin: 0 0 1.5rem 0;
@@ -285,4 +289,8 @@
   @include onDesktop {
     right: -86%;
   }
+}
+
+.another_vacancies {
+  margin: 7rem 0 0 0;
 }

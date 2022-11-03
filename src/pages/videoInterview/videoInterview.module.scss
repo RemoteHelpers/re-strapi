@@ -154,7 +154,7 @@ img {
 
   .absoluted_interview_cat {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     @include onTablet {
       width: 70%;
     }
