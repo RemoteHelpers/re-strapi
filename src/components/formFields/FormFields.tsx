@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import cl from "./formFields.module.scss";
 import Api from "../../api";
 import { IFeedbackFormData } from "../../types/types";
-// import { useStateContext } from "../../context/StateContext";
+import { useStateContext } from "../../context/StateContext";
 import vacancyCat from "../../icons/vacancyCat.png";
 import feedbackCat from "../../images/formImg.png";
 import interviewCat from "../../icons/interview_form_kitekat.png";
@@ -20,7 +20,7 @@ type TOption = {
 };
 
 export const FormFields = () => {
-  // const { localization } = useStateContext();
+  const { localization } = useStateContext();
   const { vacancyID } = useParams();
 
   const EnglishLevel = [
@@ -84,11 +84,8 @@ export const FormFields = () => {
     setPhone(e.target.value);
   };
 
-  const url = window.location.pathname === `/vacancies/${vacancyID}`;
-  const interviewUrl = window.location.pathname === "/videoInterview";
-
-  // const url = window.location.pathname === `/${localization}/vacancies/${vacancyID}`;
-  // const interviewUrl = window.location.pathname === `/${localization}/videoInterview`;
+  const url = window.location.pathname === `/${localization}/vacancies/${vacancyID}`;
+  const interviewUrl = window.location.pathname === `/${localization}/videoInterview`;
 
   return (
     <form onSubmit={onSubmit} className={cl.form_wrapper}>

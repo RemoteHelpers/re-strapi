@@ -68,7 +68,7 @@ export default function Vacancies() {
       .get(`${API}/categories`)
       .then((res) => {
         setCategories(res.data.data);
-        // console.log(res);
+        // console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);

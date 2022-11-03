@@ -344,10 +344,10 @@ const Header = () => {
               </a>
 
               {selectedVacancies.map((vacancy) => (
-                <a
+                <Link
                   key={vacancy.id}
                   className="Header__link_mobile"
-                  href={`/${localization}/vacancies/${vacancy.attributes.vacancySlug}`}
+                  to={`/vacancies/${vacancy.attributes.vacancySlug}`}
                   onClick={() => {
                     setCurrentVacancy(vacancy.attributes.vacancySlug);
                     handleVacancyMenuSelect();
@@ -355,7 +355,7 @@ const Header = () => {
                 >
                   <span>{vacancy.attributes.title}</span>
                   <img src={NextIcon} alt="" />
-                </a>
+                </Link>
               ))}
             </div>
           </CSSTransition>
@@ -394,10 +394,10 @@ const Header = () => {
         </div>
         <div className="Header__dropMenuDesktop_vacancies">
           {selectedVacancies.map((vacancy) => (
-            <a
+            <Link
               key={vacancy.id}
               className="Header__link_desktop--vacancy"
-              href={`/${localization}/vacancies/${vacancy.attributes.vacancySlug}`}
+              to={`/vacancies/${vacancy.attributes.vacancySlug}`}
               // onClick={() => setCurrentVacancy(vacancy.attributes.vacancySlug)}
               onClick={() => {
                 setCurrentVacancy(vacancy.attributes.vacancySlug);
@@ -405,7 +405,7 @@ const Header = () => {
               }}
             >
               {vacancy.attributes.title}
-            </a>
+            </Link>
           ))}
         </div>
       </div>

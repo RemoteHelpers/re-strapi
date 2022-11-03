@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
@@ -31,8 +32,9 @@ const API = "http://testseven.rh-s.com:1733/api";
 const PhotoAPI = "http://testseven.rh-s.com:1733";
 
 export const VacancyDetails = () => {
-  const { localization } = useStateContext();
+  const { localization, scrollToTop } = useStateContext();
   const [localVacancy, setLocalVacancy] = useState<LocalVacancyType[]>([]);
+  // const [anotherVacancies, setAnotherVacancies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [previewVideoImage, setPreviewVideoImage] = useState(true);
   const formSection = useRef<HTMLDivElement>(null);
@@ -45,6 +47,7 @@ export const VacancyDetails = () => {
         // `${API}/vacancies?locale=${localization}&populate=*&filters[vacancySlug][$eq]=${vacancyID}`
       )
       .then((res) => {
+        setIsLoading(true);
         setLocalVacancy(res.data.data);
         console.log(res.data.data);
         setTimeout(() => {
@@ -54,7 +57,25 @@ export const VacancyDetails = () => {
       .catch((err) => {
         console.log(err);
       });
+  }, [vacancyID]);
+
+  useEffect(() => {
+    scrollToTop?.current?.scrollIntoView({ block: "start" });
   }, []);
+
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       `${API}/vacancies?populate=*&filters[categories][categoryTitle][$eq]=${localVacancy}`
+  //     )
+  //     .then((res) => {
+  //       setAnotherVacancies(res.data.data);
+  //       console.log(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   // useEffect(() => {
   //   setCurrentVacancy(vacancyID);
@@ -142,9 +163,7 @@ export const VacancyDetails = () => {
                       <iframe
                         width="560"
                         height="315"
-                        src={`${
-                          item.attributes.videoLink
-                        }${"?autoplay=1&mute=1"}`}
+                        src={`${item.attributes.videoLink}${"?autoplay=1&mute=1"}`}
                         title={item.attributes.title}
                         frameBorder="0"
                         allow="accelerometer;
@@ -165,6 +184,7 @@ export const VacancyDetails = () => {
               </div>
             ))}
 
+          <div ref={formSection}></div>
           <div className={cl.vacancyForm}>
             {localVacancy.map((form) => (
               <div key={form.id}>
@@ -172,17 +192,19 @@ export const VacancyDetails = () => {
                   children={form.attributes.formTitle}
                   className={cl.formStyledMarkdown}
                 />
-                <div ref={formSection}>
-                  <VacancyForm />
-                </div>
+                <VacancyForm />
               </div>
             ))}
           </div>
 
-          {/* <div className={cl.another_vacancies}>
+          <div className={cl.another_vacancies}>
             <h2>Схожі вакансії</h2>
-            <div className={cl.fetching_another_vacancies}></div>
-          </div> */}
+            <div className={cl.fetching_another_vacancies}>
+              {/* {anotherVacancies.map((item: any) => (
+                <div key={item.id}></div>
+              ))} */}
+            </div>
+          </div>
         </div>
       ) : (
         <Loader />
