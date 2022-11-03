@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from 'react';
+import React from "react";
 // import { Link } from 'react-router-dom';
-import './vacancyCard.scss';
-import FireIcon from '../../images/fireIcon.svg';
-import { useStateContext } from '../../context/StateContext';
+import "./vacancyCard.scss";
+import FireIcon from "../../images/fireIcon.svg";
+import { useStateContext } from "../../context/StateContext";
 
 interface Props {
   title: string;
@@ -14,7 +14,6 @@ interface Props {
 
 const VacancyCard: React.FC<Props> = ({ title, slug, isHot }) => {
   const { setCurrentVacancy, localization } = useStateContext();
-
   const handleSlug = () => {
     setCurrentVacancy(slug);
   };

@@ -12,7 +12,6 @@
 .feedback {
   position: relative;
   width: 100%;
-  padding: 2rem 0 6rem 0;
   &_wr {
     display: flex;
     align-items: center;
@@ -23,26 +22,30 @@
     border: 3px solid $primaryColorVacancy;
     border-radius: 1.875rem;
     background-color: #fff;
-    padding: 1.5rem 1rem;
+    padding: 3rem 2rem;
 
     @include onTablet {
-      padding: 2rem 1.5rem;
+      padding: 1.5rem;
     }
 
     @include onTablet {
-      padding: 3rem 2.5rem;
+      padding: 2.5rem;
     }
   }
 }
 .img_wr_desktop {
   width: 80%;
-  margin: -10rem 0 0 0;
+  margin: -5rem 0 0 0;
   display: none;
 
   @include onDesktop {
     display: block;
   }
-
+  @include on1920 {
+    margin: -10rem 0 0 0;
+    width: 50%;
+    display: block;
+  }
   img {
     width: 100%;
     height: auto;
@@ -59,19 +62,6 @@
   }
 }
 
-.feedback_top {
-  position: absolute;
-  bottom: 1rem;
-  right: 50%;
-  transform: translate(50%);
-  border: 0;
-  background-color: transparent;
-
-  @include onTablet {
-    right: 0;
-  }
-}
-
 .feedback_form_title {
   max-width: 100%;
   font-style: normal;
@@ -80,14 +70,14 @@
   line-height: 1.3;
   color: $typographyColor2;
   text-decoration-line: underline;
-  margin-bottom: 2rem;
-
-  @include onTablet {
-    margin-bottom: 4rem;
-  }
+  margin-bottom: 3rem;
 
   @include onDesktop {
     margin-bottom: 6rem;
+  }
+
+  @include on1920 {
+    margin-bottom: 12rem;
   }
 }
 
@@ -103,5 +93,23 @@
 
   @include onTablet {
     margin-bottom: 2rem;
+  }
+}
+
+.toTopButton {
+  position: absolute;
+  width: 100%;
+  right: -46%;
+  bottom: -7%;
+  border: none;
+  background: transparent;
+
+  @include onTablet {
+    right: -47%;
+    bottom: -8%;
+  }
+  @include onDesktop {
+    right: -94%;
+    bottom: -14%;
   }
 }

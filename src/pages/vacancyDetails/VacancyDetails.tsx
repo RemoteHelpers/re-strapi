@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-closing-tag-location */
+/* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable max-len */
 /* eslint-disable object-curly-newline */
@@ -13,25 +15,26 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import "../../App.scss";
-import { Alert, Breadcrumbs, Link, Typography } from "@mui/material";
+import { Breadcrumbs, Link, Typography } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { useParams } from "react-router-dom";
 import cl from "./vacancyDetails.module.scss";
 import { useStateContext } from "../../context/StateContext";
 import { LocalVacancyType } from "../../types/types";
 
-import play from "../../icons/play.png";
 import { VacancySvg } from "./VacancyFireSvg";
 import VacancyForm from "../../components/forms/vacancyForm";
+import Loader from "../../components/loader";
 import ToTopButton from "../../components/toTopButton/ToTopButton";
 
 const API = "http://testseven.rh-s.com:1733/api";
+const PhotoAPI = "http://testseven.rh-s.com:1733";
 
 export const VacancyDetails = () => {
   const { localization } = useStateContext();
   const [localVacancy, setLocalVacancy] = useState<LocalVacancyType[]>([]);
-  const [activeAlert, setActiveAlert] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [previewVideoImage, setPreviewVideoImage] = useState(true);
   const formSection = useRef<HTMLDivElement>(null);
   const { vacancyID } = useParams();
 
@@ -43,10 +46,10 @@ export const VacancyDetails = () => {
       )
       .then((res) => {
         setLocalVacancy(res.data.data);
+        console.log(res.data.data);
         setTimeout(() => {
           setIsLoading(false);
         }, 1000);
-        console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -57,16 +60,13 @@ export const VacancyDetails = () => {
   //   setCurrentVacancy(vacancyID);
   // }, []);
 
-  const handleClickToFavorite = () => {
-    setActiveAlert(true);
-    setTimeout(() => {
-      setActiveAlert(false);
-    }, 3000);
+  const playVideo = () => {
+    setPreviewVideoImage(false);
   };
 
   return (
-    <div className="container">
-      {!isLoading ?
+    <div className={cl.container}>
+      {!isLoading ? (
         <div className={cl.card}>
           {localVacancy &&
             localVacancy.map((item) => (
@@ -79,6 +79,7 @@ export const VacancyDetails = () => {
                         fontSize="medium"
                       />
                     }
+                    className={cl.breadCrumbArrows}
                     aria-label="breadcrumb"
                   >
                     <Link
@@ -101,22 +102,6 @@ export const VacancyDetails = () => {
                       {item.attributes.title}
                     </Typography>
                   </Breadcrumbs>
-                  <button
-                    type="button"
-                    onClick={handleClickToFavorite}
-                    className={cl.addToFavorite}
-                  >
-                    <span className={cl.favoriteTitle}>Додати у закладки</span>
-                    <VacancySvg id="star" />
-                  </button>
-                  {activeAlert && (
-                    <div className={cl.alertWrapper}>
-                      <Alert variant="filled" severity="warning">
-                        Для того щоб додати сторінку в закладки, натисніть Ctrl +
-                        D
-                      </Alert>
-                    </div>
-                  )}
                 </div>
                 <span
                   className={
@@ -135,7 +120,7 @@ export const VacancyDetails = () => {
                       type="button"
                       onClick={() =>
                         formSection?.current?.scrollIntoView({
-                          block: "center",
+                          block: "start",
                           behavior: "smooth",
                         })
                       }
@@ -143,9 +128,35 @@ export const VacancyDetails = () => {
                       Відгукнутися
                     </button>
                   </div>
-                  <div className={cl.shortVacancyVideo}>
-                    <img src={play} alt="" />
-                  </div>
+                  <button
+                    type="button"
+                    className={cl.shortVacancyVideo}
+                    onClick={playVideo}
+                  >
+                    {previewVideoImage ? (
+                      <img
+                        src={`${PhotoAPI}${item.attributes.videoPreview.data.attributes.url}`}
+                        alt=""
+                      />
+                    ) : (
+                      <iframe
+                        width="560"
+                        height="315"
+                        src={`${
+                          item.attributes.videoLink
+                        }${"?autoplay=1&mute=1"}`}
+                        title={item.attributes.title}
+                        frameBorder="0"
+                        allow="accelerometer;
+                          autoplay;
+                          clipboard-write;
+                          encrypted-media;
+                          gyroscope;
+                          picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    )}
+                  </button>
                 </div>
                 <ReactMarkdown
                   children={item.attributes.description}
@@ -167,23 +178,16 @@ export const VacancyDetails = () => {
               </div>
             ))}
           </div>
+
+          {/* <div className={cl.another_vacancies}>
+            <h2>Схожі вакансії</h2>
+            <div className={cl.fetching_another_vacancies}></div>
+          </div> */}
         </div>
-        : (
-          <div className="loading">
-            <div className="lds-roller">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </div>
-        )
-      }
-      <div className={cl.vacancy_top}>
+      ) : (
+        <Loader />
+      )}
+      <div className={cl.toTopButton}>
         <ToTopButton />
       </div>
     </div>

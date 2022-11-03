@@ -347,10 +347,10 @@ const Header = () => {
               </a>
 
               {selectedVacancies.map((vacancy) => (
-                <Link
+                <a
                   key={vacancy.id}
                   className="Header__link_mobile"
-                  to={`/vacancies/${vacancy.attributes.vacancySlug}`}
+                  href={`/${localization}/vacancies/${vacancy.attributes.vacancySlug}`}
                   onClick={() => {
                     setCurrentVacancy(vacancy.attributes.vacancySlug);
                     handleVacancyMenuSelect();
@@ -358,7 +358,7 @@ const Header = () => {
                 >
                   <span>{vacancy.attributes.title}</span>
                   <img src={NextIcon} alt="" />
-                </Link>
+                </a>
               ))}
             </div>
           </CSSTransition>

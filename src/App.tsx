@@ -36,7 +36,6 @@ const App: React.FC = () => {
   const {
     scrollToTop,
     localization,
-    currentVacancy,
     isSubmitLocalization,
     isDesktopMenuOpened,
     setHeaderData,

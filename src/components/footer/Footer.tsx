@@ -1,3 +1,7 @@
+/* eslint-disable padding-line-between-statements */
+/* eslint-disable no-console */
+/* eslint-disable react/jsx-curly-newline */
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable @typescript-eslint/quotes */
 import React from "react";
 import cl from "./footer.module.scss";
