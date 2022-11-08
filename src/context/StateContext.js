@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable object-curly-newline */
 /* eslint-disable comma-dangle */
 /* eslint-disable @typescript-eslint/quotes */
