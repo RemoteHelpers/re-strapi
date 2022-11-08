@@ -208,15 +208,15 @@ export default function Vacancies() {
             {isDropdown && (
               <div className="search__dropdown">
                 {searchCollection.slice(0, 10).map((collection) => (
-                    <button
-                      type="button"
-                      key={collection.id}
-                      onClick={() => onCollection(collection)}
-                      className="search__dropdown-row"
-                    >
-                      {collection.attributes.keyPhrase}
-                    </button>
-                  ))}
+                  <button
+                    type="button"
+                    key={collection.id}
+                    onClick={() => onCollection(collection)}
+                    className="search__dropdown-row"
+                  >
+                    {collection.attributes.keyPhrase}
+                  </button>
+                ))}
               </div>
             )}
           </div>

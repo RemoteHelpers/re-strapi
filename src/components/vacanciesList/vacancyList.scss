@@ -100,11 +100,16 @@
     width: 216px;
     height: auto;
     padding: 0 0.6rem;
-    outline: none !important;
+    border: 0 !important;
+    box-shadow: 0 !important;
     display: flex !important;
     gap: 0.1rem !important;
 
     border: 1px solid transparent !important;
+    &:focus-visible {
+      border: 0 !important;
+      box-shadow: 0 !important;
+    }
 
     @include onDesktop {
       height: 1.7rem;
@@ -133,6 +138,12 @@
 
   &__value-container {
     padding-left: 0 !important;
+    border: 0 !important;
+    box-shadow: 0 !important;
+    &:focus-visible {
+      border: 0 !important;
+      box-shadow: 0 !important;
+    }
   }
 
   &__placeholder {
@@ -207,13 +218,13 @@
   &__option {
     background-color: inherit !important;
     position: relative !important;
-    
+
     &:hover {
       cursor: pointer !important;
     }
 
     &::after {
-      content: '';
+      content: "";
       width: 30px;
       height: 30px;
       background: transparent;
@@ -231,7 +242,7 @@
       position: relative !important;
 
       &::before {
-        content: '';
+        content: "";
         width: 14px;
         height: 14px;
         background: $typographyColor2;

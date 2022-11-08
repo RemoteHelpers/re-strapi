@@ -5,8 +5,11 @@
 import { NavLink } from "react-router-dom";
 import cl from "./notFoundPage.module.scss";
 import img from "../../images/notFoundPage/notFoundCat.png";
+import { useStateContext } from "../../context/StateContext";
 
 export default function NotFoundPage() {
+  const { localization } = useStateContext();
+
   return (
     <div className={cl.section}>
       <div className={cl.container}>
@@ -21,7 +24,7 @@ export default function NotFoundPage() {
             На головну
           </NavLink>
 
-          <NavLink end to="/vacancies" className={cl.button}>
+          <NavLink end to={`/${localization}/vacancies`} className={cl.button}>
             Вакансії
           </NavLink>
         </div>

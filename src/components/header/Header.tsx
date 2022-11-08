@@ -15,7 +15,7 @@
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import Select, { components } from "react-select";
 import { CSSTransition } from "react-transition-group";
@@ -39,6 +39,7 @@ const Header = () => {
     setIsDesktopMenuOpened,
     setCurrentVacancy,
     headerData,
+    isSubmitLocalization,
   } = useStateContext();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -46,10 +47,8 @@ const Header = () => {
   const [selectedVacancies, setSelectedVacancies] = useState<Vacancy[]>([]);
   const [vacancies, setVacancies] = useState<Vacancy[]>([]);
   const [activeMenu, setActiveMenu] = useState("main");
-  // const [currentMenuCategory, setCurrentMenuCategory] = useState("Розробка");
-  // const [selectedMenuVacancies, setSelectedMenuVacancies] = useState<Vacancy[]>(
-  //   []
-  // );
+
+  const navigate = useNavigate();
 
   useOutsideAlerter(searchRef, () => {
     setIsDesktopMenuOpened(false);
@@ -109,19 +108,13 @@ const Header = () => {
   const handleLocalizationSelect = useCallback(
     (selected: any) => {
       setLocalization(selected.value);
-
-      const prevLanguage = window.location.pathname.split("/")[1];
-
-      if (localization !== prevLanguage) {
-        window.location.reload();
-      }
     },
     [localization]
   );
 
   const handleMenuClick = useCallback(() => {
     setIsMenuOpened(!isMenuOpened);
-    console.log('Правєрка');
+    console.log("Правєрка");
   }, [isMenuOpened]);
 
   const handleCategorySelect = useCallback((event: any) => {
@@ -175,7 +168,7 @@ const Header = () => {
               isActive ? "active-link Header__link" : "link Header__link"
             }
             end
-            to="/vacancies"
+            to={`/${localization}/vacancies/`}
             onMouseOver={() => setIsDesktopMenuOpened(true)}
             // onMouseLeave={() => setIsDesktopMenuOpened(false)}
           >
@@ -186,7 +179,7 @@ const Header = () => {
               isActive ? "active-link Header__link" : "link Header__link"
             }
             end
-            to="/about"
+            to={`/${localization}/about`}
           >
             {headerData?.attributes.aboutUsValue}
           </NavLink>
@@ -195,7 +188,7 @@ const Header = () => {
               isActive ? "active-link Header__link" : "link Header__link"
             }
             end
-            to="/videoInterview"
+            to={`/${localization}/videoInterview`}
           >
             {headerData?.attributes.videoInterviewValue}
           </NavLink>
@@ -264,7 +257,7 @@ const Header = () => {
                     : "link Header__link_mobile"
                 }
                 end
-                to="/about"
+                to={`/${localization}/about`}
                 onClick={() => setIsMenuOpened(false)}
               >
                 <span>{headerData?.attributes.aboutUsValue}</span>
@@ -277,7 +270,7 @@ const Header = () => {
                     : "link Header__link_mobile"
                 }
                 end
-                to="/videoInterview"
+                to={`/${localization}/videoInterview`}
                 onClick={() => setIsMenuOpened(false)}
               >
                 <span>{headerData?.attributes.videoInterviewValue}</span>
@@ -307,7 +300,7 @@ const Header = () => {
               </a>
               <Link
                 className="Header__link_mobile"
-                to="/vacancies"
+                to={`/${localization}/vacancies`}
                 onClick={() => setIsMenuOpened(false)}
               >
                 <span>{headerData?.attributes.allVacanciesValue}</span>
@@ -350,7 +343,7 @@ const Header = () => {
                 <Link
                   key={vacancy.id}
                   className="Header__link_mobile"
-                  to={`/vacancies/${vacancy.attributes.vacancySlug}`}
+                  to={`/${localization}/vacancies/${vacancy.attributes.vacancySlug}`}
                   onClick={() => {
                     setCurrentVacancy(vacancy.attributes.vacancySlug);
                     handleVacancyMenuSelect();
@@ -400,7 +393,7 @@ const Header = () => {
             <Link
               key={vacancy.id}
               className="Header__link_desktop--vacancy"
-              to={`/vacancies/${vacancy.attributes.vacancySlug}`}
+              to={`/${localization}/vacancies/${vacancy.attributes.vacancySlug}`}
               // onClick={() => setCurrentVacancy(vacancy.attributes.vacancySlug)}
               onClick={() => {
                 setCurrentVacancy(vacancy.attributes.vacancySlug);

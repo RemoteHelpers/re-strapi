@@ -324,6 +324,12 @@
   font-weight: 700;
 }
 .css-b62m3t-container {
+  border: 0 !important;
+  box-shadow: 0 !important;
+  &:focus-visible {
+    border: 0 !important;
+    box-shadow: 0 !important;
+  }
   z-index: 9998 !important;
 }
 .custom-select-header {

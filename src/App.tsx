@@ -13,8 +13,9 @@
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react/jsx-no-bind */
 import React, { useEffect, useState } from "react";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter, useNavigate } from "react-router-dom";
 import { useStateContext } from "./context/StateContext";
+
 import "./App.scss";
 
 import Footer from "./components/footer";
@@ -42,10 +43,12 @@ const App: React.FC = () => {
     setFooterData,
   } = useStateContext();
 
+  const navigate = useNavigate();
+
   const rule = window.location.pathname === "/" && isSubmitLocalization;
 
   if (window.location.pathname === "/" && isSubmitLocalization) {
-    window.location.pathname = `/${localization}/`;
+    navigate(`/${localization}/`);
   }
 
   useEffect(() => {
@@ -54,7 +57,7 @@ const App: React.FC = () => {
     prevURL.splice(0, 2);
     const match = prevURL.join("/");
     if (localization !== prevLanguage && isSubmitLocalization) {
-      window.location.pathname = `/${localization}/${match}`;
+      navigate(`/${localization}/${match}`);
     }
   }, [localization]);
 
@@ -84,24 +87,25 @@ const App: React.FC = () => {
 
   return (
     <>
-      <BrowserRouter basename={isSubmitLocalization ? `/${localization}` : ""}>
-        {!isSubmitLocalization && <ChooseLanguagePage />}
-        <div ref={scrollToTop}></div>
-        <Header />
-        <main className={isDesktopMenuOpened ? "desktopMenuOpened" : ""}>
-          <div className={isDesktopMenuOpened ? "darken" : "no-darken"}></div>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="vacancies" element={<VacanciesPage />} />
-            <Route path="vacancies/:vacancyID" element={<VacancyDetails />} />
-            <Route path="about" element={<AboutPage />} />
-            <Route path="videoInterview" element={<VideoInterview />} />
-            <Route path="thankyou" element={<ThankYouPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </main>
-        <Footer />
-      </BrowserRouter>
+      {!isSubmitLocalization && <ChooseLanguagePage />}
+      <div ref={scrollToTop}></div>
+      <Header />
+      <main className={isDesktopMenuOpened ? "desktopMenuOpened" : ""}>
+        <div className={isDesktopMenuOpened ? "darken" : "no-darken"}></div>
+        <Routes>
+          <Route path={`/${localization}/`} element={<HomePage />} />
+          <Route path="/:lng/vacancies" element={<VacanciesPage />} />
+          <Route
+            path="/:lng/vacancies/:vacancyID"
+            element={<VacancyDetails />}
+          />
+          <Route path="/:lng/about" element={<AboutPage />} />
+          <Route path="/:lng/videoInterview" element={<VideoInterview />} />
+          <Route path="/:lng/thankyou" element={<ThankYouPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </main>
+      <Footer />
     </>
   );
 };

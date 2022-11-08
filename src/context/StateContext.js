@@ -15,8 +15,6 @@ export const StateContext = ({ children }) => {
   );
 
   const [isDesktopMenuOpened, setIsDesktopMenuOpened] = useState(false);
-  // const [localization, setLocalization] = useState("ua");
-  // const [isSubmitLocalization, setIsSubmitLocalization] = useState(false);
   const [currentVacancy, setCurrentVacancy] = useState();
   const [headerData, setHeaderData] = useState();
   const [homeData, setHomeData] = useState();
