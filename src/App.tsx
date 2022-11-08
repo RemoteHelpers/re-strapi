@@ -42,7 +42,9 @@ const App: React.FC = () => {
     setFooterData,
   } = useStateContext();
 
-  if (window.location.pathname === "/") {
+  const rule = window.location.pathname === "/" && isSubmitLocalization;
+
+  if (window.location.pathname === "/" && isSubmitLocalization) {
     window.location.pathname = `/${localization}/`;
   }
 
@@ -51,7 +53,7 @@ const App: React.FC = () => {
     const prevURL = window.location.pathname.split("/");
     prevURL.splice(0, 2);
     const match = prevURL.join("/");
-    if (localization !== prevLanguage) {
+    if (localization !== prevLanguage && isSubmitLocalization) {
       window.location.pathname = `/${localization}/${match}`;
     }
   }, [localization]);
@@ -82,31 +84,24 @@ const App: React.FC = () => {
 
   return (
     <>
-      {isSubmitLocalization ? (
-        <BrowserRouter basename={`/${localization}`}>
-          <div ref={scrollToTop}></div>
-          <Header />
-          <main className={isDesktopMenuOpened ? "desktopMenuOpened" : ""}>
-            <div className={isDesktopMenuOpened ? "darken" : "no-darken"}></div>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="vacancies" element={<VacanciesPage />} />
-              <Route path="vacancies/:vacancyID" element={<VacancyDetails />} />
-              <Route path="about" element={<AboutPage />} />
-              <Route path="videoInterview" element={<VideoInterview />} />
-              <Route path="thankyou" element={<ThankYouPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </main>
-          <Footer />
-        </BrowserRouter>
-      ) : (
-        <BrowserRouter>
+      <BrowserRouter basename={isSubmitLocalization ? `/${localization}` : ""}>
+        {!isSubmitLocalization && <ChooseLanguagePage />}
+        <div ref={scrollToTop}></div>
+        <Header />
+        <main className={isDesktopMenuOpened ? "desktopMenuOpened" : ""}>
+          <div className={isDesktopMenuOpened ? "darken" : "no-darken"}></div>
           <Routes>
-            <Route path={`/${localization}`} element={<ChooseLanguagePage />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="vacancies" element={<VacanciesPage />} />
+            <Route path="vacancies/:vacancyID" element={<VacancyDetails />} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="videoInterview" element={<VideoInterview />} />
+            <Route path="thankyou" element={<ThankYouPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
-        </BrowserRouter>
-      )}
+        </main>
+        <Footer />
+      </BrowserRouter>
     </>
   );
 };

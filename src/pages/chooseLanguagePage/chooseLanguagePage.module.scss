@@ -3,9 +3,13 @@
 @import "../../utils/mixins.scss";
 
 .section {
-  position: relative;
-  display: flex;
-  min-height: 100vh;
+  position: fixed;
+  height: 100vh;
+  z-index: 9999;
+  background: white;
+  width: 100vw;
+  overflow: auto;
+  display: grid;
   padding: 3rem 1rem;
   background-image: url("../../images/languages/background-desktop.png");
   background-repeat: no-repeat;

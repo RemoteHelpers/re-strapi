@@ -1,0 +1,44 @@
+@import "../../utils/mixins.scss";
+@import "../../global-styles/colors.scss";
+@import "../../global-styles/fonts.scss";
+
+.wrapper {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  border: 1px solid $primaryColor1;
+  border-radius: 20px;
+  padding: 40px 20px;
+  padding-bottom: 0.5rem;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-image: url("../../images/notFoundVacanciesEllipse.png");
+  background-size: 100%;
+  @include onDesktop {
+    padding: 34px 24px 8px 36px;
+    background-size: 60%;
+  }
+
+  @include on1920 {
+    padding: 51px 36px 8px 54px;
+  }
+}
+.title {
+  font-size: $typography3;
+  color: $typography1;
+}
+.subtitle {
+  font-size: $typography4;
+}
+.img_wrapper {
+  text-align: center;
+  width: 40%;
+  @include onDesktop {
+    width: 30%;
+  }
+}
