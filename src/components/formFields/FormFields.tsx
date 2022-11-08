@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Select from "react-select";
 import InputMask from "react-input-mask";
 import { useForm } from "react-hook-form";
@@ -23,7 +23,7 @@ type TOption = {
 export const FormFields = () => {
   const { localization } = useStateContext();
   const { vacancyID } = useParams();
-
+  const navigate = useNavigate();
   const EnglishLevel = [
     { value: "beginner", label: "Beginner" },
     { value: "elementary ", label: "Elementary" },
@@ -61,7 +61,7 @@ export const FormFields = () => {
       setNumber("");
       setSelectedOption(null);
       reset();
-      window.location.pathname = `/${localization}/thankyou`;
+      navigate(`/${localization}/thankyou`);
       // }
     } catch (error) {
       console.log(error, "send feedBack form");

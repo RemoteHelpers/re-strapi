@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable object-curly-newline */
 /* eslint-disable comma-dangle */
 /* eslint-disable @typescript-eslint/quotes */
@@ -16,12 +15,11 @@ export const StateContext = ({ children }) => {
   );
 
   const [isDesktopMenuOpened, setIsDesktopMenuOpened] = useState(false);
-  // const [localization, setLocalization] = useState("ua");
-  // const [isSubmitLocalization, setIsSubmitLocalization] = useState(false);
   const [currentVacancy, setCurrentVacancy] = useState();
   const [headerData, setHeaderData] = useState();
   const [homeData, setHomeData] = useState();
   const [footerData, setFooterData] = useState();
+  const [isFormSubmited, setIsFormSubmited] = useState(false);
   const scrollToTop = useRef(null);
   const scrollToHomeForm = useRef(null);
 
@@ -44,6 +42,8 @@ export const StateContext = ({ children }) => {
         setHeaderData,
         footerData,
         setFooterData,
+        isFormSubmited,
+        setIsFormSubmited,
       }}
     >
       {children}

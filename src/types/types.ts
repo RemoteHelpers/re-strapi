@@ -1,67 +1,68 @@
+/* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export type WorkType = 'fullTime' | 'halfTime';
+export type WorkType = "fullTime" | "halfTime";
 
 export interface AttributesCategory {
-  categoryTitle: string,
-  slug: string,
+  categoryTitle: string;
+  slug: string;
 }
 
 export interface Category {
-  attributes: AttributesCategory,
-  id: string,
+  attributes: AttributesCategory;
+  id: string;
 }
 
 export interface DataCategory {
-  data: Category[],
+  data: Category[];
 }
 
 export interface DataVacancy {
-  data: Category[],
+  data: Category[];
 }
 
 export interface Collection {
-  attributes: AttributesCollection,
-  id: string,
+  attributes: AttributesCollection;
+  id: string;
 }
 
 export interface AttributesCollection {
-  keyPhrase: string,
+  keyPhrase: string;
 }
 
 export interface Vacancy {
-  attributes: AttributesVacancy,
-  id: string,
+  attributes: AttributesVacancy;
+  id: string;
 }
 
 export interface AttributesVacancy {
   vacancySlug: string;
-  title: string,
-  locale: string,
-  workType: string,
-  categories: DataCategory,
-  keyword_tags: DataKeywords,
+  title: string;
+  locale: string;
+  workType: string;
+  categories: DataCategory;
+  keyword_tags: DataKeywords;
 }
 
 export interface DataKeywords {
-  data: KeyWord[],
+  data: KeyWord[];
 }
 
 export interface KeyWord {
-  attributes: KeyWordAttributes,
-  id: string,
+  attributes: KeyWordAttributes;
+  id: string;
 }
 
 export interface KeyWordAttributes {
-  keyPhrase: string,
+  keyPhrase: string;
 }
 
 export interface IFeedbackFormData {
   name: string;
-  phone: string;
+  number: string;
   age: string;
-  EnglishLevel: string;
-  email: string;
-  file: FileList;
+  englishLevel: string;
+  eMail: string;
+  CV: FileList;
 }
 
 export interface VacancyArray {
@@ -70,10 +71,10 @@ export interface VacancyArray {
 }
 
 export interface vacancyTypes {
-  id: number,
+  id: number;
   attributes: {
-    title: string,
-  }
+    title: string;
+  };
 }
 
 export interface LocalVacancyType {

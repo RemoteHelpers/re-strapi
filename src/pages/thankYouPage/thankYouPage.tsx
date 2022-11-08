@@ -2,11 +2,14 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useStateContext } from "../../context/StateContext";
 
 import img from "../../images/thankPage/cat_thankYouPage.png";
 import cl from "./thankYouPage.module.scss";
 
 export const ThankYouPage = () => {
+  const { localization } = useStateContext();
+
   return (
     <div className={cl.section}>
       <div className={cl.container}>
@@ -23,7 +26,11 @@ export const ThankYouPage = () => {
               Вместо собеседования запишите небольшой рассказ о себе на
               английском.
             </p>
-            <NavLink end to="/videoInterview" className={cl.button}>
+            <NavLink
+              end
+              to={`/${localization}/videoInterview`}
+              className={cl.button}
+            >
               Дивитися більше
             </NavLink>
           </li>
