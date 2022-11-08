@@ -187,19 +187,6 @@ export default function Vacancies() {
           Remote Jobs
         </h2>
         <div className="Vacancies__navigation">
-          <div className="Vacancies__selects">
-            <Select
-              classNamePrefix="custom-select"
-              options={selectCategories}
-              value={getCategory()}
-              onChange={handleCategorySelect}
-              placeholder="Choose a category"
-              components={{
-                DropdownIndicator,
-              }}
-            />
-          </div>
-
           <div className="search-container" ref={searchRef}>
             <div className="search-inner">
               <input
@@ -220,20 +207,31 @@ export default function Vacancies() {
             </div>
             {isDropdown && (
               <div className="search__dropdown">
-                {searchCollection.length !== 0
-                  ? searchCollection.slice(0, 10).map((collection) => (
-                      <button
-                        type="button"
-                        key={collection.id}
-                        onClick={() => onCollection(collection)}
-                        className="search__dropdown-row"
-                      >
-                        {collection.attributes.keyPhrase}
-                      </button>
-                    ))
-                  : "Not found"}
+                {searchCollection.slice(0, 10).map((collection) => (
+                    <button
+                      type="button"
+                      key={collection.id}
+                      onClick={() => onCollection(collection)}
+                      className="search__dropdown-row"
+                    >
+                      {collection.attributes.keyPhrase}
+                    </button>
+                  ))}
               </div>
             )}
+          </div>
+
+          <div className="Vacancies__selects">
+            <Select
+              classNamePrefix="custom-select"
+              options={selectCategories}
+              value={getCategory()}
+              onChange={handleCategorySelect}
+              placeholder="Choose a category"
+              components={{
+                DropdownIndicator,
+              }}
+            />
           </div>
         </div>
 

@@ -43,7 +43,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: start !important;
     padding-top: 0;
     margin-bottom: 4.2rem;
     gap: 2.1rem;
@@ -55,6 +55,7 @@
     @include onDesktop {
       margin-bottom: 8rem;
       flex-direction: row;
+      align-items: center !important;
     }
   }
 
@@ -96,19 +97,22 @@
   }
 
   &__control {
-    width: auto;
+    width: 216px;
     height: auto;
     padding: 0 0.6rem;
-    border: none !important;
+    outline: none !important;
     display: flex !important;
     gap: 0.1rem !important;
 
+    border: 1px solid transparent !important;
+
     @include onDesktop {
       height: 1.7rem;
+      width: 212px;
     }
 
     @include on1920 {
-      width: 19.9rem;
+      width: 319px;
       height: 3.4rem;
     }
 
@@ -122,10 +126,8 @@
     }
 
     &--menu-is-open {
-      background: $primaryColor4 !important;
-      border-radius: 0.9rem !important;
-      outline: none !important;
       box-shadow: 0 !important;
+      border: none !important;
     }
   }
 
@@ -137,7 +139,7 @@
     font-weight: 700 !important;
     font-size: 1rem !important;
     line-height: 115% !important;
-    color: $typography1 !important;
+    color: $typographyColor1 !important;
 
     @include onTablet {
       font-size: 1.2rem !important;
@@ -183,12 +185,15 @@
     font-weight: 600 !important;
     font-size: 1rem !important;
     line-height: 130% !important;
+    // height: max-content !important
+    overflow-y: hidden !important;
+    scrollbar-width: none !important;
 
-    color: $typography1 !important;
+    color: $typographyColor1 !important;
 
     background: $secondaryColor5 !important;
     border: 0.1rem solid $secondaryColor4 !important;
-    border-radius: 1.9rem !important;
+    border-radius: 30px !important;
 
     @include onDesktop {
       font-size: 1.1rem !important;
@@ -200,7 +205,44 @@
   }
 
   &__option {
-    border-radius: 1.9rem !important;
+    background-color: inherit !important;
+    position: relative !important;
+    
+    &:hover {
+      cursor: pointer !important;
+    }
+
+    &::after {
+      content: '';
+      width: 30px;
+      height: 30px;
+      background: transparent;
+      border: 2px solid $primaryColor3;
+      border-radius: 10px;
+      position: absolute;
+      top: 5px;
+      right: 13px;
+      -webkit-transition: all 0.2s ease;
+      transition: all 0.2s ease;
+    }
+
+    &--is-selected {
+      color: $typographyColor1 !important;
+      position: relative !important;
+
+      &::before {
+        content: '';
+        width: 14px;
+        height: 14px;
+        background: $typographyColor2;
+        border-radius: 50%;
+        position: absolute;
+        top: 13px;
+        right: 21px;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+      }
+    }
   }
 }
 

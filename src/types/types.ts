@@ -57,11 +57,11 @@ export interface KeyWordAttributes {
 
 export interface IFeedbackFormData {
   name: string;
-  phone: string;
+  number: string;
   age: string;
-  EnglishLevel: string;
-  email: string;
-  file: FileList;
+  englishLevel: string;
+  eMail: string;
+  CV: FileList;
 }
 
 export interface VacancyArray {
