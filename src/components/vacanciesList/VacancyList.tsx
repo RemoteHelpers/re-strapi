@@ -206,8 +206,7 @@ export default function Vacancies() {
             </div>
             {isDropdown && (
               <div className="search__dropdown">
-                {searchCollection.length !== 0
-                  ? searchCollection.slice(0, 10).map((collection) => (
+                {searchCollection.slice(0, 10).map((collection) => (
                     <button
                       type="button"
                       key={collection.id}
@@ -216,8 +215,7 @@ export default function Vacancies() {
                     >
                       {collection.attributes.keyPhrase}
                     </button>
-                  ))
-                  : "Not found"}
+                  ))}
               </div>
             )}
           </div>
