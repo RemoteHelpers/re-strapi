@@ -20,7 +20,7 @@ const Api = {
     id: number;
     attributes: IFeedbackFormData;
   }> {
-    const res = await axios.post('/feedback-forms', { data });
+    const res = await axios.post('/form-users', { data });
 
     return res.data.data;
   },

@@ -20,6 +20,7 @@ export const StateContext = ({ children }) => {
   const [headerData, setHeaderData] = useState();
   const [homeData, setHomeData] = useState();
   const [footerData, setFooterData] = useState();
+  const [isFormSubmited, setIsFormSubmited] = useState(false);
   const scrollToTop = useRef(null);
   const scrollToHomeForm = useRef(null);
 
@@ -42,6 +43,8 @@ export const StateContext = ({ children }) => {
         setHeaderData,
         footerData,
         setFooterData,
+        isFormSubmited,
+        setIsFormSubmited,
       }}
     >
       {children}

@@ -184,19 +184,6 @@ export default function Vacancies() {
           Remote Jobs
         </h2>
         <div className="Vacancies__navigation">
-          <div className="Vacancies__selects">
-            <Select
-              classNamePrefix="custom-select"
-              options={selectCategories}
-              value={getCategory()}
-              onChange={handleCategorySelect}
-              placeholder="Choose a category"
-              components={{
-                DropdownIndicator,
-              }}
-            />
-          </div>
-
           <div className="search-container" ref={searchRef}>
             <div className="search-inner">
               <input
@@ -233,6 +220,19 @@ export default function Vacancies() {
                   : "Not found"}
               </div>
             )}
+          </div>
+
+          <div className="Vacancies__selects">
+            <Select
+              classNamePrefix="custom-select"
+              options={selectCategories}
+              value={getCategory()}
+              onChange={handleCategorySelect}
+              placeholder="Choose a category"
+              components={{
+                DropdownIndicator,
+              }}
+            />
           </div>
         </div>
 
