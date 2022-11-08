@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-tag-spacing */
 /* eslint-disable array-callback-return */
 /* eslint-disable padding-line-between-statements */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -25,6 +26,7 @@ import VacancyCard from "../vacancyCard/VacancyCard";
 import Find from "../../images/findIcon.svg";
 import SelectIcon from "../../images/selectArrow.svg";
 import useOutsideAlerter from "../../hooks/useClickOutside";
+import NotFoundVacancies from "../notFoundVacancies";
 
 const API = "http://testseven.rh-s.com:1733/api";
 const itemsPerPage = 6;
@@ -42,7 +44,7 @@ export default function Vacancies() {
   const [query, setQuery] = useState<string>("");
   const [searchCollection, setSearchCollection] = useState<Collection[]>([]);
   const [isDropdown, setIsDropdown] = useState<boolean>(false);
-  const [currentItems, setCurrentItems] = useState<any>(null);
+  const [currentItems, setCurrentItems] = useState<any>([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
 
@@ -175,6 +177,7 @@ export default function Vacancies() {
     setItemOffset(newOffset);
   };
 
+  console.log(currentItems);
   return (
     <>
       <div className="Vacancies">
@@ -206,9 +209,7 @@ export default function Vacancies() {
                 placeholder="Job Search"
                 className="search-input"
               />
-              {!query && (
-                <img src={Find} alt="find" className="search-icon" />
-              )}
+              {!query && <img src={Find} alt="find" className="search-icon" />}
               <button
                 className="search__button"
                 type="button"
@@ -221,15 +222,15 @@ export default function Vacancies() {
               <div className="search__dropdown">
                 {searchCollection.length !== 0
                   ? searchCollection.slice(0, 10).map((collection) => (
-                    <button
-                      type="button"
-                      key={collection.id}
-                      onClick={() => onCollection(collection)}
-                      className="search__dropdown-row"
-                    >
-                      {collection.attributes.keyPhrase}
-                    </button>
-                  ))
+                      <button
+                        type="button"
+                        key={collection.id}
+                        onClick={() => onCollection(collection)}
+                        className="search__dropdown-row"
+                      >
+                        {collection.attributes.keyPhrase}
+                      </button>
+                    ))
                   : "Not found"}
               </div>
             )}
@@ -237,7 +238,7 @@ export default function Vacancies() {
         </div>
 
         <div className="Vacancies__cards">
-          {currentItems &&
+          {currentItems.length >= 1 ? (
             currentItems.map((vacancy: any) => (
               <VacancyCard
                 key={vacancy.id}
@@ -245,7 +246,10 @@ export default function Vacancies() {
                 slug={vacancy.attributes.vacancySlug}
                 isHot={vacancy.attributes.isHot}
               />
-            ))}
+            ))
+          ) : (
+            <NotFoundVacancies />
+          )}
         </div>
         <ReactPaginate
           breakLabel="..."
@@ -259,7 +263,7 @@ export default function Vacancies() {
           previousLinkClassName="page-num"
           nextLinkClassName="page-num"
           activeLinkClassName="page-num--active"
-        // renderOnZeroPageCount={null}
+          // renderOnZeroPageCount={null}
         />
       </div>
     </>
