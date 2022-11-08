@@ -44,49 +44,53 @@ export const FormFields = () => {
     setValue,
   } = useForm<IFeedbackFormData>();
 
-  const [phone, setPhone] = useState("");
+  const [number, setNumber] = useState("");
 
   const onSubmit = handleSubmit(async (data: IFeedbackFormData) => {
     try {
       const arrFile = await Api.uploadFile({
-        files: data.file[0],
+        files: data.CV[0],
       });
 
-      if (arrFile?.[0]?.id) {
-        await Api.feedBackForm({
-          ...data,
-          file: arrFile[0].id,
-        });
-        setPhone("");
-        setSelectedOption(null);
-        reset();
-      }
+      // if (data.file?.[0]) {
+      console.log(data);
+      await Api.feedBackForm({
+        ...data,
+        CV: arrFile[0].id,
+      });
+      setNumber("");
+      setSelectedOption(null);
+      reset();
+      window.location.pathname = `/${localization}/thankyou`;
+      // }
     } catch (error) {
       console.log(error, "send feedBack form");
     }
   });
 
   useEffect(() => {
-    register("EnglishLevel", {
+    register("englishLevel", {
       required: true,
     });
-    register("phone", {
+    register("number", {
       required: true,
     });
   }, []);
 
   const changeEnglishLevel = (value: any) => {
-    setValue("EnglishLevel", value.value, { shouldValidate: true });
+    setValue("englishLevel", value.value, { shouldValidate: true });
     setSelectedOption(value);
   };
 
   const changePhone = (e: any) => {
-    setValue("phone", e.target.value, { shouldValidate: true });
-    setPhone(e.target.value);
+    setValue("number", e.target.value, { shouldValidate: true });
+    setNumber(e.target.value);
   };
 
-  const url = window.location.pathname === `/${localization}/vacancies/${vacancyID}`;
-  const interviewUrl = window.location.pathname === `/${localization}/videoInterview`;
+  const url =
+    window.location.pathname === `/${localization}/vacancies/${vacancyID}`;
+  const interviewUrl =
+    window.location.pathname === `/${localization}/videoInterview`;
 
   return (
     <form onSubmit={onSubmit} className={cl.form_wrapper}>
@@ -105,9 +109,9 @@ export const FormFields = () => {
           <div className={cl.input_phone}>
             <InputMask
               mask="+380 (099) 999-999-9"
-              value={phone}
-              className={`${errors.phone ? cl.invalid : ""} ${
-                watch("phone") && cl.valid
+              value={number}
+              className={`${errors.number ? cl.invalid : ""} ${
+                watch("number") && cl.valid
               } + ${url ? cl.white : cl.main}`}
               placeholder="+380"
               onChange={changePhone}
@@ -116,11 +120,11 @@ export const FormFields = () => {
           <div className={cl.input_email}>
             <input
               type="email"
-              className={`${errors.email ? cl.invalid : ""} ${
-                watch("email") && cl.valid
+              className={`${errors.eMail ? cl.invalid : ""} ${
+                watch("eMail") && cl.valid
               } + ${url ? cl.white : cl.main}`}
               placeholder="Email"
-              {...register("email", { required: true })}
+              {...register("eMail", { required: true })}
             />
           </div>
           <div className={cl.input_age}>
@@ -140,8 +144,8 @@ export const FormFields = () => {
           <div className={cl.input_text}>Рівень англійської</div>
           <Select
             className={`react-select-container ${
-              errors.EnglishLevel ? "invalid" : ""
-            } ${watch("EnglishLevel") ? "valid" : ""} `}
+              errors.englishLevel ? "invalid" : ""
+            } ${watch("englishLevel") ? "valid" : ""} `}
             placeholder="Level"
             classNamePrefix={url ? "react-select" : "select"}
             defaultValue={selectedOption}
@@ -172,16 +176,16 @@ export const FormFields = () => {
               type="text"
               name="fileName"
               readOnly
-              className={`${errors.file ? cl.invalid : ""} ${
-                watch("file" as any)?.[0]?.name && cl.valid
+              className={`${errors.CV ? cl.invalid : ""} ${
+                watch("CV" as any)?.[0]?.name && cl.valid
               } ${cl.download_btn}`}
               placeholder="Прикріпити резюме"
-              value={watch("file" as any)?.[0]?.name || ""}
+              value={watch("CV" as any)?.[0]?.name || ""}
             />
             <input
               className={cl.attach_CV_btn}
               type="file"
-              {...register("file", { required: true })}
+              {...register("CV", { required: false })}
             />
           </label>
           <button
