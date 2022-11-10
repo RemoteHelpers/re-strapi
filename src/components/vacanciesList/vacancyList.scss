@@ -41,12 +41,12 @@
 
   &__navigation {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    align-items: start !important;
+    align-items: flex-start !important;
     padding-top: 0;
     margin-bottom: 4.2rem;
     gap: 2.1rem;
+    height: auto;
 
     @include onTablet {
       margin-bottom: 2.5rem;
@@ -105,11 +105,17 @@
     display: flex !important;
     gap: 0.1rem !important;
 
-    border: 1px solid transparent !important;
-    &:focus-visible {
+    &:focus {
       border: 0 !important;
       box-shadow: 0 !important;
     }
+
+    &--is-focused {
+      border: 0 !important;
+      box-shadow: 0 !important;
+    }
+
+    border: 1px solid transparent !important;
 
     @include onDesktop {
       height: 1.7rem;
