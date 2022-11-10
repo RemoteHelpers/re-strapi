@@ -178,6 +178,17 @@ export default function Vacancies() {
   };
 
   console.log(currentItems);
+
+  const customStyles = {
+    control: () => ({
+      border: '0 !important',
+      boxShadow: '0 !important',
+      '&:hover': {
+          border: '0 !important'
+       }
+   })
+  };
+
   return (
     <>
       <div className="Vacancies">
@@ -223,6 +234,7 @@ export default function Vacancies() {
 
           <div className="Vacancies__selects">
             <Select
+              styles={customStyles}
               classNamePrefix="custom-select"
               options={selectCategories}
               value={getCategory()}

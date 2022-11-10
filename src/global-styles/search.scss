@@ -1,4 +1,6 @@
 @import "../utils/mixins.scss";
+@import "../global-styles/colors.scss";
+@import "../global-styles/fonts.scss";
 
 .search {
   &__dropdown {
@@ -27,16 +29,11 @@
 
   &-container {
     width: 100%;
-    height: 2.6rem;
+    height: 100%;
 
     @include onDesktop {
-      width: 19.3rem;
-      height: 1.7rem;
-    }
-
-    @include on1920 {
-      width: 29rem;
-      height: 2.6rem;
+      width: 40%;
+      height: 100%;
     }
   }
 
@@ -49,44 +46,49 @@
   &-input {
     width: 100%;
     height: 100%;
-    padding: 0 4%;
-    background: #d8faff;
+    padding: 1rem;
     border: 0.03rem solid #000;
     border-radius: 0.5rem;
+    transition: .3s ease;
+    border-radius: 1.5rem;
+    border: 0;
+    box-shadow: 0 0 15px rgb(234, 234, 234);
 
     &:focus {
       outline: none;
-      -webkit-box-shadow: 10px 10px 12px -6px rgba(0, 0, 0, 0.38);
-      -moz-box-shadow: 10px 10px 12px -6px rgba(0, 0, 0, 0.38);
-      box-shadow: 10px 10px 12px -6px rgba(0, 0, 0, 0.38);
+      box-shadow: 0 0 15px rgb(199, 199, 199);
 
       & + img {
-        display: none;
+        transition: .3s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+      }
+
+      &::placeholder {
+        transition: .3s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
       }
     }
 
     &::placeholder {
-      text-align: center;
+      position: absolute;
+      left: 40%;
       font-size: 1rem;
-      line-height: 115%;
+      line-height: 100%;
       color: #616161;
-
-      @include onDesktop {
-        font-size: 0.9rem;
-      }
-
-      @include on1920 {
-        font-size: 1.1rem;
-      }
+      font-size: $typography5;
     }
   }
 
   &-icon {
     position: absolute;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     bottom: 0;
     left: 0;
-    margin: auto 0 auto 7%;
+    margin: 0 0 0 1.2rem;
 
     width: 1.2rem;
     height: 1.2rem;
@@ -106,18 +108,23 @@
 
   &__button {
     position: absolute;
-    top: 0;
-    right: 0;
-    height: 2.6rem;
+    top: 50%;
+    transform: translateY(-50%);
+    right: .5rem;
+    border-radius: 1.5rem;
+    padding: .4rem 1rem;
+    border: 0;
+    cursor: pointer;
+    background-color: $primaryColor2;
+    transition: .3s ease-in-out;
+    color: #fff;
+    font-size: $typography5;
+    width: 20%;
+    height: 80%;
 
-    @include onDesktop {
-      font-size: 0.9rem;
-      height: 1.7rem;
-    }
-
-    @include on1920 {
-      height: 2.6rem;
-      font-size: 1.1rem;
+    &:hover {
+      background-color: $primaryColor1;
     }
   }
 }
+

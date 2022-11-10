@@ -1,7 +1,9 @@
 @import "./utils/mixins.scss";
 @import "./global-styles/colors.scss";
 
-* {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
