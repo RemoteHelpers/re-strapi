@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react/jsx-filename-extension */
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useStateContext } from "../../context/StateContext";
 
@@ -8,7 +8,11 @@ import img from "../../images/thankPage/cat_thankYouPage.png";
 import cl from "./thankYouPage.module.scss";
 
 export const ThankYouPage = () => {
-  const { localization } = useStateContext();
+  const { localization, scrollToTop } = useStateContext();
+
+  useEffect(() => {
+    scrollToTop?.current?.scrollIntoView({ block: "start" });
+  }, []);
 
   return (
     <div className={cl.section}>

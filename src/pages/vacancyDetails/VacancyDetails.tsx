@@ -19,6 +19,7 @@ import "../../App.scss";
 import { Breadcrumbs, Link, Typography } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { useParams } from "react-router-dom";
+import ReactPlayer from "react-player/youtube";
 import cl from "./vacancyDetails.module.scss";
 import { useStateContext } from "../../context/StateContext";
 import { LocalVacancyType } from "../../types/types";
@@ -80,6 +81,10 @@ export const VacancyDetails = () => {
   // useEffect(() => {
   //   setCurrentVacancy(vacancyID);
   // }, []);
+
+  useEffect(() => {
+    setPreviewVideoImage(true);
+  }, [localVacancy]);
 
   const playVideo = () => {
     setPreviewVideoImage(false);
@@ -160,20 +165,12 @@ export const VacancyDetails = () => {
                         alt=""
                       />
                     ) : (
-                      <iframe
-                        width="560"
-                        height="315"
-                        src={`${item.attributes.videoLink}${"?autoplay=1&mute=1"}`}
-                        title={item.attributes.title}
-                        frameBorder="0"
-                        allow="accelerometer;
-                          autoplay;
-                          clipboard-write;
-                          encrypted-media;
-                          gyroscope;
-                          picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
+                      <ReactPlayer
+                        className={cl.video_iframe}
+                        url={item.attributes.videoLink}
+                        controls
+                        playing
+                      />
                     )}
                   </button>
                 </div>
