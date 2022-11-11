@@ -128,6 +128,18 @@ h2 {
     margin-top: 0;
   }
 
+  .video_iframe {
+    width: 100% !important;
+    height: 100% !important;
+    div iframe {
+      display: block;
+      width: 100%;
+      height: 100% !important;
+      min-height: 270px;
+      border-radius: .3rem;
+    }
+  }
+
   img {
     position: absolute;
     display: block;
@@ -139,15 +151,9 @@ h2 {
     background-size: 100%;
     z-index: 1;
   }
-
-  iframe {
-    display: block;
-    width: 100%;
-    height: 100% !important;
-    min-height: 270px;
-    border-radius: .3rem;
-  }
 }
+
+
 .hotVacancy {
   background-color: $secondaryColor1;
   color: $secondaryColor5;
