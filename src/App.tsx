@@ -88,7 +88,8 @@ const App: React.FC = () => {
   return (
     <>
       {!isSubmitLocalization && <ChooseLanguagePage />}
-      <div ref={scrollToTop}></div>
+      <div ref={scrollToTop}>
+      </div>
       <Header />
       <main className={isDesktopMenuOpened ? "desktopMenuOpened" : ""}>
         <div className={isDesktopMenuOpened ? "darken" : "no-darken"}></div>
