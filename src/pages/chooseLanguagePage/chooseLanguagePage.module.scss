@@ -2,6 +2,19 @@
 @import "../../global-styles/colors.scss";
 @import "../../utils/mixins.scss";
 
+.darker_bg {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+  z-index: 10000;
+}
+
 .section {
   position: fixed;
   height: 100vh;

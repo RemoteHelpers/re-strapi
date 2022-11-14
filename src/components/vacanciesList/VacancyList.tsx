@@ -240,6 +240,7 @@ export default function Vacancies() {
               value={getCategory()}
               onChange={handleCategorySelect}
               placeholder="Choose a category"
+              isSearchable={false}
               components={{
                 DropdownIndicator,
               }}

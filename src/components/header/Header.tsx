@@ -27,6 +27,7 @@ import Logo from "../../images/mainScreen/Logo.png";
 import SelectIcon from "../../images/selectArrow.svg";
 import useOutsideAlerter from "../../hooks/useClickOutside";
 import NextIcon from "../../images/header/nextIcon.svg";
+import Loader from "../loader/Loader";
 
 const API = "http://testseven.rh-s.com:1733/api";
 
@@ -47,6 +48,7 @@ const Header = () => {
   const [selectedVacancies, setSelectedVacancies] = useState<Vacancy[]>([]);
   const [vacancies, setVacancies] = useState<Vacancy[]>([]);
   const [activeMenu, setActiveMenu] = useState("main");
+  const [changeLangLoader, setChangeLangLoader] = useState(false);
 
   const navigate = useNavigate();
 
@@ -108,6 +110,10 @@ const Header = () => {
   const handleLocalizationSelect = useCallback(
     (selected: any) => {
       setLocalization(selected.value);
+      setChangeLangLoader(true);
+      setTimeout(() => {
+        setChangeLangLoader(false);
+      }, 1000);
     },
     [localization]
   );
@@ -170,7 +176,7 @@ const Header = () => {
             end
             to={`/${localization}/vacancies/`}
             onMouseOver={() => setIsDesktopMenuOpened(true)}
-            // onMouseLeave={() => setIsDesktopMenuOpened(false)}
+          // onMouseLeave={() => setIsDesktopMenuOpened(false)}
           >
             {headerData?.attributes.vacanciesValue}
           </NavLink>
@@ -193,16 +199,23 @@ const Header = () => {
             {headerData?.attributes.videoInterviewValue}
           </NavLink>
         </nav>
-        <Select
-          classNamePrefix="custom-select-header"
-          options={selectLocalization}
-          value={getLocalization()}
-          onChange={handleLocalizationSelect}
-          placeholder={localization}
-          components={{
-            DropdownIndicator,
-          }}
-        />
+        {changeLangLoader ? (
+          <div className={changeLangLoader ? "darker_bg" : ""}>
+            <Loader />
+          </div>
+        ) : (
+          <Select
+            classNamePrefix="custom-select-header"
+            options={selectLocalization}
+            value={getLocalization()}
+            onChange={handleLocalizationSelect}
+            placeholder={localization}
+            isSearchable={false}
+            components={{
+              DropdownIndicator,
+            }}
+          />
+        )}
 
         <button
           type="button"

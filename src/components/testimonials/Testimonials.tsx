@@ -76,7 +76,10 @@ const Testimonials = () => {
                 <div className="Testimonials__person">
                   <span className="Testimonials__name">{people.name}</span>
                   <span className="Testimonials__vacancy">
-                    <span className="Testimonials__vacancy--bold">{people.position}</span>
+                    <span className="Testimonials__vacancy--bold">
+                      {people.position}
+                      &nbsp;
+                    </span>
                     {people.who}
                   </span>
                 </div>

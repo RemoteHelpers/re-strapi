@@ -20,6 +20,7 @@ import en from "../../images/languages/english.png";
 import pl from "../../images/languages/polski.png";
 import ru from "../../images/languages/ru.png";
 import languageCat from "../../images/languages/languageCat.png";
+import Loader from "../../components/loader/Loader";
 
 const selectLocalization = [
   { value: "uk", label: "Українська", img: ua },
@@ -37,46 +38,62 @@ export default function ChooseLanguagePage() {
     "isSubmitLocalization",
     false
   );
+  const [changeLangLoader, setChangeLangLoader] = useState(false);
 
   const handleSelectLocalization = (event: any) => {
     setSelectedLocalization(event.target.value);
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = () => {
     setLocalization(selectedLocalization);
     setIsSubmitLocalization(true);
+    setChangeLangLoader(true);
     window.location.reload();
+    navigate(`/${localization}/`);
+    setTimeout(() => {
+      setChangeLangLoader(false);
+    }, 2000);
   };
   return (
-    <div className={cl.section}>
-      <div className={cl.container}>
-        <h1 className={cl.title}>Обери мову</h1>
-        <form className={cl.form}>
-          {selectLocalization.map(({ value, label, img }) => {
-            return (
-              <div className={cl.option} key={value}>
-                <input
-                  type="checkbox"
-                  checked={selectedLocalization === value}
-                  id={value}
-                  name={label}
-                  value={value}
-                  onChange={handleSelectLocalization}
-                  className={cl.input}
-                />
-                <label className={cl.label} htmlFor={value}>
-                  <img alt="#" src={img} className={cl.img} />
-                  {label}
-                </label>
-              </div>
-            );
-          })}
-          <img alt="Language Cat" src={languageCat} className={cl.mainImg} />
-          <button type="button" onClick={handleSubmit} className={cl.button}>
-            Обрати
-          </button>
-        </form>
-      </div>
-    </div>
+    <>
+      {changeLangLoader ? (
+        <div className={changeLangLoader ? cl.darker_bg : ""}>
+          <Loader />
+        </div>
+      ) : (
+        <div className={cl.section}>
+          <div className={cl.container}>
+            <h1 className={cl.title}>Обери мову</h1>
+            <form className={cl.form}>
+              {selectLocalization.map(({ value, label, img }) => {
+                return (
+                  <div className={cl.option} key={value}>
+                    <input
+                      type="checkbox"
+                      checked={selectedLocalization === value}
+                      id={value}
+                      name={label}
+                      value={value}
+                      onChange={handleSelectLocalization}
+                      className={cl.input}
+                    />
+                    <label className={cl.label} htmlFor={value}>
+                      <img alt="#" src={img} className={cl.img} />
+                      {label}
+                    </label>
+                  </div>
+                );
+              })}
+              <img alt="Language Cat" src={languageCat} className={cl.mainImg} />
+              <button type="button" onClick={handleSubmit} className={cl.button}>
+                Обрати
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
