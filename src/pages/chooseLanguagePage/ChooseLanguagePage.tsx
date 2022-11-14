@@ -10,7 +10,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable @typescript-eslint/quotes */
 import React, { useState } from "react";
-import { NavLink, useNavigate, Route, Routes } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useLocalStorage from "../../hooks/useLocalStorage";
 
 import cl from "./chooseLanguagePage.module.scss";
@@ -23,7 +23,7 @@ import languageCat from "../../images/languages/languageCat.png";
 import Loader from "../../components/loader/Loader";
 
 const selectLocalization = [
-  { value: "uk", label: "Українська", img: ua },
+  { value: "ua", label: "Українська", img: ua },
   { value: "pl", label: "Polski", img: pl },
   { value: "en", label: "English", img: en },
   { value: "sk", label: "Slovenský", img: sk },
@@ -86,8 +86,16 @@ export default function ChooseLanguagePage() {
                   </div>
                 );
               })}
-              <img alt="Language Cat" src={languageCat} className={cl.mainImg} />
-              <button type="button" onClick={handleSubmit} className={cl.button}>
+              <img
+                alt="Language Cat"
+                src={languageCat}
+                className={cl.mainImg}
+              />
+              <button
+                type="button"
+                onClick={handleSubmit}
+                className={cl.button}
+              >
                 Обрати
               </button>
             </form>

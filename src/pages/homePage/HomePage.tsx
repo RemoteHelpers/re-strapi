@@ -1,3 +1,6 @@
+/* eslint-disable object-curly-newline */
+/* eslint-disable comma-dangle */
+/* eslint-disable operator-linebreak */
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react/jsx-filename-extension */
@@ -16,16 +19,14 @@ import cl from "./HomePage.module.scss";
 const API = "http://testseven.rh-s.com:1733/api";
 
 export const HomePage = () => {
-  const {
-    scrollToHomeForm,
-    setHomeData,
-    localization,
-    homeData,
-  } = useStateContext();
+  const { scrollToHomeForm, setHomeData, localization, homeData } =
+    useStateContext();
 
   useEffect(() => {
     axios
-      .get(`${API}/home-page?locale=${localization}`)
+      .get(
+        `${API}/home-page?locale=${localization === "ua" ? "uk" : localization}`
+      )
       .then((res) => {
         setHomeData(res.data.data);
         console.log(res.data.data);

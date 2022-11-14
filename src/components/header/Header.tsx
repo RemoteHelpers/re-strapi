@@ -64,7 +64,11 @@ const Header = () => {
 
   useEffect(() => {
     axios
-      .get(`${API}/categories?locale=${localization}`)
+      .get(
+        `${API}/categories?locale=${
+          localization === "ua" ? "uk" : localization
+        }`
+      )
       .then((res) => {
         setCategories(res.data.data);
         setCurrentCategory(res.data.data[0].attributes.categoryTitle);
@@ -76,7 +80,11 @@ const Header = () => {
 
   useEffect(() => {
     axios
-      .get(`${API}/vacancies?locale=${localization}&populate=*`)
+      .get(
+        `${API}/vacancies?locale=${
+          localization === "ua" ? "uk" : localization
+        }&populate=*`
+      )
       .then((res) => {
         setVacancies(res.data.data);
       })
@@ -86,7 +94,7 @@ const Header = () => {
   }, [localization]);
 
   const selectLocalization = [
-    { value: "uk", label: "UA" },
+    { value: "ua", label: "UA" },
     { value: "pl", label: "PL" },
     { value: "en", label: "EN" },
     { value: "sk", label: "SK" },
@@ -176,7 +184,7 @@ const Header = () => {
             end
             to={`/${localization}/vacancies/`}
             onMouseOver={() => setIsDesktopMenuOpened(true)}
-          // onMouseLeave={() => setIsDesktopMenuOpened(false)}
+            // onMouseLeave={() => setIsDesktopMenuOpened(false)}
           >
             {headerData?.attributes.vacanciesValue}
           </NavLink>
