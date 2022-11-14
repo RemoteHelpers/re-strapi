@@ -1,11 +1,12 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react/no-unescaped-entities */
-import React from "react";
+import React, { useState } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
+import ReactPlayer from "react-player/youtube";
 
 import cl from "./videoInterview.module.scss";
 import "../../global-styles/colors.scss";
@@ -13,15 +14,35 @@ import cameraKitekat from "../../icons/kitekat_camera.png";
 import FeedbackForm from "../../components/forms/feedbackForm";
 import { ArrowSvg } from "./ArrowSvg";
 import interviewCat from "../../icons/interview_kitekat.png";
-import play from "../../icons/play.png";
+import interviewPreview from "../../images/videoInterviewPage/interview-preview.png";
 
 export const VideoInterview = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
+  const [previewVideoImage, setPreviewVideoImage] = useState(true);
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false);
     };
+
+  const videoExamples = [
+    {
+      id: 1,
+      url: "https://www.youtube.com/watch?v=aOizaicAE3g",
+    },
+    {
+      id: 2,
+      url: "https://www.youtube.com/watch?v=nxV_VLLn1V8",
+    },
+    {
+      id: 3,
+      url: "https://www.youtube.com/watch?v=SHJKtqARfQc",
+    },
+  ];
+
+  const playVideo = () => {
+    setPreviewVideoImage(false);
+  };
 
   return (
     <section className={cl.section}>
@@ -366,9 +387,25 @@ export const VideoInterview = () => {
       <div className={cl.container}>
         <div className={cl.video_block}>
           <div className={cl.video_instruction_block}>
-            <div className={cl.instruction_video_title}>
-              <img src={play} alt="" />
-            </div>
+            <button
+              type="button"
+              className={cl.instruction_video_title}
+              onClick={playVideo}
+            >
+              {previewVideoImage ? (
+                <img
+                  src={interviewPreview}
+                  alt=""
+                />
+              ) : (
+                <ReactPlayer
+                  className={cl.video_iframe}
+                  url="https://www.youtube.com/watch?v=1PRGzaUIvGM"
+                  controls
+                  playing
+                />
+              )}
+            </button>
             <div className={cl.video_instruction}>
               <h1>Чому нам важливе якісне відео?</h1>
               <p>
@@ -383,15 +420,28 @@ export const VideoInterview = () => {
           <div className={cl.video_examples}>
             <h1>Приклади відеоінтерв'ю співробітників</h1>
             <div className={cl.video_examples_wrapper}>
-              <div className={cl.instruction_video_title}>
-                <img src={play} alt="" />
-              </div>
-              <div className={cl.instruction_video_title}>
-                <img src={play} alt="" />
-              </div>
-              <div className={cl.instruction_video_title}>
-                <img src={play} alt="" />
-              </div>
+              {videoExamples.map(videoItem => (
+                <button
+                  type="button"
+                  key={videoItem.id}
+                  className={cl.instruction_video_title}
+                  onClick={playVideo}
+                >
+                  {previewVideoImage ? (
+                    <img
+                      src={interviewPreview}
+                      alt=""
+                    />
+                  ) : (
+                    <ReactPlayer
+                      className={cl.video_iframe}
+                      url={videoItem.url}
+                      controls
+                      playing
+                    />
+                  )}
+                </button>
+              ))}
             </div>
           </div>
         </div>

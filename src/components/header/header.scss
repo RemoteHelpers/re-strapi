@@ -82,6 +82,7 @@
     background-color: transparent;
     padding: 0.2rem;
     z-index: 10;
+    cursor: pointer;
 
     transition: all 0s 0.3s;
 
@@ -332,6 +333,24 @@
   }
   z-index: 9998 !important;
 }
+
+
+.darker_bg {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+  z-index: 10000;
+}
+
+
+
+
 .custom-select-header {
   z-index: 1 !important;
   order: 0;
@@ -340,6 +359,7 @@
     border: none !important;
     display: flex !important;
     gap: 0.1rem !important;
+    padding-right: .5rem;
 
     &:hover {
       cursor: pointer;

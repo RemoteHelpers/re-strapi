@@ -20,7 +20,6 @@ import { Breadcrumbs, Link, Typography } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player/youtube";
-import cl from "./vacancyDetails.module.scss";
 import { useStateContext } from "../../context/StateContext";
 import { LocalVacancyType } from "../../types/types";
 
@@ -28,6 +27,7 @@ import { VacancySvg } from "./VacancyFireSvg";
 import VacancyForm from "../../components/forms/vacancyForm";
 import Loader from "../../components/loader";
 import ToTopButton from "../../components/toTopButton/ToTopButton";
+import cl from "./vacancyDetails.module.scss";
 
 const API = "http://testseven.rh-s.com:1733/api";
 const PhotoAPI = "http://testseven.rh-s.com:1733";
