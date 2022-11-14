@@ -1,17 +1,21 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable max-len */
-import React from "react";
+import React, { useState } from "react";
+import ReactPlayer from "react-player/youtube";
 import cl from "./aboutPage.module.scss";
 import kitekat from "../../icons/kitekat.png";
-import play from "../../icons/play.png";
 import FeedbackForm from "../../components/forms/feedbackForm";
 
 import memberTeam from "../../icons/team_member.png";
 import { AboutPageSvg } from "./AboutPageSvg";
 import Spheres from "../../components/spheres";
+import aboutPreview from "../../images/aboutPage/about-preview.png";
 
 export const AboutPage = () => {
+  const [previewVideoImage, setPreviewVideoImage] = useState(true);
+
   const team = [
     {
       id: 1,
@@ -57,6 +61,10 @@ export const AboutPage = () => {
     },
   ];
 
+  const playVideo = () => {
+    setPreviewVideoImage(false);
+  };
+
   return (
     <>
       <section className={cl.section}>
@@ -76,9 +84,22 @@ export const AboutPage = () => {
                 світу та підтримуємо позитивну репутацію на західному ринку
                 праці.
               </p>
-              <div className={cl.video_intro}>
-                <img src={play} alt="" />
-              </div>
+              <button
+                type="button"
+                className={cl.video_intro}
+                onClick={playVideo}
+              >
+                {previewVideoImage ? (
+                  <img src={aboutPreview} alt="" />
+                ) : (
+                  <ReactPlayer
+                    url="https://www.youtube.com/watch?v=WWqF-1vRSRk"
+                    className={cl.video_iframe}
+                    controls
+                    playing
+                  />
+                )}
+              </button>
             </div>
             <div className={cl.intro_kitekat}>
               <img src={kitekat} alt="" />
