@@ -110,7 +110,7 @@ export const FormFields = () => {
               </div>
               <div className={cl.input_phone}>
                 <InputMask
-                  mask="+380 (099) 999-999-9"
+                  mask="+38 (099) 999-99-99"
                   value={number}
                   className={`${errors.number ? cl.invalid : ""} ${watch("number") && cl.valid} + ${url ? cl.white : cl.main}`}
                   placeholder="+380"
