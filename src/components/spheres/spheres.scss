@@ -3,6 +3,20 @@
 @import "../../global-styles/fonts.scss";
 
 .Spheres {
+  &__block {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1rem;
+
+    @include onTablet {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include onDesktop {
+      grid-template-columns: repeat(6, 1fr);
+      column-gap: 4.5rem;
+    }
+  }
   &__title {
     font-weight: 800;
     font-size: $typography2;
@@ -38,7 +52,21 @@
       transform: scale(105%);
     }
   }
+  &__sphere {
+    @for $start from 1 through 12 {
+      @for $end from $start through 12 {
+        &--#{$start}-#{$end} {
+          grid-column: #{$start} / #{$end + 1};
+        }
 
+        &--desktop-#{$start}-#{$end} {
+          @include onDesktop {
+            grid-column: #{$start} / #{$end + 1};
+          }
+        }
+      }
+    }
+  }
   &__sphere-title {
     font-weight: 700;
     font-size: $typography4;

@@ -336,7 +336,6 @@
   z-index: 9998 !important;
 }
 
-
 .darker_bg {
   position: fixed;
   display: flex;
@@ -350,9 +349,6 @@
   z-index: 10000;
 }
 
-
-
-
 .custom-select-header {
   z-index: 1 !important;
   order: 0;
@@ -361,7 +357,8 @@
     border: none !important;
     display: flex !important;
     gap: 0.1rem !important;
-    padding-right: .5rem;
+    padding-right: 0.5rem;
+    background: transparent !important;
 
     &:hover {
       cursor: pointer;
