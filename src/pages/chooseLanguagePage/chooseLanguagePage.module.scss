@@ -36,7 +36,9 @@
     background-position: top 15rem left 0;
   }
 }
-
+.section_hidden {
+  display: none;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -156,9 +158,10 @@
     position: absolute;
     display: block;
     max-width: 100%;
+    height: 60%;
     transform: scaleX(1);
-    right: 5%;
-    bottom: 30%;
+    right: 7%;
+    bottom: 20%;
   }
 }
 .button {

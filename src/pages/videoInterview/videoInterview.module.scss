@@ -172,22 +172,36 @@ img {
 }
 
 .instruction {
-  padding-bottom: 7rem;
   position: relative;
   background-color: $secondaryColor2;
 }
 
 .instruction_wrapper {
-  h1 {
-    color: $typographyColor2;
-    text-decoration: underline;
-    font-style: normal;
-    font-weight: 800;
-    font-size: $typography2;
-    line-height: 130%;
-    &:nth-child(1) {
-      margin-bottom: 2.875rem;
-    }
+  padding: 0 0 3rem 0;
+
+  @include onTablet {
+    padding: 0 0 5rem 0;
+  }
+
+  @include on1920 {
+    padding: 0 0 7rem 0;
+  }
+}
+.instruction_title {
+  font-weight: 800;
+  font-size: $typography2;
+  line-height: 130%;
+  text-decoration-line: underline;
+
+  color: $typographyColor2;
+  margin-bottom: 3rem;
+
+  @include onTablet {
+    margin-bottom: 4rem;
+  }
+
+  @include on1920 {
+    margin-bottom: 5rem;
   }
 }
 .accordion_title {

@@ -49,7 +49,7 @@ const App: React.FC = () => {
   const rule = window.location.pathname === "/" && isSubmitLocalization;
 
   if (window.location.pathname === "/" && isSubmitLocalization) {
-    navigate(`/${localization}/`);
+    window.location.pathname = `/${localization}/`;
   }
 
   useEffect(() => {
@@ -92,13 +92,15 @@ const App: React.FC = () => {
 
   return (
     <>
-      {!isSubmitLocalization && <ChooseLanguagePage />}
+      <ChooseLanguagePage />
       <div ref={scrollToTop}></div>
       <Header />
       <main className={isDesktopMenuOpened ? "desktopMenuOpened" : ""}>
         <div className={isDesktopMenuOpened ? "darken" : "no-darken"}></div>
         <Routes>
           <Route path={`/${localization}/`} element={<HomePage />} />
+          {/* <Route path="/" element={<HomePage />} /> */}
+          {!isSubmitLocalization && <Route path="/" element={<HomePage />} />}
           <Route path="/:lng/vacancies" element={<VacanciesPage />} />
           <Route
             path="/:lng/vacancies/:vacancyID"

@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-curly-newline */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable comma-dangle */
 /* eslint-disable react/no-children-prop */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
@@ -12,24 +15,35 @@ import MainImage from "../../images/mainScreen/MainScreen.png";
 import buttonIcon from "../../images/mainScreen/button-icon.svg";
 import { useStateContext } from "../../context/StateContext";
 import { MainScreenType } from "../../types/types";
+import { HOME_PAGE } from "../../database/home_page";
 
 const MainScreen = () => {
-  const { scrollToHomeForm, homeData } = useStateContext();
+  const { scrollToHomeForm, localization } = useStateContext();
+
+  const localizadHeroSectionData = HOME_PAGE.find(
+    (el) => el.language === localization
+  )?.data.hero_section;
 
   return (
     <div className={cl.mainScreen} id="mainScreen">
       <div className={cl.info}>
-        <h3 className={cl.title}>{homeData?.attributes.mainScreenTitle}</h3>
-        <ReactMarkdown
-          children={homeData?.attributes.mainScreenParagraph}
+        <h3 className={cl.title}>{localizadHeroSectionData?.title}</h3>
+        {/* <ReactMarkdown
+          children={data.subtitle}
           className={cl.paragraph}
-        />
+        /> */}
+        <p className={cl.paragraph}>{localizadHeroSectionData?.subtitle}</p>
         <button
           type="button"
           className={cl.button}
-          onClick={() => scrollToHomeForm?.current?.scrollIntoView({ block: 'start', behavior: 'smooth' })}
+          onClick={() =>
+            scrollToHomeForm?.current?.scrollIntoView({
+              block: "start",
+              behavior: "smooth",
+            })
+          }
         >
-          {homeData?.attributes.mainScreenButton}
+          {localizadHeroSectionData?.button_label}
           <img src={buttonIcon} alt="button icon" className={cl.buttonIcon} />
         </button>
       </div>

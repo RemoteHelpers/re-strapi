@@ -28,6 +28,7 @@ import SelectIcon from "../../images/selectArrow.svg";
 import useOutsideAlerter from "../../hooks/useClickOutside";
 import NextIcon from "../../images/header/nextIcon.svg";
 import Loader from "../loader/Loader";
+import { HEADER } from "../../database/common/header";
 
 const API = "http://testseven.rh-s.com:1733/api";
 
@@ -51,6 +52,8 @@ const Header = () => {
   const [changeLangLoader, setChangeLangLoader] = useState(false);
 
   const navigate = useNavigate();
+
+  const localizadLinks = HEADER.find((el) => el.language === localization);
 
   useOutsideAlerter(searchRef, () => {
     setIsDesktopMenuOpened(false);
@@ -163,49 +166,23 @@ const Header = () => {
 
   return (
     <header id="header" className="Header">
-      <NavLink to="/">
+      <NavLink to={`/${localization}`}>
         <img src={Logo} alt="logo" className="Header__logo" />
       </NavLink>
       <div className="Header__functionality">
         <nav className="Header__navbar">
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? "active-link Header__link" : "link Header__link"
-            }
-            end
-            to="/"
-          >
-            {headerData?.attributes.homeValue}
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? "active-link Header__link" : "link Header__link"
-            }
-            end
-            to={`/${localization}/vacancies/`}
-            onMouseOver={() => setIsDesktopMenuOpened(true)}
-            // onMouseLeave={() => setIsDesktopMenuOpened(false)}
-          >
-            {headerData?.attributes.vacanciesValue}
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? "active-link Header__link" : "link Header__link"
-            }
-            end
-            to={`/${localization}/about`}
-          >
-            {headerData?.attributes.aboutUsValue}
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? "active-link Header__link" : "link Header__link"
-            }
-            end
-            to={`/${localization}/videoInterview`}
-          >
-            {headerData?.attributes.videoInterviewValue}
-          </NavLink>
+          {localizadLinks?.data.map(({ path_id, title }) => (
+            <NavLink
+              key={path_id}
+              className={({ isActive }) =>
+                isActive ? "active-link Header__link" : "link Header__link"
+              }
+              end
+              to={`/${localization}/${path_id}`}
+            >
+              {title}
+            </NavLink>
+          ))}
         </nav>
         {changeLangLoader ? (
           <div className={changeLangLoader ? "darker_bg" : ""}>
@@ -262,7 +239,7 @@ const Header = () => {
                 to="/"
                 onClick={() => setIsMenuOpened(false)}
               >
-                {headerData?.attributes.homeValue}
+                {localizadLinks?.data[0].title}
               </NavLink>
               <a
                 className="Header__link_mobile"
