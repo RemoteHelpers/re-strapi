@@ -210,7 +210,7 @@ export const VacancyDetails = () => {
                       slug={anotherVacancy.attributes.vacancySlug}
                       isHot={anotherVacancy.attributes.isHot}
                     />
-                  ) : ""}
+                  ) : <div></div>}
                 </div>
               ))}
             </div>
