@@ -202,13 +202,13 @@ export const VacancyDetails = () => {
             <div className={cl.fetching_another_vacancies}>
               {anotherVacancies.map((anotherVacancy: any) => (
                 <div key={anotherVacancy.id}>
-                  {anotherVacancy.attributes.vacancySlug !== vacancyID ? (
+                  {anotherVacancy.attributes.vacancySlug !== vacancyID && (
                     <VacancyCard
                       title={anotherVacancy.attributes.title}
                       slug={anotherVacancy.attributes.vacancySlug}
                       isHot={anotherVacancy.attributes.isHot}
                     />
-                  ) : <div></div>}
+                  )}
                 </div>
               ))}
             </div>
