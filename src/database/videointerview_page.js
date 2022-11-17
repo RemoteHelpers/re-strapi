@@ -30,14 +30,12 @@ export const VIDEOINTERVIEW_PAGE = [
       intro_text: (
         <>
           <p>
-            {" "}
             Відеоінтерв’ю – це нововведення, яке вже давно практикується у
             багатьох західних країнах і, як правило, замінює Вашу співбесіду в
             офісі.
           </p>
           <br />
           <p>
-            {" "}
             Відео потрібно записувати в спокійній, звичній для вас атмосфері,
             без сторонніх звуків та дратівливих факторів. Інтерв’ю має бути
             англійською мовою та тривалістю до 3-х хвилин!
@@ -201,14 +199,12 @@ export const VIDEOINTERVIEW_PAGE = [
       subtitle: (
         <>
           <p>
-            {" "}
             We will tell you how to record your interview for ours step by step
             companies For you, this will be a small &quot;entrance exam&quot;,
             which must be completed!
           </p>
           <br />
           <p>
-            {" "}
             Video interview saves your time. Instead of driving multiple times a
             week for interviews and redraw all your plans, you write down
             interview only 1 time and sleep peacefully.
@@ -407,7 +403,7 @@ export const VIDEOINTERVIEW_PAGE = [
         "Помни – твое видео будет храниться на наших ресурсах длительное время, а первое впечатление можно произвести только один раз. Используй наш видеоролик с подсказками, чтобы записать хорошее видео для длительного использования.",
       examples_title: "Примеры видеоинтервью сотрудников",
       faq_section: {
-        title: "Питання - Відповідь",
+        title: "Вопрос - Ответ",
         faq: [
           {
             question: "КРОК 1. Знімальний процес",
@@ -559,14 +555,12 @@ export const VIDEOINTERVIEW_PAGE = [
       subtitle: (
         <>
           <p>
-            {" "}
             Powiemy Ci krok po kroku, jak nagrać rozmowę dla nas firmy Dla
             ciebie będzie to mały „egzamin wstępny”, który musi zostać
             ukończony!
           </p>
           <br />
           <p>
-            {" "}
             Wywiad wideo oszczędza Twój czas. Zamiast jeździć kilka razy tydzień
             na wywiady i przerysowanie wszystkich planów, zapisujesz wywiad
             tylko 1 raz i śpij spokojnie.
@@ -576,13 +570,11 @@ export const VIDEOINTERVIEW_PAGE = [
       intro_text: (
         <>
           <p>
-            {" "}
             Wywiad wideo to innowacja, która jest praktykowana od dawna wielu
             krajach zachodnich i z reguły zastępuje wywiad w gabinet
           </p>
           <br />
           <p>
-            {" "}
             Film powinien być nagrany w spokojnej, rodzinnej atmosferze, bez
             obce dźwięki i irytujące czynniki. Musi być wywiad w języku
             angielskim i do 3 minut!
@@ -594,7 +586,7 @@ export const VIDEOINTERVIEW_PAGE = [
         "Pamiętaj - Twój film będzie przechowywany w naszych zasobach przez długi czas, a pierwsze wrażenie można zrobić tylko raz. Skorzystaj z naszego filmu instruktażowego, aby nagrać piękny film, który będzie trwał przez długi czas.",
       examples_title: "Przykłady wywiadów wideo z pracownikami",
       faq_section: {
-        title: "Питання - Відповідь",
+        title: "Pytanie - odpowiedź",
         faq: [
           {
             question: "КРОК 1. Знімальний процес",
@@ -742,17 +734,15 @@ export const VIDEOINTERVIEW_PAGE = [
   {
     language: "sk",
     data: {
-      title: "Ako nahrať rozhovor?",
+      title: "Otázka - odpoveď",
       subtitle: (
         <>
           <p>
-            {" "}
             Povieme vám, ako nahrať rozhovor pre nás krok za krokom spoločnosti
             Pre vás to bude malá „prijímacia skúška“, ktorá musí byť dokončené!
           </p>
           <br />
           <p>
-            {" "}
             Video rozhovor šetrí váš čas. Namiesto toho, aby som jazdil viackrát
             týždeň na pohovory a prekresliť si všetky plány, zapíšeš rozhovor
             len 1x a spi kludne.
@@ -762,13 +752,11 @@ export const VIDEOINTERVIEW_PAGE = [
       intro_text: (
         <>
           <p>
-            {" "}
             Videorozhovor je inováciou, ktorá sa praktizuje už dlho v mnohých
             západných krajinách a spravidla nahrádza váš pohovor v kancelária
           </p>
           <br />
           <p>
-            {" "}
             Video by sa malo nahrávať v pokojnej, známej atmosfére, bez cudzie
             zvuky a nepríjemné faktory. Musí byť pohovor v angličtine a trvá až
             3 minúty!
