@@ -90,3 +90,31 @@
     margin: 0;
   }
 }
+.faq_wrapper {
+  padding: 3rem 0;
+
+  @include onTablet {
+    padding: 5rem 0;
+  }
+
+  @include on1920 {
+    padding: 7rem 0;
+  }
+}
+.faq_title {
+  font-weight: 800;
+  font-size: $typography2;
+  line-height: 130%;
+  text-decoration-line: underline;
+
+  color: $typographyColor2;
+  margin-bottom: 3rem;
+
+  @include onTablet {
+    margin-bottom: 4rem;
+  }
+
+  @include on1920 {
+    margin-bottom: 5rem;
+  }
+}

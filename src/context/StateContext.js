@@ -8,7 +8,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 const Context = createContext();
 
 export const StateContext = ({ children }) => {
-  const [localization, setLocalization] = useLocalStorage("localization", "uk");
+  const [localization, setLocalization] = useLocalStorage("localization", "ua");
   const [isSubmitLocalization, setIsSubmitLocalization] = useLocalStorage(
     "isSubmitLocalization",
     false
