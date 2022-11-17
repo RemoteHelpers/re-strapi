@@ -164,6 +164,10 @@ const Header = () => {
     setIsDesktopMenuOpened(false);
   }, []);
 
+  document.getElementById("vacancies")?.addEventListener("mouseover", () => {
+    setIsDesktopMenuOpened(true);
+  });
+
   return (
     <header id="header" className="Header">
       <NavLink to={`/${localization}`}>
@@ -178,6 +182,7 @@ const Header = () => {
                 isActive ? "active-link Header__link" : "link Header__link"
               }
               end
+              id={path_id}
               to={`/${localization}/${path_id}`}
             >
               {title}

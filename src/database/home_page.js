@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable @typescript-eslint/quotes */
@@ -386,7 +387,13 @@ export const HOME_PAGE = [
     data: {
       hero_section: {
         title: "Chcete pracovať na diaľku v IT?",
-        subtitle: `Outstaffingová spoločnosť <pre><strong>Remote Employees</strong></pre> vám ponúka prácu na diaľku na medzinárodných projektoch. Dáme vám príležitosť pracovať odkiaľkoľvek na svete práve teraz!`,
+        subtitle: (
+          <p>
+            Outstaffingová spoločnosť <strong> Remote Employees </strong> vám
+            ponúka prácu na diaľku na medzinárodných projektoch. Dáme vám
+            príležitosť pracovať odkiaľkoľvek na svete práve teraz!
+          </p>
+        ),
         button_label: "Dostať prácu",
       },
       spheres_section: {
@@ -499,7 +506,13 @@ export const HOME_PAGE = [
     data: {
       hero_section: {
         title: "Chcesz pracować zdalnie w IT?",
-        subtitle: `Firma outstaffowa <pre><strong>Remote Employees</strong></pre> oferuje Ci pracę zdalną przy międzynarodowych projektach. Damy Ci możliwość pracy z dowolnego miejsca na świecie już teraz!`,
+        subtitle: (
+          <p>
+            Firma outstaffowa<strong> Remote Employees </strong> oferuje Ci
+            pracę zdalną przy międzynarodowych projektach. Damy Ci możliwość
+            pracy z dowolnego miejsca na świecie już teraz!
+          </p>
+        ),
         button_label: "Dostać - pracę",
       },
       spheres_section: {
