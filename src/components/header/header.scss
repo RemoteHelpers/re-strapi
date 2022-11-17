@@ -311,7 +311,9 @@
 
     &_vacancies {
       width: 75%;
-      padding: 3% 3% 3%;
+      display: flex;
+      flex-direction: column;
+      row-gap: 2rem;
     }
 
     @include onDesktop {
