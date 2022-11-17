@@ -177,8 +177,6 @@ export default function Vacancies() {
     setItemOffset(newOffset);
   };
 
-  console.log(currentItems);
-
   const customStyles = {
     control: () => ({
       border: '0 !important',

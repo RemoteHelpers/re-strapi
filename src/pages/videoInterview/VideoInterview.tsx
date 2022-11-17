@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 /* eslint-disable operator-linebreak */
 /* eslint-disable @typescript-eslint/quotes */
@@ -55,8 +56,8 @@ export const VideoInterview = () => {
       }
     }
 
-    console.log(event.currentTarget.id);
-    console.log(res);
+    // console.log(event.currentTarget.id);
+    // console.log(res);
 
     setPreviewVideoImage(res);
   };
