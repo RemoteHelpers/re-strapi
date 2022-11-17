@@ -53,7 +53,7 @@ export const VacancyDetails = () => {
         setIsLoading(true);
         setLocalVacancy(res.data.data);
         setCurrentCategory(res.data.data[0].attributes.categories.data[0].attributes.categoryTitle);
-        console.log(res.data.data);
+        // console.log(res.data.data);
         setTimeout(() => {
           setIsLoading(false);
         }, 1000);
@@ -62,8 +62,6 @@ export const VacancyDetails = () => {
         console.log(err);
       });
   }, [vacancyID]);
-
-  console.log(currentCategory);
 
   useEffect(() => {
     scrollToTop?.current?.scrollIntoView({ block: "start" });
@@ -76,12 +74,12 @@ export const VacancyDetails = () => {
       )
       .then((res) => {
         setAnotherVacancies(res.data.data);
-        console.log(res.data.data);
+        // console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [currentCategory]);
+  }, [currentCategory, vacancyID]);
 
   // useEffect(() => {
   //   setCurrentVacancy(vacancyID);
