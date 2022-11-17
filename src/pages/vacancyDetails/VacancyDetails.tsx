@@ -81,7 +81,7 @@ export const VacancyDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [localVacancy, currentCategory]);
+  }, [currentCategory]);
 
   // useEffect(() => {
   //   setCurrentVacancy(vacancyID);
