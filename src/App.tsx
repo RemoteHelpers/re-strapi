@@ -66,7 +66,7 @@ const App: React.FC = () => {
       .get(`${API}/header?locale=${localization}`)
       .then((res) => {
         setHeaderData(res.data.data);
-        console.log(res.data.data);
+        // console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -78,7 +78,7 @@ const App: React.FC = () => {
       .get(`${API}/footer?locale=${localization}`)
       .then((res) => {
         setFooterData(res.data.data);
-        console.log(res.data.data);
+        // console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);

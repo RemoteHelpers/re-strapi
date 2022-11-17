@@ -28,6 +28,7 @@ import VacancyForm from "../../components/forms/vacancyForm";
 import Loader from "../../components/loader";
 import ToTopButton from "../../components/toTopButton/ToTopButton";
 import cl from "./vacancyDetails.module.scss";
+import VacancyCard from "../../components/vacancyCard";
 
 const API = "http://testseven.rh-s.com:1733/api";
 const PhotoAPI = "http://testseven.rh-s.com:1733";
@@ -35,7 +36,8 @@ const PhotoAPI = "http://testseven.rh-s.com:1733";
 export const VacancyDetails = () => {
   const { localization, scrollToTop } = useStateContext();
   const [localVacancy, setLocalVacancy] = useState<LocalVacancyType[]>([]);
-  // const [anotherVacancies, setAnotherVacancies] = useState([]);
+  const [anotherVacancies, setAnotherVacancies] = useState([]);
+  const [currentCategory, setCurrentCategory] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [previewVideoImage, setPreviewVideoImage] = useState(true);
   const formSection = useRef<HTMLDivElement>(null);
@@ -50,6 +52,7 @@ export const VacancyDetails = () => {
       .then((res) => {
         setIsLoading(true);
         setLocalVacancy(res.data.data);
+        setCurrentCategory(res.data.data[0].attributes.categories.data[0].attributes.categoryTitle);
         console.log(res.data.data);
         setTimeout(() => {
           setIsLoading(false);
@@ -60,23 +63,25 @@ export const VacancyDetails = () => {
       });
   }, [vacancyID]);
 
+  console.log(currentCategory);
+
   useEffect(() => {
     scrollToTop?.current?.scrollIntoView({ block: "start" });
-  }, []);
+  }, [localVacancy]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `${API}/vacancies?populate=*&filters[categories][categoryTitle][$eq]=${localVacancy}`
-  //     )
-  //     .then((res) => {
-  //       setAnotherVacancies(res.data.data);
-  //       console.log(res.data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
+  useEffect(() => {
+    axios
+      .get(
+        `${API}/vacancies?populate=*&filters[categories][categoryTitle][$contains]=${currentCategory}`
+      )
+      .then((res) => {
+        setAnotherVacancies(res.data.data);
+        console.log(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [localVacancy, currentCategory]);
 
   // useEffect(() => {
   //   setCurrentVacancy(vacancyID);
@@ -95,8 +100,8 @@ export const VacancyDetails = () => {
       {!isLoading ? (
         <div className={cl.card}>
           {localVacancy &&
-            localVacancy.map((item) => (
-              <div key={item.id}>
+            localVacancy.map((localVacancyItem) => (
+              <div key={localVacancyItem.id}>
                 <div className={cl.headerCard}>
                   <Breadcrumbs
                     separator={
@@ -125,13 +130,13 @@ export const VacancyDetails = () => {
                       Vacancies
                     </Link>
                     <Typography className={cl.activeCrumb}>
-                      {item.attributes.title}
+                      {localVacancyItem.attributes.title}
                     </Typography>
                   </Breadcrumbs>
                 </div>
                 <span
                   className={
-                    item.attributes.isHot ? cl.hotVacancy : cl.coldVacancy
+                    localVacancyItem.attributes.isHot ? cl.hotVacancy : cl.coldVacancy
                   }
                 >
                   <VacancySvg id="hot" />
@@ -139,9 +144,9 @@ export const VacancyDetails = () => {
                 </span>
                 <div className={cl.shortVacancyWrapper}>
                   <div className={cl.shortVacancyInfo}>
-                    <h1>{item.attributes.title}</h1>
+                    <h1>{localVacancyItem.attributes.title}</h1>
                     <p>Заробітна плата за результатами співбесіди</p>
-                    <p>{item.attributes.subTitle}</p>
+                    <p>{localVacancyItem.attributes.subTitle}</p>
                     <button
                       type="button"
                       onClick={() =>
@@ -161,13 +166,13 @@ export const VacancyDetails = () => {
                   >
                     {previewVideoImage ? (
                       <img
-                        src={`${PhotoAPI}${item.attributes.videoPreview.data.attributes.url}`}
+                        src={`${PhotoAPI}${localVacancyItem.attributes.videoPreview.data.attributes.url}`}
                         alt=""
                       />
                     ) : (
                       <ReactPlayer
                         className={cl.video_iframe}
-                        url={item.attributes.videoLink}
+                        url={localVacancyItem.attributes.videoLink}
                         controls
                         playing
                       />
@@ -175,7 +180,7 @@ export const VacancyDetails = () => {
                   </button>
                 </div>
                 <ReactMarkdown
-                  children={item.attributes.description}
+                  children={localVacancyItem.attributes.description}
                   className={cl.cardContentWrapper}
                 />
               </div>
@@ -197,9 +202,17 @@ export const VacancyDetails = () => {
           <div className={cl.another_vacancies}>
             <h2>Схожі вакансії</h2>
             <div className={cl.fetching_another_vacancies}>
-              {/* {anotherVacancies.map((item: any) => (
-                <div key={item.id}></div>
-              ))} */}
+              {anotherVacancies.map((anotherVacancy: any) => (
+                <div key={anotherVacancy.id}>
+                  {anotherVacancy.attributes.vacancySlug !== vacancyID ? (
+                    <VacancyCard
+                      title={anotherVacancy.attributes.title}
+                      slug={anotherVacancy.attributes.vacancySlug}
+                      isHot={anotherVacancy.attributes.isHot}
+                    />
+                  ) : <div></div>}
+                </div>
+              ))}
             </div>
           </div>
         </div>
