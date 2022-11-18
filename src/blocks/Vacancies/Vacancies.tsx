@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable array-callback-return */
 /* eslint-disable padding-line-between-statements */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -20,6 +21,7 @@ import "../../global-styles/search.scss";
 import axios from "axios";
 import Select, { components } from "react-select";
 import { Category, Vacancy, Collection, VacancyArray } from "../../types/types";
+import { VACANCIES_PAGE } from "../../database/vacanciesPage";
 
 import SelectIcon from "../../images/selectArrow.svg";
 import useOutsideAlerter from "../../hooks/useClickOutside";
@@ -30,6 +32,7 @@ import cat3 from "../../images/vacancy_list/cat3_vacancy_list.png";
 import FeedbackForm from "../../components/forms/feedbackForm";
 import formImg from "../../images/formImg.png";
 import VacanciesList from "../../components/vacanciesList";
+import { useStateContext } from "../../context/StateContext";
 
 const API = "http://testseven.rh-s.com:1733/api";
 const itemsPerPage = 6;
@@ -38,6 +41,8 @@ let searchTime: any;
 let vacationTime: any;
 
 export default function Vacancies() {
+  const { localization } = useStateContext();
+
   const searchRef = useRef<HTMLDivElement>(null);
 
   const [categories, setCategories] = useState<Category[]>([]);
@@ -51,6 +56,7 @@ export default function Vacancies() {
   const [currentItems, setCurrentItems] = useState<any>(null);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
+  const [data, setData] = useState<any>();
 
   const selectCategories = categories.map((category) => ({
     value: category.attributes.categoryTitle.toLowerCase(),
@@ -68,6 +74,12 @@ export default function Vacancies() {
   useOutsideAlerter(searchRef, () => {
     setIsDropdown(false);
   });
+
+  useEffect(() => {
+    const res = VACANCIES_PAGE.filter(el => (el.language === localization));
+    setData(res[0]);
+    console.log(data);
+  }, [localization]);
 
   useEffect(() => {
     axios
@@ -192,18 +204,10 @@ export default function Vacancies() {
               <li className="Vacancies__about__item">
                 <div className="Vacancies__about__textWrapper">
                   <h1 className="Vacancies__about__title bold">
-                    Вакансии на удаленую работу
+                    {data?.title}
                   </h1>
                   <p className="Vacancies__about__text">
-                    Открыты вакансии на удалённую работу. Требуются сотрудники
-                    на полную ставку, с опытом или без опыта работы, но с
-                    обязательным знанием английского на уровне восприятия
-                    английской речи и способности вести переписки по рабочим
-                    моментам без словаря.
-                    <br />
-                    <br />
-                    5-дневная рабочая неделя и 9-часовой рабочий день.
-                    Возможность работы как в утренние, так и вечерние смены.
+                    {data?.titleDescription}
                   </p>
                 </div>
 
@@ -227,39 +231,20 @@ export default function Vacancies() {
 
                 <div className="Vacancies__about__textWrapper">
                   <h2 className="Vacancies__about__title">
-                    RemotEmployees предоставляет вакансии на удаленную работу в
-                    сфере IT
+                    {data?.title2}
                   </h2>
                   <p className="Vacancies__about__text">
-                    Наша компания предоставляет услуги в сфере IT и маркетинга.
-                    Поэтому, мы ищем специалистов, которые хотят развиваться и
-                    получать опыт работы именно в этих направлениях.
-                    <br />
-                    <br />
-                    Так как мы сотрудничаем с представителями Западного и
-                    Европейского рынка знание английского языка является
-                    основным требованием к кандидатам.
+                  {data?.title2Description}
                   </p>
                 </div>
               </li>
               <li className="Vacancies__about__item">
                 <div className="Vacancies__about__textWrapper--short">
                   <h2 className="Vacancies__about__title">
-                    У нас есть вакансии на удаленную работу, не требующие опыта
-                    работы
+                    {data?.title3}
                   </h2>
                   <p className="Vacancies__about__text">
-                    Мы готовы взять специалистов без опыта работы. Главое – ваше
-                    трудолюбие и стремление развиваться. Мы проводим вводное
-                    обучение для новичков в компании. После принятия на работу
-                    вам предоставят все необходимые материалы по изучению новых
-                    должностных обязанностей и способов их выполнения.
-                    <br />
-                    <br />
-                    Еженедельно в отделах происходят онлайн-собрания, на которых
-                    вы сможете задать интересующие вас вопросы. Также, вы
-                    сможете попробовать себя на разных вакансиях на удаленную
-                    работу и расширить свои профессиональные знания.
+                    {data?.title3Description}
                   </p>
                 </div>
               </li>
@@ -271,78 +256,37 @@ export default function Vacancies() {
                 />
                 <div className="Vacancies__about__textWrapper">
                   <h2 className="Vacancies__about__title">
-                    Требования к кандидатам на вакансии на удаленную работу
+                    {data?.listTitle}
                   </h2>
                   <ul className="Vacancies__about__item__requirements__list">
-                    <li className="Vacancies__about__item__requirements__item">
-                      Знание английского языка не ниже уровня В1+
-                    </li>
-                    <li className="Vacancies__about__item__requirements__item">
-                      Способность к усвоению большого объема информации Навыки
-                      работы в команде
-                    </li>
-                    <li className="Vacancies__about__item__requirements__item">
-                      Способность к анализу данных
-                    </li>
-                    <li className="Vacancies__about__item__requirements__item">
-                      Коммуникабельность
-                    </li>
-                    <li className="Vacancies__about__item__requirements__item">
-                      Ответственность
-                    </li>
-                    <li className="Vacancies__about__item__requirements__item">
-                      Навыки тайм-менеджмента
-                    </li>
-                    <li className="Vacancies__about__item__requirements__item">
-                      Из-за удаленного вида работы, вы должны уметь
-                      самостоятельно распределять задачи по уровню важности и
-                      управлять рабочим временем
-                    </li>
+                    {data?.list?.map((el: string, index: any) => (
+                      <li
+                        className="Vacancies__about__item__requirements__item"
+                        key={index}
+                      >
+                        {el}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </li>
               <li className="Vacancies__about__item">
                 <div className="Vacancies__about__textWrapper--short">
                   <h2 className="Vacancies__about__title">
-                    Преимущества удаленной работы в компании RemotEmployees
+                    {data?.title4}
                   </h2>
                   <p className="Vacancies__about__text">
-                    Так как мы предоставляем вакансии на удаленную работу,
-                    основным преимуществом будет то, что вы сами в праве
-                    выбирать место работы. Всё что вам нужно для эффективной
-                    работы – это компьютер и подключение к интернету. Работая у
-                    нас, вы получаете стабильную заработную плату, выплаты
-                    происходят два раза в месяц.
-                    <br />
-                    <br />
-                    График работы вы также можете выбирать самостоятельно
-                    (утренний или вечерний) поэтому, наши вакансии подойдут даже
-                    студентам. В добавок ко всему вы получите дружный коллектив,
-                    поддержку от руководителей и сотрудников компании, а также
-                    дружескую атмосферу в отделе.
+                    {data?.title4Description}
                   </p>
                 </div>
               </li>
               <li className="Vacancies__about__item">
                 <div className="Vacancies__about__textWrapper--short">
                   <h2 className="Vacancies__about__title">
-                    Ознакомьтесь с вакансиями на удаленную работу, которые мы
-                    предоставляем
+                    {data?.title5}
                   </h2>
                   <p className="Vacancies__about__text">
-                    Так как мы предоставляем вакансии на удаленную работу,
-                    основным преимуществом будет то, что вы сами в праве
-                    выбирать место работы. Всё что вам нужно для эффективной
-                    работы – это компьютер и подключение к интернету. Работая у
-                    нас, вы получаете стабильную заработную плату, выплаты
-                    происходят два раза в месяц.
-                    <br />
-                    <br />
-                    График работы вы также можете выбирать самостоятельно
-                    (утренний или вечерний) поэтому, наши вакансии подойдут даже
-                    студентам. В добавок ко всему вы получите дружный коллектив,
-                    поддержку от руководителей и сотрудников компании, а также
-                    дружескую атмосферу в отделе.
+                    {data?.title5Description}
                   </p>
                 </div>
                 <div className="Vacancies__about__decoration--big"></div>

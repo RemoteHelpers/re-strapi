@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable operator-linebreak */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react/no-unescaped-entities */
@@ -18,7 +19,9 @@ import interviewPreview from "../../images/videoInterviewPage/interview-preview.
 
 export const VideoInterview = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
-  const [previewVideoImage, setPreviewVideoImage] = useState(true);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [previewMainVideoImage, setPreviewMainVideoImage] = useState(true);
+  const [previewVideoImage, setPreviewVideoImage] = useState([true, true, true]);
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -40,8 +43,26 @@ export const VideoInterview = () => {
     },
   ];
 
-  const playVideo = () => {
-    setPreviewVideoImage(false);
+  const playVideo = (event: any): any => {
+    const res = [...previewVideoImage];
+
+    for (let i = 0; i < previewVideoImage.length; i += 1) {
+      // eslint-disable-next-line eqeqeq
+      if (event.currentTarget.id == i) {
+        res[i] = false;
+      } else {
+        res[i] = true;
+      }
+    }
+
+    console.log(event.currentTarget.id);
+    console.log(res);
+
+    setPreviewVideoImage(res);
+  };
+
+  const playMainVideo = () => {
+    setPreviewMainVideoImage(false);
   };
 
   return (
@@ -390,9 +411,9 @@ export const VideoInterview = () => {
             <button
               type="button"
               className={cl.instruction_video_title}
-              onClick={playVideo}
+              onClick={playMainVideo}
             >
-              {previewVideoImage ? (
+              {previewMainVideoImage ? (
                 <img
                   src={interviewPreview}
                   alt=""
@@ -420,14 +441,15 @@ export const VideoInterview = () => {
           <div className={cl.video_examples}>
             <h1>Приклади відеоінтерв'ю співробітників</h1>
             <div className={cl.video_examples_wrapper}>
-              {videoExamples.map(videoItem => (
+              {videoExamples.map((videoItem, index: any) => (
                 <button
                   type="button"
+                  id={index}
                   key={videoItem.id}
                   className={cl.instruction_video_title}
                   onClick={playVideo}
                 >
-                  {previewVideoImage ? (
+                  {previewVideoImage[index] ? (
                     <img
                       src={interviewPreview}
                       alt=""

@@ -27,7 +27,7 @@ const selectLocalization = [
   { value: "pl", label: "Polski", img: pl },
   { value: "en", label: "English", img: en },
   { value: "sk", label: "Slovenský", img: sk },
-  { value: "ru", label: "російська", img: ru },
+  { value: "ru", label: "русский", img: ru },
 ];
 
 export default function ChooseLanguagePage() {
