@@ -53,7 +53,7 @@ export default function ModalContent() {
     setLocalization(event.target.value);
   };
 
-  const routingRule = localization === " ru";
+  const routingRule = localization === "ru";
   const navigate = useNavigate();
 
   const handleSubmit = () => {

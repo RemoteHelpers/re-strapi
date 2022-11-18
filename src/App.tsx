@@ -58,7 +58,7 @@ const App: React.FC = () => {
     if (routingRule) {
       return navigate(`/${match}`);
     }
-    if (localization !== prevLanguage && isSubmitLocalization) {
+    if (localization !== prevLanguage) {
       navigate(`/${localization}/${match}`);
     }
   }, [localization]);

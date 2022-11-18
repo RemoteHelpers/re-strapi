@@ -13,11 +13,11 @@ export default function NotFoundPage() {
   const { localization } = useStateContext();
 
   const routingRule = localization === "ru";
-  
+
   const [data, setData] = useState<any>();
 
   useEffect(() => {
-    const res = NOTFOUND_PAGE.filter(el => (el.language === localization));
+    const res = NOTFOUND_PAGE.filter((el) => el.language === localization);
 
     setData(res[0]);
   }, [localization]);
@@ -27,9 +27,7 @@ export default function NotFoundPage() {
       <div className={cl.container}>
         <h1 className={cl.title}>404</h1>
         <h2 className={cl.subtitle}>{data?.title}</h2>
-        <p className={cl.text}>
-          {data?.subTitle}
-        </p>
+        <p className={cl.text}>{data?.subTitle}</p>
         <div className={cl.buttons_wr}>
           <NavLink
             end
@@ -44,7 +42,7 @@ export default function NotFoundPage() {
             to={routingRule ? "/vacancies" : `/${localization}/vacancies`}
             className={cl.button}
           >
-             {data?.link2}
+            {data?.link2}
           </NavLink>
         </div>
       </div>
