@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable import/extensions */
@@ -53,11 +54,9 @@ export const VacancyDetails = () => {
       .then((res) => {
         setIsLoading(true);
         setLocalVacancy(res.data.data);
-        setCurrentCategory(
-          res.data.data[0].attributes.categories.data[0].attributes
-            .categoryTitle
-        );
-        console.log(res.data.data);
+        setCurrentCategory(res.data.data[0].attributes.categories.data[0].attributes.categoryTitle);
+        document.title = `Вакансія - ${res.data.data[0].attributes.title}`;
+        // console.log(res.data.data);
         setTimeout(() => {
           setIsLoading(false);
         }, 1000);
@@ -66,8 +65,6 @@ export const VacancyDetails = () => {
         console.log(err);
       });
   }, [vacancyID]);
-
-  console.log(currentCategory);
 
   useEffect(() => {
     scrollToTop?.current?.scrollIntoView({ block: "start" });
@@ -80,12 +77,12 @@ export const VacancyDetails = () => {
       )
       .then((res) => {
         setAnotherVacancies(res.data.data);
-        console.log(res.data.data);
+        // console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [currentCategory]);
+  }, [currentCategory, vacancyID]);
 
   // useEffect(() => {
   //   setCurrentVacancy(vacancyID);
@@ -214,14 +211,12 @@ export const VacancyDetails = () => {
             <div className={cl.fetching_another_vacancies}>
               {anotherVacancies.map((anotherVacancy: any) => (
                 <div key={anotherVacancy.id}>
-                  {anotherVacancy.attributes.vacancySlug !== vacancyID ? (
+                  {anotherVacancy.attributes.vacancySlug !== vacancyID && (
                     <VacancyCard
                       title={anotherVacancy.attributes.title}
                       slug={anotherVacancy.attributes.vacancySlug}
                       isHot={anotherVacancy.attributes.isHot}
                     />
-                  ) : (
-                    <div></div>
                   )}
                 </div>
               ))}

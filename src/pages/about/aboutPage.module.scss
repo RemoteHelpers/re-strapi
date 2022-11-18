@@ -136,12 +136,15 @@
   cursor: pointer;
   border: 0;
   background-color: $secondaryColor4;
-  margin-top: 5rem;
+  margin: 5rem 0 3rem 0;
+
+  @include onTablet {
+    margin-bottom: 5rem;
+  }
 
   @include onDesktop {
     width: 90%;
     margin-top: 0;
-    margin-top: 5rem;
   }
 
   .video_iframe {

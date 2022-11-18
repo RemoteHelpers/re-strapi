@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./vacancyCard.scss";
 import FireIcon from "../../images/fireIcon.svg";
+import { VACANCYLIST } from "../../database/common/vacancyList";
 import { useStateContext } from "../../context/StateContext";
 
 interface Props {
@@ -14,11 +15,18 @@ interface Props {
 
 const VacancyCard: React.FC<Props> = ({ title, slug, isHot }) => {
   const { setCurrentVacancy, localization } = useStateContext();
+  const [data, setData] = useState<any>();
   const handleSlug = () => {
     setCurrentVacancy(slug);
   };
 
   const routingRule = localization === "ru";
+
+  useEffect(() => {
+    const res = VACANCYLIST.filter(el => (el.language === localization));
+
+    setData(res[0]);
+  }, [localization]);
 
   return (
     <Link
@@ -40,7 +48,7 @@ const VacancyCard: React.FC<Props> = ({ title, slug, isHot }) => {
         <div className="VacancyCard__info">
           <h3 className="VacancyCard__title">{title}</h3>
           <p className="VacancyCard__salary">
-            Salary based on interview results
+            {data?.salary}
           </p>
           <p className="VacancyCard__description">
             Our company is in search of a lead generator who will search for new
@@ -49,7 +57,7 @@ const VacancyCard: React.FC<Props> = ({ title, slug, isHot }) => {
           </p>
         </div>
         <button type="button" className="VacancyCard__button">
-          See more
+          {data?.button}
         </button>
 
         <div className="VacancyCard__banner VacancyCard__banner--desktop">
