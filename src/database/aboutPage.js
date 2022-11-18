@@ -4,7 +4,7 @@
 /* eslint-disable @typescript-eslint/quotes */
 export const ABOUT_PAGE = [
   {
-    language: 'uk',
+    language: 'ua',
     title: 'RemotEmployees - Аутстафінгова компанія',
     titleDescription: (
       <>

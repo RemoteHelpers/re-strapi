@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/quotes */
 export const NOTFOUNDVACANCIES = [
   {
-    language: 'uk',
+    language: 'ua',
     title: 'Упсс!',
     subTitle: 'Схоже, що за твоїм запитом нічого не знайдено',
   },

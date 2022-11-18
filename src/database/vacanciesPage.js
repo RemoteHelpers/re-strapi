@@ -4,7 +4,7 @@
 /* eslint-disable react/jsx-filename-extension */
 export const VACANCIES_PAGE = [
   {
-    language: 'uk',
+    language: 'ua',
     title: 'Вакансії на віддалену роботу',
     titleDescription: (
       <>

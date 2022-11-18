@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/quotes */
 export const THANKYOU_PAGE = [
   {
-    language: 'uk',
+    language: 'ua',
     title: 'Дякуємо, що залишили заявку!',
     subTitle: `Запишіть відеоінтерв'ю`,
     paragraph: 'Замість співбесіди запишіть невелику розповідь про себе англійською.',

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/quotes */
 export const NOTFOUND_PAGE = [
   {
-    language: 'uk',
+    language: 'ua',
     title: 'Не хвилюйтеся, нічого не зламалося!',
     subTitle: 'Можливо ви скористалися недійсним посиланням або сторінку було видалено.',
     link1: 'На головну',

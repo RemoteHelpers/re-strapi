@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/quotes */
 export const VACANCYLIST = [
   {
-    language: 'uk',
+    language: 'ua',
     title: (
       <>
         Поточні
