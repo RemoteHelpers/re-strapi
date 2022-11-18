@@ -10,9 +10,9 @@ import { THANKYOU_PAGE } from "../../database/thankYouPage";
 
 export const ThankYouPage = () => {
   const { localization, scrollToTop } = useStateContext();
-  
+
   const routingRule = localization === "ru";
-  
+
   const [data, setData] = useState<any>();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export const ThankYouPage = () => {
   }, []);
 
   useEffect(() => {
-    const res = THANKYOU_PAGE.filter(el => (el.language === localization));
+    const res = THANKYOU_PAGE.filter((el) => el.language === localization);
 
     setData(res[0]);
   }, [localization]);
@@ -28,16 +28,12 @@ export const ThankYouPage = () => {
   return (
     <div className={cl.section}>
       <div className={cl.container}>
-        <h1 className={cl.title}>
-          {data?.title}
-        </h1>
+        <h1 className={cl.title}>{data?.title}</h1>
 
         <ul className={cl.list}>
           <li className={cl.item}>
             <h2 className={cl.subtitle}>{data?.subTitle}</h2>
-            <p className={cl.text}>
-              {data?.paragraph}
-            </p>
+            <p className={cl.text}>{data?.paragraph}</p>
             <NavLink
               end
               to={
@@ -52,9 +48,7 @@ export const ThankYouPage = () => {
           </li>
           <li className={cl.item}>
             <h2 className={cl.subtitle}>{data?.titleViber}</h2>
-            <p className={cl.text}>
-              {data?.paragraphViber}
-            </p>
+            <p className={cl.text}>{data?.paragraphViber}</p>
             <a href="viber://chat?number=380980000000" className={cl.button}>
               {data?.linkViber}
             </a>

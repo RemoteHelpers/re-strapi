@@ -70,7 +70,7 @@ export default function Vacancies() {
   });
 
   useEffect(() => {
-    const res = VACANCYLIST.filter(el => (el.language === localization));
+    const res = VACANCYLIST.filter((el) => el.language === localization);
 
     setData(res[0]);
   }, [localization]);
@@ -189,20 +189,18 @@ export default function Vacancies() {
 
   const customStyles = {
     control: () => ({
-      border: '0 !important',
-      boxShadow: '0 !important',
-      '&:hover': {
-          border: '0 !important'
-       }
-   })
+      border: "0 !important",
+      boxShadow: "0 !important",
+      "&:hover": {
+        border: "0 !important",
+      },
+    }),
   };
 
   return (
     <>
       <div className="Vacancies">
-        <h2 className="Vacancies__title">
-          {data?.title}
-        </h2>
+        <h2 className="Vacancies__title">{data?.title}</h2>
         <div className="Vacancies__navigation">
           <div className="search-container" ref={searchRef}>
             <div className="search-inner">
