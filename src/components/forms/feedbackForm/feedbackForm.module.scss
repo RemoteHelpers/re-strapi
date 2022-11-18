@@ -22,7 +22,7 @@
     border: 3px solid $primaryColorVacancy;
     border-radius: 1.875rem;
     background-color: #fff;
-    padding: 3rem 2rem;
+    padding: 3rem 1rem;
 
     @include onTablet {
       padding: 1.5rem;
@@ -35,7 +35,7 @@
 }
 .img_wr_desktop {
   width: 80%;
-  margin: -5rem 0 0 0;
+  margin: -8rem 0 0 0;
   display: none;
 
   @include onDesktop {

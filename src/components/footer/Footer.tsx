@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable comma-dangle */
 /* eslint-disable padding-line-between-statements */
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-curly-newline */
@@ -9,9 +11,14 @@ import cl from "./footer.module.scss";
 import Logo from "../../images/Footer/logo.png";
 import { FooterIconsSVG } from "../../icons/footer/FooterIconsSVG";
 import { useStateContext } from "../../context/StateContext";
+import { FOOTER } from "../../database/common/footer";
 
 export const Footer = () => {
-  const { footerData } = useStateContext();
+  const { localization } = useStateContext();
+
+  const localizedFooterData = FOOTER.find(
+    (el: any) => el.language === localization
+  );
 
   return (
     <footer className={cl.Footer}>
@@ -30,17 +37,17 @@ export const Footer = () => {
         </div>
       </div>
       <div className={cl.Footer__contacts}>
-        <h4 className={cl.Footer__title}>{footerData?.attributes.footerContacts}</h4>
+        <h4 className={cl.Footer__title}>{localizedFooterData?.data.label}</h4>
         <a
           target="_blank"
           href="https://goo.gl/maps/PXsdBHfVXmeLcZGt5"
           className={cl.Footer__contactsText}
           rel="noreferrer"
         >
-          {footerData?.attributes.footerAdress}
+          {localizedFooterData?.data.address}
         </a>
         <a href="tel:+380980000000" className={cl.Footer__contactsText}>
-          {footerData?.attributes.footerNumber}
+          {localizedFooterData?.data.phone}
         </a>
         <a
           target="_blank"
@@ -48,7 +55,7 @@ export const Footer = () => {
           className={cl.Footer__contactsText}
           rel="noreferrer"
         >
-          {footerData?.attributes.footerMail}
+          {localizedFooterData?.data.email}
         </a>
       </div>
     </footer>

@@ -300,3 +300,10 @@ h2 {
 .another_vacancies {
   margin: 7rem 0 0 0;
 }
+
+.fetching_another_vacancies {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}

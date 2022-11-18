@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable prefer-const */
@@ -48,7 +49,7 @@ const App: React.FC = () => {
   const rule = window.location.pathname === "/" && isSubmitLocalization;
 
   if (window.location.pathname === "/" && isSubmitLocalization) {
-    navigate(`/${localization}/`);
+    window.location.pathname = `/${localization}/`;
   }
 
   useEffect(() => {
@@ -63,10 +64,12 @@ const App: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get(`${API}/header?locale=${localization}`)
+      .get(
+        `${API}/header?locale=${localization === "ua" ? "uk" : localization}`
+      )
       .then((res) => {
         setHeaderData(res.data.data);
-        console.log(res.data.data);
+        // console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -75,10 +78,12 @@ const App: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get(`${API}/footer?locale=${localization}`)
+      .get(
+        `${API}/footer?locale=${localization === "ua" ? "uk" : localization}`
+      )
       .then((res) => {
         setFooterData(res.data.data);
-        console.log(res.data.data);
+        // console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -87,14 +92,15 @@ const App: React.FC = () => {
 
   return (
     <>
-      {!isSubmitLocalization && <ChooseLanguagePage />}
-      <div ref={scrollToTop}>
-      </div>
+      <ChooseLanguagePage />
+      <div ref={scrollToTop}></div>
       <Header />
       <main className={isDesktopMenuOpened ? "desktopMenuOpened" : ""}>
         <div className={isDesktopMenuOpened ? "darken" : "no-darken"}></div>
         <Routes>
           <Route path={`/${localization}/`} element={<HomePage />} />
+          {/* <Route path="/" element={<HomePage />} /> */}
+          {!isSubmitLocalization && <Route path="/" element={<HomePage />} />}
           <Route path="/:lng/vacancies" element={<VacanciesPage />} />
           <Route
             path="/:lng/vacancies/:vacancyID"
