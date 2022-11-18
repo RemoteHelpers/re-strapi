@@ -1,3 +1,4 @@
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 /* eslint-disable comma-dangle */
@@ -52,7 +53,7 @@ export const VideoInterview = () => {
       url: "https://www.youtube.com/watch?v=SHJKtqARfQc",
     },
   ];
-
+ 
   const playVideo = (event: any) => {
     setPreviewVideoImage(event.currentTarget.id);
   };
@@ -99,7 +100,7 @@ export const VideoInterview = () => {
               type="button"
               id="instruction"
               className={cl.instruction_video_title}
-              onClick={playVideo}
+              onClick={playMainVideo}
             >
               {previewVideoImage !== "instruction" ? (
                 <img src={interviewPreview} alt="" />

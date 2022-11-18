@@ -1,51 +1,55 @@
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react/jsx-filename-extension */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useStateContext } from "../../context/StateContext";
 
 import img from "../../images/thankPage/cat_thankYouPage.png";
 import cl from "./thankYouPage.module.scss";
+import { THANKYOU_PAGE } from "../../database/thankYouPage";
 
 export const ThankYouPage = () => {
   const { localization, scrollToTop } = useStateContext();
+  const [data, setData] = useState<any>();
 
   useEffect(() => {
     scrollToTop?.current?.scrollIntoView({ block: "start" });
   }, []);
 
+  useEffect(() => {
+    const res = THANKYOU_PAGE.filter(el => (el.language === localization));
+
+    setData(res[0]);
+  }, [localization]);
+
   return (
     <div className={cl.section}>
       <div className={cl.container}>
         <h1 className={cl.title}>
-          Спасибо, что
-          <br />
-          оставили заявку!
+          {data?.title}
         </h1>
 
         <ul className={cl.list}>
           <li className={cl.item}>
-            <h2 className={cl.subtitle}>Запишите видеоинтервью</h2>
+            <h2 className={cl.subtitle}>{data?.subTitle}</h2>
             <p className={cl.text}>
-              Вместо собеседования запишите небольшой рассказ о себе на
-              английском.
+              {data?.paragraph}
             </p>
             <NavLink
               end
               to={`/${localization}/videoInterview`}
               className={cl.button}
             >
-              Дивитися більше
+              {data?.linkText}
             </NavLink>
           </li>
           <li className={cl.item}>
-            <h2 className={cl.subtitle}>Напишите нам в Viber</h2>
+            <h2 className={cl.subtitle}>{data?.titleViber}</h2>
             <p className={cl.text}>
-              Чтобы получить работу, Вам осталось совсем немного - свяжитесь с
-              нами в Viber.
+              {data?.paragraphViber}
             </p>
             <a href="viber://chat?number=380980000000" className={cl.button}>
-              Написати
+              {data?.linkViber}
             </a>
           </li>
           <div className={cl.img_wr}>

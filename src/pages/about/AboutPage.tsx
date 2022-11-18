@@ -12,54 +12,20 @@ import memberTeam from "../../icons/team_member.png";
 import { AboutPageSvg } from "./AboutPageSvg";
 import Spheres from "../../components/spheres";
 import aboutPreview from "../../images/aboutPage/about-preview.png";
+import { ABOUT_PAGE } from "../../database/aboutPage";
+import { useStateContext } from "../../context/StateContext";
 
 export const AboutPage = () => {
+  const { localization } = useStateContext();
   const [previewVideoImage, setPreviewVideoImage] = useState(true);
+  const [data, setData] = useState<any>();
 
-  const team = [
-    {
-      id: 1,
-      name: "Марія",
-      position: "Recruiter",
-      email: "@MashaRemotEmployees",
-      phone: "+380987286405",
-    },
-    {
-      id: 2,
-      name: "Ольга",
-      position: "Recruiter",
-      email: "@RemoteEmployeesOlha",
-      phone: "+380995664454",
-    },
-    {
-      id: 3,
-      name: "Марія",
-      position: "Recruiter",
-      email: "@MashaRemotEmployees",
-      phone: "+380987286405",
-    },
-    {
-      id: 4,
-      name: "Марія",
-      position: "Recruiter",
-      email: "@MashaRemotEmployees",
-      phone: "+380987286405",
-    },
-    {
-      id: 5,
-      name: "Ольга",
-      position: "Recruiter",
-      email: "@RemoteEmployeesOlha",
-      phone: "+380995664454",
-    },
-    {
-      id: 6,
-      name: "Марія",
-      position: "Recruiter",
-      email: "@MashaRemotEmployees",
-      phone: "+380987286405",
-    },
-  ];
+  useEffect(() => {
+    const res = ABOUT_PAGE.filter(el => (el.language === localization));
+
+    setData(res[0]);
+    console.log(data);
+  }, [localization]);
 
   const playVideo = () => {
     setPreviewVideoImage(false);
@@ -75,18 +41,9 @@ export const AboutPage = () => {
         <div className={cl.container}>
           <div className={cl.intro_wrapper}>
             <div className={cl.into_information}>
-              <h1>RemotEmployees - Аутстафінгова компанія</h1>
+              <h1>{data?.title}</h1>
               <p>
-                Ми надаємо робочі місця в Україні, орієнтуючись на Європейський
-                та Американський ринок. Співпраця з нашою компанією дозволить
-                вам набути нових умінь у сфері IT та маркетингу, a також
-                розвинути навички спілкування з носіями іноземної мови.
-              </p>
-              <p>
-                Наша компанія вже понад три роки надає послуги в галузі IT
-                технологій та маркетингу. Ми співпрацюємо з компаніями з усього
-                світу та підтримуємо позитивну репутацію на західному ринку
-                праці.
+                {data?.titleDescription}
               </p>
               <button
                 type="button"
@@ -110,28 +67,20 @@ export const AboutPage = () => {
             </div>
           </div>
           <div className={cl.what_we_do}>
-            <h1>Чим ми займаємося?</h1>
+            <h1>{data?.title2}</h1>
             <p>
-              Ми працюємо за трьома основними напрямками, які включають багато
-              спеціальностей.
-            </p>
-            <p>
-              Можливо, Ви не маєте досвіду роботи, тільки закінчили навчальний
-              заклад і поки не знаєте, де застосувати свої знання та навички. Ми
-              готові надати вам можливість отримати роботу і освоїти нову
-              спеціальність.
+              {data?.title2Description}
             </p>
             <Spheres />
           </div>
 
           <div className={cl.our_team}>
-            <h1>Наша команда</h1>
+            <h1>{data?.titleTeam}</h1>
             <p>
-              Ми допоможемо Вам адаптуватися до роботи у нашій команді та
-              познайомимо з колективом.
+              {data?.teamDescription}
             </p>
             <div className={cl.team_cards}>
-              {team.map((member) => (
+              {data?.team.map((member: any) => (
                 <div key={member.id} className={cl.team_card}>
                   <div className={cl.member_photo}>
                     <img src={memberTeam} alt="" />

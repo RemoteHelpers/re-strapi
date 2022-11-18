@@ -27,6 +27,8 @@ import Find from "../../images/findIcon.svg";
 import SelectIcon from "../../images/selectArrow.svg";
 import useOutsideAlerter from "../../hooks/useClickOutside";
 import NotFoundVacancies from "../notFoundVacancies";
+import { VACANCYLIST } from "../../database/common/vacancyList";
+import { useStateContext } from "../../context/StateContext";
 
 const API = "http://testseven.rh-s.com:1733/api";
 const itemsPerPage = 6;
@@ -36,6 +38,7 @@ let vacationTime: any;
 
 export default function Vacancies() {
   const searchRef = useRef<HTMLDivElement>(null);
+  const { localization } = useStateContext();
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [vacancies, setVacancies] = useState<VacancyArray[]>([]);
@@ -47,6 +50,7 @@ export default function Vacancies() {
   const [currentItems, setCurrentItems] = useState<any>([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
+  const [data, setData] = useState<any>();
 
   const selectCategories = categories.map((category) => ({
     value: category.attributes.categoryTitle.toLowerCase(),
@@ -64,6 +68,12 @@ export default function Vacancies() {
   useOutsideAlerter(searchRef, () => {
     setIsDropdown(false);
   });
+
+  useEffect(() => {
+    const res = VACANCYLIST.filter(el => (el.language === localization));
+
+    setData(res[0]);
+  }, [localization]);
 
   useEffect(() => {
     axios
@@ -191,9 +201,7 @@ export default function Vacancies() {
     <>
       <div className="Vacancies">
         <h2 className="Vacancies__title">
-          Current
-          <br />
-          Remote Jobs
+          {data?.title}
         </h2>
         <div className="Vacancies__navigation">
           <div className="search-container" ref={searchRef}>
@@ -202,7 +210,7 @@ export default function Vacancies() {
                 type="text"
                 value={query}
                 onChange={searchHandler}
-                placeholder="Job Search"
+                placeholder={data?.placeholder}
                 className="search-input"
               />
               {!query && <img src={Find} alt="find" className="search-icon" />}
@@ -211,7 +219,7 @@ export default function Vacancies() {
                 type="button"
                 onClick={handleClear}
               >
-                Clear
+                {data?.clearButton}
               </button>
             </div>
             {isDropdown && (
@@ -237,7 +245,7 @@ export default function Vacancies() {
               options={selectCategories}
               value={getCategory()}
               onChange={handleCategorySelect}
-              placeholder="Choose a category"
+              placeholder={data?.categoriesTitle}
               isSearchable={false}
               components={{
                 DropdownIndicator,
