@@ -4,7 +4,7 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import Accordion from "@mui/material/Accordion";
 // import AccordionDetails from "@mui/material/AccordionDetails";
 // import AccordionSummary from "@mui/material/AccordionSummary";
@@ -33,6 +33,10 @@ export const VideoInterview = () => {
   const localizedVideoInterviewFAQData = VIDEOINTERVIEW_PAGE.find(
     (el) => el.language === localization
   )?.data.faq_section;
+
+  useEffect(() => {
+    document.title = "Відеоінтерв'ю";
+  }, []);
 
   const videoExamples = [
     {

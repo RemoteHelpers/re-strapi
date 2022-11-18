@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable import/extensions */
@@ -53,6 +54,7 @@ export const VacancyDetails = () => {
         setIsLoading(true);
         setLocalVacancy(res.data.data);
         setCurrentCategory(res.data.data[0].attributes.categories.data[0].attributes.categoryTitle);
+        document.title = `Вакансія - ${res.data.data[0].attributes.title}`;
         // console.log(res.data.data);
         setTimeout(() => {
           setIsLoading(false);

@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable max-len */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player/youtube";
 import cl from "./aboutPage.module.scss";
 import kitekat from "../../icons/kitekat.png";
@@ -64,6 +64,10 @@ export const AboutPage = () => {
   const playVideo = () => {
     setPreviewVideoImage(false);
   };
+
+  useEffect(() => {
+    document.title = "Про нас";
+  }, []);
 
   return (
     <>

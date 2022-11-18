@@ -31,13 +31,17 @@ export const HomePage = () => {
   )?.data.faq_section;
 
   useEffect(() => {
+    document.title = "Головна";
+  }, []);
+
+  useEffect(() => {
     axios
       .get(
         `${API}/home-page?locale=${localization === "ua" ? "uk" : localization}`
       )
       .then((res) => {
         setHomeData(res.data.data);
-        console.log(res.data.data);
+        // console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);
