@@ -9,6 +9,7 @@ import cl from "./thankYouPage.module.scss";
 
 export const ThankYouPage = () => {
   const { localization, scrollToTop } = useStateContext();
+  const routingRule = localization === "ru";
 
   useEffect(() => {
     scrollToTop?.current?.scrollIntoView({ block: "start" });
@@ -32,7 +33,11 @@ export const ThankYouPage = () => {
             </p>
             <NavLink
               end
-              to={`/${localization}/videoInterview`}
+              to={
+                routingRule
+                  ? "/videoInterview"
+                  : `/${localization}/videoInterview`
+              }
               className={cl.button}
             >
               Дивитися більше

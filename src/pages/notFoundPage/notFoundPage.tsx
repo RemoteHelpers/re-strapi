@@ -9,6 +9,7 @@ import { useStateContext } from "../../context/StateContext";
 
 export default function NotFoundPage() {
   const { localization } = useStateContext();
+  const routingRule = localization === "ru";
 
   return (
     <div className={cl.section}>
@@ -20,11 +21,19 @@ export default function NotFoundPage() {
           видалено.
         </p>
         <div className={cl.buttons_wr}>
-          <NavLink end to="/" className={cl.button}>
+          <NavLink
+            end
+            to={routingRule ? "/" : `/${localization}`}
+            className={cl.button}
+          >
             На головну
           </NavLink>
 
-          <NavLink end to={`/${localization}/vacancies`} className={cl.button}>
+          <NavLink
+            end
+            to={routingRule ? "/vacancies" : `/${localization}/vacancies`}
+            className={cl.button}
+          >
             Вакансії
           </NavLink>
         </div>

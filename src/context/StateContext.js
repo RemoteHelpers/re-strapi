@@ -8,7 +8,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 const Context = createContext();
 
 export const StateContext = ({ children }) => {
-  const [localization, setLocalization] = useLocalStorage("localization", "ua");
+  const [localization, setLocalization] = useLocalStorage("localization", "ru");
   const [isSubmitLocalization, setIsSubmitLocalization] = useLocalStorage(
     "isSubmitLocalization",
     false
@@ -22,6 +22,7 @@ export const StateContext = ({ children }) => {
   const [isFormSubmited, setIsFormSubmited] = useState(false);
   const scrollToTop = useRef(null);
   const scrollToHomeForm = useRef(null);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   return (
     <Context.Provider
@@ -44,6 +45,8 @@ export const StateContext = ({ children }) => {
         setFooterData,
         isFormSubmited,
         setIsFormSubmited,
+        isOpenModal,
+        setIsOpenModal,
       }}
     >
       {children}

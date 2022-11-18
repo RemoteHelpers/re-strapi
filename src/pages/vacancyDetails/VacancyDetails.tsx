@@ -42,6 +42,7 @@ export const VacancyDetails = () => {
   const [previewVideoImage, setPreviewVideoImage] = useState(true);
   const formSection = useRef<HTMLDivElement>(null);
   const { vacancyID } = useParams();
+  const routingRule = localization === "ru";
 
   useEffect(() => {
     axios
@@ -52,7 +53,10 @@ export const VacancyDetails = () => {
       .then((res) => {
         setIsLoading(true);
         setLocalVacancy(res.data.data);
-        setCurrentCategory(res.data.data[0].attributes.categories.data[0].attributes.categoryTitle);
+        setCurrentCategory(
+          res.data.data[0].attributes.categories.data[0].attributes
+            .categoryTitle
+        );
         console.log(res.data.data);
         setTimeout(() => {
           setIsLoading(false);
@@ -117,7 +121,7 @@ export const VacancyDetails = () => {
                       className={`${cl.normalCrumb} ${cl.firstCrumb}`}
                       underline="none"
                       color="inherit"
-                      href="/"
+                      href={routingRule ? "/" : `/${localization}`}
                     >
                       Головна
                     </Link>
@@ -125,7 +129,11 @@ export const VacancyDetails = () => {
                       className={cl.normalCrumb}
                       underline="none"
                       color="inherit"
-                      href={`/${localization}/vacancies`}
+                      href={
+                        routingRule
+                          ? "/vacancies"
+                          : `/${localization}/vacancies`
+                      }
                     >
                       Vacancies
                     </Link>
@@ -136,7 +144,9 @@ export const VacancyDetails = () => {
                 </div>
                 <span
                   className={
-                    localVacancyItem.attributes.isHot ? cl.hotVacancy : cl.coldVacancy
+                    localVacancyItem.attributes.isHot
+                      ? cl.hotVacancy
+                      : cl.coldVacancy
                   }
                 >
                   <VacancySvg id="hot" />
@@ -210,7 +220,9 @@ export const VacancyDetails = () => {
                       slug={anotherVacancy.attributes.vacancySlug}
                       isHot={anotherVacancy.attributes.isHot}
                     />
-                  ) : <div></div>}
+                  ) : (
+                    <div></div>
+                  )}
                 </div>
               ))}
             </div>

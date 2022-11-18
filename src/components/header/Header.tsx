@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable no-shadow */
 /* eslint-disable operator-linebreak */
 /* eslint-disable comma-dangle */
@@ -21,6 +22,7 @@ import Select, { components } from "react-select";
 import { CSSTransition } from "react-transition-group";
 import axios from "axios";
 import "./header.scss";
+import LanguageIcon from "@mui/icons-material/Language";
 import { useStateContext } from "../../context/StateContext";
 import { Category, Vacancy } from "../../types/types";
 import Logo from "../../images/mainScreen/Logo.png";
@@ -29,6 +31,7 @@ import useOutsideAlerter from "../../hooks/useClickOutside";
 import NextIcon from "../../images/header/nextIcon.svg";
 import Loader from "../loader/Loader";
 import { HEADER } from "../../database/common/header";
+import ChooseLanguageModal from "../chooseLanguageModal";
 
 const API = "http://testseven.rh-s.com:1733/api";
 
@@ -41,6 +44,7 @@ const Header = () => {
     setIsDesktopMenuOpened,
     setCurrentVacancy,
     headerData,
+    setIsOpenModal,
     isSubmitLocalization,
   } = useStateContext();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
@@ -52,6 +56,8 @@ const Header = () => {
   const [changeLangLoader, setChangeLangLoader] = useState(false);
 
   const navigate = useNavigate();
+
+  const routingRule = localization === "ru";
 
   const localizadLinks = HEADER.find((el) => el.language === localization);
 
@@ -131,7 +137,6 @@ const Header = () => {
 
   const handleMenuClick = useCallback(() => {
     setIsMenuOpened(!isMenuOpened);
-    console.log("Правєрка");
   }, [isMenuOpened]);
 
   const handleCategorySelect = useCallback((event: any) => {
@@ -170,7 +175,7 @@ const Header = () => {
 
   return (
     <header id="header" className="Header">
-      <NavLink to={`/${localization}`}>
+      <NavLink to={routingRule ? "/" : `/${localization}`}>
         <img src={Logo} alt="logo" className="Header__logo" />
       </NavLink>
       <div className="Header__functionality">
@@ -183,7 +188,7 @@ const Header = () => {
               }
               end
               id={path_id}
-              to={`/${localization}/${path_id}`}
+              to={routingRule ? `/${path_id}` : `/${localization}/${path_id}`}
             >
               {title}
             </NavLink>
@@ -194,17 +199,26 @@ const Header = () => {
             <Loader />
           </div>
         ) : (
-          <Select
-            classNamePrefix="custom-select-header"
-            options={selectLocalization}
-            value={getLocalization()}
-            onChange={handleLocalizationSelect}
-            placeholder={localization}
-            isSearchable={false}
-            components={{
-              DropdownIndicator,
+          // <Select
+          //   classNamePrefix="custom-select-header"
+          //   options={selectLocalization}
+          //   value={getLocalization()}
+          //   onChange={handleLocalizationSelect}
+          //   placeholder={localization}
+          //   isSearchable={false}
+          //   components={{
+          //     DropdownIndicator,
+          //   }}
+          // />
+          <button
+            className="select-language"
+            onClick={() => {
+              setIsOpenModal(true);
             }}
-          />
+          >
+            {localization}
+            <LanguageIcon />
+          </button>
         )}
 
         <button
@@ -241,7 +255,7 @@ const Header = () => {
                     : "link Header__link_mobile"
                 }
                 end
-                to="/"
+                to={routingRule ? "/" : `/${localization}`}
                 onClick={() => setIsMenuOpened(false)}
               >
                 {localizadLinks?.data[0].title}
@@ -260,7 +274,7 @@ const Header = () => {
                     : "link Header__link_mobile"
                 }
                 end
-                to={`/${localization}/about`}
+                to={routingRule ? "/about" : `/${localization}/about`}
                 onClick={() => setIsMenuOpened(false)}
               >
                 <span>{headerData?.attributes.aboutUsValue}</span>
@@ -273,7 +287,11 @@ const Header = () => {
                     : "link Header__link_mobile"
                 }
                 end
-                to={`/${localization}/videoInterview`}
+                to={
+                  routingRule
+                    ? "/videoInterview"
+                    : `/${localization}/videoInterview`
+                }
                 onClick={() => setIsMenuOpened(false)}
               >
                 <span>{headerData?.attributes.videoInterviewValue}</span>
@@ -303,7 +321,7 @@ const Header = () => {
               </a>
               <Link
                 className="Header__link_mobile"
-                to={`/${localization}/vacancies`}
+                to={routingRule ? "/vacancies" : `/${localization}/vacancies`}
                 onClick={() => setIsMenuOpened(false)}
               >
                 <span>{headerData?.attributes.allVacanciesValue}</span>
@@ -330,7 +348,7 @@ const Header = () => {
           >
             <div className="menu">
               <a
-                href="#"
+                href=""
                 className="Header__link_mobile Header__link_mobile-back"
                 onClick={() => "categories" && setActiveMenu("categories")}
               >
@@ -346,7 +364,11 @@ const Header = () => {
                 <Link
                   key={vacancy.id}
                   className="Header__link_mobile"
-                  to={`/${localization}/vacancies/${vacancy.attributes.vacancySlug}`}
+                  to={
+                    routingRule
+                      ? `/vacancies/${vacancy.attributes.vacancySlug}`
+                      : `/${localization}/vacancies/${vacancy.attributes.vacancySlug}`
+                  }
                   onClick={() => {
                     setCurrentVacancy(vacancy.attributes.vacancySlug);
                     handleVacancyMenuSelect();
@@ -396,7 +418,11 @@ const Header = () => {
             <Link
               key={vacancy.id}
               className="Header__link_desktop--vacancy"
-              to={`/${localization}/vacancies/${vacancy.attributes.vacancySlug}`}
+              to={
+                routingRule
+                  ? `/vacancies/${vacancy.attributes.vacancySlug}`
+                  : `/${localization}/vacancies/${vacancy.attributes.vacancySlug}`
+              }
               // onClick={() => setCurrentVacancy(vacancy.attributes.vacancySlug)}
               onClick={() => {
                 setCurrentVacancy(vacancy.attributes.vacancySlug);

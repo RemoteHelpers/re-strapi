@@ -43,4 +43,25 @@ export const HEADER = [
       },
     ],
   },
+  {
+    language: "ru",
+    data: [
+      {
+        path_id: "",
+        title: "Главная",
+      },
+      {
+        path_id: "vacancies",
+        title: "Вакансии",
+      },
+      {
+        path_id: "about",
+        title: "О нас",
+      },
+      {
+        path_id: "videoInterview",
+        title: "Видеоинтервью",
+      },
+    ],
+  },
 ];

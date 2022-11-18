@@ -13,7 +13,7 @@ export const FOOTER = [
   {
     language: "en",
     data: {
-      label: "Контакти",
+      label: "Contacts",
       address: "22 Rymarska str., Kharkiv, Ukraine",
       phone: "+39 (098) 000-00-00",
       email: "info@remote.employees.com.ua",
