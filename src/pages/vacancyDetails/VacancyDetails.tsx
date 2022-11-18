@@ -43,6 +43,7 @@ export const VacancyDetails = () => {
   const [previewVideoImage, setPreviewVideoImage] = useState(true);
   const formSection = useRef<HTMLDivElement>(null);
   const { vacancyID } = useParams();
+  const routingRule = localization === "ru";
 
   useEffect(() => {
     axios
@@ -117,7 +118,7 @@ export const VacancyDetails = () => {
                       className={`${cl.normalCrumb} ${cl.firstCrumb}`}
                       underline="none"
                       color="inherit"
-                      href="/"
+                      href={routingRule ? "/" : `/${localization}`}
                     >
                       Головна
                     </Link>
@@ -125,7 +126,11 @@ export const VacancyDetails = () => {
                       className={cl.normalCrumb}
                       underline="none"
                       color="inherit"
-                      href={`/${localization}/vacancies`}
+                      href={
+                        routingRule
+                          ? "/vacancies"
+                          : `/${localization}/vacancies`
+                      }
                     >
                       Vacancies
                     </Link>
@@ -136,7 +141,9 @@ export const VacancyDetails = () => {
                 </div>
                 <span
                   className={
-                    localVacancyItem.attributes.isHot ? cl.hotVacancy : cl.coldVacancy
+                    localVacancyItem.attributes.isHot
+                      ? cl.hotVacancy
+                      : cl.coldVacancy
                   }
                 >
                   <VacancySvg id="hot" />

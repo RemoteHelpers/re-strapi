@@ -11,6 +11,9 @@ import { NOTFOUND_PAGE } from "../../database/notFoundPage";
 
 export default function NotFoundPage() {
   const { localization } = useStateContext();
+
+  const routingRule = localization === "ru";
+  
   const [data, setData] = useState<any>();
 
   useEffect(() => {
@@ -28,12 +31,20 @@ export default function NotFoundPage() {
           {data?.subTitle}
         </p>
         <div className={cl.buttons_wr}>
-          <NavLink end to="/" className={cl.button}>
+          <NavLink
+            end
+            to={routingRule ? "/" : `/${localization}`}
+            className={cl.button}
+          >
             {data?.link1}
           </NavLink>
 
-          <NavLink end to={`/${localization}/vacancies`} className={cl.button}>
-            {data?.link2}
+          <NavLink
+            end
+            to={routingRule ? "/vacancies" : `/${localization}/vacancies`}
+            className={cl.button}
+          >
+             {data?.link2}
           </NavLink>
         </div>
       </div>

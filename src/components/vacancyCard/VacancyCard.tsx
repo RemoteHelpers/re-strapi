@@ -20,6 +20,8 @@ const VacancyCard: React.FC<Props> = ({ title, slug, isHot }) => {
     setCurrentVacancy(slug);
   };
 
+  const routingRule = localization === "ru";
+
   useEffect(() => {
     const res = VACANCYLIST.filter(el => (el.language === localization));
 
@@ -27,7 +29,14 @@ const VacancyCard: React.FC<Props> = ({ title, slug, isHot }) => {
   }, [localization]);
 
   return (
-    <Link to={`/${localization}/vacancies/${slug}`} onClick={handleSlug}>
+    <Link
+      to={
+        routingRule
+          ? `/vacancies/${slug}`
+          : `/${localization}/vacancies/${slug}`
+      }
+      onClick={handleSlug}
+    >
       <div className="VacancyCard">
         <div className="VacancyCard__banner VacancyCard__banner--mobile">
           <img src={FireIcon} className="VacancyCard__fireIcon" alt="icon" />

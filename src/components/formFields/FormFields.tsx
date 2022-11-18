@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable operator-linebreak */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -15,6 +16,7 @@ import vacancyCat from "../../icons/vacancyCat.png";
 import feedbackCat from "../../images/formImg.png";
 import interviewCat from "../../icons/interview_form_kitekat.png";
 import Loader from "../loader/Loader";
+import { FORM_FIELDS } from "../../database/common/formFields";
 
 type TOption = {
   value: string;
@@ -34,7 +36,9 @@ export const FormFields = () => {
     { value: "advanced", label: "Advanced" },
     { value: "Proficiency", label: "Proficiency" },
   ];
-
+  const localizedFormFieldData = FORM_FIELDS.find(
+    (el: any) => el.language === localization
+  )?.data;
   const [selectedOption, setSelectedOption] = useState<TOption | null>();
   const {
     register,
@@ -102,9 +106,11 @@ export const FormFields = () => {
             <div className={cl.input_wr}>
               <div className={cl.input_name}>
                 <input
-                  className={`${errors.name && url ? cl.invalid : ""} ${watch("name") && cl.valid} + ${url ? cl.white : cl.main}`}
+                  className={`${errors.name && url ? cl.invalid : ""} ${
+                    watch("name") && cl.valid
+                  } + ${url ? cl.white : cl.main}`}
                   type="text"
-                  placeholder="ПІБ"
+                  placeholder={localizedFormFieldData?.fields.name.placeholder}
                   {...register("name", { required: true })}
                 />
               </div>
@@ -112,16 +118,22 @@ export const FormFields = () => {
                 <InputMask
                   mask="+38 (099) 999-99-99"
                   value={number}
-                  className={`${errors.number ? cl.invalid : ""} ${watch("number") && cl.valid} + ${url ? cl.white : cl.main}`}
-                  placeholder="+380"
+                  className={`${errors.number ? cl.invalid : ""} ${
+                    watch("number") && cl.valid
+                  } + ${url ? cl.white : cl.main}`}
+                  placeholder={
+                    localizedFormFieldData?.fields.number.placeholder
+                  }
                   onChange={changePhone}
                 />
               </div>
               <div className={cl.input_email}>
                 <input
                   type="email"
-                  className={`${errors.eMail ? cl.invalid : ""} ${watch("eMail") && cl.valid} + ${url ? cl.white : cl.main}`}
-                  placeholder="Email"
+                  className={`${errors.eMail ? cl.invalid : ""} ${
+                    watch("eMail") && cl.valid
+                  } + ${url ? cl.white : cl.main}`}
+                  placeholder={localizedFormFieldData?.fields.email.placeholder}
                   {...register("eMail", { required: true })}
                 />
               </div>
@@ -130,17 +142,25 @@ export const FormFields = () => {
                   type="text"
                   minLength={2}
                   maxLength={2}
-                  className={`${errors.age ? cl.invalid : ""} ${watch("age") && cl.valid} + ${url ? cl.white : cl.main}`}
-                  placeholder="Вік"
+                  className={`${errors.age ? cl.invalid : ""} ${
+                    watch("age") && cl.valid
+                  } + ${url ? cl.white : cl.main}`}
+                  placeholder={localizedFormFieldData?.fields.age.placeholder}
                   {...register("age", { required: true })}
                 />
               </div>
             </div>
             <div className={cl.input_wr}>
-              <div className={cl.input_text}>Рівень англійської</div>
+              <div className={cl.input_text}>
+                {localizedFormFieldData?.fields.englishLevel.label}
+              </div>
               <Select
-                className={`react-select-container ${errors.englishLevel ? "invalid" : ""} ${watch("englishLevel") ? "valid" : ""} `}
-                placeholder="Level"
+                className={`react-select-container ${
+                  errors.englishLevel ? "invalid" : ""
+                } ${watch("englishLevel") ? "valid" : ""} `}
+                placeholder={
+                  localizedFormFieldData?.fields.englishLevel.placeholder
+                }
                 classNamePrefix={url ? "react-select" : "select"}
                 defaultValue={selectedOption}
                 onChange={changeEnglishLevel}
@@ -170,8 +190,10 @@ export const FormFields = () => {
                   type="text"
                   name="fileName"
                   readOnly
-                  className={`${errors.CV ? cl.invalid : ""} ${watch("CV" as any)?.[0]?.name && cl.valid} ${cl.download_btn}`}
-                  placeholder="Прикріпити резюме"
+                  className={`${errors.CV ? cl.invalid : ""} ${
+                    watch("CV" as any)?.[0]?.name && cl.valid
+                  } ${cl.download_btn}`}
+                  placeholder={localizedFormFieldData?.fields.cv.placeholder}
                   value={watch("CV" as any)?.[0]?.name || ""}
                 />
                 <input
@@ -185,7 +207,7 @@ export const FormFields = () => {
                 className={cl.submit_btn}
                 disabled={isSubmitting}
               >
-                Надіслати
+                {localizedFormFieldData?.submit}
               </button>
             </div>
           </div>

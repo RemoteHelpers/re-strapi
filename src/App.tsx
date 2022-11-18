@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable comma-dangle */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
@@ -28,9 +29,10 @@ import VideoInterview from "./pages/videoInterview";
 import VacancyDetails from "./pages/vacancyDetails";
 import VacanciesPage from "./pages/vacanciesPage";
 import ThankYouPage from "./pages/thankYouPage";
-import ChooseLanguagePage from "./pages/chooseLanguagePage";
+import ChooseLanguagePage from "./components/modalContent";
 import NotFoundPage from "./pages/notFoundPage/notFoundPage";
 import axios from "axios";
+import ChooseLanguageModal from "./components/chooseLanguageModal";
 
 const API = "http://testseven.rh-s.com:1733/api";
 
@@ -46,17 +48,16 @@ const App: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const rule = window.location.pathname === "/" && isSubmitLocalization;
-
-  if (window.location.pathname === "/" && isSubmitLocalization) {
-    window.location.pathname = `/${localization}/`;
-  }
+  const routingRule = localization === "ru";
 
   useEffect(() => {
     const prevLanguage = window.location.pathname.split("/")[1];
     const prevURL = window.location.pathname.split("/");
     prevURL.splice(0, 2);
     const match = prevURL.join("/");
+    if (routingRule) {
+      return navigate(`/${match}`);
+    }
     if (localization !== prevLanguage && isSubmitLocalization) {
       navigate(`/${localization}/${match}`);
     }
@@ -92,23 +93,40 @@ const App: React.FC = () => {
 
   return (
     <>
-      <ChooseLanguagePage />
+      <ChooseLanguageModal />
       <div ref={scrollToTop}></div>
       <Header />
       <main className={isDesktopMenuOpened ? "desktopMenuOpened" : ""}>
         <div className={isDesktopMenuOpened ? "darken" : "no-darken"}></div>
         <Routes>
-          <Route path={`/${localization}/`} element={<HomePage />} />
-          {/* <Route path="/" element={<HomePage />} /> */}
-          {!isSubmitLocalization && <Route path="/" element={<HomePage />} />}
-          <Route path="/:lng/vacancies" element={<VacanciesPage />} />
           <Route
-            path="/:lng/vacancies/:vacancyID"
+            path={routingRule ? "/" : `/${localization}/`}
+            element={<HomePage />}
+          />
+          <Route
+            path={routingRule ? "/vacancies" : "/:lng/vacancies"}
+            element={<VacanciesPage />}
+          />
+          <Route
+            path={
+              routingRule
+                ? "/vacancies/:vacancyID"
+                : "/:lng/vacancies/:vacancyID"
+            }
             element={<VacancyDetails />}
           />
-          <Route path="/:lng/about" element={<AboutPage />} />
-          <Route path="/:lng/videoInterview" element={<VideoInterview />} />
-          <Route path="/:lng/thankyou" element={<ThankYouPage />} />
+          <Route
+            path={routingRule ? "/about" : "/:lng/about"}
+            element={<AboutPage />}
+          />
+          <Route
+            path={routingRule ? "/videoInterview" : "/:lng/videoInterview"}
+            element={<VideoInterview />}
+          />
+          <Route
+            path={routingRule ? "/thankyou" : "/:lng/thankyou"}
+            element={<ThankYouPage />}
+          />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

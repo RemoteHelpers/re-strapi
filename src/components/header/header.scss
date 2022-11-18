@@ -480,3 +480,17 @@
     font-size: clamp(24px, 1.66vw, 32px);
   }
 }
+.select-language {
+  border: none;
+  background: transparent;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: 0.3s all;
+  &:hover {
+    transform: scale(1.1);
+    color: $primaryColor1;
+  }
+}

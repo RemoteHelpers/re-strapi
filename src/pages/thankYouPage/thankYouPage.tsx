@@ -10,6 +10,9 @@ import { THANKYOU_PAGE } from "../../database/thankYouPage";
 
 export const ThankYouPage = () => {
   const { localization, scrollToTop } = useStateContext();
+  
+  const routingRule = localization === "ru";
+  
   const [data, setData] = useState<any>();
 
   useEffect(() => {
@@ -37,7 +40,11 @@ export const ThankYouPage = () => {
             </p>
             <NavLink
               end
-              to={`/${localization}/videoInterview`}
+              to={
+                routingRule
+                  ? "/videoInterview"
+                  : `/${localization}/videoInterview`
+              }
               className={cl.button}
             >
               {data?.linkText}

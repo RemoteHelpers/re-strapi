@@ -18,7 +18,7 @@ export const Footer = () => {
 
   const localizedFooterData = FOOTER.find(
     (el: any) => el.language === localization
-  );
+  )?.data;
 
   return (
     <footer className={cl.Footer}>
@@ -37,17 +37,17 @@ export const Footer = () => {
         </div>
       </div>
       <div className={cl.Footer__contacts}>
-        <h4 className={cl.Footer__title}>{localizedFooterData?.data.label}</h4>
+        <h4 className={cl.Footer__title}>{localizedFooterData?.label}</h4>
         <a
           target="_blank"
           href="https://goo.gl/maps/PXsdBHfVXmeLcZGt5"
           className={cl.Footer__contactsText}
           rel="noreferrer"
         >
-          {localizedFooterData?.data.address}
+          {localizedFooterData?.address}
         </a>
         <a href="tel:+380980000000" className={cl.Footer__contactsText}>
-          {localizedFooterData?.data.phone}
+          {localizedFooterData?.phone}
         </a>
         <a
           target="_blank"
@@ -55,7 +55,7 @@ export const Footer = () => {
           className={cl.Footer__contactsText}
           rel="noreferrer"
         >
-          {localizedFooterData?.data.email}
+          {localizedFooterData?.email}
         </a>
       </div>
     </footer>
