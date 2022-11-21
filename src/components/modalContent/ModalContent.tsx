@@ -54,10 +54,10 @@ export default function ModalContent() {
   };
 
   const routingRule = localization === "ru";
-  const navigate = useNavigate();
 
   const handleSubmit = () => {
     setIsOpenModal(false);
+    setIsSubmitLocalization(true);
   };
   const setHover = (event: any) => {
     setItemHover(event.currentTarget.id);

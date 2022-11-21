@@ -44,6 +44,7 @@ const App: React.FC = () => {
     isDesktopMenuOpened,
     setHeaderData,
     setFooterData,
+    setIsOpenModal,
   } = useStateContext();
 
   const navigate = useNavigate();
@@ -91,6 +92,11 @@ const App: React.FC = () => {
       });
   }, [localization]);
 
+  if (!isSubmitLocalization) {
+    setTimeout(() => {
+      setIsOpenModal(true);
+    }, 1000);
+  }
   return (
     <>
       <ChooseLanguageModal />
