@@ -489,6 +489,8 @@
   align-items: center;
   gap: 0.25rem;
   transition: 0.3s all;
+  outline: 0;
+  outline-offset: 0;
   &:hover {
     transform: scale(1.1);
     color: $primaryColor1;

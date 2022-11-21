@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable jsx-quotes */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/react-in-jsx-scope */
