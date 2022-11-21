@@ -97,7 +97,8 @@
   }
 
   &__control {
-    width: 216px;
+    width: 100%;
+    min-width: 250px;
     height: auto;
     padding: 0 0.6rem;
     border: 0 !important;

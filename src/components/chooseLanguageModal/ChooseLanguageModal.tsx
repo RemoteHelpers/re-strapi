@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable operator-linebreak */
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -34,8 +35,8 @@ export default function ChooseLanguageModal() {
       if (event.code === "Escape") {
         onClose();
       }
-      document.body.style.overflow = "hidden";
-      return () => (document.body.style.overflow = "unset");
+      // document.body.style.overflow = "hidden";
+      // return () => (document.body.style.overflow = "unset");
     };
 
     window.addEventListener("keydown", handleKeyDown);
