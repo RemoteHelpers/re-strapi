@@ -21,6 +21,8 @@ export const HEADER = [
         title: "Відеоінтерв'ю",
       },
     ],
+    allVacanciesData: "Усі вакансії",
+    backValue: "Назад до меню",
   },
   {
     language: "en",
@@ -42,6 +44,8 @@ export const HEADER = [
         title: "Video Interview",
       },
     ],
+    allVacanciesData: "All vacancies",
+    backValue: "Go back",
   },
   {
     language: "ru",
@@ -63,5 +67,7 @@ export const HEADER = [
         title: "Видеоинтервью",
       },
     ],
+    allVacanciesData: "Все вакансии",
+    backValue: "Назад к меню",
   },
 ];
