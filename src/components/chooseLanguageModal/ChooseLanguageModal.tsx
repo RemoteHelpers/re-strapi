@@ -23,11 +23,16 @@ import { useStateContext } from "../../context/StateContext";
 const modalRoot = document.querySelector("#modal-root")!;
 
 export default function ChooseLanguageModal() {
-  const { isSubmitLocalization, setIsOpenModal, isOpenModal } =
-    useStateContext();
+  const {
+    isSubmitLocalization,
+    setIsOpenModal,
+    isOpenModal,
+    setIsSubmitLocalization
+  } = useStateContext();
 
   const onClose = () => {
     setIsOpenModal(false);
+    setIsSubmitLocalization(true);
   };
 
   useEffect(() => {
