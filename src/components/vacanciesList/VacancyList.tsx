@@ -24,6 +24,7 @@ import { Category, Vacancy, Collection, VacancyArray } from "../../types/types";
 import VacancyCard from "../vacancyCard/VacancyCard";
 
 import Find from "../../images/findIcon.svg";
+import Close from "../../images/close.svg";
 import SelectIcon from "../../images/selectArrow.svg";
 import useOutsideAlerter from "../../hooks/useClickOutside";
 import NotFoundVacancies from "../notFoundVacancies";
@@ -204,36 +205,49 @@ export default function Vacancies() {
         <div className="Vacancies__navigation">
           <div className="search-container" ref={searchRef}>
             <div className="search-inner">
-              <input
-                type="text"
-                value={query}
-                onChange={searchHandler}
-                placeholder={data?.placeholder}
-                className="search-input"
-              />
-              {!query && <img src={Find} alt="find" className="search-icon" />}
+              <div className="search-wrapper">
+                <input
+                  type="text"
+                  value={query}
+                  onChange={searchHandler}
+                  placeholder={data?.placeholder}
+                  className="search-input"
+                />
+                {!query ? (
+                  <img src={Find} alt="find" className="search-icon" />
+                ) : (
+                  <button
+                    className="search-clear"
+                    type="button"
+                    onClick={handleClear}
+                  >
+                    <img src={Close} alt="close" />
+                  </button>
+
+                )}
+                {isDropdown && (
+                  <div className="search__dropdown">
+                    {searchCollection.slice(0, 10).map((collection) => (
+                      <button
+                        type="button"
+                        key={collection.id}
+                        onClick={() => onCollection(collection)}
+                        className="search__dropdown-row"
+                      >
+                        {collection.attributes.keyPhrase}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
               <button
                 className="search__button"
                 type="button"
                 onClick={handleClear}
               >
-                {data?.clearButton}
+                Знайти
               </button>
             </div>
-            {isDropdown && (
-              <div className="search__dropdown">
-                {searchCollection.slice(0, 10).map((collection) => (
-                  <button
-                    type="button"
-                    key={collection.id}
-                    onClick={() => onCollection(collection)}
-                    className="search__dropdown-row"
-                  >
-                    {collection.attributes.keyPhrase}
-                  </button>
-                ))}
-              </div>
-            )}
           </div>
 
           <div className="Vacancies__selects">
@@ -278,7 +292,7 @@ export default function Vacancies() {
           previousLinkClassName="page-num"
           nextLinkClassName="page-num"
           activeLinkClassName="page-num--active"
-          // renderOnZeroPageCount={null}
+        // renderOnZeroPageCount={null}
         />
       </div>
     </>

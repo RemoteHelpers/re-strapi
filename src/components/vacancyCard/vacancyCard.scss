@@ -72,18 +72,19 @@
   }
 
   &__button {
+    width: 100% !important;
+    height: auto;
+    padding: 1rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
     font-weight: 600;
     font-size: $typography4;
-    line-height: 166%;
+    line-height: 100%;
     color: #fff;
 
     background: #fbbf13;
-    width: 120%;
-    height: 56px;
     box-shadow: 0px 0px 17px 5px rgba(255, 101, 1, 0.25);
     border-radius: 15px;
     border: none;
@@ -96,8 +97,9 @@
     }
 
     @include onDesktop {
-      width: 240px;
-      height: 41px;
+      width: 240px !important;
+      padding: .8rem 0;
+      height: auto;
     }
 
     // @include on1920 {
