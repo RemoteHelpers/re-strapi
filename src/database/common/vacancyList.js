@@ -16,6 +16,7 @@ export const VACANCYLIST = [
     categoriesTitle: 'Виберіть категорію',
     salary: 'Заробітна плата за результатами співбесіди',
     button: 'Побачити більше',
+    isHot: 'Гаряча',
   },
   {
     language: 'ru',
@@ -31,5 +32,6 @@ export const VACANCYLIST = [
     categoriesTitle: 'Выберите категорию',
     salary: 'Заработная плата по результатам собеседования',
     button: 'Увидеть больше',
+    isHot: 'Горячая',
   },
 ];
