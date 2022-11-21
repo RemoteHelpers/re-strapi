@@ -30,6 +30,7 @@ import Loader from "../../components/loader";
 import ToTopButton from "../../components/toTopButton/ToTopButton";
 import cl from "./vacancyDetails.module.scss";
 import VacancyCard from "../../components/vacancyCard";
+import { VACANCY_DETAILS } from "../../database/vacancyDetailsPage";
 
 const API = "http://testseven.rh-s.com:1733/api";
 const PhotoAPI = "http://testseven.rh-s.com:1733";
@@ -42,8 +43,15 @@ export const VacancyDetails = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [previewVideoImage, setPreviewVideoImage] = useState(true);
   const formSection = useRef<HTMLDivElement>(null);
+  const [data, setData] = useState<any>();
   const { vacancyID } = useParams();
   const routingRule = localization === "ru";
+
+  useEffect(() => {
+    const res = VACANCY_DETAILS.filter(el => (el.language === localization));
+
+    setData(res[0]);
+  }, [localization]);
 
   useEffect(() => {
     axios
@@ -123,7 +131,7 @@ export const VacancyDetails = () => {
                       color="inherit"
                       href={routingRule ? "/" : `/${localization}`}
                     >
-                      Головна
+                      {data?.homeLink}
                     </Link>
                     <Link
                       className={cl.normalCrumb}
@@ -135,7 +143,7 @@ export const VacancyDetails = () => {
                           : `/${localization}/vacancies`
                       }
                     >
-                      Vacancies
+                      {data?.vacanciesLink}
                     </Link>
                     <Typography className={cl.activeCrumb}>
                       {localVacancyItem.attributes.title}
@@ -150,12 +158,12 @@ export const VacancyDetails = () => {
                   }
                 >
                   <VacancySvg id="hot" />
-                  Гаряча
+                  {data?.ishot}
                 </span>
                 <div className={cl.shortVacancyWrapper}>
                   <div className={cl.shortVacancyInfo}>
                     <h1>{localVacancyItem.attributes.title}</h1>
-                    <p>Заробітна плата за результатами співбесіди</p>
+                    <p>{data?.salary}</p>
                     <p>{localVacancyItem.attributes.subTitle}</p>
                     <button
                       type="button"
@@ -166,7 +174,7 @@ export const VacancyDetails = () => {
                         })
                       }
                     >
-                      Відгукнутися
+                      {data?.mainButton}
                     </button>
                   </div>
                   <button
@@ -210,7 +218,7 @@ export const VacancyDetails = () => {
           </div>
 
           <div className={cl.another_vacancies}>
-            <h2>Схожі вакансії</h2>
+            <h2>{data?.similarTitle}</h2>
             <div className={cl.fetching_another_vacancies}>
               {anotherVacancies.map((anotherVacancy: any) => (
                 <div key={anotherVacancy.id}>
