@@ -151,6 +151,7 @@ export default function Vacancies() {
 
   const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
+
     clearTimeout(searchTime);
     searchTime = setTimeout(async () => {
       const res = await axios.get(
@@ -161,6 +162,18 @@ export default function Vacancies() {
       setSearchCollection(res?.data?.data || []);
     }, 300);
   };
+
+  // const handleSearch = () => {
+  //   clearTimeout(searchTime);
+  //   searchTime = setTimeout(async () => {
+  //     const res = await axios.get(
+  //       `${API}/keyword-tags?filters[keyPhrase][$contains]=${query}`
+  //     );
+
+  //     setIsDropdown(true);
+  //     setSearchCollection(res?.data?.data || []);
+  //   }, 300);
+  // };
 
   const onCollection = (collection: Collection) => {
     setQuery(collection.attributes.keyPhrase);
@@ -240,13 +253,13 @@ export default function Vacancies() {
                   </div>
                 )}
               </div>
-              <button
+              {/* <button
                 className="search__button"
                 type="button"
-                onClick={handleClear}
+                onClick={handleSearch}
               >
                 Знайти
-              </button>
+              </button> */}
             </div>
           </div>
 
