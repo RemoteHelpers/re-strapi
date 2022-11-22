@@ -1,0 +1,103 @@
+@import "../../utils/mixins.scss";
+@import "../../global-styles/colors.scss";
+@import "../../global-styles/fonts.scss";
+
+.container {
+  position: relative;
+  padding: 0rem 1.8rem 2rem;
+
+  @include onDesktop {
+    margin: 0 auto;
+    padding: 0rem 12% 2rem;
+  }
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  border: 1px solid $primaryColor1;
+  border-radius: 20px;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  @include onDesktop {
+    padding: 4rem 0;
+    background-size: 60%;
+  }
+}
+.title {
+  font-size: $typography3;
+  color: $typography1;
+}
+.subtitle {
+  font-size: $typography4;
+  font-weight: 700;
+}
+.img_wrapper {
+  text-align: center;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-image: url("../../images/notFoundVacanciesEllipse.png");
+  background-size: 100%;
+  margin-bottom: 1.75rem;
+  @include onTablet {
+    background-size: 55%;
+  }
+  @include onDesktop {
+    margin-bottom: 2rem;
+  }
+  & > img {
+    width: 60%;
+    @include onTablet {
+      width: auto;
+    }
+  }
+}
+
+.text {
+  font-weight: 500;
+  font-size: $typography4;
+  line-height: 115%;
+  margin-bottom: 1rem;
+}
+.links {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  list-style: none;
+  gap: 1rem;
+  @include onDesktop {
+    flex-direction: row;
+    gap: 0;
+  }
+}
+.link {
+  align-items: center;
+  display: flex;
+  gap: 0.85rem;
+  justify-content: center;
+  & > a {
+    font-weight: 500;
+    line-height: 115%;
+    font-size: $typography4;
+    color: $primaryColor1;
+    text-decoration: none;
+    transition: 0.3s;
+    cursor: pointer;
+    &:hover {
+      color: $primaryColor2;
+    }
+  }
+
+  @include onDesktop {
+    padding: 0.5rem 2.5rem;
+    &:not(:last-child) {
+      border-right: 1px solid #000;
+    }
+  }
+}

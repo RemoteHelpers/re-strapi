@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable comma-dangle */
 /* eslint-disable operator-linebreak */
 /* eslint-disable @typescript-eslint/quotes */
@@ -24,8 +26,11 @@ type TOption = {
 };
 
 export const FormFields = () => {
-  const { localization } = useStateContext();
+  const { localization, setIsFormSubmitError } = useStateContext();
   const { vacancyID } = useParams();
+
+  const routingRule = localization === "ru";
+
   const navigate = useNavigate();
   const EnglishLevel = [
     { value: "beginner", label: "Beginner" },
@@ -64,9 +69,11 @@ export const FormFields = () => {
       setNumber("");
       setSelectedOption(null);
       reset();
-      navigate(`/${localization}/thankyou`);
+      routingRule
+        ? navigate("/thankyou")
+        : navigate(`/${localization}/thankyou`);
     } catch (error) {
-      console.log(error, "send feedBack form");
+      setIsFormSubmitError(true);
     }
   });
 
@@ -75,6 +82,9 @@ export const FormFields = () => {
       required: true,
     });
     register("number", {
+      required: true,
+    });
+    register("CV", {
       required: true,
     });
   }, []);
@@ -190,6 +200,7 @@ export const FormFields = () => {
                   type="text"
                   name="fileName"
                   readOnly
+                  required
                   className={`${errors.CV ? cl.invalid : ""} ${
                     watch("CV" as any)?.[0]?.name && cl.valid
                   } ${cl.download_btn}`}
@@ -199,7 +210,8 @@ export const FormFields = () => {
                 <input
                   className={cl.attach_CV_btn}
                   type="file"
-                  {...register("CV", { required: false })}
+                  required
+                  {...register("CV", { required: true })}
                 />
               </label>
               <button
