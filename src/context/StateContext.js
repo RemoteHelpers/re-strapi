@@ -23,6 +23,7 @@ export const StateContext = ({ children }) => {
   const scrollToTop = useRef(null);
   const scrollToHomeForm = useRef(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isFormSubmitError, setIsFormSubmitError] = useState(false);
 
   return (
     <Context.Provider
@@ -47,6 +48,8 @@ export const StateContext = ({ children }) => {
         setIsFormSubmited,
         isOpenModal,
         setIsOpenModal,
+        setIsFormSubmitError,
+        isFormSubmitError,
       }}
     >
       {children}
