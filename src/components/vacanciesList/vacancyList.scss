@@ -4,12 +4,6 @@
 
 // we need to use "!important" to work with library "React Select"
 
-.field {
-  position: absolute;
-  top: 1.2rem;
-  right: 3.1rem;
-}
-
 .Vacancies {
   padding: 3rem 0;
 
@@ -50,11 +44,13 @@
 
     @include onTablet {
       margin-bottom: 2.5rem;
+      flex-direction: column !important;
+      align-items: flex-start !important;
     }
 
     @include onDesktop {
       margin-bottom: 8rem;
-      flex-direction: row;
+      flex-direction: row !important;
       align-items: center !important;
     }
   }
@@ -77,6 +73,8 @@
   }
 
   &__selects {
+    position: relative !important;
+    z-index: 1 !important;
     display: flex;
     order: 2;
     gap: 2.5rem !important;
@@ -190,6 +188,7 @@
   }
 
   &__menu {
+    padding: .5rem;
     font-weight: 600 !important;
     font-size: 1rem !important;
     line-height: 130% !important;

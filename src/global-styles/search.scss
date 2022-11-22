@@ -3,30 +3,6 @@
 @import "../global-styles/fonts.scss";
 
 .search {
-  &__dropdown {
-    background-color: #fff;
-    position: relative;
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
-  }
-
-  &__dropdown-row {
-    padding: 0.4rem 0.2rem;
-    width: 100%;
-    border: none;
-    text-align: left;
-    margin-bottom: 0.1rem;
-    background-color: rgb(240, 240, 240);
-    transition: 0.3s all;
-
-    &:hover {
-      cursor: pointer;
-      border-radius: 0.3rem;
-    }
-  }
-
   &-container {
     width: 100%;
     height: 100%;
@@ -36,95 +12,88 @@
       height: 100%;
     }
   }
-
   &-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    // column-gap: 1rem;
+    
+    // @include onTablet {
+    //   column-gap: 1.8rem;
+    // }
+  }
+  &-wrapper {
+    width: 100%;
+    height: 100%;
     position: relative;
-    height: 100%;
-    width: 100%;
   }
-
   &-input {
+    position: relative;
+    z-index: 3;
     width: 100%;
     height: 100%;
-    padding: 1rem;
-    border: 0.03rem solid #000;
-    border-radius: 0.5rem;
+    border: 1px solid #000;
+    border-radius: .5rem;
+    outline: 0;
+    outline-offset: 0;
+    padding: .7rem 1rem;
+    font-size: $typography4;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 115%;
+  }
+  &-icon,
+  &-clear {
+    background-color: transparent;
+    border: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1rem;
+    z-index: 5;
     transition: .3s ease;
-    border-radius: 1.5rem;
-    border: 0;
-    box-shadow: 0 0 15px rgb(234, 234, 234);
-
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 15px rgb(199, 199, 199);
-
-      & + img {
-        transition: .3s ease-in-out;
-        opacity: 0;
-        visibility: hidden;
-        position: absolute;
-      }
-
-      &::placeholder {
-        transition: .3s ease-in-out;
-        opacity: 0;
-        visibility: hidden;
-      }
-    }
-
-    &::placeholder {
-      position: absolute;
-      left: 40%;
-      font-size: 1rem;
-      line-height: 100%;
-      color: #616161;
-      font-size: $typography5;
-    }
-  }
-
-  &-icon {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    bottom: 0;
-    left: 0;
-    margin: 0 0 0 1.2rem;
-
-    width: 1.2rem;
-    height: 1.2rem;
-
-    @include onDesktop {
-      font-size: 0.9rem;
-      width: 0.8rem;
-      height: 0.8rem;
-    }
-
-    @include on1920 {
-      font-size: 1.1rem;
-      width: 1.2rem;
-      height: 1.2rem;
-    }
-  }
-
-  &__button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: .5rem;
-    border-radius: 1.5rem;
-    padding: .4rem 1rem;
-    border: 0;
     cursor: pointer;
-    background-color: $primaryColor2;
-    transition: .3s ease-in-out;
+  }
+  &__button {
     color: #fff;
-    font-size: $typography5;
-    width: 20%;
-    height: 80%;
-
+    border: 0;
+    background-color: $primaryColor1;
+    font-size: $typography4;
+    padding: 1rem 3.5rem;
+    border-radius: 1rem;
+    transition: .3s ease-in-out;
+    cursor: pointer;
     &:hover {
-      background-color: $primaryColor1;
+      background-color: $primaryColor2;
+    }
+    &-disable {
+      pointer-events: none !important;
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    left: 0;
+    top: 90%;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 2px 11px rgba(97, 97, 97, 0.15);
+    border-radius: 0 0 .5rem .5rem;
+    z-index: 2;
+    &-row {
+      background-color: transparent;
+      border: 0;
+      text-align: left;
+      padding: .5rem 0 .5rem 1rem;
+      cursor: pointer;
+      &:hover {
+        background-color: rgba(211, 211, 211, 0.15);
+      }
+      &:first-of-type {
+        padding-top: 1rem;
+      }
     }
   }
 }
-
