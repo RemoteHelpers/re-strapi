@@ -33,6 +33,7 @@ import ChooseLanguagePage from "./components/modalContent";
 import NotFoundPage from "./pages/notFoundPage/notFoundPage";
 import axios from "axios";
 import ChooseLanguageModal from "./components/chooseLanguageModal";
+import FormSubmitErrorPage from "./pages/formSubmitErrorPage";
 
 const API = "http://testseven.rh-s.com:1733/api";
 
@@ -45,6 +46,7 @@ const App: React.FC = () => {
     setHeaderData,
     setFooterData,
     setIsOpenModal,
+    isFormSubmitError,
   } = useStateContext();
 
   const navigate = useNavigate();
@@ -97,45 +99,50 @@ const App: React.FC = () => {
       setIsOpenModal(true);
     }, 1000);
   }
+
   return (
     <>
       <ChooseLanguageModal />
       <div ref={scrollToTop}></div>
       <Header />
-      <main className={isDesktopMenuOpened ? "desktopMenuOpened" : ""}>
-        <div className={isDesktopMenuOpened ? "darken" : "no-darken"}></div>
-        <Routes>
-          <Route
-            path={routingRule ? "/" : `/${localization}/`}
-            element={<HomePage />}
-          />
-          <Route
-            path={routingRule ? "/vacancies" : "/:lng/vacancies"}
-            element={<VacanciesPage />}
-          />
-          <Route
-            path={
-              routingRule
-                ? "/vacancies/:vacancyID"
-                : "/:lng/vacancies/:vacancyID"
-            }
-            element={<VacancyDetails />}
-          />
-          <Route
-            path={routingRule ? "/about" : "/:lng/about"}
-            element={<AboutPage />}
-          />
-          <Route
-            path={routingRule ? "/videoInterview" : "/:lng/videoInterview"}
-            element={<VideoInterview />}
-          />
-          <Route
-            path={routingRule ? "/thankyou" : "/:lng/thankyou"}
-            element={<ThankYouPage />}
-          />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </main>
+      {!isFormSubmitError ? (
+        <main className={isDesktopMenuOpened ? "desktopMenuOpened" : ""}>
+          <div className={isDesktopMenuOpened ? "darken" : "no-darken"}></div>
+          <Routes>
+            <Route
+              path={routingRule ? "/" : `/${localization}/`}
+              element={<HomePage />}
+            />
+            <Route
+              path={routingRule ? "/vacancies" : "/:lng/vacancies"}
+              element={<VacanciesPage />}
+            />
+            <Route
+              path={
+                routingRule
+                  ? "/vacancies/:vacancyID"
+                  : "/:lng/vacancies/:vacancyID"
+              }
+              element={<VacancyDetails />}
+            />
+            <Route
+              path={routingRule ? "/about" : "/:lng/about"}
+              element={<AboutPage />}
+            />
+            <Route
+              path={routingRule ? "/videoInterview" : "/:lng/videoInterview"}
+              element={<VideoInterview />}
+            />
+            <Route
+              path={routingRule ? "/thankyou" : "/:lng/thankyou"}
+              element={<ThankYouPage />}
+            />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </main>
+      ) : (
+        <FormSubmitErrorPage />
+      )}
       <Footer />
     </>
   );
