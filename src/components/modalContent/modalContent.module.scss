@@ -153,15 +153,15 @@
   @include onDesktop {
     display: none;
   }
-  @include on1920 {
-    position: absolute;
-    display: block;
-    max-width: 100%;
-    height: 60%;
-    transform: scaleX(1);
-    right: 7%;
-    bottom: 20%;
-  }
+  // @include on1920 {
+  //   position: absolute;
+  //   display: block;
+  //   max-width: 100%;
+  //   height: 60%;
+  //   transform: scaleX(1);
+  //   right: 7%;
+  //   bottom: 20%;
+  // }
 }
 .button {
   width: 14rem;

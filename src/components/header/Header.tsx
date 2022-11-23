@@ -1,3 +1,4 @@
+/* eslint-disable prefer-template */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/button-has-type */
 /* eslint-disable no-shadow */
@@ -86,7 +87,7 @@ const Header = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [localization]);
 
   useEffect(() => {
     axios
