@@ -142,8 +142,12 @@ export default function Vacancies() {
   }, [query, currentCategory]);
 
   const handleCategorySelect = useCallback((selected: any) => {
-    setCurrentCategory(selected.label);
-  }, []);
+    if (currentCategory !== selected.label) {
+      setCurrentCategory(selected.label);
+    } else {
+      setCurrentCategory('');
+    }
+  }, [currentCategory]);
 
   const handleClear = useCallback(() => {
     setQuery("");
@@ -162,18 +166,6 @@ export default function Vacancies() {
       setSearchCollection(res?.data?.data || []);
     }, 300);
   };
-
-  // const handleSearch = () => {
-  //   clearTimeout(searchTime);
-  //   searchTime = setTimeout(async () => {
-  //     const res = await axios.get(
-  //       `${API}/keyword-tags?filters[keyPhrase][$contains]=${query}`
-  //     );
-
-  //     setIsDropdown(true);
-  //     setSearchCollection(res?.data?.data || []);
-  //   }, 300);
-  // };
 
   const onCollection = (collection: Collection) => {
     setQuery(collection.attributes.keyPhrase);

@@ -54,6 +54,10 @@
     transition: .3s ease;
     cursor: pointer;
   }
+  &-clear {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
   &__button {
     color: #fff;
     border: 0;

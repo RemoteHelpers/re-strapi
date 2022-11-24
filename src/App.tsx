@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable consistent-return */
 /* eslint-disable comma-dangle */
 /* eslint-disable no-restricted-globals */
@@ -17,6 +18,8 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes, BrowserRouter, useNavigate } from "react-router-dom";
 import { useStateContext } from "./context/StateContext";
+import { Helmet } from 'react-helmet';
+import { META } from './database/common/meta';
 
 import "./App.scss";
 
@@ -35,6 +38,11 @@ import axios from "axios";
 import ChooseLanguageModal from "./components/chooseLanguageModal";
 
 const API = "http://testseven.rh-s.com:1733/api";
+
+interface metaProps {
+  language: string;
+  description: string;
+}
 
 const App: React.FC = () => {
   const {
@@ -97,8 +105,18 @@ const App: React.FC = () => {
       setIsOpenModal(true);
     }, 1000);
   }
+
+  const metaDatas = META.find(
+    (el) => el.language === localization
+  )?.data;
+
   return (
     <>
+      {metaDatas?.map((item: any) => (
+        <Helmet key={item.id}>
+          <meta name={item.description} />
+        </Helmet>
+      ))}
       <ChooseLanguageModal />
       <div ref={scrollToTop}></div>
       <Header />

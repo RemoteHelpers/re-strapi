@@ -66,7 +66,7 @@ export const VacancyDetails = () => {
           res.data.data[0].attributes.categories.data[0].attributes
             .categoryTitle
         );
-        document.title = `Вакансія - ${res.data.data[0].attributes.title}`;
+        document.title = res.data.data[0].attributes.title;
         // console.log(res.data.data);
         setTimeout(() => {
           setIsLoading(false);
