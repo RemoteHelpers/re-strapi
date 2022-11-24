@@ -105,7 +105,6 @@
   }
 }
 .attach_CV_btn {
-  cursor: pointer;
   position: absolute;
   opacity: 0;
   z-index: 1;
@@ -129,7 +128,6 @@
   font-size: $typography4;
 
   transform-style: preserve-3d;
-  cursor: pointer;
   transition: all 0.3s;
 
   &:hover {

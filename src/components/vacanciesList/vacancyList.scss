@@ -117,7 +117,6 @@
     }
 
     &:hover {
-      cursor: pointer;
     }
 
     &--menu-is-open .custom-select__indicators .custom-select__indicator {
@@ -188,7 +187,7 @@
   }
 
   &__menu {
-    padding: .5rem;
+    padding: 0.5rem;
     font-weight: 600 !important;
     font-size: 1rem !important;
     line-height: 130% !important;
@@ -267,7 +266,6 @@
   line-height: 115%;
 
   &:hover {
-    cursor: pointer;
   }
 
   &--active {

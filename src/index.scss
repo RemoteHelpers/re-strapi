@@ -21,7 +21,5 @@ main.desktopMenuOpened + footer > * {
   opacity: 0.6;
 }
 * {
-  cursor: url(./icons/cursor.svg), pointer;
   cursor: url(./icons/cursor.svg), auto;
-  cursor: url(./icons/cursor.svg), default;
 }
