@@ -1,9 +1,8 @@
 .arrow {
-  cursor: pointer;
   circle {
-    transition: .3s ease-in-out;
+    transition: 0.3s ease-in-out;
     &:hover {
-      fill: #00DCFF;
+      fill: #00dcff;
       + path {
         fill: #fff;
       }
