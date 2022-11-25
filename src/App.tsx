@@ -116,7 +116,7 @@ const App: React.FC = () => {
     <>
       {metaDatas?.map((item: any) => (
         <Helmet key={item.id}>
-          <meta name={item.description} />
+          <meta name="description" content={item.description} />
         </Helmet>
       ))}
       <ChooseLanguageModal />
