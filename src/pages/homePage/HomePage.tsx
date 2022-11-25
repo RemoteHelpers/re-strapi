@@ -31,10 +31,6 @@ export const HomePage = () => {
   )?.data.faq_section;
 
   useEffect(() => {
-    document.title = "Головна";
-  }, []);
-
-  useEffect(() => {
     axios
       .get(
         `${API}/home-page?locale=${localization === "ua" ? "uk" : localization}`
@@ -46,6 +42,10 @@ export const HomePage = () => {
       .catch((err) => {
         console.log(err);
       });
+  }, []);
+
+  useEffect(() => {
+    document.title = "Remote Employees";
   }, []);
 
   return (

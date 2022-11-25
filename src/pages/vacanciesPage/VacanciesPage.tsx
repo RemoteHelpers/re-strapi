@@ -6,7 +6,7 @@ import Vacancies from "../../blocks/Vacancies";
 
 export const VacaniesPage = () => {
   useEffect(() => {
-    document.title = "Вакансії";
+    document.title = "Remote Employees";
   }, []);
 
   return (

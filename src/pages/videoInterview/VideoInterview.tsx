@@ -34,10 +34,6 @@ export const VideoInterview = () => {
     (el) => el.language === localization
   )?.data.faq_section;
 
-  useEffect(() => {
-    document.title = "Відеоінтерв'ю";
-  }, []);
-
   const videoExamples = [
     {
       id: 1,
@@ -56,6 +52,10 @@ export const VideoInterview = () => {
   const playVideo = (event: any) => {
     setPreviewVideoImage(event.currentTarget.id);
   };
+
+  useEffect(() => {
+    document.title = "Remote Employees";
+  }, []);
 
   return (
     <section className={cl.section}>

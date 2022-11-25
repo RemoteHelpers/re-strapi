@@ -33,7 +33,7 @@ export const AboutPage = () => {
   };
 
   useEffect(() => {
-    document.title = "Про нас";
+    document.title = "Remote Employees";
   }, []);
 
   return (
