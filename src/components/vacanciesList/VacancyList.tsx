@@ -141,8 +141,14 @@ export default function Vacancies() {
   }, [query, currentCategory]);
 
   const handleCategorySelect = useCallback((selected: any) => {
-    setCurrentCategory(selected.label);
-  }, []);
+    console.log(selected.label);
+    console.log(currentCategory);
+    if (currentCategory !== selected.label) {
+      setCurrentCategory(selected.label);
+    } else {
+      setCurrentCategory('');
+    }
+  }, [currentCategory]);
 
   const handleClear = useCallback(() => {
     setQuery("");

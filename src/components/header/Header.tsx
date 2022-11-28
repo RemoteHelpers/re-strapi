@@ -296,7 +296,7 @@ const Header = () => {
                 onClick={() => "categories" && setActiveMenu("categories")}
               >
                 <span> {localizadLinks?.data[1].title}</span>
-                <img src={NextIcon} alt="" />
+                <img src={NextIcon} alt="next" />
               </a>
               {/* <NavLink
                 className={({ isActive }) =>
