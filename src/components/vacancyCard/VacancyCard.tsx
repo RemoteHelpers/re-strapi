@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react-hooks/rules-of-hooks */
@@ -12,9 +13,15 @@ interface Props {
   title: string;
   slug: string;
   isHot: string;
+  cardDescription: string;
 }
 
-const VacancyCard: React.FC<Props> = ({ title, slug, isHot }) => {
+const VacancyCard: React.FC<Props> = ({
+  title,
+  slug,
+  isHot,
+  cardDescription,
+}) => {
   const { setCurrentVacancy, localization } = useStateContext();
   const [data, setData] = useState<any>();
   const handleSlug = () => {
@@ -52,9 +59,7 @@ const VacancyCard: React.FC<Props> = ({ title, slug, isHot }) => {
             {data?.salary}
           </p>
           <p className="VacancyCard__description">
-            Our company is in search of a lead generator who will search for new
-            customers and information on the Internet, work with social
-            networks.
+            {cardDescription}
           </p>
         </div>
         <button type="button" className="VacancyCard__button">

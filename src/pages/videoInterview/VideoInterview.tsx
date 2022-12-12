@@ -64,7 +64,7 @@ export const VideoInterview = () => {
           <div className={cl.main_wrapper}>
             <div className={cl.top_intro}>
               <div className={cl.interview_tv}>
-                <img src={cameraKitekat} alt="" />
+                <img src={cameraKitekat} alt="camera cat" />
               </div>
               <div className={cl.top_intro_text}>
                 <h1>{localizedVideoInterviewData?.title}</h1>
@@ -76,7 +76,7 @@ export const VideoInterview = () => {
                 <p>{localizedVideoInterviewData?.intro_text}</p>
               </div>
               <div className={cl.absoluted_interview_cat}>
-                <img src={interviewCat} alt="" />
+                <img src={interviewCat} alt="interview cat" />
               </div>
             </div>
           </div>
@@ -102,7 +102,7 @@ export const VideoInterview = () => {
               onClick={playVideo}
             >
               {previewVideoImage !== "instruction" ? (
-                <img src={interviewPreview} alt="" />
+                <img src={interviewPreview} alt="interview preview" />
               ) : (
                 <ReactPlayer
                   className={cl.video_iframe}
@@ -130,7 +130,7 @@ export const VideoInterview = () => {
                   onClick={playVideo}
                 >
                   {previewVideoImage !== `${videoItem.id}` ? (
-                    <img src={interviewPreview} alt="" />
+                    <img src={interviewPreview} alt="interview preview" />
                   ) : (
                     <ReactPlayer
                       className={cl.video_iframe}

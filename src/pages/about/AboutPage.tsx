@@ -52,7 +52,7 @@ export const AboutPage = () => {
                 onClick={playVideo}
               >
                 {previewVideoImage ? (
-                  <img src={aboutPreview} alt="" />
+                  <img src={aboutPreview} alt="video about us" />
                 ) : (
                   <ReactPlayer
                     url="https://www.youtube.com/watch?v=WWqF-1vRSRk"
@@ -64,7 +64,7 @@ export const AboutPage = () => {
               </button>
             </div>
             <div className={cl.intro_kitekat}>
-              <img src={kitekat} alt="" />
+              <img src={kitekat} alt="cat" />
             </div>
           </div>
           <div className={cl.what_we_do}>
@@ -84,7 +84,7 @@ export const AboutPage = () => {
               {data?.team.map((member: any) => (
                 <div key={member.id} className={cl.team_card}>
                   <div className={cl.member_photo}>
-                    <img src={memberTeam} alt="" />
+                    <img src={memberTeam} alt="team member" />
                   </div>
                   <div className={cl.member_info}>
                     <h2>{member.name}</h2>

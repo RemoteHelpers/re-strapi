@@ -31,7 +31,8 @@ import NotFoundVacancies from "../notFoundVacancies";
 import { VACANCYLIST } from "../../database/common/vacancyList";
 import { useStateContext } from "../../context/StateContext";
 
-const API = "http://testseven.rh-s.com:1733/api";
+// const API = "http://testseven.rh-s.com:1733/api";
+const API = "http://localhost:1733/api";
 const itemsPerPage = 6;
 
 let searchTime: any;
@@ -219,7 +220,7 @@ export default function Vacancies() {
                   className="search-input"
                 />
                 {!query ? (
-                  <img src={Find} alt="find" className="search-icon" />
+                  <img src={Find} alt="find" className="search" />
                 ) : (
                   <button
                     className="search-clear"
@@ -279,6 +280,7 @@ export default function Vacancies() {
                 title={vacancy.attributes.title}
                 slug={vacancy.attributes.vacancySlug}
                 isHot={vacancy.attributes.isHot}
+                cardDescription={vacancy.attributes.cardDescription}
               />
             ))
           ) : (
