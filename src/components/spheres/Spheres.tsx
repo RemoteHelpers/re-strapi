@@ -24,7 +24,7 @@ const Spheres = () => {
             className="
         Spheres__sphere"
           >
-            <img src={img} alt="Education" className="Spheres__icon" />
+            <img src={img} alt="sphere" className="Spheres__icon" />
             <h5 className="Spheres__sphere-title">{title}</h5>
           </div>
         ))}

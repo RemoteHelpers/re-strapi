@@ -35,7 +35,8 @@ import Loader from "../loader/Loader";
 import { HEADER } from "../../database/common/header";
 import ChooseLanguageModal from "../chooseLanguageModal";
 
-const API = "http://testseven.rh-s.com:1733/api";
+// const API = "http://testseven.rh-s.com:1733/api";
+const API = "http://localhost:1733/api";
 
 const Header = () => {
   const searchRef = useRef<HTMLDivElement>(null);
@@ -297,7 +298,7 @@ const Header = () => {
                 onClick={() => "categories" && setActiveMenu("categories")}
               >
                 <span> {localizadLinks?.data[1].title}</span>
-                <img src={NextIcon} alt="" />
+                <img src={NextIcon} alt="Next button" />
               </a>
               {/* <NavLink
                 className={({ isActive }) =>
@@ -323,7 +324,7 @@ const Header = () => {
                 onClick={() => setIsMenuOpened(false)}
               >
                 <span> {localizadLinks?.data[2].title}</span>
-                <img src={NextIcon} alt="" />
+                <img src={NextIcon} alt="Next button" />
               </NavLink>
               <NavLink
                 className={({ isActive }) =>
@@ -340,7 +341,7 @@ const Header = () => {
                 onClick={() => setIsMenuOpened(false)}
               >
                 <span> {localizadLinks?.data[3].title}</span>
-                <img src={NextIcon} alt="" />
+                <img src={NextIcon} alt="Next button" />
               </NavLink>
             </div>
           </CSSTransition>
@@ -360,7 +361,7 @@ const Header = () => {
                 <img
                   className="Header__link_mobile-icon"
                   src={NextIcon}
-                  alt=""
+                  alt="Next button"
                 />
                 <span>{localizadLinks?.backValue}</span>
               </a>
@@ -379,7 +380,7 @@ const Header = () => {
                   onClick={handleCategorySelect}
                 >
                   <span>{category.attributes.categoryTitle}</span>
-                  <img src={NextIcon} alt="" />
+                  <img src={NextIcon} alt="Next button" />
                 </a>
               ))}
             </div>
@@ -400,7 +401,7 @@ const Header = () => {
                 <img
                   className="Header__link_mobile-icon"
                   src={NextIcon}
-                  alt=""
+                  alt="Next button"
                 />
                 <span>{headerData?.attributes.backValue}</span>
               </a>
@@ -420,7 +421,7 @@ const Header = () => {
                   }}
                 >
                   <span>{vacancy.attributes.title}</span>
-                  <img src={NextIcon} alt="" />
+                  <img src={NextIcon} alt="Next button" />
                 </Link>
               ))}
             </div>
@@ -453,7 +454,7 @@ const Header = () => {
                 <span className="label-title">
                   {category.attributes.categoryTitle}
                 </span>
-                <img className="label-icon" src={NextIcon} alt="" />
+                <img className="label-icon" src={NextIcon} alt="Next button" />
               </label>
             </React.Fragment>
           ))}
