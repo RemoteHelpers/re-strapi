@@ -40,11 +40,6 @@ import FormSubmitErrorPage from "./pages/formSubmitErrorPage";
 
 const API = "http://testseven.rh-s.com:1733/api";
 
-interface metaProps {
-  language: string;
-  description: string;
-}
-
 const App: React.FC = () => {
   const {
     scrollToTop,

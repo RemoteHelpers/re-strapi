@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable comma-dangle */
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-unused-vars */
