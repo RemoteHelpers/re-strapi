@@ -220,7 +220,7 @@ export default function Vacancies() {
                   className="search-input"
                 />
                 {!query ? (
-                  <img src={Find} alt="find" className="search" />
+                  <img src={Find} alt="find" className="search-icon" />
                 ) : (
                   <button
                     className="search-clear"

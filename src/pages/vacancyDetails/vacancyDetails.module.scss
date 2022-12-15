@@ -113,9 +113,8 @@ h2 {
 .shortVacancyVideo {
   position: relative;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 16 / 9;
   margin-top: 4rem;
-  min-height: 270px;
   border-radius: 0.5rem;
   overflow: hidden;
   border: 0;
@@ -132,8 +131,7 @@ h2 {
     div iframe {
       display: block;
       width: 100%;
-      height: 100% !important;
-      min-height: 270px;
+      aspect-ratio: 16 / 9;
       border-radius: 0.3rem;
     }
   }
