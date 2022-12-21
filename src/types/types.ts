@@ -35,6 +35,7 @@ export interface Vacancy {
 }
 
 export interface AttributesVacancy {
+  vacancies: any;
   vacancySlug: string;
   title: string;
   locale: string;
