@@ -24,9 +24,10 @@ import Select, { components } from "react-select";
 import { CSSTransition } from "react-transition-group";
 import axios from "axios";
 import "./header.scss";
+import "../../global-styles/search.scss";
 import LanguageIcon from "@mui/icons-material/Language";
 import { useStateContext } from "../../context/StateContext";
-import { Category, Vacancy } from "../../types/types";
+import { Category, Vacancy, Collection } from "../../types/types";
 // import Logo from "../../images/mainScreen/Logo.png";
 import SelectIcon from "../../images/selectArrow.svg";
 import useOutsideAlerter from "../../hooks/useClickOutside";
@@ -34,9 +35,13 @@ import NextIcon from "../../images/header/nextIcon.svg";
 import Loader from "../loader/Loader";
 import { HEADER } from "../../database/common/header";
 import ChooseLanguageModal from "../chooseLanguageModal";
+import { VACANCYLIST } from "../../database/common/vacancyList";
+import Find from "../../images/findIcon.svg";
+import Close from "../../images/close.svg";
 
 // const API = "http://testseven.rh-s.com:1733/api";
 const API = "http://localhost:1733/api";
+let searchTime: any;
 
 const Header = () => {
   const searchRef = useRef<HTMLDivElement>(null);
@@ -57,6 +62,10 @@ const Header = () => {
   const [vacancies, setVacancies] = useState<Vacancy[]>([]);
   const [activeMenu, setActiveMenu] = useState("main");
   const [changeLangLoader, setChangeLangLoader] = useState(false);
+  const [query, setQuery] = useState<string>("");
+  const [isDropdown, setIsDropdown] = useState<boolean>(false);
+  const [searchCollection, setSearchCollection] = useState<Collection[]>([]);
+  const [data, setData] = useState<any>();
 
   const navigate = useNavigate();
 
@@ -67,6 +76,12 @@ const Header = () => {
   useOutsideAlerter(searchRef, () => {
     setIsDesktopMenuOpened(false);
   });
+
+  useEffect(() => {
+    const res = VACANCYLIST.filter((el) => el.language === localization);
+
+    setData(res[0]);
+  }, [localization]);
 
   useEffect(() => {
     const el = document.getElementsByTagName("html");
@@ -119,6 +134,10 @@ const Header = () => {
       : "";
   };
 
+  useOutsideAlerter(searchRef, () => {
+    setIsDropdown(false);
+  });
+
   const DropdownIndicator = (props: any) => {
     return (
       <components.DropdownIndicator {...props}>
@@ -148,15 +167,15 @@ const Header = () => {
     setActiveMenu("vacancies");
   }, []);
 
-  useEffect(() => {
-    setSelectedVacancies(
-      vacancies.filter(
-        (el) =>
-          el.attributes.categories.data[0].attributes.categoryTitle ===
-          currentCategory
-      )
-    );
-  }, [currentCategory, vacancies]);
+  // useEffect(() => {
+  //   setSelectedVacancies(
+  //     vacancies.filter(
+  //       (el) =>
+  //         el.attributes.categories.data[0].attributes.categoryTitle ===
+  //         currentCategory
+  //     )
+  //   );
+  // }, [currentCategory, vacancies]);
 
   let isActiveCategory: boolean;
 
@@ -171,6 +190,42 @@ const Header = () => {
   const handleDesktopVacancyMenuSelect = useCallback(() => {
     setIsDesktopMenuOpened(false);
   }, []);
+
+  const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(event.target.value);
+
+    clearTimeout(searchTime);
+    searchTime = setTimeout(async () => {
+      const res = await axios.get(
+        `${API}/keyword-tags?filters[keyPhrase][$contains]=${event.target.value}`
+      );
+
+      setIsDropdown(true);
+      setSearchCollection(res?.data?.data || []);
+    }, 300);
+  };
+
+  const handleClear = useCallback(() => {
+    setQuery("");
+  }, []);
+
+  const onCollection = (collection: Collection) => {
+    setQuery(collection.attributes.keyPhrase);
+    // setSelectedCollection(collection);
+    setIsDropdown(false);
+  };
+
+  const onSearchClick = () => {
+    setSelectedVacancies(
+      vacancies.filter(
+        (el) =>
+          el.attributes.keyword_tags.data
+            .find((el: any) => el.attributes.keyPhrase === query)
+      )
+    );
+
+    console.log('tessssst');
+  };
 
   document.getElementById("vacancies")?.addEventListener("mouseover", () => {
     setIsDesktopMenuOpened(true);
@@ -437,7 +492,54 @@ const Header = () => {
         onMouseLeave={() => setIsDesktopMenuOpened(false)}
         ref={searchRef}
       >
-        <div className="Header__dropMenuDesktop_categories">
+        <div className="Header__menuTop">
+          <div className="Header__search" ref={searchRef}>
+            <div className="search-inner">
+              <div className="search-wrapper">
+                <input
+                  type="text"
+                  value={query}
+                  onChange={searchHandler}
+                  placeholder={data?.placeholder}
+                  className="search-input"
+                />
+                {!query ? (
+                  <img src={Find} alt="find" className="search-icon" />
+                ) : (
+                  <button
+                    className="search-clear"
+                    type="button"
+                    onClick={handleClear}
+                  >
+                    <img src={Close} alt="close" />
+                  </button>
+
+                )}
+                {isDropdown && (
+                  <div className="search__dropdown">
+                    {searchCollection.slice(0, 10).map((collection) => (
+                      <button
+                        type="button"
+                        key={collection.id}
+                        onClick={() => onCollection(collection)}
+                        className="search__dropdown-row"
+                      >
+                        {collection.attributes.keyPhrase}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+          <button
+            className="Header__search-button"
+            onClick={onSearchClick}
+          >
+            Search
+          </button>
+        </div>
+        {/* <div className="Header__dropMenuDesktop_categories">
           {categories.map((category) => (
             <React.Fragment key={category.id}>
               <input
@@ -458,7 +560,7 @@ const Header = () => {
               </label>
             </React.Fragment>
           ))}
-        </div>
+        </div> */}
         <div className="Header__dropMenuDesktop_vacancies">
           {selectedVacancies.map((vacancy) => (
             <Link
