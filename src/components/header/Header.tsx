@@ -1,3 +1,4 @@
+/* eslint-disable function-paren-newline */
 /* eslint-disable prefer-template */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/button-has-type */
@@ -98,7 +99,6 @@ const Header = () => {
       )
       .then((res) => {
         setCategories(res.data.data);
-        setCurrentCategory(res.data.data[0].attributes.categoryTitle);
       })
       .catch((err) => {
         console.log(err);
@@ -167,21 +167,28 @@ const Header = () => {
     setActiveMenu("vacancies");
   }, []);
 
-  // useEffect(() => {
-  //   setSelectedVacancies(
-  //     vacancies.filter(
-  //       (el) =>
-  //         el.attributes.categories.data[0].attributes.categoryTitle ===
-  //         currentCategory
-  //     )
-  //   );
-  // }, [currentCategory, vacancies]);
+  useEffect(() => {
+    setSelectedVacancies(
+      vacancies.filter(
+        (el) =>
+          el.attributes.categories.data[0].attributes.categoryTitle ===
+          currentCategory
+      )
+    );
+  }, [currentCategory, vacancies]);
 
   let isActiveCategory: boolean;
 
-  const handleCategoryMenuSelect = useCallback((event: any) => {
-    setCurrentCategory(event.target.name);
-  }, []);
+  const handleCategoryMenuSelect = useCallback(
+    (event: any) => {
+      if (currentCategory === event.target.name) {
+        setCurrentCategory("");
+      } else {
+        setCurrentCategory(event.target.name);
+      }
+    },
+    [currentCategory]
+  );
 
   const handleVacancyMenuSelect = useCallback(() => {
     setIsMenuOpened(false);
@@ -207,6 +214,7 @@ const Header = () => {
 
   const handleClear = useCallback(() => {
     setQuery("");
+    setSelectedVacancies([]);
   }, []);
 
   const onCollection = (collection: Collection) => {
@@ -217,14 +225,14 @@ const Header = () => {
 
   const onSearchClick = () => {
     setSelectedVacancies(
-      vacancies.filter(
-        (el) =>
-          el.attributes.keyword_tags.data
-            .find((el: any) => el.attributes.keyPhrase === query)
+      vacancies.filter((el) =>
+        el.attributes.keyword_tags.data.find(
+          (el: any) => el.attributes.keyPhrase === query
+        )
       )
     );
 
-    console.log('tessssst');
+    console.log("tessssst");
   };
 
   document.getElementById("vacancies")?.addEventListener("mouseover", () => {
@@ -500,7 +508,7 @@ const Header = () => {
                   type="text"
                   value={query}
                   onChange={searchHandler}
-                  placeholder={data?.placeholder}
+                  placeholder={data?.headerPlaceholder}
                   className="search-input"
                 />
                 {!query ? (
@@ -513,7 +521,6 @@ const Header = () => {
                   >
                     <img src={Close} alt="close" />
                   </button>
-
                 )}
                 {isDropdown && (
                   <div className="search__dropdown">
@@ -532,35 +539,40 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <button
-            className="Header__search-button"
-            onClick={onSearchClick}
-          >
+          <button className="Header__search-button" onClick={onSearchClick}>
             Search
           </button>
         </div>
-        {/* <div className="Header__dropMenuDesktop_categories">
-          {categories.map((category) => (
-            <React.Fragment key={category.id}>
-              <input
-                type="checkbox"
-                checked={currentCategory === category.attributes.categoryTitle}
-                key={category.id}
-                id={category.id}
-                name={category.attributes.categoryTitle}
-                value={currentCategory}
-                onChange={handleCategoryMenuSelect}
-                className={classNames("Header__link_desktop")}
-              />
-              <label className="label" htmlFor={category.id}>
-                <span className="label-title">
-                  {category.attributes.categoryTitle}
-                </span>
-                <img className="label-icon" src={NextIcon} alt="Next button" />
-              </label>
-            </React.Fragment>
-          ))}
-        </div> */}
+        {query.length === 0 && (
+          <div className="Header__dropMenuDesktop_categories">
+            {categories.map((category) => (
+              <div className="Header__dropMenuDesktop_category_item" key={category.id}>
+                <input
+                  type="checkbox"
+                  checked={
+                    currentCategory === category.attributes.categoryTitle
+                  }
+                  key={category.id}
+                  id={category.id}
+                  name={category.attributes.categoryTitle}
+                  value={currentCategory}
+                  onChange={handleCategoryMenuSelect}
+                  className={classNames("Header__link_desktop")}
+                />
+                <label className="label" htmlFor={category.id}>
+                  <span className="label-title">
+                    {category.attributes.categoryTitle}
+                  </span>
+                  <img
+                    className="label-icon"
+                    src={NextIcon}
+                    alt="Next button"
+                  />
+                </label>
+              </div>
+            ))}
+          </div>
+        )}
         <div className="Header__dropMenuDesktop_vacancies">
           {selectedVacancies.map((vacancy) => (
             <Link
