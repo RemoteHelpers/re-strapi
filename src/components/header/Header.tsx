@@ -361,7 +361,6 @@ const Header = () => {
                 onClick={() => "categories" && setActiveMenu("categories")}
               >
                 <span> {localizadLinks?.data[1].title}</span>
-                <img src={NextIcon} alt="Next button" />
               </a>
               {/* <NavLink
                 className={({ isActive }) =>
@@ -387,7 +386,6 @@ const Header = () => {
                 onClick={() => setIsMenuOpened(false)}
               >
                 <span> {localizadLinks?.data[2].title}</span>
-                <img src={NextIcon} alt="Next button" />
               </NavLink>
               <NavLink
                 className={({ isActive }) =>
@@ -403,8 +401,7 @@ const Header = () => {
                 }
                 onClick={() => setIsMenuOpened(false)}
               >
-                <span> {localizadLinks?.data[3].title}</span>
-                <img src={NextIcon} alt="Next button" />
+                <span>{localizadLinks?.data[3].title}</span>
               </NavLink>
             </div>
           </CSSTransition>
@@ -428,24 +425,91 @@ const Header = () => {
                 />
                 <span>{localizadLinks?.backValue}</span>
               </a>
-              <Link
-                className="Header__link_mobile"
-                to={routingRule ? "/vacancies" : `/${localization}/vacancies`}
-                onClick={() => setIsMenuOpened(false)}
-              >
-                <span> {localizadLinks?.allVacanciesData}</span>
-              </Link>
-              {categories.map((category) => (
-                <a
-                  key={category.id}
-                  href="#"
+              <div className="Header__menuTop">
+                <div className="Header__search" ref={searchRef}>
+                  <div className="search-inner">
+                    <div className="search-wrapper">
+                      <input
+                        type="text"
+                        value={query}
+                        onChange={searchHandler}
+                        placeholder={data?.headerPlaceholder}
+                        className="search-input"
+                      />
+                      {!query ? (
+                        <img src={Find} alt="find" className="search-icon" />
+                      ) : (
+                        <button
+                          className="search-clear"
+                          type="button"
+                          onClick={handleClear}
+                        >
+                          <img src={Close} alt="close" />
+                        </button>
+                      )}
+                      {isDropdown && (
+                        <div className="search__dropdown">
+                          {searchCollection.slice(0, 10).map((collection) => (
+                            <button
+                              type="button"
+                              key={collection.id}
+                              onClick={() => onCollection(collection)}
+                              className="search__dropdown-row"
+                            >
+                              {collection.attributes.keyPhrase}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <button className="Header__search-button" onClick={onSearchClick}>
+                  Search
+                </button>
+              </div>
+              {!query && (
+                <Link
                   className="Header__link_mobile"
-                  onClick={handleCategorySelect}
+                  to={routingRule ? "/vacancies" : `/${localization}/vacancies`}
+                  onClick={() => setIsMenuOpened(false)}
                 >
-                  <span>{category.attributes.categoryTitle}</span>
-                  <img src={NextIcon} alt="Next button" />
-                </a>
-              ))}
+                  <span> {localizadLinks?.allVacanciesData}</span>
+                </Link>
+              )}
+              {!query && (
+                categories.map((category) => (
+                  <a
+                    key={category.id}
+                    href="#"
+                    className="Header__link_mobile"
+                    onClick={handleCategorySelect}
+                  >
+                    <span>{category.attributes.categoryTitle}</span>
+                    <img src={NextIcon} alt="Next button" />
+                  </a>
+                ))
+              )}
+              {query && (
+                selectedVacancies.map((vacancy) => (
+                  <Link
+                    key={vacancy.id}
+                    className="Header__link_mobile"
+                    to={
+                      routingRule
+                        ? `/vacancies/${vacancy.attributes.vacancySlug}`
+                        : `/${localization}/vacancies/${vacancy.attributes.vacancySlug}`
+                    }
+                    onClick={() => {
+                      setCurrentVacancy(vacancy.attributes.vacancySlug);
+                      handleVacancyMenuSelect();
+                    }}
+                  >
+                    <span>{vacancy.attributes.title}</span>
+                    <img src={NextIcon} alt="Next button" />
+                  </Link>
+                ))
+              )}
             </div>
           </CSSTransition>
 
