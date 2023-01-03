@@ -21,8 +21,7 @@ const Spheres = () => {
         {localizadSpheresData?.map(({ title, id, img }) => (
           <div
             key={id}
-            className="
-        Spheres__sphere"
+            className="Spheres__sphere"
           >
             <img src={img} alt="sphere" className="Spheres__icon" />
             <h5 className="Spheres__sphere-title">{title}</h5>
