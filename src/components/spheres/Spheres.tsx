@@ -1,7 +1,10 @@
+/* eslint-disable object-shorthand */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable comma-dangle */
 /* eslint-disable @typescript-eslint/quotes */
 import React from "react";
+// import Lottie from 'react-lottie';
+// import animationData from '../../images/Spheres/anim/cat-hand-1.json';
 
 import "./spheres.scss";
 
@@ -15,6 +18,15 @@ const Spheres = () => {
     (el) => el.language === localization
   )?.data.spheres;
 
+  // const defaultOptions = {
+  //   loop: true,
+  //   autoplay: true,
+  //   animationData: animationData,
+  //   rendererSettings: {
+  //     preserveAspectRatio: 'xMidYMid slice'
+  //   }
+  // };
+
   return (
     <div className="Spheres">
       <div className="Spheres__block">
@@ -27,6 +39,12 @@ const Spheres = () => {
             <h5 className="Spheres__sphere-title">{title}</h5>
           </div>
         ))}
+        {/* <Lottie
+          isPaused
+          options={defaultOptions}
+          width="100%"
+          height="100%"
+        /> */}
       </div>
     </div>
   );
