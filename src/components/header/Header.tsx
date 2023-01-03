@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable function-paren-newline */
 /* eslint-disable prefer-template */
 /* eslint-disable react/jsx-one-expression-per-line */
@@ -40,11 +41,52 @@ import { VACANCYLIST } from "../../database/common/vacancyList";
 import Find from "../../images/findIcon.svg";
 import Close from "../../images/close.svg";
 
+import dev from '../../images/header/categories-icons/developer.png';
+import trns from '../../images/header/categories-icons/translation.png';
+import management from '../../images/header/categories-icons/management.png';
+import marketing from '../../images/header/categories-icons/marketing.png';
+import illustrator from '../../images/header/categories-icons/illustrator.png';
+import teacher from '../../images/header/categories-icons/teacher.png';
+
 // const API = "http://testseven.rh-s.com:1733/api";
 const API = "http://localhost:1733/api";
 let searchTime: any;
 
 const Header = () => {
+  // eslint-disable-next-line consistent-return
+  function chooseImage(id: string | number) {
+    switch (id) {
+      case 1:
+        return (
+          <img src={dev} alt="" />
+        );
+      case 2:
+        return (
+          <img src={illustrator} alt="" />
+        );
+      case 4:
+        return (
+          <img src={marketing} alt="" />
+        );
+      case 5:
+        return (
+          <img src={management} alt="" />
+        );
+      case 6:
+        return (
+          <img src={trns} alt="" />
+        );
+      case 7:
+        return (
+          <img src={teacher} alt="" />
+        );
+      default:
+        return (
+          <img src={teacher} alt="" />
+        );
+    }
+  }
+
   const searchRef = useRef<HTMLDivElement>(null);
   const {
     localization,
@@ -85,20 +127,14 @@ const Header = () => {
   }, [localization]);
 
   useEffect(() => {
-    const el = document.getElementsByTagName("html");
-
-    el[0].classList.toggle("lock");
-  }, [isDesktopMenuOpened, isMenuOpened]);
-
-  useEffect(() => {
     axios
       .get(
-        `${API}/categories?locale=${
-          localization === "ua" ? "uk" : localization
+        `${API}/categories?locale=${localization === "ua" ? "uk" : localization
         }`
       )
       .then((res) => {
         setCategories(res.data.data);
+        console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -108,8 +144,7 @@ const Header = () => {
   useEffect(() => {
     axios
       .get(
-        `${API}/vacancies?locale=${
-          localization === "ua" ? "uk" : localization
+        `${API}/vacancies?locale=${localization === "ua" ? "uk" : localization
         }&populate=*`
       )
       .then((res) => {
@@ -159,6 +194,10 @@ const Header = () => {
 
   const handleMenuClick = useCallback(() => {
     setIsMenuOpened(!isMenuOpened);
+
+    const bodyEl = document.querySelector("body");
+
+    bodyEl?.classList.toggle("lock");
   }, [isMenuOpened]);
 
   const handleCategorySelect = useCallback((event: any) => {
@@ -413,8 +452,8 @@ const Header = () => {
             classNames="menu_Secondary"
           >
             <div className="menu">
-              <a
-                href=""
+              <Link
+                to={`/${localization}`}
                 className="Header__link_mobile Header__link_mobile-back"
                 onClick={() => "main" && setActiveMenu("main")}
               >
@@ -424,16 +463,17 @@ const Header = () => {
                   alt="Next button"
                 />
                 <span>{localizadLinks?.backValue}</span>
-              </a>
+              </Link>
               <div className="Header__menuTop">
                 <div className="Header__search" ref={searchRef}>
                   <div className="search-inner">
                     <div className="search-wrapper">
+                      {/* mobile search */}
                       <input
                         type="text"
                         value={query}
                         onChange={searchHandler}
-                        placeholder={data?.headerPlaceholder}
+                        placeholder="Пошук за спеціалізацією"
                         className="search-input"
                       />
                       {!query ? (
@@ -479,15 +519,15 @@ const Header = () => {
               )}
               {!query && (
                 categories.map((category) => (
-                  <a
+                  <Link
                     key={category.id}
-                    href="#"
+                    to={`/${localization}`}
                     className="Header__link_mobile"
                     onClick={handleCategorySelect}
                   >
+                    {chooseImage(category.id as string)}
                     <span>{category.attributes.categoryTitle}</span>
-                    <img src={NextIcon} alt="Next button" />
-                  </a>
+                  </Link>
                 ))
               )}
               {query && (
@@ -520,8 +560,8 @@ const Header = () => {
             classNames="menu_Thirdly"
           >
             <div className="menu">
-              <a
-                href=""
+              <Link
+                to={`/${localization}`}
                 className="Header__link_mobile Header__link_mobile-back"
                 onClick={() => "categories" && setActiveMenu("categories")}
               >
@@ -531,7 +571,7 @@ const Header = () => {
                   alt="Next button"
                 />
                 <span>{headerData?.attributes.backValue}</span>
-              </a>
+              </Link>
 
               {selectedVacancies.map((vacancy) => (
                 <Link
@@ -548,7 +588,6 @@ const Header = () => {
                   }}
                 >
                   <span>{vacancy.attributes.title}</span>
-                  <img src={NextIcon} alt="Next button" />
                 </Link>
               ))}
             </div>
@@ -624,14 +663,10 @@ const Header = () => {
                   className={classNames("Header__link_desktop")}
                 />
                 <label className="label" htmlFor={category.id}>
+                  {chooseImage(category.id as string)}
                   <span className="label-title">
                     {category.attributes.categoryTitle}
                   </span>
-                  <img
-                    className="label-icon"
-                    src={NextIcon}
-                    alt="Next button"
-                  />
                 </label>
               </div>
             ))}
