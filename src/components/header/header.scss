@@ -22,6 +22,28 @@
     padding: 3rem 0;
   }
 
+  &__search{
+    width: 90%;
+  }
+
+  &__search-button {
+    font-size: 0.87rem;
+    font-weight: 700;
+    line-height: 115%;
+    color: #fff;
+    border: none;
+
+    padding: 15px 60px;
+    background: #ff6501;
+    box-shadow: 0px 0px 17px 5px rgba(255, 101, 1, 0.25);
+    border-radius: 15px;
+
+    @include on1920 {
+      font-size: 1.25rem;
+      padding: 19px 75px;
+    }
+  }
+
   &__functionality {
     display: flex;
     justify-content: space-between;
@@ -168,22 +190,21 @@
     }
 
     &_mobile {
+      margin: 10px 15px;
       text-decoration: none;
       display: flex;
-      justify-content: space-between;
-      text-align: left;
+      justify-content: center;
+      align-items: center;
       font-weight: 600;
       font-size: clamp(16px, 3.12vw, 24px);
       line-height: 130%;
-      border-bottom: 1px solid $primaryColor1;
+      border: 1px solid $secondaryColor4;
+      border-radius: 15px;
       padding: 2rem;
 
       background-color: $secondaryColor5;
       color: $typographyColor1;
 
-      &:first-child {
-        border-radius: 0.9rem 0.9rem 0px 0px;
-      }
       @include onTablet {
         padding: 3rem;
       }
@@ -215,18 +236,13 @@
     }
 
     &_desktop {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 8.06rem;
       text-decoration: none;
       display: none;
 
       &:checked + .label {
-        border: 2px solid $primaryColor1;
-        border-right: 0.1rem solid transparent;
-        box-shadow: 0px 5px 0px rgba(255, 101, 1, 0.2);
-        border-radius: 1rem 0 0 1rem;
+        border: 1px solid $primaryColor1;
+        box-shadow: 0px 0px 17px 5px rgba(255, 101, 1, 0.25);
+        border-radius: 1rem;
         color: $typography1;
       }
 
@@ -279,15 +295,15 @@
   }
 
   &__dropMenuDesktop {
-    display: flex;
+    flex-direction: column;
     border-radius: 0 0 0.5rem 0.5rem;
+    padding: 2% 5%;
     text-align: center;
-    width: 76%;
+    width: 80%;
     left: 0;
     right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    height: 500px;
+    margin: 0 auto;
+    height: 80%;
     background-color: white;
     z-index: 9;
     display: none;
@@ -301,22 +317,43 @@
     }
 
     &_categories {
-      width: 25%;
       display: flex;
-      flex-direction: column;
-      justify-content: space-around;
+      margin-top: 2rem;
+      align-items: center;
+      justify-content: space-between;
+      row-gap: 1.5rem;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    &_category_item {
+      width: 31%;
     }
 
     &_vacancies {
-      width: 75%;
       display: flex;
+      align-items: flex-start;
       flex-direction: column;
-      row-gap: 2rem;
+      row-gap: 1.5rem;
+      width: calc(100% / 3 - 1.5rem);
+      margin-top: 2rem;
     }
 
     @include onDesktop {
       top: 8.5rem;
       z-index: 1000;
+    }
+  }
+
+  &__menuTop {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 30px;
+
+    @include onDesktop {
+      flex-direction: row;
     }
   }
 }
@@ -358,8 +395,8 @@
     padding-right: 0.5rem;
     background: transparent !important;
 
-    &:hover {
-    }
+    // &:hover {
+    // }
 
     &--menu-is-open .custom-select__indicators .custom-select__indicator {
       transition: 0.2s all;
@@ -409,6 +446,9 @@
 
 .menu {
   width: 100%;
+  height: 90vh;
+  background-color: $secondaryColor5;
+  padding-top: 47px;
 
   &_primary-enter {
     position: absolute;
@@ -455,13 +495,18 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 100%;
-  border-right: 2px solid $primaryColor1;
+  border: 1px solid $secondaryColor4;
+  border-radius: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+
+  font-size: 0.87rem;
+
+  @include on1920 {
+    font-size: 1.25rem;
+  }
 
   color: $secondaryColor4;
-
-  &:hover {
-  }
 
   &-icon {
     width: 0.5rem;
@@ -471,7 +516,7 @@
 
   &-title {
     font-weight: 600;
-    line-height: 115%;
+    line-height: 100%;
     text-align: center;
     font-size: clamp(24px, 1.66vw, 32px);
   }

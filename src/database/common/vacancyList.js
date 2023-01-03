@@ -12,6 +12,7 @@ export const VACANCYLIST = [
       </>
     ),
     placeholder: 'Пошук роботи',
+    headerPlaceholder: 'Пошук за ключовими словами. Наприклад, SEO спеціаліст',
     clearButton: 'Очистити',
     categoriesTitle: 'Виберіть категорію',
     salary: 'Заробітна плата за результатами співбесіди',
