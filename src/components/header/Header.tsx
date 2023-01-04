@@ -194,11 +194,15 @@ const Header = () => {
 
   const handleMenuClick = useCallback(() => {
     setIsMenuOpened(!isMenuOpened);
-
-    const bodyEl = document.querySelector("body");
-
-    bodyEl?.classList.toggle("lock");
   }, [isMenuOpened]);
+
+  const bodyEl = document.querySelector("body");
+
+  if (isMenuOpened) {
+    bodyEl?.classList.add("lock");
+  } else {
+    bodyEl?.classList.remove("lock");
+  }
 
   const handleCategorySelect = useCallback((event: any) => {
     setCurrentCategory(event.target.text);
@@ -473,7 +477,7 @@ const Header = () => {
                         type="text"
                         value={query}
                         onChange={searchHandler}
-                        placeholder="Пошук за спеціалізацією"
+                        placeholder={data?.mobileHeaderPlaceholder}
                         className="search-input"
                       />
                       {!query ? (
@@ -546,7 +550,6 @@ const Header = () => {
                     }}
                   >
                     <span>{vacancy.attributes.title}</span>
-                    <img src={NextIcon} alt="Next button" />
                   </Link>
                 ))
               )}

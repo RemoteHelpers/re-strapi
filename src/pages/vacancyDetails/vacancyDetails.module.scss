@@ -27,7 +27,7 @@ h2 {
   padding: 1.25rem 1rem;
 
   @include onTablet {
-    padding: 3.25rem 3rem;
+    padding: 2.25rem 2rem;
     border: 2px solid $secondaryColor4;
   }
 
@@ -301,4 +301,23 @@ h2 {
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
+}
+
+.see_more {
+  border: 3px solid $typographyColor1;
+  border-radius: 1rem;
+  padding: 1rem 2.5rem;
+
+  background-color: transparent;
+  color: $typographyColor1;
+  font-style: normal;
+  font-weight: 700;
+  font-size: $typography4;
+  line-height: 115%;
+  transition: .3s ease-in-out;
+
+  &:hover {
+    background-color: $typographyColor1;
+    color: $secondaryColor5;
+  }
 }

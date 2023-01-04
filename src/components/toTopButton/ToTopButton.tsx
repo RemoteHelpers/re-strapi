@@ -6,13 +6,6 @@ import cl from './toTopButton.module.scss';
 const ToTopButton = () => {
   const { scrollToTop } = useStateContext();
 
-  // const scrollTop = () => {
-  //   window.scrollTo({
-  //     top: 0,
-  //     behavior: 'smooth',
-  //   });
-  // };
-
   return (
     <button
       type="button"

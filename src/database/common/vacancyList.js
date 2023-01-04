@@ -13,6 +13,7 @@ export const VACANCYLIST = [
     ),
     placeholder: 'Пошук роботи',
     headerPlaceholder: 'Пошук за ключовими словами. Наприклад, SEO спеціаліст',
+    mobileHeaderPlaceholder: 'Пошук за спеціалізацією',
     clearButton: 'Очистити',
     categoriesTitle: 'Виберіть категорію',
     salary: 'Заробітна плата за результатами співбесіди',
@@ -29,6 +30,7 @@ export const VACANCYLIST = [
       </>
     ),
     placeholder: 'Поиск работы',
+    mobileHeaderPlaceholder: 'Поиск по специальности',
     clearButton: 'Очистить',
     categoriesTitle: 'Выберите категорию',
     salary: 'Заработная плата по результатам собеседования',

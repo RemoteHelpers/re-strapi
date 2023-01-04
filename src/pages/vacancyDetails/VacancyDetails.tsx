@@ -19,7 +19,7 @@ import ReactMarkdown from "react-markdown";
 import "../../App.scss";
 import { Breadcrumbs, Link, Typography } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import { useParams } from "react-router-dom";
+import { useParams, Link as RouterLink } from "react-router-dom";
 import ReactPlayer from "react-player/youtube";
 import { useStateContext } from "../../context/StateContext";
 import { LocalVacancyType } from "../../types/types";
@@ -112,113 +112,114 @@ export const VacancyDetails = () => {
   return (
     <div className={cl.container}>
       {!isLoading ? (
-        <div className={cl.card}>
-          {localVacancy &&
-            localVacancy.map((localVacancyItem) => (
-              <div key={localVacancyItem.id}>
-                <div className={cl.headerCard}>
-                  <Breadcrumbs
-                    separator={
-                      <NavigateNextIcon
-                        className={cl.crumbArrow}
-                        fontSize="medium"
-                      />
-                    }
-                    className={cl.breadCrumbArrows}
-                    aria-label="breadcrumb"
-                  >
-                    <Link
-                      className={`${cl.normalCrumb} ${cl.firstCrumb}`}
-                      underline="none"
-                      color="inherit"
-                      href={routingRule ? "/" : `/${localization}`}
-                    >
-                      {data?.homeLink}
-                    </Link>
-                    <Link
-                      className={cl.normalCrumb}
-                      underline="none"
-                      color="inherit"
-                      href={
-                        routingRule
-                          ? "/vacancies"
-                          : `/${localization}/vacancies`
+        <div>
+          <div className={cl.card}>
+            {localVacancy &&
+              localVacancy.map((localVacancyItem) => (
+                <div key={localVacancyItem.id}>
+                  <div className={cl.headerCard}>
+                    <Breadcrumbs
+                      separator={
+                        <NavigateNextIcon
+                          className={cl.crumbArrow}
+                          fontSize="medium"
+                        />
                       }
+                      className={cl.breadCrumbArrows}
+                      aria-label="breadcrumb"
                     >
-                      {data?.vacanciesLink}
-                    </Link>
-                    <Typography className={cl.activeCrumb}>
-                      {localVacancyItem.attributes.title}
-                    </Typography>
-                  </Breadcrumbs>
-                </div>
-                <span
-                  className={
-                    localVacancyItem.attributes.isHot
-                      ? cl.hotVacancy
-                      : cl.coldVacancy
-                  }
-                >
-                  <VacancySvg id="hot" />
-                  {data?.ishot}
-                </span>
-                <div className={cl.shortVacancyWrapper}>
-                  <div className={cl.shortVacancyInfo}>
-                    <h1>{localVacancyItem.attributes.title}</h1>
-                    <p>{data?.salary}</p>
-                    <p>{localVacancyItem.attributes.subTitle}</p>
+                      <Link
+                        className={`${cl.normalCrumb} ${cl.firstCrumb}`}
+                        underline="none"
+                        color="inherit"
+                        href={routingRule ? "/" : `/${localization}`}
+                      >
+                        {data?.homeLink}
+                      </Link>
+                      <Link
+                        className={cl.normalCrumb}
+                        underline="none"
+                        color="inherit"
+                        href={
+                          routingRule
+                            ? "/vacancies"
+                            : `/${localization}/vacancies`
+                        }
+                      >
+                        {data?.vacanciesLink}
+                      </Link>
+                      <Typography className={cl.activeCrumb}>
+                        {localVacancyItem.attributes.title}
+                      </Typography>
+                    </Breadcrumbs>
+                  </div>
+                  <span
+                    className={
+                      localVacancyItem.attributes.isHot
+                        ? cl.hotVacancy
+                        : cl.coldVacancy
+                    }
+                  >
+                    <VacancySvg id="hot" />
+                    {data?.ishot}
+                  </span>
+                  <div className={cl.shortVacancyWrapper}>
+                    <div className={cl.shortVacancyInfo}>
+                      <h1>{localVacancyItem.attributes.title}</h1>
+                      <p>{data?.salary}</p>
+                      <p>{localVacancyItem.attributes.subTitle}</p>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          formSection?.current?.scrollIntoView({
+                            block: "start",
+                            behavior: "smooth",
+                          })
+                        }
+                      >
+                        {data?.mainButton}
+                      </button>
+                    </div>
                     <button
                       type="button"
-                      onClick={() =>
-                        formSection?.current?.scrollIntoView({
-                          block: "start",
-                          behavior: "smooth",
-                        })
-                      }
+                      className={cl.shortVacancyVideo}
+                      onClick={playVideo}
                     >
-                      {data?.mainButton}
+                      {previewVideoImage ? (
+                        <img
+                          src={`${PhotoAPI}${localVacancyItem.attributes.videoPreview.data.attributes.url}`}
+                          alt="video preview"
+                        />
+                      ) : (
+                        <ReactPlayer
+                          className={cl.video_iframe}
+                          url={localVacancyItem.attributes.videoLink}
+                          controls
+                          playing
+                        />
+                      )}
                     </button>
                   </div>
-                  <button
-                    type="button"
-                    className={cl.shortVacancyVideo}
-                    onClick={playVideo}
-                  >
-                    {previewVideoImage ? (
-                      <img
-                        src={`${PhotoAPI}${localVacancyItem.attributes.videoPreview.data.attributes.url}`}
-                        alt="video preview"
-                      />
-                    ) : (
-                      <ReactPlayer
-                        className={cl.video_iframe}
-                        url={localVacancyItem.attributes.videoLink}
-                        controls
-                        playing
-                      />
-                    )}
-                  </button>
+                  <ReactMarkdown
+                    children={localVacancyItem.attributes.description}
+                    className={cl.cardContentWrapper}
+                  />
                 </div>
-                <ReactMarkdown
-                  children={localVacancyItem.attributes.description}
-                  className={cl.cardContentWrapper}
-                />
-              </div>
-            ))}
+              ))}
 
-          <div ref={formSection}></div>
-          <div className={cl.vacancyForm}>
-            {localVacancy.map((form) => (
-              <div key={form.id}>
-                <ReactMarkdown
-                  children={form.attributes.formTitle}
-                  className={cl.formStyledMarkdown}
-                />
-                <VacancyForm />
-              </div>
-            ))}
+            <div ref={formSection}></div>
+            <div className={cl.vacancyForm}>
+              {localVacancy.map((form) => (
+                <div key={form.id}>
+                  <ReactMarkdown
+                    children={form.attributes.formTitle}
+                    className={cl.formStyledMarkdown}
+                  />
+                  <VacancyForm />
+                </div>
+              ))}
+            </div>
           </div>
-
           <div className={cl.another_vacancies}>
             <h2>{data?.similarTitle}</h2>
             <div className={cl.fetching_another_vacancies}>
@@ -235,11 +236,20 @@ export const VacancyDetails = () => {
                 </div>
               ))}
             </div>
+            <div style={{ display: "flex", justifyContent: "center", marginTop: "5rem" }}>
+              <RouterLink
+                to={`/${localization}/vacancies`}
+                className={cl.see_more}
+              >
+                Дивитися більше
+              </RouterLink>
+            </div>
           </div>
         </div>
       ) : (
         <Loader />
-      )}
+      )
+      }
       <div className={cl.toTopButton}>
         <ToTopButton />
       </div>

@@ -99,13 +99,15 @@
 .toTopButton {
   position: absolute;
   width: 100%;
-  right: -42%;
+  right: 0;
+  display: flex;
+  justify-content: center;
   bottom: -7%;
   border: none;
   background: transparent;
 
   @include onTablet {
-    right: -45%;
+    right: -45% !important;
     bottom: -8%;
   }
   @include onDesktop {
