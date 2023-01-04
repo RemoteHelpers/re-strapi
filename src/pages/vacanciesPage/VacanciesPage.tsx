@@ -49,7 +49,7 @@ export const VacaniesPage = () => {
     document.title = "Remote Employees";
   }, []);
 
-  const { localization } = useStateContext();
+  const { localization, scrollToTop } = useStateContext();
 
   const searchRef = useRef<HTMLDivElement>(null);
 
@@ -65,6 +65,10 @@ export const VacaniesPage = () => {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const [data, setData] = useState<any>();
+
+  useEffect(() => {
+    scrollToTop?.current?.scrollIntoView({ block: "start" });
+  }, []);
 
   const selectCategories = categories.map((category) => ({
     value: category.attributes.categoryTitle.toLowerCase(),
