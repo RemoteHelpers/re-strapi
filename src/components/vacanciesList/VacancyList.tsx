@@ -31,8 +31,8 @@ import NotFoundVacancies from "../notFoundVacancies";
 import { VACANCYLIST } from "../../database/common/vacancyList";
 import { useStateContext } from "../../context/StateContext";
 
-// const API = "http://testseven.rh-s.com:1733/api";
-const API = "http://localhost:1733/api";
+const API = "http://testseven.rh-s.com:1733/api";
+// const API = "http://localhost:1733/api";
 const itemsPerPage = 6;
 
 let searchTime: any;

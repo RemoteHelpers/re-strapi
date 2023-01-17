@@ -48,8 +48,8 @@ import marketing from '../../images/header/categories-icons/marketing.png';
 import illustrator from '../../images/header/categories-icons/illustrator.png';
 import teacher from '../../images/header/categories-icons/teacher.png';
 
-// const API = "http://testseven.rh-s.com:1733/api";
-const API = "http://localhost:1733/api";
+const API = "http://testseven.rh-s.com:1733/api";
+// const API = "http://localhost:1733/api";
 let searchTime: any;
 
 const Header = () => {
