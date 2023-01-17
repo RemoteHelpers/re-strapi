@@ -32,10 +32,10 @@ import cl from "./vacancyDetails.module.scss";
 import VacancyCard from "../../components/vacancyCard";
 import { VACANCY_DETAILS } from "../../database/vacancyDetailsPage";
 
-// const API = "http://testseven.rh-s.com:1733/api";
-const API = "http://localhost:1733/api";
-// const PhotoAPI = "http://testseven.rh-s.com:1733";
-const PhotoAPI = "http://localhost:1733";
+const API = "http://testseven.rh-s.com:1733/api";
+// const API = "http://localhost:1733/api";
+const PhotoAPI = "http://testseven.rh-s.com:1733";
+// const PhotoAPI = "http://localhost:1733";
 
 export const VacancyDetails = () => {
   const { localization, scrollToTop } = useStateContext();
