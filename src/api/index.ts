@@ -2,7 +2,7 @@
 import axios from "axios";
 import { IFeedbackFormData } from "../types/types";
 
-axios.defaults.baseURL = "http://testseven.rh-s.com:1733/api";
+axios.defaults.baseURL = "http://admin.r-ez.com:1733/api";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 type TUploadFile = {
