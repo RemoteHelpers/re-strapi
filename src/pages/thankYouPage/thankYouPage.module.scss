@@ -16,6 +16,7 @@
 }
 
 .title {
+  width: 60%;
   position: relative;
   display: inline-block;
   text-decoration-line: underline;
@@ -31,6 +32,7 @@
   }
   &::before {
     content: "";
+    display: none;
     position: absolute;
     left: 100%;
     top: -25%;
@@ -92,6 +94,7 @@
   // position: relative;
   margin: 0 auto;
   & .img {
+    max-width: 100%;
     @media screen and (max-width: 458px) {
       display: block;
       max-width: 100%;

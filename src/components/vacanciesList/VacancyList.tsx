@@ -31,7 +31,7 @@ import NotFoundVacancies from "../notFoundVacancies";
 import { VACANCYLIST } from "../../database/common/vacancyList";
 import { useStateContext } from "../../context/StateContext";
 
-const API = "http://admin.r-ez.com:1733/api";
+const API = "https://admin.r-ez.com/api";
 
 const itemsPerPage = 6;
 
@@ -142,16 +142,20 @@ export default function Vacancies() {
     }, 400);
   }, [query, currentCategory]);
 
-  const handleCategorySelect = useCallback((selected: any) => {
-    if (currentCategory !== selected.label) {
-      setCurrentCategory(selected.label);
-    } else {
-      setCurrentCategory('');
-    }
-  }, [currentCategory]);
+  const handleCategorySelect = useCallback(
+    (selected: any) => {
+      if (currentCategory !== selected.label) {
+        setCurrentCategory(selected.label);
+      } else {
+        setCurrentCategory("");
+      }
+    },
+    [currentCategory]
+  );
 
   const handleClear = useCallback(() => {
     setQuery("");
+    setIsDropdown(false);
   }, []);
 
   const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -229,21 +233,26 @@ export default function Vacancies() {
                   >
                     <img src={Close} alt="close" />
                   </button>
-
                 )}
-                {isDropdown && (
-                  <div className="search__dropdown">
-                    {searchCollection.slice(0, 10).map((collection) => (
-                      <button
-                        type="button"
-                        key={collection.id}
-                        onClick={() => onCollection(collection)}
-                        className="search__dropdown-row"
-                      >
-                        {collection.attributes.keyPhrase}
-                      </button>
-                    ))}
-                  </div>
+                {query ? (
+                  <>
+                    {isDropdown && (
+                      <div className="search__dropdown">
+                        {searchCollection.slice(0, 10).map((collection) => (
+                          <button
+                            type="button"
+                            key={collection.id}
+                            onClick={() => onCollection(collection)}
+                            className="search__dropdown-row"
+                          >
+                            {collection.attributes.keyPhrase}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  ""
                 )}
               </div>
               {/* <button
@@ -299,7 +308,7 @@ export default function Vacancies() {
           previousLinkClassName="page-num"
           nextLinkClassName="page-num"
           activeLinkClassName="page-num--active"
-        // renderOnZeroPageCount={null}
+          // renderOnZeroPageCount={null}
         />
       </div>
     </>

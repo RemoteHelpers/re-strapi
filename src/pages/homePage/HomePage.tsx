@@ -17,7 +17,7 @@ import Testimonials from "../../components/testimonials";
 import cl from "./HomePage.module.scss";
 import { HOME_PAGE } from "../../database/home_page";
 
-const API = "http://admin.r-ez.com:1733/api";
+const API = "https://admin.r-ez.com/api";
 
 export const HomePage = () => {
   const { scrollToHomeForm, setHomeData, localization } = useStateContext();

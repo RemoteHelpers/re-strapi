@@ -32,9 +32,9 @@ import cl from "./vacancyDetails.module.scss";
 import VacancyCard from "../../components/vacancyCard";
 import { VACANCY_DETAILS } from "../../database/vacancyDetailsPage";
 
-const API = "http://admin.r-ez.com:1733/api";
+const API = "https://admin.r-ez.com/api";
 
-const PhotoAPI = "http://admin.r-ez.com:1733";
+const PhotoAPI = "https://admin.r-ez.com/";
 
 export const VacancyDetails = () => {
   const { localization, scrollToTop } = useStateContext();

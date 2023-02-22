@@ -36,8 +36,9 @@ import FeedbackForm from "../../components/forms/feedbackForm";
 import formImg from "../../images/formImg.png";
 import VacanciesList from "../../components/vacanciesList";
 import { useStateContext } from "../../context/StateContext";
+import Loader from "../../components/loader";
 
-const API = "http://admin.r-ez.com:1733/api";
+const API = "https://admin.r-ez.com/api";
 
 const itemsPerPage = 6;
 
@@ -65,6 +66,7 @@ export const VacaniesPage = () => {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const [data, setData] = useState<any>();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     scrollToTop?.current?.scrollIntoView({ block: "start" });
@@ -88,7 +90,7 @@ export const VacaniesPage = () => {
   });
 
   useEffect(() => {
-    const res = VACANCIES_PAGE.filter(el => (el.language === localization));
+    const res = VACANCIES_PAGE.filter((el) => el.language === localization);
     setData(res[0]);
     console.log(data);
   }, [localization]);
@@ -207,110 +209,112 @@ export const VacaniesPage = () => {
 
   const onlyWidth = useWindowWidth();
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
+
   return (
     <>
-      <section className="section">
-        <div className="container">
-          <div className="Vacancies__about">
-            <ul className="Vacancies__about__list">
-              <li className="Vacancies__about__item">
-                <div className="Vacancies__about__textWrapper">
-                  <h1 className="Vacancies__about__title bold">
-                    {data?.title}
-                  </h1>
-                  <p className="Vacancies__about__text">
-                    {data?.titleDescription}
-                  </p>
-                </div>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <section className="section">
+          <div className="container">
+            <div className="Vacancies__about">
+              <ul className="Vacancies__about__list">
+                <li className="Vacancies__about__item">
+                  <div className="Vacancies__about__textWrapper">
+                    <h1 className="Vacancies__about__title bold">
+                      {data?.title}
+                    </h1>
+                    <p className="Vacancies__about__text">
+                      {data?.titleDescription}
+                    </p>
+                  </div>
 
-                <div className="Vacancies__about__imgWrapper">
-                  <div className="Vacancies__about__decoration--small"></div>
-                  <img
-                    className="Vacancies__about__img"
-                    src={cat1}
-                    alt="Сat in front of the computer"
-                  />
-                </div>
-              </li>
-              <li className="Vacancies__about__item">
-                {onlyWidth >= 1430 && (
-                  <img
-                    className="Vacancies__about__img"
-                    src={cat2}
-                    alt="Сat works at the keyboard"
-                  />
-                )}
+                  <div className="Vacancies__about__imgWrapper">
+                    <div className="Vacancies__about__decoration--small"></div>
+                    <img
+                      className="Vacancies__about__img"
+                      src={cat1}
+                      alt="Сat in front of the computer"
+                    />
+                  </div>
+                </li>
+                <li className="Vacancies__about__item">
+                  {onlyWidth >= 1430 && (
+                    <img
+                      className="Vacancies__about__img"
+                      src={cat2}
+                      alt="Сat works at the keyboard"
+                    />
+                  )}
 
-                <div className="Vacancies__about__textWrapper">
-                  <h2 className="Vacancies__about__title">
-                    {data?.title2}
-                  </h2>
-                  <p className="Vacancies__about__text">
-                    {data?.title2Description}
-                  </p>
-                </div>
-              </li>
-              <li className="Vacancies__about__item">
-                <div className="Vacancies__about__textWrapper--short">
-                  <h2 className="Vacancies__about__title">
-                    {data?.title3}
-                  </h2>
-                  <p className="Vacancies__about__text">
-                    {data?.title3Description}
-                  </p>
-                </div>
-              </li>
-              <li className="Vacancies__about__item accent">
-                <img
-                  className="Vacancies__about__item__img"
-                  src={cat3}
-                  alt="Impressed cat"
-                />
-                <div className="Vacancies__about__textWrapper">
-                  <h2 className="Vacancies__about__title">
-                    {data?.listTitle}
-                  </h2>
-                  <ul className="Vacancies__about__item__requirements__list">
-                    {data?.list?.map((el: string, index: any) => (
-                      <li
-                        className="Vacancies__about__item__requirements__item"
-                        key={index}
-                      >
-                        {el}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-              <li className="Vacancies__about__item">
-                <div className="Vacancies__about__textWrapper--short">
-                  <h2 className="Vacancies__about__title">
-                    {data?.title4}
-                  </h2>
-                  <p className="Vacancies__about__text">
-                    {data?.title4Description}
-                  </p>
-                </div>
-              </li>
-              <li className="Vacancies__about__item">
-                <div className="Vacancies__about__textWrapper--short">
-                  <h2 className="Vacancies__about__title">
-                    {data?.title5}
-                  </h2>
-                  <p className="Vacancies__about__text">
-                    {data?.title5Description}
-                  </p>
-                </div>
-                <div className="Vacancies__about__decoration--big"></div>
-              </li>
-            </ul>
+                  <div className="Vacancies__about__textWrapper">
+                    <h2 className="Vacancies__about__title">{data?.title2}</h2>
+                    <p className="Vacancies__about__text">
+                      {data?.title2Description}
+                    </p>
+                  </div>
+                </li>
+                <li className="Vacancies__about__item">
+                  <div className="Vacancies__about__textWrapper--short">
+                    <h2 className="Vacancies__about__title">{data?.title3}</h2>
+                    <p className="Vacancies__about__text">
+                      {data?.title3Description}
+                    </p>
+                  </div>
+                </li>
+                <li className="Vacancies__about__item accent">
+                  <img
+                    className="Vacancies__about__item__img"
+                    src={cat3}
+                    alt="Impressed cat"
+                  />
+                  <div className="Vacancies__about__textWrapper">
+                    <h2 className="Vacancies__about__title">
+                      {data?.listTitle}
+                    </h2>
+                    <ul className="Vacancies__about__item__requirements__list">
+                      {data?.list?.map((el: string, index: any) => (
+                        <li
+                          className="Vacancies__about__item__requirements__item"
+                          key={index}
+                        >
+                          {el}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </li>
+                <li className="Vacancies__about__item">
+                  <div className="Vacancies__about__textWrapper--short">
+                    <h2 className="Vacancies__about__title">{data?.title4}</h2>
+                    <p className="Vacancies__about__text">
+                      {data?.title4Description}
+                    </p>
+                  </div>
+                </li>
+                <li className="Vacancies__about__item">
+                  <div className="Vacancies__about__textWrapper--short">
+                    <h2 className="Vacancies__about__title">{data?.title5}</h2>
+                    <p className="Vacancies__about__text">
+                      {data?.title5Description}
+                    </p>
+                  </div>
+                  <div className="Vacancies__about__decoration--big"></div>
+                </li>
+              </ul>
+            </div>
+            <VacanciesList />
+            <div className="form_wrapper">
+              <FeedbackForm />
+            </div>
           </div>
-          <VacanciesList />
-          <div className="form_wrapper">
-            <FeedbackForm />
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 };

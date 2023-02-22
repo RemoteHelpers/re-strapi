@@ -21,10 +21,12 @@ import interviewPreview from "../../images/videoInterviewPage/interview-preview.
 import { useStateContext } from "../../context/StateContext";
 import { VIDEOINTERVIEW_PAGE } from "../../database/videointerview_page";
 import FAQ from "../../components/faq";
+import Loader from "../../components/loader";
 
 export const VideoInterview = () => {
   const [previewVideoImage, setPreviewVideoImage] = useState(null);
   const { localization } = useStateContext();
+  const [isLoading, setIsLoading] = useState(true);
 
   const localizedVideoInterviewData = VIDEOINTERVIEW_PAGE.find(
     (el) => el.language === localization
@@ -57,98 +59,110 @@ export const VideoInterview = () => {
     document.title = "Remote Employees";
   }, []);
 
-  return (
-    <section className={cl.section}>
-      <div className={cl.main_screen}>
-        <div className={cl.container}>
-          <div className={cl.main_wrapper}>
-            <div className={cl.top_intro}>
-              <div className={cl.interview_tv}>
-                <img src={cameraKitekat} alt="camera cat" />
-              </div>
-              <div className={cl.top_intro_text}>
-                <h1>{localizedVideoInterviewData?.title}</h1>
-                <p>{localizedVideoInterviewData?.subtitle}</p>
-              </div>
-            </div>
-            <div className={cl.bottom_intro}>
-              <div className={cl.bottom_intro_text}>
-                <p>{localizedVideoInterviewData?.intro_text}</p>
-              </div>
-              <div className={cl.absoluted_interview_cat}>
-                <img src={interviewCat} alt="interview cat" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={cl.instruction}>
-        <div className={cl.container}>
-          <div className={cl.instruction_wrapper}>
-            <h2 className={cl.instruction_title}>
-              {localizedVideoInterviewFAQData?.title}
-            </h2>
-            <FAQ localizedData={localizedVideoInterviewFAQData} />
-          </div>
-        </div>
-      </div>
-      <div className={cl.container}>
-        <div className={cl.video_block}>
-          <div className={cl.video_instruction_block}>
-            <button
-              type="button"
-              id="instruction"
-              className={cl.instruction_video_title}
-              onClick={playVideo}
-            >
-              {previewVideoImage !== "instruction" ? (
-                <img src={interviewPreview} alt="interview preview" />
-              ) : (
-                <ReactPlayer
-                  className={cl.video_iframe}
-                  url="https://www.youtube.com/watch?v=1PRGzaUIvGM"
-                  controls
-                  playing
-                />
-              )}
-            </button>
-            <div className={cl.video_instruction}>
-              <h1>{localizedVideoInterviewData?.instruction_title}</h1>
-              <p>{localizedVideoInterviewData?.instruction_description}</p>
-            </div>
-          </div>
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
 
-          <div className={cl.video_examples}>
-            <h1>{localizedVideoInterviewData?.examples_title}</h1>
-            <div className={cl.video_examples_wrapper}>
-              {videoExamples.map((videoItem) => (
+  return (
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <section className={cl.section}>
+          <div className={cl.main_screen}>
+            <div className={cl.container}>
+              <div className={cl.main_wrapper}>
+                <div className={cl.top_intro}>
+                  <div className={cl.interview_tv}>
+                    <img src={cameraKitekat} alt="camera cat" />
+                  </div>
+                  <div className={cl.top_intro_text}>
+                    <h1>{localizedVideoInterviewData?.title}</h1>
+                    <p>{localizedVideoInterviewData?.subtitle}</p>
+                  </div>
+                </div>
+                <div className={cl.bottom_intro}>
+                  <div className={cl.bottom_intro_text}>
+                    <p>{localizedVideoInterviewData?.intro_text}</p>
+                  </div>
+                  <div className={cl.absoluted_interview_cat}>
+                    <img src={interviewCat} alt="interview cat" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={cl.instruction}>
+            <div className={cl.container}>
+              <div className={cl.instruction_wrapper}>
+                <h2 className={cl.instruction_title}>
+                  {localizedVideoInterviewFAQData?.title}
+                </h2>
+                <FAQ localizedData={localizedVideoInterviewFAQData} />
+              </div>
+            </div>
+          </div>
+          <div className={cl.container}>
+            <div className={cl.video_block}>
+              <div className={cl.video_instruction_block}>
                 <button
                   type="button"
-                  id={`${videoItem.id}`}
-                  key={videoItem.id}
+                  id="instruction"
                   className={cl.instruction_video_title}
                   onClick={playVideo}
                 >
-                  {previewVideoImage !== `${videoItem.id}` ? (
+                  {previewVideoImage !== "instruction" ? (
                     <img src={interviewPreview} alt="interview preview" />
                   ) : (
                     <ReactPlayer
                       className={cl.video_iframe}
-                      url={videoItem.url}
+                      url="https://www.youtube.com/watch?v=1PRGzaUIvGM"
                       controls
                       playing
                     />
                   )}
                 </button>
-              ))}
+                <div className={cl.video_instruction}>
+                  <h1>{localizedVideoInterviewData?.instruction_title}</h1>
+                  <p>{localizedVideoInterviewData?.instruction_description}</p>
+                </div>
+              </div>
+
+              <div className={cl.video_examples}>
+                <h1>{localizedVideoInterviewData?.examples_title}</h1>
+                <div className={cl.video_examples_wrapper}>
+                  {videoExamples.map((videoItem) => (
+                    <button
+                      type="button"
+                      id={`${videoItem.id}`}
+                      key={videoItem.id}
+                      className={cl.instruction_video_title}
+                      onClick={playVideo}
+                    >
+                      {previewVideoImage !== `${videoItem.id}` ? (
+                        <img src={interviewPreview} alt="interview preview" />
+                      ) : (
+                        <ReactPlayer
+                          className={cl.video_iframe}
+                          url={videoItem.url}
+                          controls
+                          playing
+                        />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className={cl.form_wrapper}>
+              <FeedbackForm />
             </div>
           </div>
-        </div>
-
-        <div className={cl.form_wrapper}>
-          <FeedbackForm />
-        </div>
-      </div>
-    </section>
+        </section>
+      )}
+    </>
   );
 };

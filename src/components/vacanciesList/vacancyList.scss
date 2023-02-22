@@ -5,287 +5,290 @@
 // we need to use "!important" to work with library "React Select"
 
 .Vacancies {
-  padding: 3rem 0;
+	padding: 3rem 0;
 
-  @include onTablet {
-    padding: 5rem 0;
-  }
+	@include onTablet {
+		padding: 5rem 0;
+	}
 
-  @include on1920 {
-    padding: 7rem 0;
-  }
+	@include on1920 {
+		padding: 7rem 0;
+	}
 
-  &__title {
-    font-weight: 900;
-    line-height: 115%;
-    text-decoration-line: underline;
-    font-size: $typography2;
-    color: $typographyColor2;
+	&__title {
+		font-weight: 900;
+		line-height: 115%;
+		text-decoration-line: underline;
+		font-size: $typography2;
+		color: $typographyColor2;
 
-    margin-bottom: 3rem;
+		margin-bottom: 3rem;
 
-    @include onTablet {
-      margin-bottom: 4rem;
-    }
+		@include onTablet {
+			margin-bottom: 4rem;
+		}
 
-    @include on1920 {
-      margin-bottom: 5rem;
-    }
-  }
+		@include on1920 {
+			margin-bottom: 5rem;
+		}
+	}
 
-  &__navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start !important;
-    padding-top: 0;
-    margin-bottom: 4.2rem;
-    gap: 2.1rem;
-    height: auto;
+	&__navigation {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start !important;
+		padding-top: 0;
+		margin-bottom: 4.2rem;
+		gap: 2.1rem;
+		height: auto;
 
-    @include onTablet {
-      margin-bottom: 2.5rem;
-      flex-direction: column !important;
-      align-items: flex-start !important;
-    }
+		@include onTablet {
+			margin-bottom: 2.5rem;
+			flex-direction: column !important;
+			align-items: flex-start !important;
+		}
 
-    @include onDesktop {
-      margin-bottom: 8rem;
-      flex-direction: row !important;
-      align-items: center !important;
-    }
-  }
+		@include onDesktop {
+			margin-bottom: 8rem;
+			flex-direction: row !important;
+			align-items: center !important;
+		}
+	}
 
-  &__cards {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin-bottom: 3.1rem;
+	&__cards {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		margin-bottom: 3.1rem;
 
-    @include onDesktop {
-      gap: 2.7rem;
-      margin-bottom: 5.6rem;
-    }
+		@include onDesktop {
+			gap: 2.7rem;
+			margin-bottom: 5.6rem;
+		}
 
-    @include on1920 {
-      gap: 4rem;
-      margin-bottom: 8.3rem;
-    }
-  }
+		@include on1920 {
+			gap: 4rem;
+			margin-bottom: 8.3rem;
+		}
+	}
 
-  &__selects {
-    position: relative !important;
-    z-index: 1 !important;
-    display: flex;
-    order: 2;
-    gap: 2.5rem !important;
+	&__selects {
+		position: relative !important;
+		z-index: 1 !important;
+		display: flex;
+		order: 2;
+		gap: 2.5rem !important;
 
-    @include onTablet {
-      order: 0;
-    }
+		@include onTablet {
+			order: 0;
+		}
 
-    @include on1920 {
-      gap: 3.1rem;
-    }
-  }
+		@include on1920 {
+			gap: 3.1rem;
+		}
+	}
 }
 
 .custom-select {
-  &--locale {
-    display: flex !important;
-  }
+	cursor: pointer;
 
-  &__control {
-    width: 100%;
-    min-width: 250px;
-    height: auto;
-    padding: 0 0.6rem;
-    border: 0 !important;
-    box-shadow: 0 !important;
-    display: flex !important;
-    gap: 0.1rem !important;
+	&--locale {
+		display: flex !important;
+	}
 
-    border: 1px solid transparent !important;
+	&__control {
+		width: 100%;
+		cursor: pointer;
+		min-width: 250px;
+		height: auto;
+		padding: 0 0.6rem;
+		border: 0 !important;
+		box-shadow: 0 !important;
+		display: flex !important;
+		gap: 0.1rem !important;
 
-    @include onDesktop {
-      height: 1.7rem;
-      width: 212px;
-    }
+		border: 1px solid transparent !important;
 
-    @include on1920 {
-      width: 319px;
-      height: 3.4rem;
-    }
+		@include onDesktop {
+			height: 1.7rem;
+			width: 212px;
+		}
 
-    &:hover {
-    }
+		@include on1920 {
+			width: 319px;
+			height: 3.4rem;
+		}
 
-    &--menu-is-open .custom-select__indicators .custom-select__indicator {
-      transition: 0.2s all;
-      transform: rotate(180deg);
-    }
+		&:hover {}
 
-    &--menu-is-open {
-      box-shadow: 0 !important;
-      border: none !important;
-    }
-  }
+		&--menu-is-open .custom-select__indicators .custom-select__indicator {
+			transition: 0.2s all;
+			transform: rotate(180deg);
+		}
 
-  &__value-container {
-    padding-left: 0 !important;
-    border: 0 !important;
-    box-shadow: 0 !important;
-    &:focus-visible {
-      border: 0 !important;
-      box-shadow: 0 !important;
-    }
-  }
+		&--menu-is-open {
+			box-shadow: 0 !important;
+			border: none !important;
+		}
+	}
 
-  &__placeholder {
-    font-weight: 700 !important;
-    font-size: 1rem !important;
-    line-height: 115% !important;
-    color: $typographyColor1 !important;
+	&__value-container {
+		padding-left: 0 !important;
+		border: 0 !important;
+		box-shadow: 0 !important;
 
-    @include onTablet {
-      font-size: 1.2rem !important;
-    }
+		&:focus-visible {
+			border: 0 !important;
+			box-shadow: 0 !important;
+		}
+	}
 
-    @include onDesktop {
-      font-size: 0.9rem !important;
-    }
+	&__placeholder {
+		font-weight: 700 !important;
+		font-size: 1rem !important;
+		line-height: 115% !important;
+		color: $typographyColor1 !important;
 
-    @include on1920 {
-      font-size: 1.2rem !important;
-    }
-  }
+		@include onTablet {
+			font-size: 1.2rem !important;
+		}
 
-  &__single-value {
-    font-weight: 700 !important;
-    font-size: 1rem !important;
-    line-height: 115% !important;
-    color: $typography1 !important;
+		@include onDesktop {
+			font-size: 0.9rem !important;
+		}
 
-    @include onTablet {
-      font-size: 0.8rem !important;
-    }
+		@include on1920 {
+			font-size: 1.2rem !important;
+		}
+	}
 
-    @include onDesktop {
-      font-size: 0.9rem !important;
-    }
+	&__single-value {
+		font-weight: 700 !important;
+		font-size: 1rem !important;
+		line-height: 115% !important;
+		color: $typography1 !important;
 
-    @include on1920 {
-      font-size: 1.2rem !important;
-    }
-  }
+		@include onTablet {
+			font-size: 0.8rem !important;
+		}
 
-  &__indicator-separator {
-    display: none;
-  }
+		@include onDesktop {
+			font-size: 0.9rem !important;
+		}
 
-  &__indicator {
-    padding: 0 !important;
-  }
+		@include on1920 {
+			font-size: 1.2rem !important;
+		}
+	}
 
-  &__menu {
-    padding: 0.5rem;
-    font-weight: 600 !important;
-    font-size: 1rem !important;
-    line-height: 130% !important;
-    // height: max-content !important
-    overflow-y: hidden !important;
-    scrollbar-width: none !important;
+	&__indicator-separator {
+		display: none;
+	}
 
-    color: $typographyColor1 !important;
+	&__indicator {
+		padding: 0 !important;
+	}
 
-    background: $secondaryColor5 !important;
-    border: 0.1rem solid $secondaryColor4 !important;
-    border-radius: 30px !important;
+	&__menu {
+		padding: 0.5rem;
+		font-weight: 600 !important;
+		font-size: 1rem !important;
+		line-height: 130% !important;
+		// height: max-content !important
+		overflow-y: hidden !important;
+		scrollbar-width: none !important;
 
-    @include onDesktop {
-      font-size: 1.1rem !important;
-    }
+		color: $typographyColor1 !important;
 
-    @include on1920 {
-      font-size: 1.5rem !important;
-    }
-  }
+		background: $secondaryColor5 !important;
+		border: 0.1rem solid $secondaryColor4 !important;
+		border-radius: 30px !important;
 
-  &__option {
-    background-color: inherit !important;
-    position: relative !important;
+		@include onDesktop {
+			font-size: 1.1rem !important;
+		}
 
-    &:hover {
-      cursor: pointer !important;
-    }
+		@include on1920 {
+			font-size: 1.5rem !important;
+		}
+	}
 
-    &::after {
-      content: "";
-      width: 30px;
-      height: 30px;
-      background: transparent;
-      border: 2px solid $primaryColor3;
-      border-radius: 10px;
-      position: absolute;
-      top: 5px;
-      right: 13px;
-      -webkit-transition: all 0.2s ease;
-      transition: all 0.2s ease;
-    }
+	&__option {
+		background-color: inherit !important;
+		position: relative !important;
 
-    &--is-selected {
-      color: $typographyColor1 !important;
-      position: relative !important;
+		&:hover {
+			cursor: pointer !important;
+			font-weight: 700 !important;
+		}
 
-      &::before {
-        content: "";
-        width: 14px;
-        height: 14px;
-        background: $typographyColor2;
-        border-radius: 50%;
-        position: absolute;
-        top: 13px;
-        right: 21px;
-        -webkit-transition: all 0.2s ease;
-        transition: all 0.2s ease;
-      }
-    }
-  }
+		&::after {
+			content: "";
+			width: 30px;
+			height: 30px;
+			background: transparent;
+			border: 2px solid $primaryColor3;
+			border-radius: 10px;
+			position: absolute;
+			top: 5px;
+			right: 13px;
+			-webkit-transition: all 0.2s ease;
+			transition: all 0.2s ease;
+		}
+
+		&--is-selected {
+			color: $typographyColor1 !important;
+			position: relative !important;
+
+			&::before {
+				content: "";
+				width: 14px;
+				height: 14px;
+				background: $typographyColor2;
+				border-radius: 50%;
+				position: absolute;
+				top: 13px;
+				right: 21px;
+				-webkit-transition: all 0.2s ease;
+				transition: all 0.2s ease;
+			}
+		}
+	}
 }
 
 .pagination {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.6rem;
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.6rem;
 }
 
 .page-num {
-  font-weight: 700;
-  font-size: 1.1rem;
-  line-height: 115%;
+	font-weight: 700;
+	font-size: 1.1rem;
+	line-height: 115%;
 
-  &:hover {
-  }
+	&:hover {}
 
-  &--active {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 2.1rem;
-    height: 2.1rem;
-    border-radius: 50%;
-    color: $secondaryColor5;
-    background-color: $primaryColor1;
+	&--active {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 2.1rem;
+		height: 2.1rem;
+		border-radius: 50%;
+		color: $secondaryColor5;
+		background-color: $primaryColor1;
 
-    @include onDesktop {
-      width: 1.4rem;
-      height: 1.4rem;
-    }
+		@include onDesktop {
+			width: 1.4rem;
+			height: 1.4rem;
+		}
 
-    @include on1920 {
-      width: 2.1rem;
-      height: 2.1rem;
-    }
-  }
+		@include on1920 {
+			width: 2.1rem;
+			height: 2.1rem;
+		}
+	}
 }

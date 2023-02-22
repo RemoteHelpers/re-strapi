@@ -556,6 +556,7 @@
   transition: 0.3s all;
   outline: 0;
   outline-offset: 0;
+  cursor: pointer;
   &:hover {
     transform: scale(1.1);
     color: $primaryColor1;

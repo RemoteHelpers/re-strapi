@@ -38,7 +38,7 @@ import axios from "axios";
 import ChooseLanguageModal from "./components/chooseLanguageModal";
 import FormSubmitErrorPage from "./pages/formSubmitErrorPage";
 
-const API = "http://admin.r-ez.com:1733/api";
+const API = "https://admin.r-ez.com/api";
 
 const App: React.FC = () => {
   const {

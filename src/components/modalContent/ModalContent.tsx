@@ -65,7 +65,7 @@ export default function ModalContent() {
 
   return (
     <>
-      <h1 className={cl.title}>Обери мову</h1>
+      <h1 className={cl.title}>Choose Language</h1>
       <form className={cl.form}>
         {selectLocalization.map(({ value, label, img, gif }) => {
           return (
@@ -77,6 +77,7 @@ export default function ModalContent() {
                 name={label}
                 value={value}
                 onChange={handleSelectLocalization}
+                onClick={handleSubmit}
                 className={cl.input}
               />
               <label
@@ -97,9 +98,9 @@ export default function ModalContent() {
           );
         })}
         <img alt="Language Cat" src={languageCat} className={cl.mainImg} />
-        <button type="button" onClick={handleSubmit} className={cl.button}>
+        {/* <button type="button" onClick={handleSubmit} className={cl.button}>
           Обрати
-        </button>
+        </button> */}
       </form>
     </>
   );

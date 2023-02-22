@@ -48,7 +48,7 @@ import marketing from '../../images/header/categories-icons/marketing.png';
 import illustrator from '../../images/header/categories-icons/illustrator.png';
 import teacher from '../../images/header/categories-icons/teacher.png';
 
-const API = "http://admin.r-ez.com:1733/api";
+const API = "https://admin.r-ez.com/api";
 
 let searchTime: any;
 
@@ -281,6 +281,12 @@ const Header = () => {
   document.getElementById("vacancies")?.addEventListener("mouseover", () => {
     setIsDesktopMenuOpened(true);
   });
+
+  useEffect(() => {
+    const homeLink = document.querySelector('.Header__link');
+
+    homeLink?.classList.add('active-link');
+  }, []);
 
   return (
     <header id="header" className="Header">
