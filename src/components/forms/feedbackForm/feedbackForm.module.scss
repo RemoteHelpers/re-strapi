@@ -71,6 +71,7 @@
   color: $typographyColor2;
   text-decoration-line: underline;
   margin-bottom: 3rem;
+  padding-top: 1rem;
 
   @include onDesktop {
     margin-bottom: 6rem;
@@ -90,6 +91,7 @@
   color: $typographyColor2;
   text-decoration-line: underline;
   margin-bottom: 1rem;
+  padding-top: 1rem;
 
   @include onTablet {
     margin-bottom: 2rem;

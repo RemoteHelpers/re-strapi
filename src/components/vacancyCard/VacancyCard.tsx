@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/quotes */
@@ -31,7 +32,7 @@ const VacancyCard: React.FC<Props> = ({
   const routingRule = localization === "ru";
 
   useEffect(() => {
-    const res = VACANCYLIST.filter(el => (el.language === localization));
+    const res = VACANCYLIST.filter((el) => el.language === localization);
 
     setData(res[0]);
   }, [localization]);
@@ -40,8 +41,8 @@ const VacancyCard: React.FC<Props> = ({
     <Link
       to={
         routingRule
-          ? `/vacancies/${slug}`
-          : `/${localization}/vacancies/${slug}`
+          ? `/${slug}`
+          : `/${localization}/${slug}`
       }
       onClick={handleSlug}
     >
@@ -55,11 +56,9 @@ const VacancyCard: React.FC<Props> = ({
 
         <div className="VacancyCard__info">
           <h3 className="VacancyCard__title">{title}</h3>
-          <p className="VacancyCard__salary">
-            {data?.salary}
-          </p>
+          <p className="VacancyCard__salary">{data?.salary}</p>
           <p className="VacancyCard__description">
-            {cardDescription}
+            {cardDescription.slice(0, 100)}...
           </p>
         </div>
         <button type="button" className="VacancyCard__button">
@@ -68,9 +67,7 @@ const VacancyCard: React.FC<Props> = ({
 
         <div className="VacancyCard__banner VacancyCard__banner--desktop">
           <img src={FireIcon} className="VacancyCard__fireIcon" alt="icon" />
-          <span className="VacancyCard__banner-text">
-            {data?.isHot}
-          </span>
+          <span className="VacancyCard__banner-text">{data?.isHot}</span>
         </div>
       </div>
     </Link>

@@ -32,7 +32,7 @@ import VideoInterview from "./pages/videoInterview";
 import VacancyDetails from "./pages/vacancyDetails";
 import VacanciesPage from "./pages/vacanciesPage";
 import ThankYouPage from "./pages/thankYouPage";
-import ChooseLanguagePage from "./components/modalContent";
+// import ChooseLanguagePage from "./components/modalContent";
 import NotFoundPage from "./pages/notFoundPage/notFoundPage";
 import axios from "axios";
 import ChooseLanguageModal from "./components/chooseLanguageModal";
@@ -132,8 +132,8 @@ const App: React.FC = () => {
             <Route
               path={
                 routingRule
-                  ? "/vacancies/:vacancyID"
-                  : "/:lng/vacancies/:vacancyID"
+                  ? "/:vacancyID"
+                  : "/:lng/:vacancyID"
               }
               element={<VacancyDetails />}
             />

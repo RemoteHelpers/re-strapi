@@ -341,7 +341,7 @@
     }
 
     &_category_item {
-      width: 31%;
+      width: 32%;
     }
 
     &_vacancies {
@@ -508,6 +508,7 @@
 }
 
 .label {
+  cursor: pointer;
   position: relative;
   display: flex;
   justify-content: center;

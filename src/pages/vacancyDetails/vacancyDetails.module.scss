@@ -76,6 +76,7 @@ h2 {
     }
   }
   button {
+    cursor: pointer;
     background-color: $primaryColorVacancy;
     padding: 1rem 5rem;
     border-radius: 1rem;
@@ -159,13 +160,7 @@ h2 {
   border-radius: 1rem;
 }
 .coldVacancy {
-  background-color: $secondaryColor4;
-  color: $secondaryColor5;
-  display: inline-flex;
-  align-items: center;
-  column-gap: 0.5rem;
-  padding: 0.6rem 1.5rem;
-  border-radius: 1rem;
+  display: none;
 }
 
 .cardContentWrapper {
@@ -227,13 +222,12 @@ h2 {
   height: 100%;
   transition: 0.3 ease;
 }
-
 .vacancyForm {
   border: 3px solid $primaryColor3;
   background-color: $primaryColor4;
   padding: 2.125rem 1.125rem;
   border-radius: 1.875rem;
-  margin-top: 6rem;
+  margin-top: 3rem;
 
   @include onTablet {
     padding: 2.125rem;

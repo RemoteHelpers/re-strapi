@@ -45,11 +45,13 @@ export const VacancyDetails = () => {
   const [previewVideoImage, setPreviewVideoImage] = useState(true);
   const formSection = useRef<HTMLDivElement>(null);
   const [data, setData] = useState<any>();
+
   const { vacancyID } = useParams();
+
   const routingRule = localization === "ru";
 
   useEffect(() => {
-    const res = VACANCY_DETAILS.filter(el => (el.language === localization));
+    const res = VACANCY_DETAILS.filter((el) => el.language === localization);
 
     setData(res[0]);
   }, [localization]);
@@ -57,7 +59,7 @@ export const VacancyDetails = () => {
   useEffect(() => {
     axios
       .get(
-        `${API}/vacancies?populate=*&filters[vacancySlug][$eq]=${vacancyID}`
+        `${API}/vacancies?populate=*&locale=${localization === "ua" ? "uk" : localization}&filters[vacancySlug][$eq]=${vacancyID}`
         // `${API}/vacancies?locale=${localization}&populate=*&filters[vacancySlug][$eq]=${vacancyID}`
       )
       .then((res) => {
@@ -85,7 +87,7 @@ export const VacancyDetails = () => {
   useEffect(() => {
     axios
       .get(
-        `${API}/vacancies?populate=*&filters[categories][categoryTitle][$contains]=${currentCategory}`
+        `${API}/vacancies?populate=*&locale=${localization === "ua" ? "uk" : localization}&filters[categories][categoryTitle][$contains]=${currentCategory}`
       )
       .then((res) => {
         setAnotherVacancies(res.data.data);
@@ -164,7 +166,7 @@ export const VacancyDetails = () => {
                   </span>
                   <div className={cl.shortVacancyWrapper}>
                     <div className={cl.shortVacancyInfo}>
-                      <h1>{localVacancyItem.attributes.title}</h1>
+                      <h1>{localVacancyItem.attributes.titleH1}</h1>
                       <p>{data?.salary}</p>
                       <p>{localVacancyItem.attributes.subTitle}</p>
                       <button
@@ -179,25 +181,29 @@ export const VacancyDetails = () => {
                         {data?.mainButton}
                       </button>
                     </div>
-                    <button
-                      type="button"
-                      className={cl.shortVacancyVideo}
-                      onClick={playVideo}
-                    >
-                      {previewVideoImage ? (
-                        <img
-                          src={`${PhotoAPI}${localVacancyItem.attributes.videoPreview.data.attributes.url}`}
-                          alt="video preview"
-                        />
-                      ) : (
-                        <ReactPlayer
-                          className={cl.video_iframe}
-                          url={localVacancyItem.attributes.videoLink}
-                          controls
-                          playing
-                        />
-                      )}
-                    </button>
+                    {localVacancyItem.attributes.videoLink ? (
+                      <button
+                        type="button"
+                        className={cl.shortVacancyVideo}
+                        onClick={playVideo}
+                      >
+                        {previewVideoImage ? (
+                          <img
+                            src={`${PhotoAPI}${localVacancyItem.attributes.videoPreview.data.attributes.url}`}
+                            alt="video preview"
+                          />
+                        ) : (
+                          <ReactPlayer
+                            className={cl.video_iframe}
+                            url={localVacancyItem.attributes.videoLink}
+                            controls
+                            playing
+                          />
+                        )}
+                      </button>
+                    ) : (
+                      ""
+                    )}
                   </div>
                   <ReactMarkdown
                     children={localVacancyItem.attributes.description}
@@ -222,22 +228,32 @@ export const VacancyDetails = () => {
           <div className={cl.another_vacancies}>
             <h2>{data?.similarTitle}</h2>
             <div className={cl.fetching_another_vacancies}>
-              {anotherVacancies.map((anotherVacancy: any) => (
+              {anotherVacancies.slice(0, 3).map((anotherVacancy: any) => (
                 <div key={anotherVacancy.id}>
                   {anotherVacancy.attributes.vacancySlug !== vacancyID && (
                     <VacancyCard
                       title={anotherVacancy.attributes.title}
                       slug={anotherVacancy.attributes.vacancySlug}
                       isHot={anotherVacancy.attributes.isHot}
-                      cardDescription={anotherVacancy.attributes.cardDescription}
+                      cardDescription={
+                        anotherVacancy.attributes.cardDescription
+                      }
                     />
                   )}
                 </div>
               ))}
             </div>
-            <div style={{ display: "flex", justifyContent: "center", marginTop: "5rem" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "5rem",
+              }}
+            >
               <RouterLink
-                to={`/${localization}/vacancies`}
+                to={
+                  localization === 'ru' ? `/vacancies` : `/${localization}/vacancies`
+                }
                 className={cl.see_more}
               >
                 Дивитися більше
@@ -247,8 +263,7 @@ export const VacancyDetails = () => {
         </div>
       ) : (
         <Loader />
-      )
-      }
+      )}
       <div className={cl.toTopButton}>
         <ToTopButton />
       </div>

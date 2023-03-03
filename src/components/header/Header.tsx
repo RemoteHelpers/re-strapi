@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable function-paren-newline */
 /* eslint-disable prefer-template */
@@ -41,12 +42,12 @@ import { VACANCYLIST } from "../../database/common/vacancyList";
 import Find from "../../images/findIcon.svg";
 import Close from "../../images/close.svg";
 
-import dev from '../../images/header/categories-icons/developer.png';
-import trns from '../../images/header/categories-icons/translation.png';
-import management from '../../images/header/categories-icons/management.png';
-import marketing from '../../images/header/categories-icons/marketing.png';
-import illustrator from '../../images/header/categories-icons/illustrator.png';
-import teacher from '../../images/header/categories-icons/teacher.png';
+import dev from "../../images/header/categories-icons/developer.png";
+import trns from "../../images/header/categories-icons/translation.png";
+import management from "../../images/header/categories-icons/management.png";
+import marketing from "../../images/header/categories-icons/marketing.png";
+import illustrator from "../../images/header/categories-icons/illustrator.png";
+import teacher from "../../images/header/categories-icons/teacher.png";
 
 const API = "https://admin.r-ez.com/api";
 
@@ -57,33 +58,19 @@ const Header = () => {
   function chooseImage(id: string | number) {
     switch (id) {
       case 1:
-        return (
-          <img src={dev} alt="" />
-        );
+        return <img src={dev} alt="" />;
       case 2:
-        return (
-          <img src={illustrator} alt="" />
-        );
+        return <img src={illustrator} alt="" />;
       case 4:
-        return (
-          <img src={marketing} alt="" />
-        );
+        return <img src={marketing} alt="" />;
       case 5:
-        return (
-          <img src={management} alt="" />
-        );
+        return <img src={management} alt="" />;
       case 6:
-        return (
-          <img src={trns} alt="" />
-        );
+        return <img src={trns} alt="" />;
       case 7:
-        return (
-          <img src={teacher} alt="" />
-        );
+        return <img src={teacher} alt="" />;
       default:
-        return (
-          <img src={teacher} alt="" />
-        );
+        return <img src={teacher} alt="" />;
     }
   }
 
@@ -109,6 +96,8 @@ const Header = () => {
   const [isDropdown, setIsDropdown] = useState<boolean>(false);
   const [searchCollection, setSearchCollection] = useState<Collection[]>([]);
   const [data, setData] = useState<any>();
+  const [total, setTotal] = useState(0);
+  const [paginationStart, setPaginationStart] = useState(0);
 
   const navigate = useNavigate();
 
@@ -129,31 +118,78 @@ const Header = () => {
   useEffect(() => {
     axios
       .get(
-        `${API}/categories?locale=${localization === "ua" ? "uk" : localization
+        `${API}/categories?locale=${
+          localization === "ua" ? "uk" : localization
         }`
       )
       .then((res) => {
         setCategories(res.data.data);
-        console.log(res.data.data);
+        console.log("Categories from header", res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [localization]);
+  }, []);
+
+  useEffect(() => {
+    // axios
+    //   .get(
+    //     `${API}/vacancies?populate=*&pagination[limit]=-1&locale=${localization === "ua" ? "uk" : localization}`
+    //   )
+    //   .then((res) => {
+    //     setVacancies(res.data.data);
+    //     setTotal(res.data.meta.pagination.total);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    const requestPagStart = "pagination[start]";
+    const requestPagLimit = "pagination[limit]";
+    const pagLimit = 100;
+
+    try {
+      axios({
+        url: `${API}/vacancies`,
+        params: {
+          populate: "*",
+          locale: `${localization === "ua" ? "uk" : localization}`,
+          [encodeURIComponent(requestPagStart)]: paginationStart,
+          [encodeURIComponent(requestPagLimit)]: pagLimit,
+        },
+      })
+        .then((response) => {
+          setVacancies(response.data.data);
+
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      console.log(vacancies);
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
 
   useEffect(() => {
     axios
       .get(
-        `${API}/vacancies?locale=${localization === "ua" ? "uk" : localization
-        }&populate=*`
+        `${API}/vacancies?populate=*&pagination[limit]=-1&pagination[start]=${paginationStart}&locale=${
+          localization === "ua" ? "uk" : localization
+        }`
       )
       .then((res) => {
-        setVacancies(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
+        setTotal(res.data.meta.pagination.total);
       });
-  }, [localization]);
+
+    // Если есть еще страницы, то вызываем рекурсивно функцию fetchData
+    // if (total) {};
+
+    // Объединяем полученные данные с уже существующими данными
+    // setData((prevData) => [...prevData, ...newData.results]);
+    // setVacancies();
+  }, []);
 
   const selectLocalization = [
     { value: "ua", label: "UA" },
@@ -218,6 +254,12 @@ const Header = () => {
           currentCategory
       )
     );
+    console.log(
+      currentCategory,
+      "useEffect blyat vacancy filter",
+      selectedVacancies,
+      vacancies
+    );
   }, [currentCategory, vacancies]);
 
   let isActiveCategory: boolean;
@@ -281,12 +323,6 @@ const Header = () => {
   document.getElementById("vacancies")?.addEventListener("mouseover", () => {
     setIsDesktopMenuOpened(true);
   });
-
-  useEffect(() => {
-    const homeLink = document.querySelector('.Header__link');
-
-    homeLink?.classList.add('active-link');
-  }, []);
 
   return (
     <header id="header" className="Header">
@@ -514,7 +550,10 @@ const Header = () => {
                     </div>
                   </div>
                 </div>
-                <button className="Header__search-button" onClick={onSearchClick}>
+                <button
+                  className="Header__search-button"
+                  onClick={onSearchClick}
+                >
                   Search
                 </button>
               </div>
@@ -527,7 +566,7 @@ const Header = () => {
                   <span> {localizadLinks?.allVacanciesData}</span>
                 </Link>
               )}
-              {!query && (
+              {!query &&
                 categories.map((category) => (
                   <Link
                     key={category.id}
@@ -538,17 +577,16 @@ const Header = () => {
                     {chooseImage(category.id as string)}
                     <span>{category.attributes.categoryTitle}</span>
                   </Link>
-                ))
-              )}
-              {query && (
+                ))}
+              {query &&
                 selectedVacancies.map((vacancy) => (
                   <Link
                     key={vacancy.id}
                     className="Header__link_mobile"
                     to={
                       routingRule
-                        ? `/vacancies/${vacancy.attributes.vacancySlug}`
-                        : `/${localization}/vacancies/${vacancy.attributes.vacancySlug}`
+                        ? `/${vacancy.attributes.vacancySlug}`
+                        : `/${localization}/${vacancy.attributes.vacancySlug}`
                     }
                     onClick={() => {
                       setCurrentVacancy(vacancy.attributes.vacancySlug);
@@ -557,8 +595,7 @@ const Header = () => {
                   >
                     <span>{vacancy.attributes.title}</span>
                   </Link>
-                ))
-              )}
+                ))}
             </div>
           </CSSTransition>
 
@@ -588,8 +625,8 @@ const Header = () => {
                   className="Header__link_mobile"
                   to={
                     routingRule
-                      ? `/vacancies/${vacancy.attributes.vacancySlug}`
-                      : `/${localization}/vacancies/${vacancy.attributes.vacancySlug}`
+                      ? `/${vacancy.attributes.vacancySlug}`
+                      : `/${localization}/${vacancy.attributes.vacancySlug}`
                   }
                   onClick={() => {
                     setCurrentVacancy(vacancy.attributes.vacancySlug);
@@ -658,7 +695,10 @@ const Header = () => {
         {query.length === 0 && (
           <div className="Header__dropMenuDesktop_categories">
             {categories.map((category) => (
-              <div className="Header__dropMenuDesktop_category_item" key={category.id}>
+              <div
+                className="Header__dropMenuDesktop_category_item"
+                key={category.id}
+              >
                 <input
                   type="checkbox"
                   checked={
@@ -688,8 +728,8 @@ const Header = () => {
               className="Header__link_desktop--vacancy"
               to={
                 routingRule
-                  ? `/vacancies/${vacancy.attributes.vacancySlug}`
-                  : `/${localization}/vacancies/${vacancy.attributes.vacancySlug}`
+                  ? `/${vacancy.attributes.vacancySlug}`
+                  : `/${localization}/${vacancy.attributes.vacancySlug}`
               }
               // onClick={() => setCurrentVacancy(vacancy.attributes.vacancySlug)}
               onClick={() => {

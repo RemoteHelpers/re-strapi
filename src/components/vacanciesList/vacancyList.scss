@@ -26,6 +26,7 @@
 
 		@include onTablet {
 			margin-bottom: 4rem;
+			padding-top: 2rem;
 		}
 
 		@include on1920 {
@@ -265,30 +266,24 @@
 }
 
 .page-num {
-	font-weight: 700;
+	font-weight: 500;
 	font-size: 1.1rem;
 	line-height: 115%;
 
-	&:hover {}
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	width: 1.5rem;
+	height: 1.5rem;
+
+	transition: .3s ease-in-out;
+	cursor: pointer;
+
+	// &:hover {}
 
 	&--active {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 2.1rem;
-		height: 2.1rem;
-		border-radius: 50%;
 		color: $secondaryColor5;
 		background-color: $primaryColor1;
-
-		@include onDesktop {
-			width: 1.4rem;
-			height: 1.4rem;
-		}
-
-		@include on1920 {
-			width: 2.1rem;
-			height: 2.1rem;
-		}
 	}
 }

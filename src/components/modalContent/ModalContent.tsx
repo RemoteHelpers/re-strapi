@@ -16,16 +16,17 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import cl from "./modalContent.module.scss";
+
 import ua from "../../images/languages/ukrainian.png";
-import sk from "../../images/languages/slovenský.png";
-import en from "../../images/languages/english.png";
 import pl from "../../images/languages/polski.png";
+import en from "../../images/languages/english.png";
+import sk from "../../images/languages/slovenskiy.png";
 import ru from "../../images/languages/ru.png";
 
 import uaGif from "../../images/languages/ua.gif";
-import skGif from "../../images/languages/sk.gif";
-import enGif from "../../images/languages/en.gif";
 import plGif from "../../images/languages/pl.gif";
+import enGif from "../../images/languages/en.gif";
+import skGif from "../../images/languages/sk.gif";
 import ruGif from "../../images/languages/ru.gif";
 
 import languageCat from "../../images/languages/languageCat.png";

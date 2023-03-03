@@ -82,6 +82,7 @@ export interface LocalVacancyType {
   attributes: any;
   id: number;
   description: string;
+  videoLink: string;
 }
 
 export interface MainScreenType {

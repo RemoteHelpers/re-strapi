@@ -40,7 +40,7 @@ let vacationTime: any;
 
 export default function Vacancies() {
   const searchRef = useRef<HTMLDivElement>(null);
-  const { localization } = useStateContext();
+  const { localization, scrollToTopVacancies } = useStateContext();
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [vacancies, setVacancies] = useState<VacancyArray[]>([]);
@@ -79,10 +79,10 @@ export default function Vacancies() {
 
   useEffect(() => {
     axios
-      .get(`${API}/categories`)
+      .get(`${API}/categories?locale=${localization === "ua" ? "uk" : localization}`)
       .then((res) => {
         setCategories(res.data.data);
-        // console.log(res.data.data);
+        console.log("Categories from vacancy list", res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -91,22 +91,15 @@ export default function Vacancies() {
 
   useEffect(() => {
     axios
-      .get(`${API}/vacancies?populate=*`)
+      .get(`${API}/vacancies?populate=*&locale=${localization === "ua" ? "uk" : localization}`)
       .then((res) => {
         setVacancies(res.data.data);
-        // console.log(res.data.data);
+        console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-
-  // useEffect(() => {
-  //   vacancies.map(vacancy => {
-  //     setCurrentVacancy(vacancy.attributes.vacancySlug);
-  //     console.log(vacancy.attributes.vacancySlug);
-  //   });
-  // }, [vacancies]);
 
   useEffect(() => {
     clearTimeout(vacationTime);
@@ -118,18 +111,18 @@ export default function Vacancies() {
       }
 
       if (query.length > 0) {
-        queryFilters += `&filters[keyword_tags][keyPhrase][$containsi]=${query}`;
+        queryFilters += `&filters[keyword_tags][keyPhrase][$contains]=${query}`;
       }
 
       if (!currentCategory && query.length === 0) {
         const res = await axios.get(
-          `${API}/vacancies?filters[isHot][$eq]=${true}`
+          `${API}/vacancies?locale=${localization === "ua" ? "uk" : localization}&filters[isHot][$eq]=${true}`
         );
 
         setSelectedVacancies(res.data.data);
       } else {
         const res = await axios.get(
-          `${API}/vacancies?populate=*${queryFilters}`
+          `${API}/vacancies?populate=*&locale=${localization === "ua" ? "uk" : localization}${queryFilters}`
         );
 
         setSelectedVacancies(res.data.data);
@@ -161,6 +154,7 @@ export default function Vacancies() {
   const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
 
+    // поменять теги
     clearTimeout(searchTime);
     searchTime = setTimeout(async () => {
       const res = await axios.get(
@@ -194,6 +188,10 @@ export default function Vacancies() {
   const handlePageClick = (event: { selected: number }) => {
     const newOffset =
       (event.selected * itemsPerPage) % selectedVacancies.length;
+    scrollToTopVacancies?.current?.scrollIntoView({
+      block: "start",
+      behavior: "smooth",
+    });
 
     setItemOffset(newOffset);
   };
@@ -211,7 +209,9 @@ export default function Vacancies() {
   return (
     <>
       <div className="Vacancies">
-        <h2 className="Vacancies__title">{data?.title}</h2>
+        <h2 ref={scrollToTopVacancies} className="Vacancies__title">
+          {data?.title}
+        </h2>
         <div className="Vacancies__navigation">
           <div className="search-container" ref={searchRef}>
             <div className="search-inner">
@@ -234,11 +234,11 @@ export default function Vacancies() {
                     <img src={Close} alt="close" />
                   </button>
                 )}
-                {query ? (
-                  <>
-                    {isDropdown && (
-                      <div className="search__dropdown">
-                        {searchCollection.slice(0, 10).map((collection) => (
+                <div className="search__dropdown">
+                  {query ? (
+                    <>
+                      {isDropdown &&
+                        searchCollection.slice(0, 10).map((collection) => (
                           <button
                             type="button"
                             key={collection.id}
@@ -248,12 +248,11 @@ export default function Vacancies() {
                             {collection.attributes.keyPhrase}
                           </button>
                         ))}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  ""
-                )}
+                    </>
+                  ) : (
+                    ""
+                  )}
+                </div>
               </div>
               {/* <button
                 className="search__button"

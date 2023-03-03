@@ -3,6 +3,7 @@
 @import "../../global-styles/fonts.scss";
 
 .VacancyCard {
+  width: 100%;
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -72,9 +73,8 @@
   }
 
   &__button {
-    width: 100% !important;
-    height: auto;
-    padding: 1rem 0;
+    padding: 1rem 3rem !important;
+    white-space: nowrap;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,6 +83,7 @@
     font-size: $typography4;
     line-height: 100%;
     color: #fff;
+    cursor: pointer;
 
     background: #fbbf13;
     box-shadow: 0px 0px 17px 5px rgba(255, 101, 1, 0.25);
@@ -94,17 +95,6 @@
     &:hover {
       background: #ff6501;
     }
-
-    @include onDesktop {
-      width: 240px !important;
-      padding: 0.8rem 0;
-      height: auto;
-    }
-
-    // @include on1920 {
-    //   width: 308px;
-    //   height: 62px;
-    // }
   }
 
   &__banner {

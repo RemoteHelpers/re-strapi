@@ -20,7 +20,7 @@ import ToTopButton from "../../toTopButton/ToTopButton";
 import { FORM_FIELDS } from "../../../database/common/formFields";
 
 function FeedbackForm() {
-  const { localization } = useStateContext();
+  const { localization, scrollToHomeForm } = useStateContext();
 
   const localizedFormFieldData = FORM_FIELDS.find(
     (el: any) => el.language === localization
@@ -31,6 +31,7 @@ function FeedbackForm() {
   return (
     <>
       <h1
+        ref={scrollToHomeForm}
         className={url ? cl.feedback_video_form_title : cl.feedback_form_title}
       >
         {localizedFormFieldData?.title}

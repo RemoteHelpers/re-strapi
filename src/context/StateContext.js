@@ -21,6 +21,7 @@ export const StateContext = ({ children }) => {
   const [footerData, setFooterData] = useState();
   const [isFormSubmited, setIsFormSubmited] = useState(false);
   const scrollToTop = useRef(null);
+  const scrollToTopVacancies = useRef(null);
   const scrollToHomeForm = useRef(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isFormSubmitError, setIsFormSubmitError] = useState(false);
@@ -28,6 +29,7 @@ export const StateContext = ({ children }) => {
   return (
     <Context.Provider
       value={{
+        scrollToTopVacancies,
         scrollToHomeForm,
         scrollToTop,
         localization,
