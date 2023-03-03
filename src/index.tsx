@@ -11,11 +11,9 @@ import { StateContext } from "./context/StateContext";
 
 ReactDOM.render(
   <StateContext>
-    <React.StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StateContext>,
   document.getElementById("root")
 );

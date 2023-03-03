@@ -79,7 +79,7 @@ const App: React.FC = () => {
         // console.log(res.data.data);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }, [localization]);
 
@@ -93,7 +93,7 @@ const App: React.FC = () => {
         // console.log(res.data.data);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }, [localization]);
 

@@ -131,65 +131,71 @@ const Header = () => {
       });
   }, []);
 
-  useEffect(() => {
-    // axios
-    //   .get(
-    //     `${API}/vacancies?populate=*&pagination[limit]=-1&locale=${localization === "ua" ? "uk" : localization}`
-    //   )
-    //   .then((res) => {
-    //     setVacancies(res.data.data);
-    //     setTotal(res.data.meta.pagination.total);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-    const requestPagStart = "pagination[start]";
-    const requestPagLimit = "pagination[limit]";
-    const pagLimit = 100;
+  const requestPagStart = "pagination[start]";
+  const requestPagLimit = "pagination[limit]";
+  const pagLimit = 100;
 
-    try {
-      axios({
-        url: `${API}/vacancies`,
-        params: {
-          populate: "*",
-          locale: `${localization === "ua" ? "uk" : localization}`,
-          [encodeURIComponent(requestPagStart)]: paginationStart,
-          [encodeURIComponent(requestPagLimit)]: pagLimit,
-        },
-      })
-        .then((response) => {
-          setVacancies(response.data.data);
+  // useEffect(() => {
+  // axios
+  //   .get(
+  //     `${API}/vacancies?populate=*&pagination[limit]=-1&locale=${localization === "ua" ? "uk" : localization}`
+  //   )
+  //   .then((res) => {
+  //     setVacancies(res.data.data);
+  //     setTotal(res.data.meta.pagination.total);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
 
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+  // try {
+  //   axios({
+  //     url: `${API}/vacancies`,
+  //     params: {
+  //       populate: "*",
+  //       locale: `${localization === "ua" ? "uk" : localization}`,
+  //       [encodeURIComponent(requestPagStart)]: paginationStart,
+  //       [encodeURIComponent(requestPagLimit)]: pagLimit,
+  //     },
+  //   })
+  //     .then((response) => {
+  //       setVacancies(response.data.data);
 
-      console.log(vacancies);
-    } catch (e) {
-      console.log(e);
-    }
-  }, []);
+  //       console.log(response);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
 
-  useEffect(() => {
-    axios
+  //   console.log(vacancies);
+  // } catch (e) {
+  //   console.log(e);
+  // }
+  // }, []);
+
+  const fetchData = async () => {
+    await axios
       .get(
-        `${API}/vacancies?populate=*&pagination[limit]=-1&pagination[start]=${paginationStart}&locale=${
-          localization === "ua" ? "uk" : localization
-        }`
+        `${API}/vacancies?locale=${localization === "ua" ? "uk" : localization}&${requestPagStart}=${vacancies.length}&${requestPagLimit}=-1`
       )
       .then((res) => {
         setTotal(res.data.meta.pagination.total);
+
+        console.log(res.data.data);
+
+        res.data.data.length
+          ? setVacancies([...vacancies, ...res.data.data])
+          : "";
       });
+  };
 
-    // Если есть еще страницы, то вызываем рекурсивно функцию fetchData
-    // if (total) {};
-
-    // Объединяем полученные данные с уже существующими данными
-    // setData((prevData) => [...prevData, ...newData.results]);
-    // setVacancies();
+  useEffect(() => {
+    fetchData();
   }, []);
+
+  useEffect(() => {
+    vacancies.length < total ? fetchData() : "";
+  }, [vacancies]);
 
   const selectLocalization = [
     { value: "ua", label: "UA" },
@@ -253,12 +259,6 @@ const Header = () => {
           el.attributes.categories.data[0].attributes.categoryTitle ===
           currentCategory
       )
-    );
-    console.log(
-      currentCategory,
-      "useEffect blyat vacancy filter",
-      selectedVacancies,
-      vacancies
     );
   }, [currentCategory, vacancies]);
 
