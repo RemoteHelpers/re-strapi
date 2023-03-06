@@ -65,6 +65,7 @@ export const FormFields = () => {
       await Api.feedBackForm({
         ...data,
         CV: arrFile[0].id,
+        pageFrom: window.location.href
       });
       setNumber("");
       setSelectedOption(null);
@@ -100,7 +101,7 @@ export const FormFields = () => {
   };
 
   const url =
-    window.location.pathname === `/${localization}/vacancies/${vacancyID}`;
+    window.location.pathname === `/${localization}/${vacancyID}`;
   const interviewUrl =
     window.location.pathname === `/${localization}/videoInterview`;
 

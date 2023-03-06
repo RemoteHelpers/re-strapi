@@ -59,7 +59,9 @@ export const VacancyDetails = () => {
   useEffect(() => {
     axios
       .get(
-        `${API}/vacancies?populate=*&locale=${localization === "ua" ? "uk" : localization}&filters[vacancySlug][$eq]=${vacancyID}`
+        `${API}/vacancies?populate=*&locale=${
+          localization === "ua" ? "uk" : localization
+        }&filters[vacancySlug][$eq]=${vacancyID}`
         // `${API}/vacancies?locale=${localization}&populate=*&filters[vacancySlug][$eq]=${vacancyID}`
       )
       .then((res) => {
@@ -87,7 +89,9 @@ export const VacancyDetails = () => {
   useEffect(() => {
     axios
       .get(
-        `${API}/vacancies?populate=*&locale=${localization === "ua" ? "uk" : localization}&filters[categories][categoryTitle][$contains]=${currentCategory}`
+        `${API}/vacancies?populate=*&locale=${
+          localization === "ua" ? "uk" : localization
+        }&filters[categories][categoryTitle][$contains]=${currentCategory}`
       )
       .then((res) => {
         setAnotherVacancies(res.data.data);
@@ -187,19 +191,18 @@ export const VacancyDetails = () => {
                         className={cl.shortVacancyVideo}
                         onClick={playVideo}
                       >
-                        {previewVideoImage ? (
+                        {/* {previewVideoImage ? (
                           <img
                             src={`${PhotoAPI}${localVacancyItem.attributes.videoPreview.data.attributes.url}`}
                             alt="video preview"
                           />
-                        ) : (
-                          <ReactPlayer
-                            className={cl.video_iframe}
-                            url={localVacancyItem.attributes.videoLink}
-                            controls
-                            playing
-                          />
-                        )}
+                        ) : ( */}
+                        <ReactPlayer
+                          className={cl.video_iframe}
+                          url={localVacancyItem.attributes.videoLink}
+                          controls
+                        />
+                        {/* )} */}
                       </button>
                     ) : (
                       ""
@@ -252,7 +255,9 @@ export const VacancyDetails = () => {
             >
               <RouterLink
                 to={
-                  localization === 'ru' ? `/vacancies` : `/${localization}/vacancies`
+                  localization === "ru"
+                    ? `/vacancies`
+                    : `/${localization}/vacancies`
                 }
                 className={cl.see_more}
               >

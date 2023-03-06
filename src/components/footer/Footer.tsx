@@ -25,13 +25,13 @@ export const Footer = () => {
       <div className={cl.Footer__links}>
         <img src={Logo} alt="Logo" className={cl.Footer__logo} />
         <div className={cl.Footer__socialWrapper}>
-          <a href="https://google.com" className={cl.Footer__link}>
+          <a href="https://www.instagram.com/remotemployees/" target="_blank" rel="noreferrer" className={cl.Footer__link}>
             <FooterIconsSVG id="inst" />
           </a>
-          <a href="https://google.com" className={cl.Footer__link}>
+          <a href="https://fb.com/remotemployees" target="_blank" rel="noreferrer" className={cl.Footer__link}>
             <FooterIconsSVG id="face" />
           </a>
-          <a href="https://google.com" className={cl.Footer__link}>
+          <a href="https://t.me/remotemployees" target="_blank" rel="noreferrer" className={cl.Footer__link}>
             <FooterIconsSVG id="telega" />
           </a>
         </div>

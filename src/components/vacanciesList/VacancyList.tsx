@@ -94,7 +94,7 @@ export default function Vacancies() {
       .get(`${API}/vacancies?populate=*&locale=${localization === "ua" ? "uk" : localization}`)
       .then((res) => {
         setVacancies(res.data.data);
-        console.log(res.data.data);
+        // console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);

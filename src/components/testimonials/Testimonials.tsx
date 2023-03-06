@@ -11,41 +11,36 @@ import "swiper/modules/navigation/navigation.scss";
 import "./testimonials.scss";
 import { useStateContext } from "../../context/StateContext";
 
+import Eliar from '../../images/testimonials/Eliar.jpeg';
+import Taniuha from '../../images/testimonials/Taniuha.jpeg';
+import Timur from '../../images/testimonials/Timur.jpg';
+
 const Testimonials = () => {
   const { homeData } = useStateContext();
   const personal = [
     {
       id: 1,
-      name: 'Andrew kostyl-man',
-      position: 'Developer',
-      who: 'спеціаліст',
-      descr: `Приятная атмосфера, дружелюбный и отзывчивый коллектив, к которому
-      ты быстро привыкаешь и уже через неделю чувствуешь себя как дома.
-      Понимающее начальство,с которым можно обсудить любую проблему.
-      Тебя выслушают и всегда подскажут как выйти из конкретной
-      ситуации. Все это придает уверенности и желания двигаться вперед.`,
+      name: 'Тетяна',
+      position: 'Copywriter ',
+      who: 'Lead',
+      img: Taniuha,
+      descr: `Робота у RemotEmployees дозволила мені значно покращити навички володіння іноземними мовами. Дружний колектив, комфортна атмосфера в офісі, можливість самовдосконалення та гідна винагорода – все це дарує гарний настрій та бажання розвиватись!`,
     },
     {
       id: 2,
-      name: 'Igor Superman',
-      position: 'Developer pro+',
-      who: 'спеціаліст',
-      descr: `Приятная атмосфера, дружелюбный и отзывчивый коллектив, к которому
-      ты быстро привыкаешь и уже через неделю чувствуешь себя как дома.
-      Понимающее начальство,с которым можно обсудить любую проблему.
-      Тебя выслушают и всегда подскажут как выйти из конкретной
-      ситуации. Все это придает уверенности и желания двигаться вперед.`,
+      name: 'Тімур',
+      position: 'Seo',
+      who: 'Specialist',
+      img: Timur,
+      descr: `Приємна атмосфера, доброзичливий та чуйний колектив, до якого ти швидко звикаєш і вже за тиждень почуваєшся як удома. Розуміюче керівництво, з яким можна обговорити будь-яку проблему. Тебе вислухають і завжди підкажуть як вийти із конкретної ситуації. Все це надає впевненості та бажання рухатися вперед.`,
     },
     {
       id: 3,
-      name: 'Sofia miracle woman',
-      position: 'Developer pro max',
-      who: 'спеціаліст',
-      descr: `Приятная атмосфера, дружелюбный и отзывчивый коллектив, к которому
-      ты быстро привыкаешь и уже через неделю чувствуешь себя как дома.
-      Понимающее начальство,с которым можно обсудить любую проблему.
-      Тебя выслушают и всегда подскажут как выйти из конкретной
-      ситуации. Все это придает уверенности и желания двигаться вперед.`,
+      name: 'Елйар',
+      position: 'Project Manager',
+      who: 'Manager',
+      img: Eliar,
+      descr: `Робота в компанії Remote Employees принесла мені багато позитивних емоцій і колосальний досвід. Дружньо налаштований, молодий колектив дизайнерів, розробників, перекладачів тощо завжди готовий прийти на допомогу незалежно від ситуації. Я впевнений – цей колектив і ця компанія саме те, що необхідно для впевненого швидкого професійного та особистісного росту.`,
     },
   ];
 
@@ -72,7 +67,9 @@ const Testimonials = () => {
           <SwiperSlide key={people.id}>
             <div className="Testimonials__slide">
               <div className="Testimonials__slide-head">
-                <div className="Testimonials__image"></div>
+                <div className="Testimonials__image">
+                  <img src={people.img} alt={people.name} />
+                </div>
                 <div className="Testimonials__person">
                   <span className="Testimonials__name">{people.name}</span>
                   <span className="Testimonials__vacancy">

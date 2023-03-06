@@ -8,7 +8,7 @@ export interface AttributesCategory {
 }
 
 export interface Category {
-  attributes: AttributesCategory;
+  attributes: any;
   id: string;
 }
 
@@ -64,6 +64,7 @@ export interface IFeedbackFormData {
   englishLevel: string;
   eMail: string;
   CV: FileList;
+  pageFrom: string;
 }
 
 export interface VacancyArray {

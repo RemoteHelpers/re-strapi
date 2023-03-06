@@ -96,7 +96,7 @@ const Header = () => {
   const [isDropdown, setIsDropdown] = useState<boolean>(false);
   const [searchCollection, setSearchCollection] = useState<Collection[]>([]);
   const [data, setData] = useState<any>();
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState<number>(0);
   const [paginationStart, setPaginationStart] = useState(0);
 
   const navigate = useNavigate();
@@ -129,73 +129,37 @@ const Header = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [localization]);
 
   const requestPagStart = "pagination[start]";
   const requestPagLimit = "pagination[limit]";
-  const pagLimit = 100;
-
-  // useEffect(() => {
-  // axios
-  //   .get(
-  //     `${API}/vacancies?populate=*&pagination[limit]=-1&locale=${localization === "ua" ? "uk" : localization}`
-  //   )
-  //   .then((res) => {
-  //     setVacancies(res.data.data);
-  //     setTotal(res.data.meta.pagination.total);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-
-  // try {
-  //   axios({
-  //     url: `${API}/vacancies`,
-  //     params: {
-  //       populate: "*",
-  //       locale: `${localization === "ua" ? "uk" : localization}`,
-  //       [encodeURIComponent(requestPagStart)]: paginationStart,
-  //       [encodeURIComponent(requestPagLimit)]: pagLimit,
-  //     },
-  //   })
-  //     .then((response) => {
-  //       setVacancies(response.data.data);
-
-  //       console.log(response);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-
-  //   console.log(vacancies);
-  // } catch (e) {
-  //   console.log(e);
-  // }
-  // }, []);
 
   const fetchData = async () => {
     await axios
       .get(
-        `${API}/vacancies?locale=${localization === "ua" ? "uk" : localization}&${requestPagStart}=${vacancies.length}&${requestPagLimit}=-1`
+        `${API}/vacancies?locale=${
+          localization === "ua" ? "uk" : localization
+        }&${requestPagStart}=${vacancies.length}&${requestPagLimit}=-1&populate=*`
       )
       .then((res) => {
         setTotal(res.data.meta.pagination.total);
-
-        console.log(res.data.data);
-
         res.data.data.length
           ? setVacancies([...vacancies, ...res.data.data])
           : "";
+      }).catch((error) => {
+        console.error('Vacancy error >>>', error);
       });
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", vacancies, localization);
+  }, [localization]);
 
   useEffect(() => {
     vacancies.length < total ? fetchData() : "";
-  }, [vacancies]);
+    console.log("Vacancies >>>", vacancies, localization);
+  }, [vacancies, localization]);
 
   const selectLocalization = [
     { value: "ua", label: "UA" },
@@ -236,18 +200,18 @@ const Header = () => {
 
   const handleMenuClick = useCallback(() => {
     setIsMenuOpened(!isMenuOpened);
+    setActiveMenu("main");
   }, [isMenuOpened]);
 
   const bodyEl = document.querySelector("body");
 
-  if (isMenuOpened) {
-    bodyEl?.classList.add("lock");
-  } else {
-    bodyEl?.classList.remove("lock");
-  }
+  isMenuOpened
+    ? bodyEl?.classList.add("lock")
+    : bodyEl?.classList.remove("lock");
 
   const handleCategorySelect = useCallback((event: any) => {
-    setCurrentCategory(event.target.text);
+    setCurrentCategory(event.target.innerText);
+    console.log(event.target.innerText);
     console.log(currentCategory);
     setActiveMenu("vacancies");
   }, []);
@@ -255,11 +219,10 @@ const Header = () => {
   useEffect(() => {
     setSelectedVacancies(
       vacancies.filter(
-        (el) =>
-          el.attributes.categories.data[0].attributes.categoryTitle ===
-          currentCategory
-      )
+        (el) => el.attributes.categories.data[0] ? el.attributes.categories.data[0].attributes.categoryTitle ===
+        currentCategory : (''))
     );
+    console.log(selectedVacancies);
   }, [currentCategory, vacancies]);
 
   let isActiveCategory: boolean;
@@ -498,8 +461,7 @@ const Header = () => {
             classNames="menu_Secondary"
           >
             <div className="menu">
-              <Link
-                to={`/${localization}`}
+              <span
                 className="Header__link_mobile Header__link_mobile-back"
                 onClick={() => "main" && setActiveMenu("main")}
               >
@@ -509,7 +471,7 @@ const Header = () => {
                   alt="Next button"
                 />
                 <span>{localizadLinks?.backValue}</span>
-              </Link>
+              </span>
               <div className="Header__menuTop">
                 <div className="Header__search" ref={searchRef}>
                   <div className="search-inner">
@@ -568,15 +530,14 @@ const Header = () => {
               )}
               {!query &&
                 categories.map((category) => (
-                  <Link
+                  <span
                     key={category.id}
-                    to={`/${localization}`}
                     className="Header__link_mobile"
                     onClick={handleCategorySelect}
                   >
                     {chooseImage(category.id as string)}
                     <span>{category.attributes.categoryTitle}</span>
-                  </Link>
+                  </span>
                 ))}
               {query &&
                 selectedVacancies.map((vacancy) => (
@@ -606,8 +567,7 @@ const Header = () => {
             classNames="menu_Thirdly"
           >
             <div className="menu">
-              <Link
-                to={`/${localization}`}
+              <span
                 className="Header__link_mobile Header__link_mobile-back"
                 onClick={() => "categories" && setActiveMenu("categories")}
               >
@@ -617,7 +577,7 @@ const Header = () => {
                   alt="Next button"
                 />
                 <span>{headerData?.attributes.backValue}</span>
-              </Link>
+              </span>
 
               {selectedVacancies.map((vacancy) => (
                 <Link

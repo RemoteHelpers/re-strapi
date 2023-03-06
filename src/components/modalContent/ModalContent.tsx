@@ -12,7 +12,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable @typescript-eslint/quotes */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import cl from "./modalContent.module.scss";
@@ -59,6 +59,7 @@ export default function ModalContent() {
   const handleSubmit = () => {
     setIsOpenModal(false);
     setIsSubmitLocalization(true);
+    document.location.reload();
   };
   const setHover = (event: any) => {
     setItemHover(event.currentTarget.id);

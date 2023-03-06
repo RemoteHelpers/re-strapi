@@ -96,11 +96,23 @@ export const AboutPage = () => {
                       <span>{member.position}</span>
                       <div>
                         <AboutPageSvg id="telegram" />
-                        <span>{member.email}</span>
+                        <a
+                          href={`https://t.me/${member.email}`}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {member.email}
+                        </a>
                       </div>
                       <div>
                         <AboutPageSvg id="viber" />
-                        <span>{member.phone}</span>
+                        <a
+                          href={`viber://chat?number=${member.phone}`}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {member.phone}
+                        </a>
                       </div>
                     </div>
                   </div>

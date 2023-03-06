@@ -274,6 +274,9 @@ section {
   display: flex;
   flex-direction: column;
   row-gap: 0.7rem;
+  a {
+    color: #333;
+  }
   h2 {
     font-size: $typography4;
     color: $typographyColor1;
