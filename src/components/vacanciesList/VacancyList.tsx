@@ -40,7 +40,12 @@ let vacationTime: any;
 
 export default function Vacancies() {
   const searchRef = useRef<HTMLDivElement>(null);
-  const { localization, scrollToTopVacancies } = useStateContext();
+  const {
+    localization,
+    scrollToTopVacancies,
+    setCategorySlug,
+    currentCategorySlug,
+  } = useStateContext();
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [vacancies, setVacancies] = useState<VacancyArray[]>([]);
@@ -79,19 +84,29 @@ export default function Vacancies() {
 
   useEffect(() => {
     axios
-      .get(`${API}/categories?locale=${localization === "ua" ? "uk" : localization}`)
+      .get(
+        `${API}/categories?locale=${
+          localization === "ua" ? "uk" : localization
+        }`
+      )
       .then((res) => {
         setCategories(res.data.data);
-        console.log("Categories from vacancy list", res.data.data);
+        // console.log("Categories from vacancy list", res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [localization]);
+
+  setCategorySlug(currentItems);
 
   useEffect(() => {
     axios
-      .get(`${API}/vacancies?populate=*&locale=${localization === "ua" ? "uk" : localization}`)
+      .get(
+        `${API}/vacancies?populate=*&locale=${
+          localization === "ua" ? "uk" : localization
+        }`
+      )
       .then((res) => {
         setVacancies(res.data.data);
         // console.log(res.data.data);
@@ -116,13 +131,17 @@ export default function Vacancies() {
 
       if (!currentCategory && query.length === 0) {
         const res = await axios.get(
-          `${API}/vacancies?locale=${localization === "ua" ? "uk" : localization}&filters[isHot][$eq]=${true}`
+          `${API}/vacancies?locale=${
+            localization === "ua" ? "uk" : localization
+          }&filters[isHot][$eq]=${true}&populate=*`
         );
 
         setSelectedVacancies(res.data.data);
       } else {
         const res = await axios.get(
-          `${API}/vacancies?populate=*&locale=${localization === "ua" ? "uk" : localization}${queryFilters}`
+          `${API}/vacancies?populate=*&locale=${
+            localization === "ua" ? "uk" : localization
+          }${queryFilters}`
         );
 
         setSelectedVacancies(res.data.data);
@@ -287,6 +306,7 @@ export default function Vacancies() {
                 key={vacancy.id}
                 title={vacancy.attributes.title}
                 slug={vacancy.attributes.vacancySlug}
+                categorySlug={vacancy.attributes.categories.data[0].attributes.categorySlug}
                 isHot={vacancy.attributes.isHot}
                 cardDescription={vacancy.attributes.cardDescription}
               />

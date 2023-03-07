@@ -32,6 +32,7 @@ import VideoInterview from "./pages/videoInterview";
 import VacancyDetails from "./pages/vacancyDetails";
 import VacanciesPage from "./pages/vacanciesPage";
 import ThankYouPage from "./pages/thankYouPage";
+import CategoryPage from "./pages/CategoryPage";
 // import ChooseLanguagePage from "./components/modalContent";
 import NotFoundPage from "./pages/notFoundPage/notFoundPage";
 import axios from "axios";
@@ -132,10 +133,14 @@ const App: React.FC = () => {
             <Route
               path={
                 routingRule
-                  ? "/:vacancyID"
-                  : "/:lng/:vacancyID"
+                  ? `/:categoryID/:vacancyID`
+                  : `/:lng/:categoryID/:vacancyID`
               }
               element={<VacancyDetails />}
+            />
+            <Route
+              path={routingRule ? "/:categoryID" : "/:lng/:categoryID"}
+              element={<CategoryPage />}
             />
             <Route
               path={routingRule ? "/about" : "/:lng/about"}

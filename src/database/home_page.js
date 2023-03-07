@@ -37,7 +37,7 @@ export const HOME_PAGE = [
         button_label: "Отримати роботу",
       },
       spheres_section: {
-        title: "Наші остновні сфери діяльності",
+        title: "Наші основні сфери діяльності",
       },
       partners_section: {
         title: "Наші партнери",

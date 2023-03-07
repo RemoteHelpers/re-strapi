@@ -15,6 +15,7 @@ interface Props {
   slug: string;
   isHot: string;
   cardDescription: string;
+  categorySlug: string;
 }
 
 const VacancyCard: React.FC<Props> = ({
@@ -22,6 +23,7 @@ const VacancyCard: React.FC<Props> = ({
   slug,
   isHot,
   cardDescription,
+  categorySlug,
 }) => {
   const { setCurrentVacancy, localization } = useStateContext();
   const [data, setData] = useState<any>();
@@ -41,8 +43,8 @@ const VacancyCard: React.FC<Props> = ({
     <Link
       to={
         routingRule
-          ? `/${slug}`
-          : `/${localization}/${slug}`
+          ? `/${categorySlug}/${slug}`
+          : `/${localization}/${categorySlug}/${slug}`
       }
       onClick={handleSlug}
     >

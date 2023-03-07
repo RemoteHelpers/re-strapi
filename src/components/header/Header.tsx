@@ -124,7 +124,7 @@ const Header = () => {
       )
       .then((res) => {
         setCategories(res.data.data);
-        console.log("Categories from header", res.data.data);
+        // console.log("Categories from header", res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -153,12 +153,11 @@ const Header = () => {
 
   useEffect(() => {
     fetchData();
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", vacancies, localization);
   }, [localization]);
 
   useEffect(() => {
     vacancies.length < total ? fetchData() : "";
-    console.log("Vacancies >>>", vacancies, localization);
+    // console.log("Vacancies >>>", vacancies, localization);
   }, [vacancies, localization]);
 
   const selectLocalization = [
@@ -222,7 +221,6 @@ const Header = () => {
         (el) => el.attributes.categories.data[0] ? el.attributes.categories.data[0].attributes.categoryTitle ===
         currentCategory : (''))
     );
-    console.log(selectedVacancies);
   }, [currentCategory, vacancies]);
 
   let isActiveCategory: boolean;

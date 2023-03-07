@@ -25,10 +25,16 @@ export const StateContext = ({ children }) => {
   const scrollToHomeForm = useRef(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isFormSubmitError, setIsFormSubmitError] = useState(false);
+  const [categorySlug, setCategorySlug] = useState([]);
+  const [currentCategorySlug, setCurrentCategorySlug] = useState("");
 
   return (
     <Context.Provider
       value={{
+        currentCategorySlug,
+        setCurrentCategorySlug,
+        categorySlug,
+        setCategorySlug,
         scrollToTopVacancies,
         scrollToHomeForm,
         scrollToTop,

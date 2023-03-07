@@ -37,7 +37,8 @@ const API = "https://admin.r-ez.com/api";
 const PhotoAPI = "https://admin.r-ez.com/";
 
 export const VacancyDetails = () => {
-  const { localization, scrollToTop } = useStateContext();
+  const { localization, scrollToTop, categorySlug,
+    currentVacancy, setCurrentCategorySlug, currentCategorySlug } = useStateContext();
   const [localVacancy, setLocalVacancy] = useState<LocalVacancyType[]>([]);
   const [anotherVacancies, setAnotherVacancies] = useState([]);
   const [currentCategory, setCurrentCategory] = useState("");
@@ -46,7 +47,7 @@ export const VacancyDetails = () => {
   const formSection = useRef<HTMLDivElement>(null);
   const [data, setData] = useState<any>();
 
-  const { vacancyID } = useParams();
+  const { categoryID, vacancyID } = useParams();
 
   const routingRule = localization === "ru";
 
@@ -55,6 +56,14 @@ export const VacancyDetails = () => {
 
     setData(res[0]);
   }, [localization]);
+
+  useEffect(() => {
+    const categorySlugTitle = categorySlug.filter((el: any) => el.attributes.vacancySlug === currentVacancy);
+
+    console.log(currentVacancy, categorySlug);
+    // console.log("current Slug", categorySlugTitle[0].attributes.categories.data[0].attributes.categorySlug);
+    setCurrentCategorySlug(categorySlugTitle[0].attributes.categories.data[0].attributes.categorySlug);
+  }, [currentCategorySlug, categorySlug]);
 
   useEffect(() => {
     axios
@@ -153,6 +162,18 @@ export const VacancyDetails = () => {
                       >
                         {data?.vacanciesLink}
                       </Link>
+                      <Link
+                        className={cl.normalCrumb}
+                        underline="none"
+                        color="inherit"
+                        href={
+                          routingRule
+                            ? `/${categoryID}`
+                            : `/${localization}/${categoryID}`
+                        }
+                      >
+                        {localVacancyItem.attributes.categories.data[0].attributes.categoryTitle}
+                      </Link>
                       <Typography className={cl.activeCrumb}>
                         {localVacancyItem.attributes.title}
                       </Typography>
@@ -238,9 +259,8 @@ export const VacancyDetails = () => {
                       title={anotherVacancy.attributes.title}
                       slug={anotherVacancy.attributes.vacancySlug}
                       isHot={anotherVacancy.attributes.isHot}
-                      cardDescription={
-                        anotherVacancy.attributes.cardDescription
-                      }
+                      cardDescription={anotherVacancy.attributes.cardDescription}
+                      categorySlug={currentCategorySlug}
                     />
                   )}
                 </div>
