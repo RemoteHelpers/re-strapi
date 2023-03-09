@@ -37,8 +37,14 @@ const API = "https://admin.r-ez.com/api";
 const PhotoAPI = "https://admin.r-ez.com/";
 
 export const VacancyDetails = () => {
-  const { localization, scrollToTop, categorySlug,
-    currentVacancy, setCurrentCategorySlug, currentCategorySlug } = useStateContext();
+  const {
+    localization,
+    scrollToTop,
+    categorySlug,
+    currentVacancy,
+    setCurrentCategorySlug,
+    currentCategorySlug,
+  } = useStateContext();
   const [localVacancy, setLocalVacancy] = useState<LocalVacancyType[]>([]);
   const [anotherVacancies, setAnotherVacancies] = useState([]);
   const [currentCategory, setCurrentCategory] = useState("");
@@ -58,11 +64,15 @@ export const VacancyDetails = () => {
   }, [localization]);
 
   useEffect(() => {
-    const categorySlugTitle = categorySlug.filter((el: any) => el.attributes.vacancySlug === currentVacancy);
+    const categorySlugTitle = categorySlug.filter(
+      (el: any) => el.attributes.vacancySlug === currentVacancy
+    );
 
     console.log(currentVacancy, categorySlug);
     // console.log("current Slug", categorySlugTitle[0].attributes.categories.data[0].attributes.categorySlug);
-    setCurrentCategorySlug(categorySlugTitle[0].attributes.categories.data[0].attributes.categorySlug);
+    setCurrentCategorySlug(
+      categorySlugTitle[0].attributes.categories.data[0].attributes.categorySlug
+    );
   }, [currentCategorySlug, categorySlug]);
 
   useEffect(() => {
@@ -172,7 +182,10 @@ export const VacancyDetails = () => {
                             : `/${localization}/${categoryID}`
                         }
                       >
-                        {localVacancyItem.attributes.categories.data[0].attributes.categoryTitle}
+                        {
+                          localVacancyItem.attributes.categories.data[0]
+                            .attributes.categoryTitle
+                        }
                       </Link>
                       <Typography className={cl.activeCrumb}>
                         {localVacancyItem.attributes.title}
@@ -192,8 +205,9 @@ export const VacancyDetails = () => {
                   <div className={cl.shortVacancyWrapper}>
                     <div className={cl.shortVacancyInfo}>
                       <h1>{localVacancyItem.attributes.titleH1}</h1>
-                      <p>{data?.salary}</p>
+                      {/* <p>{data?.salary}</p> */}
                       <p>{localVacancyItem.attributes.subTitle}</p>
+                      <p>{localVacancyItem.attributes.cardDescription}</p>
                       <button
                         type="button"
                         onClick={() =>
@@ -259,7 +273,9 @@ export const VacancyDetails = () => {
                       title={anotherVacancy.attributes.title}
                       slug={anotherVacancy.attributes.vacancySlug}
                       isHot={anotherVacancy.attributes.isHot}
-                      cardDescription={anotherVacancy.attributes.cardDescription}
+                      cardDescription={
+                        anotherVacancy.attributes.cardDescription
+                      }
                       categorySlug={currentCategorySlug}
                     />
                   )}

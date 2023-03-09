@@ -51,26 +51,31 @@ const VacancyCard: React.FC<Props> = ({
       <div className="VacancyCard">
         <div className="VacancyCard__banner VacancyCard__banner--mobile">
           <img src={FireIcon} className="VacancyCard__fireIcon" alt="icon" />
-          <span className="VacancyCard__banner-text">
-            {isHot ? "Urgent" : "Not urgent"}
-          </span>
+          {isHot ? (
+            <span className="VacancyCard__banner-text">Urgent</span>
+          ) : (
+            ""
+          )}
         </div>
-
         <div className="VacancyCard__info">
           <h3 className="VacancyCard__title">{title}</h3>
           <p className="VacancyCard__salary">{data?.salary}</p>
           <p className="VacancyCard__description">
-            {cardDescription ? `${cardDescription.slice(0, 100)}...` : "" }
+            {cardDescription ? `${cardDescription.slice(0, 100)}...` : ""}
           </p>
         </div>
         <button type="button" className="VacancyCard__button">
           {data?.button}
         </button>
 
-        <div className="VacancyCard__banner VacancyCard__banner--desktop">
-          <img src={FireIcon} className="VacancyCard__fireIcon" alt="icon" />
-          <span className="VacancyCard__banner-text">{data?.isHot}</span>
-        </div>
+        {isHot ? (
+          <div className="VacancyCard__banner VacancyCard__banner--desktop">
+            <img src={FireIcon} className="VacancyCard__fireIcon" alt="icon" />
+            <span className="VacancyCard__banner-text">Urgent</span>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </Link>
   );

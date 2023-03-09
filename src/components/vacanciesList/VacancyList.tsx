@@ -40,12 +40,8 @@ let vacationTime: any;
 
 export default function Vacancies() {
   const searchRef = useRef<HTMLDivElement>(null);
-  const {
-    localization,
-    scrollToTopVacancies,
-    setCategorySlug,
-    currentCategorySlug,
-  } = useStateContext();
+  const { localization, scrollToTopVacancies, setCategorySlug } =
+    useStateContext();
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [vacancies, setVacancies] = useState<VacancyArray[]>([]);
@@ -225,6 +221,8 @@ export default function Vacancies() {
     }),
   };
 
+  console.log(currentItems);
+
   return (
     <>
       <div className="Vacancies">
@@ -306,7 +304,9 @@ export default function Vacancies() {
                 key={vacancy.id}
                 title={vacancy.attributes.title}
                 slug={vacancy.attributes.vacancySlug}
-                categorySlug={vacancy.attributes.categories.data[0].attributes.categorySlug}
+                categorySlug={
+                  vacancy.attributes.categories.data[0].attributes.categorySlug
+                }
                 isHot={vacancy.attributes.isHot}
                 cardDescription={vacancy.attributes.cardDescription}
               />

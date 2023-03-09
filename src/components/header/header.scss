@@ -265,6 +265,9 @@
       }
 
       &--vacancy {
+        border: 1px solid $primaryColor1;
+        border-radius: 1rem;
+        padding: .5rem .75rem;
         text-align: left;
         width: 32%;
         text-decoration: none;
@@ -272,6 +275,12 @@
         line-height: 115%;
         color: $typographyColor1;
         font-size: clamp(15px, 1.04vw, 20px);
+
+        transition: .3s ease-in-out;
+
+        &:hover {
+          box-shadow: 0 0 .75rem 0 rgba(255, 101, 1, 0.25);
+        }
       }
     }
   }
@@ -334,7 +343,6 @@
 
     &_categories {
       display: flex;
-      margin-top: 2rem;
       align-items: center;
       justify-content: space-between;
       row-gap: 1.5rem;

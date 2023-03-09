@@ -60,7 +60,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const prevLanguage = window.location.pathname.split("/")[1];
     const prevURL = window.location.pathname.split("/");
-    prevURL.length === 3 ? (prevURL.splice(0, 2)) : (prevURL.splice(0, 1));
+    prevURL.length === 3 ? (prevURL.splice(0, 3)) : (prevURL.splice(0, 2));
     const match = prevURL.join("/");
     if (routingRule) {
       return navigate(`/${match}`);

@@ -83,7 +83,7 @@ const Header = () => {
     setCurrentVacancy,
     headerData,
     setIsOpenModal,
-    isSubmitLocalization,
+    currentCategorySlug,
   } = useStateContext();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -277,13 +277,13 @@ const Header = () => {
         )
       )
     );
-
-    console.log("tessssst");
   };
 
   document.getElementById("vacancies")?.addEventListener("mouseover", () => {
     setIsDesktopMenuOpened(true);
   });
+
+  console.log(selectedVacancies);
 
   return (
     <header id="header" className="Header">
@@ -470,53 +470,6 @@ const Header = () => {
                 />
                 <span>{localizadLinks?.backValue}</span>
               </span>
-              <div className="Header__menuTop">
-                <div className="Header__search" ref={searchRef}>
-                  <div className="search-inner">
-                    <div className="search-wrapper">
-                      {/* mobile search */}
-                      <input
-                        type="text"
-                        value={query}
-                        onChange={searchHandler}
-                        placeholder={data?.mobileHeaderPlaceholder}
-                        className="search-input"
-                      />
-                      {!query ? (
-                        <img src={Find} alt="find" className="search-icon" />
-                      ) : (
-                        <button
-                          className="search-clear"
-                          type="button"
-                          onClick={handleClear}
-                        >
-                          <img src={Close} alt="close" />
-                        </button>
-                      )}
-                      {isDropdown && (
-                        <div className="search__dropdown">
-                          {searchCollection.slice(0, 10).map((collection) => (
-                            <button
-                              type="button"
-                              key={collection.id}
-                              onClick={() => onCollection(collection)}
-                              className="search__dropdown-row"
-                            >
-                              {collection.attributes.keyPhrase}
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-                <button
-                  className="Header__search-button"
-                  onClick={onSearchClick}
-                >
-                  Search
-                </button>
-              </div>
               {!query && (
                 <Link
                   className="Header__link_mobile"
@@ -607,49 +560,6 @@ const Header = () => {
         onMouseLeave={() => setIsDesktopMenuOpened(false)}
         ref={searchRef}
       >
-        <div className="Header__menuTop">
-          <div className="Header__search" ref={searchRef}>
-            <div className="search-inner">
-              <div className="search-wrapper">
-                <input
-                  type="text"
-                  value={query}
-                  onChange={searchHandler}
-                  placeholder={data?.headerPlaceholder}
-                  className="search-input"
-                />
-                {!query ? (
-                  <img src={Find} alt="find" className="search-icon" />
-                ) : (
-                  <button
-                    className="search-clear"
-                    type="button"
-                    onClick={handleClear}
-                  >
-                    <img src={Close} alt="close" />
-                  </button>
-                )}
-                {isDropdown && (
-                  <div className="search__dropdown">
-                    {searchCollection.slice(0, 10).map((collection) => (
-                      <button
-                        type="button"
-                        key={collection.id}
-                        onClick={() => onCollection(collection)}
-                        className="search__dropdown-row"
-                      >
-                        {collection.attributes.keyPhrase}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-          <button className="Header__search-button" onClick={onSearchClick}>
-            Search
-          </button>
-        </div>
         {query.length === 0 && (
           <div className="Header__dropMenuDesktop_categories">
             {categories.map((category) => (
@@ -686,10 +596,9 @@ const Header = () => {
               className="Header__link_desktop--vacancy"
               to={
                 routingRule
-                  ? `/${vacancy.attributes.vacancySlug}`
-                  : `/${localization}/${vacancy.attributes.vacancySlug}`
+                  ? `/${vacancy.attributes.categories.data[0].attributes.categorySlug}/${vacancy.attributes.vacancySlug}`
+                  : `/${localization}/${vacancy.attributes.categories.data[0].attributes.categorySlug}/${vacancy.attributes.vacancySlug}`
               }
-              // onClick={() => setCurrentVacancy(vacancy.attributes.vacancySlug)}
               onClick={() => {
                 setCurrentVacancy(vacancy.attributes.vacancySlug);
                 handleDesktopVacancyMenuSelect();

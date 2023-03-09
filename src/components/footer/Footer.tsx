@@ -31,9 +31,6 @@ export const Footer = () => {
           <a href="https://fb.com/remotemployees" target="_blank" rel="noreferrer" className={cl.Footer__link}>
             <FooterIconsSVG id="face" />
           </a>
-          <a href="https://t.me/remotemployees" target="_blank" rel="noreferrer" className={cl.Footer__link}>
-            <FooterIconsSVG id="telega" />
-          </a>
         </div>
       </div>
       <div className={cl.Footer__contacts}>
