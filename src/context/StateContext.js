@@ -2,18 +2,19 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react/jsx-filename-extension */
-import React, { createContext, useContext, useState, useRef } from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
+import React, { createContext, useContext, useState, useRef } from 'react';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 const Context = createContext();
 
 export const StateContext = ({ children }) => {
-  const [localization, setLocalization] = useLocalStorage("localization", "ru");
+  const [localization, setLocalization] = useLocalStorage('localization', 'ru');
   const [isSubmitLocalization, setIsSubmitLocalization] = useLocalStorage(
-    "isSubmitLocalization",
+    'isSubmitLocalization',
     false
   );
 
+  const [localizationArray, setLocalizationArray] = useState([]);
   const [isDesktopMenuOpened, setIsDesktopMenuOpened] = useState(false);
   const [currentVacancy, setCurrentVacancy] = useState();
   const [headerData, setHeaderData] = useState();
@@ -26,7 +27,7 @@ export const StateContext = ({ children }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isFormSubmitError, setIsFormSubmitError] = useState(false);
   const [categorySlug, setCategorySlug] = useState([]);
-  const [currentCategorySlug, setCurrentCategorySlug] = useState("");
+  const [currentCategorySlug, setCurrentCategorySlug] = useState('');
 
   return (
     <Context.Provider
@@ -58,6 +59,8 @@ export const StateContext = ({ children }) => {
         setIsOpenModal,
         setIsFormSubmitError,
         isFormSubmitError,
+        localizationArray,
+        setLocalizationArray,
       }}
     >
       {children}
