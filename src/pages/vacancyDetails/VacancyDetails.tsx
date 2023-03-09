@@ -70,9 +70,7 @@ export const VacancyDetails = () => {
 
     console.log(currentVacancy, categorySlug);
     // console.log("current Slug", categorySlugTitle[0].attributes.categories.data[0].attributes.categorySlug);
-    setCurrentCategorySlug(
-      categorySlugTitle[0].attributes.categories.data[0].attributes.categorySlug
-    );
+    // setCurrentCategorySlug(categorySlugTitle[0].attributes.categories.data[0].attributes.categorySlug);
   }, [currentCategorySlug, categorySlug]);
 
   useEffect(() => {
@@ -273,10 +271,8 @@ export const VacancyDetails = () => {
                       title={anotherVacancy.attributes.title}
                       slug={anotherVacancy.attributes.vacancySlug}
                       isHot={anotherVacancy.attributes.isHot}
-                      cardDescription={
-                        anotherVacancy.attributes.cardDescription
-                      }
-                      categorySlug={currentCategorySlug}
+                      cardDescription={anotherVacancy.attributes.cardDescription}
+                      categorySlug={anotherVacancy.attributes.categories.data[0].attributes.categorySlug}
                     />
                   )}
                 </div>

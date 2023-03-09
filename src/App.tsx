@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable consistent-return */
 /* eslint-disable comma-dangle */
@@ -51,19 +52,49 @@ const App: React.FC = () => {
     setFooterData,
     setIsOpenModal,
     isFormSubmitError,
+    localizationArray,
+    setLocalizationArray
   } = useStateContext();
 
   const navigate = useNavigate();
 
   const routingRule = localization === "ru";
 
+  // useEffect(() => {
+  //   axios
+  //   .get(
+  //     `${API}/i18n/locales`
+  //   )
+  //   .then((res) => {
+  //     console.log(res.data);
+  //     const getLocals = res.data.map((item: { code: any; }) => (item.code === 'uk' ? 'ua' : item.code));
+  //     console.log('get locals', getLocals);
+  //     console.log('1', setLocalizationArray);
+  //     setLocalizationArray([...getLocals]);
+  //     console.log('2', setLocalizationArray);
+  //     console.log('state array, no dep', localizationArray);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+  // }, []);
+// TODO rewrite logic
   useEffect(() => {
     const prevLanguage = window.location.pathname.split("/")[1];
     const prevURL = window.location.pathname.split("/");
-    prevURL.length === 3 ? (prevURL.splice(0, 3)) : (prevURL.splice(0, 2));
-    const match = prevURL.join("/");
+    console.log(prevURL);
+    const localsArray = ["en", "ua", "pl", "sk", "ru"];
+    console.log('state array', Array);
+    if (localsArray.includes(prevURL[1])) {
+      prevURL.splice(1, 1);
+    } else {
+      console.log('nihuya');
+    }
+    console.log('after splice', prevURL);
+    const match = prevURL.filter(Boolean).join('/');
+    console.log('Match = ', match);
     if (routingRule) {
-      return navigate(`/${match}`);
+      return navigate(`${match}`);
     }
     if (localization !== prevLanguage) {
       navigate(`/${localization}/${match}`);
