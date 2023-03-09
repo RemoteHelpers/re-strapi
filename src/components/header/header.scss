@@ -265,8 +265,7 @@
       }
 
       &--vacancy {
-        border: 1px solid $primaryColor1;
-        border-radius: 1rem;
+        border-radius: .5rem;
         padding: .5rem .75rem;
         text-align: left;
         width: 32%;
@@ -276,10 +275,11 @@
         color: $typographyColor1;
         font-size: clamp(15px, 1.04vw, 20px);
 
-        transition: .3s ease-in-out;
+        transition: .2s ease-in;
 
         &:hover {
-          box-shadow: 0 0 .75rem 0 rgba(255, 101, 1, 0.25);
+          background-color: $primaryColor1;
+          color: #fff;
         }
       }
     }
@@ -357,11 +357,9 @@
     &_vacancies {
       display: flex;
       flex-direction: row;
-      grid-row-gap: 1.5rem;
-      row-gap: 1.5rem;
+      gap: 1rem 2%;
       justify-content: flex-start;
       flex-wrap: wrap;
-      column-gap: 2%;
       margin-top: 2rem;
     }
 

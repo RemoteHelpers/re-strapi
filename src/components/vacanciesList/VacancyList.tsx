@@ -140,7 +140,17 @@ export default function Vacancies() {
           }${queryFilters}`
         );
 
-        setSelectedVacancies(res.data.data);
+        setSelectedVacancies(
+          res.data.data.sort((a: any, b: any) => {
+            if (a.attributes.isHot && !b.attributes.isHot) {
+              return -1;
+            }
+            if (!a.attributes.isHot && b.attributes.isHot) {
+              return 1;
+            }
+            return 0;
+          })
+        );
       }
 
       // const res = await axios.get(`${API}/vacancies?
@@ -149,6 +159,8 @@ export default function Vacancies() {
       // setSelectedVacancies(res.data.data);
     }, 400);
   }, [query, currentCategory]);
+
+  console.log(selectedVacancies);
 
   const handleCategorySelect = useCallback(
     (selected: any) => {
@@ -200,6 +212,8 @@ export default function Vacancies() {
     setPageCount(Math.ceil(selectedVacancies.length / itemsPerPage));
   }, [itemOffset, itemsPerPage, selectedVacancies]);
 
+  // console.log(currentItems);
+
   const handlePageClick = (event: { selected: number }) => {
     const newOffset =
       (event.selected * itemsPerPage) % selectedVacancies.length;
@@ -220,8 +234,6 @@ export default function Vacancies() {
       },
     }),
   };
-
-  console.log(currentItems);
 
   return (
     <>

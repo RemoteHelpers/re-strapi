@@ -49,14 +49,14 @@ const VacancyCard: React.FC<Props> = ({
       onClick={handleSlug}
     >
       <div className="VacancyCard">
-        <div className="VacancyCard__banner VacancyCard__banner--mobile">
-          <img src={FireIcon} className="VacancyCard__fireIcon" alt="icon" />
-          {isHot ? (
+        {isHot ? (
+          <div className="VacancyCard__banner VacancyCard__banner--mobile">
+            <img src={FireIcon} className="VacancyCard__fireIcon" alt="icon" />
             <span className="VacancyCard__banner-text">Urgent</span>
-          ) : (
-            ""
-          )}
-        </div>
+          </div>
+        ) : (
+          ""
+        )}
         <div className="VacancyCard__info">
           <h3 className="VacancyCard__title">{title}</h3>
           <p className="VacancyCard__salary">{data?.salary}</p>

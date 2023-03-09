@@ -57,17 +57,17 @@ const Header = () => {
   // eslint-disable-next-line consistent-return
   function chooseImage(id: string | number) {
     switch (id) {
-      case 1:
+      case "development":
         return <img src={dev} alt="" />;
-      case 2:
+      case "design":
         return <img src={illustrator} alt="" />;
-      case 4:
+      case "marketing":
         return <img src={marketing} alt="" />;
-      case 5:
+      case "managers":
         return <img src={management} alt="" />;
-      case 6:
+      case "translators":
         return <img src={trns} alt="" />;
-      case 7:
+      case "tutors":
         return <img src={teacher} alt="" />;
       default:
         return <img src={teacher} alt="" />;
@@ -222,6 +222,8 @@ const Header = () => {
         currentCategory : (''))
     );
   }, [currentCategory, vacancies]);
+
+  console.log(categories);
 
   let isActiveCategory: boolean;
 
@@ -486,7 +488,7 @@ const Header = () => {
                     className="Header__link_mobile"
                     onClick={handleCategorySelect}
                   >
-                    {chooseImage(category.id as string)}
+                    {chooseImage(category.attributes.categorySlug as string)}
                     <span>{category.attributes.categoryTitle}</span>
                   </span>
                 ))}
@@ -580,7 +582,7 @@ const Header = () => {
                   className={classNames("Header__link_desktop")}
                 />
                 <label className="label" htmlFor={category.id}>
-                  {chooseImage(category.id as string)}
+                  {chooseImage(category.attributes.categorySlug as string)}
                   <span className="label-title">
                     {category.attributes.categoryTitle}
                   </span>
