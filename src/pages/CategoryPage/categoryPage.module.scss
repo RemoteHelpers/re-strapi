@@ -1,0 +1,79 @@
+@import "../../global-styles/colors.scss";
+@import "../../global-styles/fonts.scss";
+@import "../../utils/mixins.scss";
+
+.category_page {
+  border: 2px solid $secondaryColor4;
+  border-radius: 1.25rem;
+  padding: 1.25rem 1rem;
+
+  @include onTablet {
+    padding: 2.25rem 2rem;
+    border: 2px solid $secondaryColor4;
+  }
+
+  h1 {
+    font-style: normal;
+    font-weight: 900;
+    font-size: clamp(32px, 3.3vw, 64px);
+    text-decoration-line: underline;
+    color: $typographyColor1;
+    margin-top: 2rem;
+  }
+
+  p {
+    margin: 1.5rem 0;
+    line-height: 1.4;
+  }
+
+  h2 {
+    margin: 2rem 0;
+  }
+
+  ul {
+    list-style-type: none;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem 0;
+  }
+}
+
+.container {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+  padding: 3.5rem 0 7rem 0;
+
+  @include onTablet {
+    width: 80%;
+    padding: 3.5rem 0 10rem 0;
+  }
+}
+
+.category_vacancies {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem 0;
+}
+
+.category_form {
+  margin: 2rem 0 0 0;
+}
+
+.toTopButton {
+  position: absolute;
+  width: 100%;
+  right: -47%;
+  bottom: 1rem;
+  border: none;
+  background: transparent;
+
+  @include onTablet {
+    right: -48%;
+    bottom: 2rem;
+  }
+  @include onDesktop {
+    right: -86%;
+  }
+}

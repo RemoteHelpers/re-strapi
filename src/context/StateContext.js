@@ -27,10 +27,13 @@ export const StateContext = ({ children }) => {
   const [isFormSubmitError, setIsFormSubmitError] = useState(false);
   const [categorySlug, setCategorySlug] = useState([]);
   const [currentCategorySlug, setCurrentCategorySlug] = useState("");
+  const [currentGlobalCategory, setCurrentGlobalCategory] = useState([]);
 
   return (
     <Context.Provider
       value={{
+        currentGlobalCategory,
+        setCurrentGlobalCategory,
         currentCategorySlug,
         setCurrentCategorySlug,
         categorySlug,

@@ -82,17 +82,11 @@ const App: React.FC = () => {
   useEffect(() => {
     const prevLanguage = window.location.pathname.split("/")[1];
     const prevURL = window.location.pathname.split("/");
-    console.log(prevURL);
     const localsArray = ["en", "ua", "pl", "sk", "ru"];
-    console.log('state array', Array);
     if (localsArray.includes(prevURL[1])) {
       prevURL.splice(1, 1);
-    } else {
-      console.log('nihuya');
     }
-    console.log('after splice', prevURL);
     const match = prevURL.filter(Boolean).join('/');
-    console.log('Match = ', match);
     if (routingRule) {
       return navigate(`${match}`);
     }

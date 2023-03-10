@@ -1,7 +1,88 @@
-import React from 'react';
+/* eslint-disable no-shadow */
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable react/no-children-prop */
+/* eslint-disable comma-dangle */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable no-console */
+import React, { useState, useEffect, Fragment } from "react";
+import { useParams } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
+import axios from "axios";
+import { API } from "../../constants";
+
+import sl from "./categoryPage.module.scss";
+import { useStateContext } from "../../context/StateContext";
+import VacancyCard from "../../components/vacancyCard";
+import VacancyForm from "../../components/forms/vacancyForm";
+import ToTopButton from "../../components/toTopButton/ToTopButton";
 
 const CategoryPage = () => {
-  return <div>CategoryPage</div>;
+  const [category, setCategory] = useState([]);
+  const [filteredVacancies, setFilteredVacancies] = useState([]);
+
+  const { currentGlobalCategory } = useStateContext();
+
+  const { categoryID } = useParams();
+
+  useEffect(() => {
+    axios
+      .get(`${API}/categories`)
+      .then((res) => {
+        setCategory(
+          res.data.data.filter(
+            (el: any) => el.attributes.categorySlug === categoryID
+          )
+        );
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    setFilteredVacancies(
+      // eslint-disable-next-line no-confusing-arrow
+      currentGlobalCategory.filter((el: any) => el.attributes.categories.data[0]
+        ? el.attributes.categories.data[0].attributes.categorySlug === categoryID
+        : "")
+    );
+  }, [currentGlobalCategory]);
+
+  console.log(filteredVacancies);
+
+  return (
+    <div className={sl.container}>
+      <div className={sl.category_page}>
+        {category.map((item: any) => (
+          <>
+            <Fragment key={item.id}>
+              <h1>{item.attributes.categoryTitle}</h1>
+              <ReactMarkdown children={item.attributes.description} />
+            </Fragment>
+            <div className={sl.category_vacancies}>
+              {filteredVacancies.map((item: any) => (
+                <VacancyCard
+                  key={item.id}
+                  title={item.attributes.title}
+                  slug={item.attributes.vacancySlug}
+                  isHot={item.attributes.isHot}
+                  cardDescription={item.attributes.description}
+                  categorySlug={item.attributes.categories.data[0].attributes.categorySlug}
+                />
+              ))}
+            </div>
+            <div className={sl.category_form}>
+              <VacancyForm />
+            </div>
+          </>
+        ))}
+      </div>
+      <div className={sl.toTopButton}>
+        <ToTopButton />
+      </div>
+    </div>
+  );
 };
 
 export default CategoryPage;

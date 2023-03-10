@@ -27,6 +27,7 @@ function FeedbackForm() {
   )?.data;
 
   const url = window.location.pathname === `/${localization}/videoInterview`;
+  const urlRu = window.location.pathname === `/videoInterview`;
 
   return (
     <>
@@ -39,7 +40,7 @@ function FeedbackForm() {
       <div className={cl.feedback} id="form">
         <div className={cl.feedback_wr}>
           <div className={url ? cl.null_padding : cl.img_wr_desktop}>
-            {url ? (
+            {url || urlRu ? (
               <img src={vacancyCat} alt="Happy cat" />
             ) : (
               <img src={feedbackCat} alt="Happy cat" />

@@ -37,8 +37,7 @@ import formImg from "../../images/formImg.png";
 import VacanciesList from "../../components/vacanciesList";
 import { useStateContext } from "../../context/StateContext";
 import Loader from "../../components/loader";
-
-const API = "https://admin.r-ez.com/api";
+import { API } from "../../constants";
 
 const itemsPerPage = 6;
 

@@ -42,6 +42,8 @@ import { VACANCYLIST } from "../../database/common/vacancyList";
 import Find from "../../images/findIcon.svg";
 import Close from "../../images/close.svg";
 
+import { requestPagStart, requestPagLimit } from "../../constants";
+
 import dev from "../../images/header/categories-icons/developer.png";
 import trns from "../../images/header/categories-icons/translation.png";
 import management from "../../images/header/categories-icons/management.png";
@@ -54,7 +56,6 @@ const API = "https://admin.r-ez.com/api";
 let searchTime: any;
 
 const Header = () => {
-  // eslint-disable-next-line consistent-return
   function chooseImage(id: string | number) {
     switch (id) {
       case "development":
@@ -83,7 +84,7 @@ const Header = () => {
     setCurrentVacancy,
     headerData,
     setIsOpenModal,
-    currentCategorySlug,
+    setCurrentGlobalCategory,
   } = useStateContext();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -131,23 +132,23 @@ const Header = () => {
       });
   }, [localization]);
 
-  const requestPagStart = "pagination[start]";
-  const requestPagLimit = "pagination[limit]";
-
   const fetchData = async () => {
     await axios
       .get(
         `${API}/vacancies?locale=${
           localization === "ua" ? "uk" : localization
-        }&${requestPagStart}=${vacancies.length}&${requestPagLimit}=-1&populate=*`
+        }&${requestPagStart}=${
+          vacancies.length
+        }&${requestPagLimit}=-1&populate=*`
       )
       .then((res) => {
         setTotal(res.data.meta.pagination.total);
         res.data.data.length
           ? setVacancies([...vacancies, ...res.data.data])
           : "";
-      }).catch((error) => {
-        console.error('Vacancy error >>>', error);
+      })
+      .catch((error) => {
+        console.error("Vacancy error >>>", error);
       });
   };
 
@@ -157,7 +158,7 @@ const Header = () => {
 
   useEffect(() => {
     vacancies.length < total ? fetchData() : "";
-    // console.log("Vacancies >>>", vacancies, localization);
+    setCurrentGlobalCategory(vacancies);
   }, [vacancies, localization]);
 
   const selectLocalization = [
@@ -217,13 +218,14 @@ const Header = () => {
 
   useEffect(() => {
     setSelectedVacancies(
-      vacancies.filter(
-        (el) => el.attributes.categories.data[0] ? el.attributes.categories.data[0].attributes.categoryTitle ===
-        currentCategory : (''))
+      vacancies.filter((el) =>
+        el.attributes.categories.data[0]
+          ? el.attributes.categories.data[0].attributes.categoryTitle ===
+            currentCategory
+          : ""
+      )
     );
   }, [currentCategory, vacancies]);
-
-  console.log(categories);
 
   let isActiveCategory: boolean;
 
@@ -284,8 +286,6 @@ const Header = () => {
   document.getElementById("vacancies")?.addEventListener("mouseover", () => {
     setIsDesktopMenuOpened(true);
   });
-
-  console.log(selectedVacancies);
 
   return (
     <header id="header" className="Header">

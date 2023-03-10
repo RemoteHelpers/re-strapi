@@ -160,8 +160,6 @@ export default function Vacancies() {
     }, 400);
   }, [query, currentCategory]);
 
-  console.log(selectedVacancies);
-
   const handleCategorySelect = useCallback(
     (selected: any) => {
       if (currentCategory !== selected.label) {
