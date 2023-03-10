@@ -5,7 +5,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable no-console */
-import React, { useState, useEffect, Fragment } from "react";
+import React, {
+  useState, useEffect, Fragment, useRef
+} from "react";
 import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import axios from "axios";
@@ -20,14 +22,17 @@ import ToTopButton from "../../components/toTopButton/ToTopButton";
 const CategoryPage = () => {
   const [category, setCategory] = useState([]);
   const [filteredVacancies, setFilteredVacancies] = useState([]);
+  const formSection = useRef<HTMLDivElement>(null);
 
-  const { currentGlobalCategory } = useStateContext();
+  const { currentGlobalCategory, localization } = useStateContext();
 
   const { categoryID } = useParams();
 
   useEffect(() => {
     axios
-      .get(`${API}/categories`)
+      .get(`${API}/categories?locale=${
+        localization === "ua" ? "uk" : localization
+      }`)
       .then((res) => {
         setCategory(
           res.data.data.filter(
@@ -38,14 +43,24 @@ const CategoryPage = () => {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
+  }, [localization]);
 
   useEffect(() => {
     setFilteredVacancies(
       // eslint-disable-next-line no-confusing-arrow
       currentGlobalCategory.filter((el: any) => el.attributes.categories.data[0]
         ? el.attributes.categories.data[0].attributes.categorySlug === categoryID
-        : "")
+        : "").sort((a: any, b: any) => {
+        if (a.attributes.isHot && !b.attributes.isHot) {
+          return -1;
+        }
+
+        if (!a.attributes.isHot && b.attributes.isHot) {
+          return 1;
+        }
+
+        return 0;
+      })
     );
   }, [currentGlobalCategory]);
 
@@ -60,6 +75,15 @@ const CategoryPage = () => {
               <h1>{item.attributes.categoryTitle}</h1>
               <ReactMarkdown children={item.attributes.description} />
             </Fragment>
+            <button
+              type="button"
+              onClick={() => formSection?.current?.scrollIntoView({
+                block: "start",
+                behavior: "smooth",
+              })}
+            >
+              Подать заявку
+            </button>
             <div className={sl.category_vacancies}>
               {filteredVacancies.map((item: any) => (
                 <VacancyCard
@@ -67,11 +91,12 @@ const CategoryPage = () => {
                   title={item.attributes.title}
                   slug={item.attributes.vacancySlug}
                   isHot={item.attributes.isHot}
-                  cardDescription={item.attributes.description}
+                  cardDescription=""
                   categorySlug={item.attributes.categories.data[0].attributes.categorySlug}
                 />
               ))}
             </div>
+            <div ref={formSection}></div>
             <div className={sl.category_form}>
               <VacancyForm />
             </div>
