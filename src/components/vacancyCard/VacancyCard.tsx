@@ -25,7 +25,10 @@ const VacancyCard: React.FC<Props> = ({
   cardDescription,
   categorySlug,
 }) => {
-  const { setCurrentVacancy, localization } = useStateContext();
+  const {
+    setCurrentVacancy,
+    localization,
+  } = useStateContext();
   const [data, setData] = useState<any>();
   const handleSlug = () => {
     setCurrentVacancy(slug);

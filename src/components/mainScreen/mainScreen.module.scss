@@ -58,25 +58,21 @@
 // }
 
 .image {
-  height: 23.1rem;
-  max-height: 100%;
   width: 22rem;
+  max-width: 100%;
 
   @include onTablet {
     align-self: center;
     width: 26rem;
-    height: 27.3rem;
   }
 
   @include onDesktop {
     text-align: inherit;
     width: 27.7rem;
-    height: 29.1rem;
   }
 
   @include on1920 {
     width: 41.6rem;
-    height: 43.6rem;
   }
 }
 

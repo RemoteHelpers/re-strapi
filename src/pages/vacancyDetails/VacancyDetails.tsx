@@ -40,10 +40,6 @@ export const VacancyDetails = () => {
   const {
     localization,
     scrollToTop,
-    categorySlug,
-    currentVacancy,
-    setCurrentCategorySlug,
-    currentCategorySlug,
   } = useStateContext();
   const [localVacancy, setLocalVacancy] = useState<LocalVacancyType[]>([]);
   const [anotherVacancies, setAnotherVacancies] = useState([]);
@@ -62,16 +58,6 @@ export const VacancyDetails = () => {
 
     setData(res[0]);
   }, [localization]);
-
-  useEffect(() => {
-    const categorySlugTitle = categorySlug.filter(
-      (el: any) => el.attributes.vacancySlug === currentVacancy
-    );
-
-    console.log(currentVacancy, categorySlug);
-    // console.log("current Slug", categorySlugTitle[0].attributes.categories.data[0].attributes.categorySlug);
-    // setCurrentCategorySlug(categorySlugTitle[0].attributes.categories.data[0].attributes.categorySlug);
-  }, [currentCategorySlug, categorySlug]);
 
   useEffect(() => {
     axios

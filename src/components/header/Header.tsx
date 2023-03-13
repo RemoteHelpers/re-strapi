@@ -499,8 +499,8 @@ const Header = () => {
                     className="Header__link_mobile"
                     to={
                       routingRule
-                        ? `/${vacancy.attributes.vacancySlug}`
-                        : `/${localization}/${vacancy.attributes.vacancySlug}`
+                        ? `/${vacancy.attributes.categories.data[0].attributes.categorySlug}/${vacancy.attributes.vacancySlug}`
+                        : `/${localization}/${vacancy.attributes.categories.data[0].attributes.categorySlug}/${vacancy.attributes.vacancySlug}`
                     }
                     onClick={() => {
                       setCurrentVacancy(vacancy.attributes.vacancySlug);
@@ -538,8 +538,8 @@ const Header = () => {
                   className="Header__link_mobile"
                   to={
                     routingRule
-                      ? `/${vacancy.attributes.vacancySlug}`
-                      : `/${localization}/${vacancy.attributes.vacancySlug}`
+                      ? `/${vacancy.attributes.categories.data[0].attributes.categorySlug}/${vacancy.attributes.vacancySlug}`
+                      : `/${localization}/${vacancy.attributes.categories.data[0].attributes.categorySlug}/${vacancy.attributes.vacancySlug}`
                   }
                   onClick={() => {
                     setCurrentVacancy(vacancy.attributes.vacancySlug);

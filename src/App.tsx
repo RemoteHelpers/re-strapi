@@ -19,8 +19,8 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes, BrowserRouter, useNavigate } from "react-router-dom";
 import { useStateContext } from "./context/StateContext";
-import { Helmet } from 'react-helmet';
-import { META } from './database/common/meta';
+import { Helmet } from "react-helmet";
+import { META } from "./database/common/meta";
 
 import "./App.scss";
 
@@ -40,7 +40,7 @@ import axios from "axios";
 import ChooseLanguageModal from "./components/chooseLanguageModal";
 import FormSubmitErrorPage from "./pages/formSubmitErrorPage";
 
-const API = "https://admin.r-ez.com/api";
+import { API } from "./constants";
 
 const App: React.FC = () => {
   const {
@@ -52,12 +52,8 @@ const App: React.FC = () => {
     setFooterData,
     setIsOpenModal,
     isFormSubmitError,
-    localizationArray,
-    setLocalizationArray
   } = useStateContext();
-
   const navigate = useNavigate();
-
   const routingRule = localization === "ru";
 
   // useEffect(() => {
@@ -78,7 +74,7 @@ const App: React.FC = () => {
   //     console.log(err);
   //   });
   // }, []);
-// TODO rewrite logic
+  // TODO rewrite logic
   useEffect(() => {
     const prevLanguage = window.location.pathname.split("/")[1];
     const prevURL = window.location.pathname.split("/");
@@ -86,7 +82,7 @@ const App: React.FC = () => {
     if (localsArray.includes(prevURL[1])) {
       prevURL.splice(1, 1);
     }
-    const match = prevURL.filter(Boolean).join('/');
+    const match = prevURL.filter(Boolean).join("/");
     if (routingRule) {
       return navigate(`${match}`);
     }
@@ -129,9 +125,7 @@ const App: React.FC = () => {
     }, 1000);
   }
 
-  const metaDatas = META.find(
-    (el) => el.language === localization
-  )?.data;
+  const metaDatas = META.find((el) => el.language === localization)?.data;
 
   return (
     <>
