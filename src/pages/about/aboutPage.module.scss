@@ -54,7 +54,6 @@
   h1 {
     color: $typographyColor1;
     font-size: $typography1;
-    text-decoration: underline;
     margin-bottom: 2.375rem;
     font-style: normal;
     font-weight: 900;
@@ -148,6 +147,7 @@
   .video_iframe {
     width: 100% !important;
     height: 100% !important;
+    cursor: pointer;
     div iframe {
       display: block;
       width: 100%;
@@ -189,7 +189,6 @@ section {
   h1 {
     color: $typographyColor2;
     font-size: $typography2;
-    text-decoration: underline;
   }
   p {
     font-size: $typography4;
@@ -215,7 +214,6 @@ section {
   h1 {
     color: $typographyColor2;
     font-size: $typography2;
-    text-decoration: underline;
   }
   p {
     margin: 1.25rem 0 3.25rem 0;

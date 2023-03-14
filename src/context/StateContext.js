@@ -26,13 +26,16 @@ export const StateContext = ({ children }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isFormSubmitError, setIsFormSubmitError] = useState(false);
   const [categorySlug, setCategorySlug] = useState([]);
-  const [currentGlobalCategory, setCurrentGlobalCategory] = useState([]);
+  const [currentGlobalVacancies, setCurrentGlobalVacancies] = useState([]);
+  const [globalCategories, setGlobalCategories] = useState([]);
 
   return (
     <Context.Provider
       value={{
-        currentGlobalCategory,
-        setCurrentGlobalCategory,
+        globalCategories,
+        setGlobalCategories,
+        currentGlobalVacancies,
+        setCurrentGlobalVacancies,
         categorySlug,
         setCategorySlug,
         scrollToTopVacancies,

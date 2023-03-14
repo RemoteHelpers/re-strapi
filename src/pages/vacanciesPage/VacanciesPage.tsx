@@ -242,6 +242,7 @@ export const VacaniesPage = () => {
                     />
                   </div>
                 </li>
+                <VacanciesList />
                 <li className="Vacancies__about__item">
                   {onlyWidth >= 1430 && (
                     <img
@@ -307,7 +308,6 @@ export const VacaniesPage = () => {
                 </li>
               </ul>
             </div>
-            <VacanciesList />
             <div className="form_wrapper">
               <FeedbackForm />
             </div>

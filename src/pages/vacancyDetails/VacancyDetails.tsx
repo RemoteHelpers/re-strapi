@@ -32,7 +32,7 @@ import cl from "./vacancyDetails.module.scss";
 import VacancyCard from "../../components/vacancyCard";
 import { VACANCY_DETAILS } from "../../database/vacancyDetailsPage";
 
-const API = "https://admin.r-ez.com/api";
+import { API } from "../../constants";
 
 const PhotoAPI = "https://admin.r-ez.com/";
 
@@ -51,7 +51,7 @@ export const VacancyDetails = () => {
 
   const { categoryID, vacancyID } = useParams();
 
-  const routingRule = localization === "ru";
+  const routingRule = localization === 'ru';
 
   useEffect(() => {
     const res = VACANCY_DETAILS.filter((el) => el.language === localization);

@@ -12,14 +12,14 @@ import FeedbackForm from "../../components/forms/feedbackForm";
 import memberTeam from "../../icons/team_member.png";
 import { AboutPageSvg } from "./AboutPageSvg";
 import Spheres from "../../components/spheres";
-import aboutPreview from "../../images/aboutPage/about-preview.png";
+// import aboutPreview from "../../images/aboutPage/about-preview.png";
 import { ABOUT_PAGE } from "../../database/aboutPage";
 import { useStateContext } from "../../context/StateContext";
 import Loader from "../../components/loader";
 
 export const AboutPage = () => {
   const { localization } = useStateContext();
-  const [previewVideoImage, setPreviewVideoImage] = useState(true);
+  // const [previewVideoImage, setPreviewVideoImage] = useState(true);
   const [data, setData] = useState<any>();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -30,9 +30,9 @@ export const AboutPage = () => {
     console.log(data);
   }, [localization]);
 
-  const playVideo = () => {
-    setPreviewVideoImage(false);
-  };
+  // const playVideo = () => {
+  //   setPreviewVideoImage(false);
+  // };
 
   useEffect(() => {
     document.title = "Remote Employees";
@@ -58,18 +58,17 @@ export const AboutPage = () => {
                 <button
                   type="button"
                   className={cl.video_intro}
-                  onClick={playVideo}
+                  // onClick={playVideo}
                 >
-                  {previewVideoImage ? (
+                  {/* {previewVideoImage ? (
                     <img src={aboutPreview} alt="video about us" />
-                  ) : (
-                    <ReactPlayer
-                      url="https://www.youtube.com/watch?v=WWqF-1vRSRk"
-                      className={cl.video_iframe}
-                      controls
-                      playing
-                    />
-                  )}
+                  ) : ( */}
+                  <ReactPlayer
+                    url="https://www.youtube.com/watch?v=WWqF-1vRSRk"
+                    className={cl.video_iframe}
+                    controls
+                  />
+                  {/* )} */}
                 </button>
               </div>
               <div className={cl.intro_kitekat}>

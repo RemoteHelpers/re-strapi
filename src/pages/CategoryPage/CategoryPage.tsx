@@ -24,7 +24,7 @@ const CategoryPage = () => {
   const [filteredVacancies, setFilteredVacancies] = useState([]);
   const formSection = useRef<HTMLDivElement>(null);
 
-  const { currentGlobalCategory, localization } = useStateContext();
+  const { currentGlobalVacancies, localization } = useStateContext();
 
   const { categoryID } = useParams();
 
@@ -48,7 +48,7 @@ const CategoryPage = () => {
   useEffect(() => {
     setFilteredVacancies(
       // eslint-disable-next-line no-confusing-arrow
-      currentGlobalCategory.filter((el: any) => el.attributes.categories.data[0]
+      currentGlobalVacancies.filter((el: any) => el.attributes.categories.data[0]
         ? el.attributes.categories.data[0].attributes.categorySlug === categoryID
         : "").sort((a: any, b: any) => {
         if (a.attributes.isHot && !b.attributes.isHot) {
@@ -62,7 +62,7 @@ const CategoryPage = () => {
         return 0;
       })
     );
-  }, [currentGlobalCategory]);
+  }, [currentGlobalVacancies]);
 
   console.log(filteredVacancies);
 

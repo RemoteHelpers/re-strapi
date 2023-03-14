@@ -21,7 +21,7 @@
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import classNames from "classnames";
 import Select, { components } from "react-select";
 import { CSSTransition } from "react-transition-group";
@@ -37,12 +37,9 @@ import useOutsideAlerter from "../../hooks/useClickOutside";
 import NextIcon from "../../images/header/nextIcon.svg";
 import Loader from "../loader/Loader";
 import { HEADER } from "../../database/common/header";
-import ChooseLanguageModal from "../chooseLanguageModal";
 import { VACANCYLIST } from "../../database/common/vacancyList";
-import Find from "../../images/findIcon.svg";
-import Close from "../../images/close.svg";
 
-import { requestPagStart, requestPagLimit } from "../../constants";
+import { API, requestPagStart, requestPagLimit } from "../../constants";
 
 import dev from "../../images/header/categories-icons/developer.png";
 import trns from "../../images/header/categories-icons/translation.png";
@@ -50,8 +47,6 @@ import management from "../../images/header/categories-icons/management.png";
 import marketing from "../../images/header/categories-icons/marketing.png";
 import illustrator from "../../images/header/categories-icons/illustrator.png";
 import teacher from "../../images/header/categories-icons/teacher.png";
-
-const API = "https://admin.r-ez.com/api";
 
 let searchTime: any;
 
@@ -84,7 +79,8 @@ const Header = () => {
     setCurrentVacancy,
     headerData,
     setIsOpenModal,
-    setCurrentGlobalCategory,
+    setCurrentGlobalVacancies,
+    setGlobalCategories,
   } = useStateContext();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -99,8 +95,6 @@ const Header = () => {
   const [data, setData] = useState<any>();
   const [total, setTotal] = useState<number>(0);
   const [paginationStart, setPaginationStart] = useState(0);
-
-  const navigate = useNavigate();
 
   const routingRule = localization === "ru";
 
@@ -125,6 +119,8 @@ const Header = () => {
       )
       .then((res) => {
         setCategories(res.data.data);
+        // Отказаться от хуйни сверху
+        setGlobalCategories(res.data.data);
         // console.log("Categories from header", res.data.data);
       })
       .catch((err) => {
@@ -158,7 +154,7 @@ const Header = () => {
 
   useEffect(() => {
     vacancies.length < total ? fetchData() : "";
-    setCurrentGlobalCategory(vacancies);
+    setCurrentGlobalVacancies(vacancies);
   }, [vacancies, localization]);
 
   const selectLocalization = [
@@ -226,8 +222,6 @@ const Header = () => {
       )
     );
   }, [currentCategory, vacancies]);
-
-  let isActiveCategory: boolean;
 
   const handleCategoryMenuSelect = useCallback(
     (event: any) => {
