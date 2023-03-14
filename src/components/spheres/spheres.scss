@@ -21,7 +21,6 @@
     font-weight: 800;
     font-size: $typography2;
     line-height: 130%;
-    text-decoration-line: underline;
     color: $typographyColor2;
 
     margin-top: 0;
@@ -37,8 +36,10 @@
   }
 
   &__icon {
-    max-width: 100%;
+    width: 100%;
+    max-width: 125px;
     height: auto;
+    cursor: pointer;
 
     border: 0.1rem solid $primaryColor1;
     border-radius: 0.9rem;
@@ -49,7 +50,7 @@
     transition: all 0.3s;
 
     &:hover {
-      transform: scale(105%);
+      transform: scale(1.03);
     }
   }
   &__sphere {
@@ -69,9 +70,11 @@
   }
   &__sphere-title {
     font-weight: 700;
+    color: $typographyColor1;
     font-size: $typography4;
     line-height: 115%;
     margin: 0.9rem 0 1.9rem;
+    text-decoration: underline;
 
     @include onDesktop {
       margin: 1.4rem 0 0;

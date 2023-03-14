@@ -33,7 +33,7 @@ import { useStateContext } from "../../context/StateContext";
 
 const API = "https://admin.r-ez.com/api";
 
-const itemsPerPage = 6;
+const itemsPerPage = 9;
 
 let searchTime: any;
 let vacationTime: any;

@@ -4,7 +4,6 @@
 
 h2 {
   color: $typographyColor2;
-  text-decoration: underline;
   font-style: normal;
   font-weight: 800;
   font-size: clamp(24px, 2.5vw, 48px);
@@ -35,7 +34,6 @@ h2 {
     font-style: normal;
     font-weight: 900;
     font-size: clamp(32px, 3.3vw, 64px);
-    text-decoration-line: underline;
     color: $typographyColor1;
     margin-top: 2rem;
   }

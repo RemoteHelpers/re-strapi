@@ -117,7 +117,6 @@ img {
     font-style: normal;
     font-weight: 900;
     line-height: 130%;
-    text-decoration: underline;
     position: relative;
     &::before {
       content: "";
@@ -191,7 +190,6 @@ img {
   font-weight: 800;
   font-size: $typography2;
   line-height: 130%;
-  text-decoration-line: underline;
 
   color: $typographyColor2;
   margin-bottom: 3rem;
@@ -292,6 +290,7 @@ img {
   .video_iframe {
     width: 100% !important;
     height: 100% !important;
+    cursor: pointer;
     div iframe {
       display: block;
       width: 100%;
@@ -328,7 +327,6 @@ img {
     font-size: clamp(28px, 2.5vw, 48px);
     line-height: 130%;
     color: $typographyColor2;
-    text-decoration: underline;
   }
   p {
     margin-top: 1rem;
@@ -374,7 +372,6 @@ img {
     font-size: clamp(28px, 2.5vw, 48px);
     line-height: 130%;
     color: $typographyColor2;
-    text-decoration: underline;
   }
 }
 

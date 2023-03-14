@@ -17,7 +17,6 @@
     font-weight: 800;
     font-size: $typography2;
     line-height: 130%;
-    text-decoration-line: underline;
     color: $typographyColor2;
 
     margin-bottom: 3rem;
@@ -126,9 +125,6 @@
       width: 1.5rem;
       height: 1.5rem;
       opacity: 1;
-
-      &:hover {
-      }
 
       @include onDesktop {
         width: 1.1rem;

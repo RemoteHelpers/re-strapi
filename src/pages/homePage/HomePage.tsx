@@ -18,7 +18,7 @@ import cl from "./HomePage.module.scss";
 import { HOME_PAGE } from "../../database/home_page";
 import Loader from "../../components/loader";
 
-const API = "https://admin.r-ez.com/api";
+import { API } from "../../constants";
 
 export const HomePage = () => {
   const { setHomeData, localization } = useStateContext();

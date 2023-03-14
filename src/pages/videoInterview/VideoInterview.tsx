@@ -17,14 +17,14 @@ import cameraKitekat from "../../icons/kitekat_camera.png";
 import FeedbackForm from "../../components/forms/feedbackForm";
 // import { ArrowSvg } from "./ArrowSvg";
 import interviewCat from "../../icons/interview_kitekat.png";
-import interviewPreview from "../../images/videoInterviewPage/interview-preview.png";
+// import interviewPreview from "../../images/videoInterviewPage/interview-preview.png";
 import { useStateContext } from "../../context/StateContext";
 import { VIDEOINTERVIEW_PAGE } from "../../database/videointerview_page";
 import FAQ from "../../components/faq";
 import Loader from "../../components/loader";
 
 export const VideoInterview = () => {
-  const [previewVideoImage, setPreviewVideoImage] = useState(null);
+  // const [previewVideoImage, setPreviewVideoImage] = useState(null);
   const { localization } = useStateContext();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -51,9 +51,9 @@ export const VideoInterview = () => {
     },
   ];
 
-  const playVideo = (event: any) => {
-    setPreviewVideoImage(event.currentTarget.id);
-  };
+  // const playVideo = (event: any) => {
+  //   setPreviewVideoImage(event.currentTarget.id);
+  // };
 
   useEffect(() => {
     document.title = "Remote Employees";
@@ -111,18 +111,17 @@ export const VideoInterview = () => {
                   type="button"
                   id="instruction"
                   className={cl.instruction_video_title}
-                  onClick={playVideo}
+                  // onClick={playVideo}
                 >
-                  {previewVideoImage !== "instruction" ? (
+                  {/* {previewVideoImage !== "instruction" ? (
                     <img src={interviewPreview} alt="interview preview" />
-                  ) : (
-                    <ReactPlayer
-                      className={cl.video_iframe}
-                      url="https://www.youtube.com/watch?v=1PRGzaUIvGM"
-                      controls
-                      playing
-                    />
-                  )}
+                  ) : ( */}
+                  <ReactPlayer
+                    className={cl.video_iframe}
+                    url="https://www.youtube.com/watch?v=1PRGzaUIvGM"
+                    controls
+                  />
+                  {/* )} */}
                 </button>
                 <div className={cl.video_instruction}>
                   <h1>{localizedVideoInterviewData?.instruction_title}</h1>
@@ -139,18 +138,17 @@ export const VideoInterview = () => {
                       id={`${videoItem.id}`}
                       key={videoItem.id}
                       className={cl.instruction_video_title}
-                      onClick={playVideo}
+                      // onClick={playVideo}
                     >
-                      {previewVideoImage !== `${videoItem.id}` ? (
+                      {/* {previewVideoImage !== `${videoItem.id}` ? (
                         <img src={interviewPreview} alt="interview preview" />
-                      ) : (
-                        <ReactPlayer
-                          className={cl.video_iframe}
-                          url={videoItem.url}
-                          controls
-                          playing
-                        />
-                      )}
+                      ) : ( */}
+                      <ReactPlayer
+                        className={cl.video_iframe}
+                        url={videoItem.url}
+                        controls
+                      />
+                      {/* )} */}
                     </button>
                   ))}
                 </div>
