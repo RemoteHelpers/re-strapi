@@ -6,10 +6,12 @@
   border: 2px solid $secondaryColor4;
   border-radius: 1.25rem;
   padding: 1.25rem 1rem;
+  margin-top: 5rem;
 
   @include onTablet {
     padding: 2.25rem 2rem;
     border: 2px solid $secondaryColor4;
+    margin-top: 10rem;
   }
 
   h1 {
