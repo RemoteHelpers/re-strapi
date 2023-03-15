@@ -3,29 +3,29 @@
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable @typescript-eslint/quotes */
 // eslint-disable-next-line no-undef
-import Convertise from "../images/Partners/Convertise.svg";
-import Chiko from "../images/Partners/Chiko.svg";
-import Collectmedia from "../images/Partners/Collectmedia.svg";
-import ChangeConsulting from "../images/Partners/Change-Consulting.svg";
-import Clevver from "../images/Partners/Clevver.png";
-import TakeTask from "../images/Partners/TakeTask.svg";
-import FancyGames from "../images/Partners/FancyGames.svg";
-import LearnerOn from "../images/Partners/LearnerOn.svg";
-import Silicon from "../images/Partners/Silicon.svg";
-import EvolutionU from "../images/Partners/EvolutionU.svg";
-import Online from "../images/Partners/Online.svg";
-import Eurekos from "../images/Partners/Eurekos.svg";
-import Itica from "../images/Partners/Itica.png";
-import ThreeDgency from "../images/Partners/3Dgency.svg";
-import Metropolitans from "../images/Partners/Metropolitans.svg";
-import Terranova from "../images/Partners/Terranova.svg";
+import Convertise from '../images/Partners/Convertise.svg';
+import Chiko from '../images/Partners/Chiko.svg';
+import Collectmedia from '../images/Partners/Collectmedia.svg';
+import ChangeConsulting from '../images/Partners/Change-Consulting.svg';
+import Clevver from '../images/Partners/Clevver.png';
+import TakeTask from '../images/Partners/TakeTask.svg';
+import FancyGames from '../images/Partners/FancyGames.svg';
+import LearnerOn from '../images/Partners/LearnerOn.svg';
+import Silicon from '../images/Partners/Silicon.svg';
+import EvolutionU from '../images/Partners/EvolutionU.svg';
+import Online from '../images/Partners/Online.svg';
+import Eurekos from '../images/Partners/Eurekos.svg';
+import Itica from '../images/Partners/Itica.png';
+import ThreeDgency from '../images/Partners/3Dgency.svg';
+import Metropolitans from '../images/Partners/Metropolitans.svg';
+import Terranova from '../images/Partners/Terranova.svg';
 
 export const HOME_PAGE = [
   {
-    language: "ua",
+    language: 'ua',
     data: {
       hero_section: {
-        title: "Хочеш Працювати у сфері IT віддалено?",
+        title: 'Хочеш Працювати у сфері IT віддалено?',
         subtitle: (
           <p>
             Аутстафінгова компанія
@@ -34,118 +34,118 @@ export const HOME_PAGE = [
             можливість працювати з будь-якої точки світу вже зараз!
           </p>
         ),
-        button_label: "Отримати роботу",
+        button_label: 'Отримати роботу',
       },
       spheres_section: {
-        title: "Наші основні сфери діяльності",
+        title: 'Наші основні сфери діяльності',
       },
       partners_section: {
-        title: "Наші партнери",
+        title: 'Наші партнери',
         partners: [
           {
-            title: "Convertise",
+            title: 'Convertise',
             image: Convertise,
           },
           {
-            title: "Chiko",
+            title: 'Chiko',
             image: Chiko,
           },
           {
-            title: "Collectmedia",
+            title: 'Collectmedia',
             image: Collectmedia,
           },
           {
-            title: "Change-Consulting",
+            title: 'Change-Consulting',
             image: ChangeConsulting,
           },
           {
-            title: "Clevver",
+            title: 'Clevver',
             image: Clevver,
           },
           {
-            title: "TakeTask",
+            title: 'TakeTask',
             image: TakeTask,
           },
           {
-            title: "FancyGames",
+            title: 'FancyGames',
             image: FancyGames,
           },
           {
-            title: "Change-LearnerOn",
+            title: 'Change-LearnerOn',
             image: LearnerOn,
           },
           {
-            title: "Silicon",
+            title: 'Silicon',
             image: Silicon,
           },
           {
-            title: "EvolutionU",
+            title: 'EvolutionU',
             image: EvolutionU,
           },
           {
-            title: "Online",
+            title: 'Online',
             image: Online,
           },
           {
-            title: "Eurekos",
+            title: 'Eurekos',
             image: Eurekos,
           },
           {
-            title: "Itica",
+            title: 'Itica',
             image: Itica,
           },
           {
-            title: "3Dgency",
+            title: '3Dgency',
             image: ThreeDgency,
           },
           {
-            title: "Metropolitans",
+            title: 'Metropolitans',
             image: Metropolitans,
           },
           {
-            title: "Terranova",
+            title: 'Terranova',
             image: Terranova,
           },
         ],
       },
       testimonials_section: {
-        title: "Відгуки",
+        title: 'Відгуки',
       },
       faq_section: {
-        title: "Питання - Відповідь",
+        title: 'Питання - Відповідь',
         faq: [
           {
-            question: "Що таке аутстафінг, аутсорсинг?",
+            question: 'Що таке аутстафінг, аутсорсинг?',
             answer:
-              "Аутстафінг і аутсорсинг - це бізнес-моделі, в яких компанія залучає команду або людину для роботи над конкретним проєктом. В обох випадках фахівці працюють віддалено. Основна відмінність полягає в тому, що під аутсорсингом розуміють підтримку всього проєкту, а під аутстаффінгом - наймання та обслуговування окремих співробітників.",
+              'Аутстафінг і аутсорсинг - це бізнес-моделі, в яких компанія залучає команду або людину для роботи над конкретним проєктом. В обох випадках фахівці працюють віддалено. Основна відмінність полягає в тому, що під аутсорсингом розуміють підтримку всього проєкту, а під аутстаффінгом - наймання та обслуговування окремих співробітників.',
           },
           {
-            question: "Чи потрібен досвід чи профосвіта?",
-            answer: "Буде перевагою",
+            question: 'Чи потрібен досвід чи профосвіта?',
+            answer: 'Буде перевагою',
           },
           {
-            question: "Який рівень англійської потрібен для роботи?",
-            answer: "А2 і вище",
+            question: 'Який рівень англійської потрібен для роботи?',
+            answer: 'А2 і вище',
           },
           {
-            question: "Який час роботи?",
+            question: 'Який час роботи?',
             answer:
-              "В нас є денна зміна з 09:00 - 18:00, та нічна з 15:00 - 00:00",
+              'В нас є денна зміна з 09:00 - 18:00, та нічна з 15:00 - 00:00',
           },
           {
-            question: "Що таке інфоземний проект і як на нього потрапити?",
+            question: 'Що таке інфоземний проект і як на нього потрапити?',
             answer:
-              "Аутстафінг і аутсорсинг - це бізнес-моделі, в яких компанія залучає команду або людину для роботи над конкретним проєктом. В обох випадках фахівці працюють віддалено. Основна відмінність полягає в тому, що під аутсорсингом розуміють підтримку всього проєкту, а під аутстаффінгом - наймання та обслуговування окремих співробітників.",
+              'Аутстафінг і аутсорсинг - це бізнес-моделі, в яких компанія залучає команду або людину для роботи над конкретним проєктом. В обох випадках фахівці працюють віддалено. Основна відмінність полягає в тому, що під аутсорсингом розуміють підтримку всього проєкту, а під аутстаффінгом - наймання та обслуговування окремих співробітників.',
           },
         ],
       },
     },
   },
   {
-    language: "en",
+    language: 'en',
     data: {
       hero_section: {
-        title: "Do you want to work remotely in IT?",
+        title: 'Do you want to work remotely in IT?',
         subtitle: (
           <p>
             Outstaffing company
@@ -154,118 +154,118 @@ export const HOME_PAGE = [
             the opportunity to work from anywhere in the world right now!
           </p>
         ),
-        button_label: "Get a job",
+        button_label: 'Get a job',
       },
       spheres_section: {
-        title: "Our main areas of activity",
+        title: 'Our main areas of activity',
       },
       partners_section: {
-        title: "Our partners",
+        title: 'Our partners',
         partners: [
           {
-            title: "Convertise",
+            title: 'Convertise',
             image: Convertise,
           },
           {
-            title: "Chiko",
+            title: 'Chiko',
             image: Chiko,
           },
           {
-            title: "Collectmedia",
+            title: 'Collectmedia',
             image: Collectmedia,
           },
           {
-            title: "Change-Consulting",
+            title: 'Change-Consulting',
             image: ChangeConsulting,
           },
           {
-            title: "Clevver",
+            title: 'Clevver',
             image: Clevver,
           },
           {
-            title: "TakeTask",
+            title: 'TakeTask',
             image: TakeTask,
           },
           {
-            title: "FancyGames",
+            title: 'FancyGames',
             image: FancyGames,
           },
           {
-            title: "Change-LearnerOn",
+            title: 'Change-LearnerOn',
             image: LearnerOn,
           },
           {
-            title: "Silicon",
+            title: 'Silicon',
             image: Silicon,
           },
           {
-            title: "EvolutionU",
+            title: 'EvolutionU',
             image: EvolutionU,
           },
           {
-            title: "Online",
+            title: 'Online',
             image: Online,
           },
           {
-            title: "Eurekos",
+            title: 'Eurekos',
             image: Eurekos,
           },
           {
-            title: "Itica",
+            title: 'Itica',
             image: Itica,
           },
           {
-            title: "3Dgency",
+            title: '3Dgency',
             image: ThreeDgency,
           },
           {
-            title: "Metropolitans",
+            title: 'Metropolitans',
             image: Metropolitans,
           },
           {
-            title: "Terranova",
+            title: 'Terranova',
             image: Terranova,
           },
         ],
       },
       testimonials_section: {
-        title: "Testimonials",
+        title: 'Testimonials',
       },
       faq_section: {
-        title: "FAQ",
+        title: 'FAQ',
         faq: [
           {
-            question: "What is outstaffing, outsourcing?",
+            question: 'What is outstaffing, outsourcing?',
             answer:
-              "Outstaffing and outsourcing are business models in which a company engages a team or a person to work on a specific project. In both cases, specialists work remotely. The main difference is that outsourcing means supporting the entire project, and outstaffing means hiring and service of individual employees.",
+              'Outstaffing and outsourcing are business models in which a company engages a team or a person to work on a specific project. In both cases, specialists work remotely. The main difference is that outsourcing means supporting the entire project, and outstaffing means hiring and service of individual employees.',
           },
           {
-            question: "Do you need experience or professional education?",
-            answer: "It will be an advantage",
+            question: 'Do you need experience or professional education?',
+            answer: 'It will be an advantage',
           },
           {
-            question: "What level of English is required for work?",
-            answer: "A2 and above",
+            question: 'What level of English is required for work?',
+            answer: 'A2 and above',
           },
           {
-            question: "What are the working hours?",
+            question: 'What are the working hours?',
             answer:
-              "We have a day shift from 09:00 - 18:00, and a night shift from 15:00 - 00:00",
+              'We have a day shift from 09:00 - 18:00, and a night shift from 15:00 - 00:00',
           },
           {
-            question: "What is the infozem project and how to get on it?",
+            question: 'What is the infozem project and how to get on it?',
             answer:
-              "Outstaffing and outsourcing are business models in which a company engages a team or a person to work on a specific project. In both cases, specialists work remotely. The main difference is that outsourcing means supporting the entire project, and outstaffing means hiring and service of individual employees.",
+              'Outstaffing and outsourcing are business models in which a company engages a team or a person to work on a specific project. In both cases, specialists work remotely. The main difference is that outsourcing means supporting the entire project, and outstaffing means hiring and service of individual employees.',
           },
         ],
       },
     },
   },
   {
-    language: "ru",
+    language: 'ru',
     data: {
       hero_section: {
-        title: "Хочешь работать удаленно в IT?",
+        title: 'Хочешь работать удаленно в IT?',
         subtitle: (
           <p>
             Аутстаффинговая компания
@@ -275,118 +275,118 @@ export const HOME_PAGE = [
             сейчас!
           </p>
         ),
-        button_label: "Получить работу",
+        button_label: 'Получить работу',
       },
       spheres_section: {
-        title: "Наши основные сферы деятельности",
+        title: 'Наши основные сферы деятельности',
       },
       testimonials_section: {
-        title: "Компании с которыми мы работаем",
+        title: 'Компании с которыми мы работаем',
       },
       partners_section: {
-        title: "Наші остновні сфери діяльності",
+        title: 'Наши партнеры',
         partners: [
           {
-            title: "Convertise",
+            title: 'Convertise',
             image: Convertise,
           },
           {
-            title: "Chiko",
+            title: 'Chiko',
             image: Chiko,
           },
           {
-            title: "Collectmedia",
+            title: 'Collectmedia',
             image: Collectmedia,
           },
           {
-            title: "Change-Consulting",
+            title: 'Change-Consulting',
             image: ChangeConsulting,
           },
           {
-            title: "Clevver",
+            title: 'Clevver',
             image: Clevver,
           },
           {
-            title: "TakeTask",
+            title: 'TakeTask',
             image: TakeTask,
           },
           {
-            title: "FancyGames",
+            title: 'FancyGames',
             image: FancyGames,
           },
           {
-            title: "Change-LearnerOn",
+            title: 'Change-LearnerOn',
             image: LearnerOn,
           },
           {
-            title: "Silicon",
+            title: 'Silicon',
             image: Silicon,
           },
           {
-            title: "EvolutionU",
+            title: 'EvolutionU',
             image: EvolutionU,
           },
           {
-            title: "Online",
+            title: 'Online',
             image: Online,
           },
           {
-            title: "Eurekos",
+            title: 'Eurekos',
             image: Eurekos,
           },
           {
-            title: "Itica",
+            title: 'Itica',
             image: Itica,
           },
           {
-            title: "3Dgency",
+            title: '3Dgency',
             image: ThreeDgency,
           },
           {
-            title: "Metropolitans",
+            title: 'Metropolitans',
             image: Metropolitans,
           },
           {
-            title: "Terranova",
+            title: 'Terranova',
             image: Terranova,
           },
         ],
       },
       faq_section: {
-        title: "Вопрос - Ответ",
+        title: 'Вопрос - Ответ',
         faq: [
           {
-            question: "Что такое аутстафинг, аутсорсинг?",
+            question: 'Что такое аутстафинг, аутсорсинг?',
             answer:
-              "Аутстафинг и аутсорсинг – это бизнес-модели, в которых компания привлекает команду или человека для работы над конкретным проектом. В обоих случаях специалисты работают удаленно. Основное отличие заключается в том, что под аутсорсингом понимают поддержку всего проекта, а под аутстаффингом – наем и обслуживание отдельных сотрудников.",
+              'Аутстафинг и аутсорсинг – это бизнес-модели, в которых компания привлекает команду или человека для работы над конкретным проектом. В обоих случаях специалисты работают удаленно. Основное отличие заключается в том, что под аутсорсингом понимают поддержку всего проекта, а под аутстаффингом – наем и обслуживание отдельных сотрудников.',
           },
           {
-            question: "Нужен ли опыт или профобразование?",
-            answer: "Будет преимуществом",
+            question: 'Нужен ли опыт или профобразование?',
+            answer: 'Будет преимуществом',
           },
           {
-            question: "Какой уровень английского требуется для работы?",
-            answer: "А2 и выше",
+            question: 'Какой уровень английского требуется для работы?',
+            answer: 'А2 и выше',
           },
           {
-            question: "Какое время работы?",
+            question: 'Какое время работы?',
             answer:
-              "У нас есть дневная смена с 09:00 – 18:00, и ночная с 15:00 – 00:00",
+              'У нас есть дневная смена с 09:00 – 18:00, и ночная с 15:00 – 00:00',
           },
           {
-            question: "Что такое инфоземный проект и как на него попасть?",
+            question: 'Что такое инфоземный проект и как на него попасть?',
             answer:
-              "Аутстафинг и аутсорсинг – это бизнес-модели, в которых компания привлекает команду или человека для работы над конкретным проектом. В обоих случаях специалисты работают удаленно. Основное отличие заключается в том, что под аутсорсингом понимают поддержку всего проекта, а под аутстаффингом – наем и обслуживание отдельных сотрудников.",
+              'Аутстафинг и аутсорсинг – это бизнес-модели, в которых компания привлекает команду или человека для работы над конкретным проектом. В обоих случаях специалисты работают удаленно. Основное отличие заключается в том, что под аутсорсингом понимают поддержку всего проекта, а под аутстаффингом – наем и обслуживание отдельных сотрудников.',
           },
         ],
       },
     },
   },
   {
-    language: "sk",
+    language: 'sk',
     data: {
       hero_section: {
-        title: "Chcete pracovať na diaľku v IT?",
+        title: 'Chcete pracovať na diaľku v IT?',
         subtitle: (
           <p>
             Outstaffingová spoločnosť <strong> Remote Employees </strong> vám
@@ -394,118 +394,118 @@ export const HOME_PAGE = [
             príležitosť pracovať odkiaľkoľvek na svete práve teraz!
           </p>
         ),
-        button_label: "Dostať prácu",
+        button_label: 'Dostať prácu',
       },
       spheres_section: {
-        title: "Naše hlavné oblasti činnosti",
+        title: 'Naše hlavné oblasti činnosti',
       },
       testimonials_section: {
-        title: "Recenzie o nás",
+        title: 'Recenzie o nás',
       },
       partners_section: {
-        title: "Naši partneriНаші остновні сфери діяльності",
+        title: 'Naši partneriНаші остновні сфери діяльності',
         partners: [
           {
-            title: "Convertise",
+            title: 'Convertise',
             image: Convertise,
           },
           {
-            title: "Chiko",
+            title: 'Chiko',
             image: Chiko,
           },
           {
-            title: "Collectmedia",
+            title: 'Collectmedia',
             image: Collectmedia,
           },
           {
-            title: "Change-Consulting",
+            title: 'Change-Consulting',
             image: ChangeConsulting,
           },
           {
-            title: "Clevver",
+            title: 'Clevver',
             image: Clevver,
           },
           {
-            title: "TakeTask",
+            title: 'TakeTask',
             image: TakeTask,
           },
           {
-            title: "FancyGames",
+            title: 'FancyGames',
             image: FancyGames,
           },
           {
-            title: "Change-LearnerOn",
+            title: 'Change-LearnerOn',
             image: LearnerOn,
           },
           {
-            title: "Silicon",
+            title: 'Silicon',
             image: Silicon,
           },
           {
-            title: "EvolutionU",
+            title: 'EvolutionU',
             image: EvolutionU,
           },
           {
-            title: "Online",
+            title: 'Online',
             image: Online,
           },
           {
-            title: "Eurekos",
+            title: 'Eurekos',
             image: Eurekos,
           },
           {
-            title: "Itica",
+            title: 'Itica',
             image: Itica,
           },
           {
-            title: "3Dgency",
+            title: '3Dgency',
             image: ThreeDgency,
           },
           {
-            title: "Metropolitans",
+            title: 'Metropolitans',
             image: Metropolitans,
           },
           {
-            title: "Terranova",
+            title: 'Terranova',
             image: Terranova,
           },
         ],
       },
       faq_section: {
-        title: "Otázka - odpoveď",
+        title: 'Otázka - odpoveď',
         faq: [
           {
-            question: "Čo je outstaffing, outsourcing?",
+            question: 'Čo je outstaffing, outsourcing?',
             answer:
-              "Outstaffing a outsourcing sú obchodné modely, pri ktorých spoločnosť zapojí tím alebo osobu, aby pracovali na konkrétnom projekte. V oboch prípadoch špecialisti pracujú na diaľku. Hlavný rozdiel je v tom, že outsourcing znamená podporu celého projektu a outsourcing znamená nábor a servis jednotlivých zamestnancov.",
+              'Outstaffing a outsourcing sú obchodné modely, pri ktorých spoločnosť zapojí tím alebo osobu, aby pracovali na konkrétnom projekte. V oboch prípadoch špecialisti pracujú na diaľku. Hlavný rozdiel je v tom, že outsourcing znamená podporu celého projektu a outsourcing znamená nábor a servis jednotlivých zamestnancov.',
           },
           {
-            question: "Potrebujete prax alebo odborné vzdelanie?",
-            answer: "Bude to výhoda",
+            question: 'Potrebujete prax alebo odborné vzdelanie?',
+            answer: 'Bude to výhoda',
           },
           {
-            question: "Aká úroveň angličtiny sa vyžaduje pre prácu?",
-            answer: "A2 a vyššie",
+            question: 'Aká úroveň angličtiny sa vyžaduje pre prácu?',
+            answer: 'A2 a vyššie',
           },
           {
-            question: "Aký je pracovný čas?",
+            question: 'Aký je pracovný čas?',
             answer:
-              "Máme dennú zmenu od 9:00 do 18:00 a nočnú od 15:00 do 00:00",
+              'Máme dennú zmenu od 9:00 do 18:00 a nočnú od 15:00 do 00:00',
           },
           {
-            question: "Čo je to projekt infozem a ako sa k nemu dostať?",
+            question: 'Čo je to projekt infozem a ako sa k nemu dostať?',
             answer:
-              "Outstaffing a outsourcing sú obchodné modely, pri ktorých spoločnosť zapojí tím alebo osobu, aby pracovali na konkrétnom projekte. V oboch prípadoch špecialisti pracujú na diaľku. Hlavný rozdiel je v tom, že outsourcing znamená podporu celého projektu a outsourcing znamená nábor a servis jednotlivých zamestnancov.",
+              'Outstaffing a outsourcing sú obchodné modely, pri ktorých spoločnosť zapojí tím alebo osobu, aby pracovali na konkrétnom projekte. V oboch prípadoch špecialisti pracujú na diaľku. Hlavný rozdiel je v tom, že outsourcing znamená podporu celého projektu a outsourcing znamená nábor a servis jednotlivých zamestnancov.',
           },
         ],
       },
     },
   },
   {
-    language: "pl",
+    language: 'pl',
     data: {
       hero_section: {
-        title: "Chcesz pracować zdalnie w IT?",
+        title: 'Chcesz pracować zdalnie w IT?',
         subtitle: (
           <p>
             Firma outstaffowa<strong> Remote Employees </strong> oferuje Ci
@@ -513,109 +513,109 @@ export const HOME_PAGE = [
             pracy z dowolnego miejsca na świecie już teraz!
           </p>
         ),
-        button_label: "Dostać - pracę",
+        button_label: 'Dostać - pracę',
       },
       spheres_section: {
-        title: "Nasze główne obszary działalności",
+        title: 'Nasze główne obszary działalności',
       },
       testimonials_section: {
-        title: "Opinie o nas",
+        title: 'Opinie o nas',
       },
       partners_section: {
-        title: "Firmy, z którymi współpracujemy",
+        title: 'Firmy, z którymi współpracujemy',
         partners: [
           {
-            title: "Convertise",
+            title: 'Convertise',
             image: Convertise,
           },
           {
-            title: "Chiko",
+            title: 'Chiko',
             image: Chiko,
           },
           {
-            title: "Collectmedia",
+            title: 'Collectmedia',
             image: Collectmedia,
           },
           {
-            title: "Change-Consulting",
+            title: 'Change-Consulting',
             image: ChangeConsulting,
           },
           {
-            title: "Clevver",
+            title: 'Clevver',
             image: Clevver,
           },
           {
-            title: "TakeTask",
+            title: 'TakeTask',
             image: TakeTask,
           },
           {
-            title: "FancyGames",
+            title: 'FancyGames',
             image: FancyGames,
           },
           {
-            title: "Change-LearnerOn",
+            title: 'Change-LearnerOn',
             image: LearnerOn,
           },
           {
-            title: "Silicon",
+            title: 'Silicon',
             image: Silicon,
           },
           {
-            title: "EvolutionU",
+            title: 'EvolutionU',
             image: EvolutionU,
           },
           {
-            title: "Online",
+            title: 'Online',
             image: Online,
           },
           {
-            title: "Eurekos",
+            title: 'Eurekos',
             image: Eurekos,
           },
           {
-            title: "Itica",
+            title: 'Itica',
             image: Itica,
           },
           {
-            title: "3Dgency",
+            title: '3Dgency',
             image: ThreeDgency,
           },
           {
-            title: "Metropolitans",
+            title: 'Metropolitans',
             image: Metropolitans,
           },
           {
-            title: "Terranova",
+            title: 'Terranova',
             image: Terranova,
           },
         ],
       },
       faq_section: {
-        title: "Pytanie - odpowiedź",
+        title: 'Pytanie - odpowiedź',
         faq: [
           {
-            question: "Czym jest outstaffing, outsourcing?",
+            question: 'Czym jest outstaffing, outsourcing?',
             answer:
-              "Outstaffing i outsourcing to modele biznesowe, w których firma angażuje zespół lub osobę do pracy nad konkretnym projektem. W obu przypadkach specjaliści pracują zdalnie. Główna różnica polega na tym, że outsourcing to wsparcie całego projektu, a outstaffing to zatrudnienie i obsługa poszczególnych pracowników.",
+              'Outstaffing i outsourcing to modele biznesowe, w których firma angażuje zespół lub osobę do pracy nad konkretnym projektem. W obu przypadkach specjaliści pracują zdalnie. Główna różnica polega na tym, że outsourcing to wsparcie całego projektu, a outstaffing to zatrudnienie i obsługa poszczególnych pracowników.',
           },
           {
             question:
-              "Potrzebujesz doświadczenia lub wykształcenia zawodowego?",
-            odpowiedź: "To będzie zaleta",
+              'Potrzebujesz doświadczenia lub wykształcenia zawodowego?',
+            odpowiedź: 'To będzie zaleta',
           },
           {
-            question: "Jaki poziom angielskiego jest wymagany do pracy?",
-            odpowiedź: "A2 i wyżej",
+            question: 'Jaki poziom angielskiego jest wymagany do pracy?',
+            odpowiedź: 'A2 i wyżej',
           },
           {
-            question: "Jakie są godziny pracy?",
+            question: 'Jakie są godziny pracy?',
             answer:
-              "Mamy zmianę dzienną od 09:00 do 18:00 i zmianę nocną od 15:00 do 00:00",
+              'Mamy zmianę dzienną od 09:00 do 18:00 i zmianę nocną od 15:00 do 00:00',
           },
           {
-            question: "Czym jest projekt infozem i jak się do niego dostać?",
+            question: 'Czym jest projekt infozem i jak się do niego dostać?',
             answer:
-              "Outstaffing i outsourcing to modele biznesowe, w których firma angażuje zespół lub osobę do pracy nad konkretnym projektem. W obu przypadkach specjaliści pracują zdalnie. Główna różnica polega na tym, że outsourcing to wsparcie całego projektu, a outstaffing to zatrudnienie i obsługa poszczególnych pracowników.",
+              'Outstaffing i outsourcing to modele biznesowe, w których firma angażuje zespół lub osobę do pracy nad konkretnym projektem. W obu przypadkach specjaliści pracują zdalnie. Główna różnica polega na tym, że outsourcing to wsparcie całego projektu, a outstaffing to zatrudnienie i obsługa poszczególnych pracowników.',
           },
         ],
       },

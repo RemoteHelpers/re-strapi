@@ -111,11 +111,10 @@ const App: React.FC = () => {
         `${API}/footer?locale=${localization === "ua" ? "uk" : localization}`
       )
       .then((res) => {
-        setFooterData(res.data.data);
-        // console.log(res.data.data);
+        setFooterData(res.data.data.attributes);
       })
       .catch((err) => {
-        // console.log(err);
+        console.log(err);
       });
   }, [localization]);
 

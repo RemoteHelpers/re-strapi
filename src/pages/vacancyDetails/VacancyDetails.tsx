@@ -200,7 +200,7 @@ export const VacancyDetails = () => {
                       <h1>{localVacancyItem.attributes.titleH1}</h1>
                       {/* <p>{data?.salary}</p> */}
                       <p>{localVacancyItem.attributes.subTitle}</p>
-                      <p>{localVacancyItem.attributes.cardDescription}</p>
+                      <ReactMarkdown children={localVacancyItem.attributes.cardDescription} />
                       <button
                         type="button"
                         onClick={() =>
