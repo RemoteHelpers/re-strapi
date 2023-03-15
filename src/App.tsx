@@ -39,6 +39,7 @@ import NotFoundPage from "./pages/notFoundPage/notFoundPage";
 import axios from "axios";
 import ChooseLanguageModal from "./components/chooseLanguageModal";
 import FormSubmitErrorPage from "./pages/formSubmitErrorPage";
+import ContactPage from "./pages/ContactPage";
 
 import { API } from "./constants";
 
@@ -164,6 +165,10 @@ const App: React.FC = () => {
             <Route
               path={routingRule ? "/about" : "/:lng/about"}
               element={<AboutPage />}
+            />
+            <Route
+              path={routingRule ? "/contacts" : "/:lng/contacts"}
+              element={<ContactPage />}
             />
             <Route
               path={routingRule ? "/videoInterview" : "/:lng/videoInterview"}
