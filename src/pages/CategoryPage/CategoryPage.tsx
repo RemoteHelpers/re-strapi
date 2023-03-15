@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-shadow */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable react/no-children-prop */
@@ -18,13 +19,14 @@ import { useStateContext } from "../../context/StateContext";
 import VacancyCard from "../../components/vacancyCard";
 import VacancyForm from "../../components/forms/vacancyForm";
 import ToTopButton from "../../components/toTopButton/ToTopButton";
+import NotFoundPage from "../notFoundPage/notFoundPage";
 
 const CategoryPage = () => {
   const [category, setCategory] = useState([]);
   const [filteredVacancies, setFilteredVacancies] = useState([]);
   const formSection = useRef<HTMLDivElement>(null);
 
-  const { currentGlobalVacancies, localization } = useStateContext();
+  const { currentGlobalVacancies, localization, globalCategories } = useStateContext();
 
   const { categoryID } = useParams();
 
@@ -64,7 +66,12 @@ const CategoryPage = () => {
     );
   }, [currentGlobalVacancies]);
 
-  console.log(filteredVacancies);
+  const categorySlugs = globalCategories.map((item: { attributes: { categorySlug: any; }; }) => item.attributes.categorySlug);
+
+  if (!categorySlugs.includes(categoryID)) {
+    // If the category ID is not included in the categorySlugs array, render the 404 component
+    return <NotFoundPage />;
+  }
 
   return (
     <div className={sl.container}>

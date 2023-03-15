@@ -33,6 +33,7 @@ import VacancyCard from "../../components/vacancyCard";
 import { VACANCY_DETAILS } from "../../database/vacancyDetailsPage";
 
 import { API } from "../../constants";
+import NotFoundPage from "../notFoundPage/notFoundPage";
 
 const PhotoAPI = "https://admin.r-ez.com/";
 
@@ -48,6 +49,7 @@ export const VacancyDetails = () => {
   const [previewVideoImage, setPreviewVideoImage] = useState(true);
   const formSection = useRef<HTMLDivElement>(null);
   const [data, setData] = useState<any>();
+  const [errorReq, setErrorReq] = useState(false);
 
   const { categoryID, vacancyID } = useParams();
 
@@ -81,6 +83,7 @@ export const VacancyDetails = () => {
         }, 1000);
       })
       .catch((err) => {
+        setErrorReq(true);
         console.log(err);
       });
   }, [vacancyID]);
@@ -116,6 +119,12 @@ export const VacancyDetails = () => {
   const playVideo = () => {
     setPreviewVideoImage(false);
   };
+
+  if (errorReq) {
+    console.log('нема такого');
+
+    return <NotFoundPage />;
+  }
 
   return (
     <div className={cl.container}>
