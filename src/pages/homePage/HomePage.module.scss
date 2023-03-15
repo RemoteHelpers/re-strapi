@@ -3,11 +3,7 @@
 @import "../../global-styles/fonts.scss";
 
 .container {
-  padding: 7rem 0;
-
-  @include onDesktop {
-    padding: 10rem 0;
-  }
+  padding: 3rem 0;
 }
 
 .content_wrapper {

@@ -55,7 +55,7 @@ const VacancyCard: React.FC<Props> = ({
         {isHot ? (
           <div className="VacancyCard__banner VacancyCard__banner--mobile">
             <img src={FireIcon} className="VacancyCard__fireIcon" alt="icon" />
-            <span className="VacancyCard__banner-text">Urgent</span>
+            <span className="VacancyCard__banner-text">{data?.isHotValue}</span>
           </div>
         ) : (
           ""
@@ -74,7 +74,7 @@ const VacancyCard: React.FC<Props> = ({
         {isHot ? (
           <div className="VacancyCard__banner VacancyCard__banner--desktop">
             <img src={FireIcon} className="VacancyCard__fireIcon" alt="icon" />
-            <span className="VacancyCard__banner-text">Urgent</span>
+            <span className="VacancyCard__banner-text">{data?.isHotValue}</span>
           </div>
         ) : (
           ""

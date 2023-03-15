@@ -95,11 +95,11 @@ const App: React.FC = () => {
   useEffect(() => {
     axios
       .get(
-        `${API}/header?locale=${localization === "ua" ? "uk" : localization}`
+        `${API}/header?locale=${localization === "ua" ? "uk" : localization}&populate=*`
       )
       .then((res) => {
-        setHeaderData(res.data.data);
-        // console.log(res.data.data);
+        setHeaderData(res.data.data.attributes);
+        console.log(res.data.data.attributes);
       })
       .catch((err) => {
         // console.log(err);
@@ -112,7 +112,7 @@ const App: React.FC = () => {
         `${API}/footer?locale=${localization === "ua" ? "uk" : localization}`
       )
       .then((res) => {
-        setFooterData(res.data.data);
+        setFooterData(res.data.data.attributes);
         // console.log(res.data.data);
       })
       .catch((err) => {

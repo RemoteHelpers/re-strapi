@@ -35,8 +35,6 @@ import { VACANCY_DETAILS } from "../../database/vacancyDetailsPage";
 import { API } from "../../constants";
 import NotFoundPage from "../notFoundPage/notFoundPage";
 
-const PhotoAPI = "https://admin.r-ez.com/";
-
 export const VacancyDetails = () => {
   const {
     localization,

@@ -10,7 +10,7 @@ import cl from "./thankYouPage.module.scss";
 import { THANKYOU_PAGE } from "../../database/thankYouPage";
 
 export const ThankYouPage = () => {
-  const { localization, scrollToTop } = useStateContext();
+  const { localization, scrollToTop, footerData } = useStateContext();
 
   const routingRule = localization === "ru";
 
@@ -50,7 +50,7 @@ export const ThankYouPage = () => {
           <li className={cl.item}>
             <h2 className={cl.subtitle}>{data?.titleViber}</h2>
             <p className={cl.text}>{data?.paragraphViber}</p>
-            <a href="viber://chat?number=380980000000" className={cl.button}>
+            <a href={`viber://chat?number=${footerData?.footerNumber}`} className={cl.button}>
               {data?.linkViber}
             </a>
           </li>
