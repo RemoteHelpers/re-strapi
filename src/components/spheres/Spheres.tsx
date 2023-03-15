@@ -8,10 +8,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable comma-dangle */
 /* eslint-disable @typescript-eslint/quotes */
-import React from "react";
 // import Lottie from 'react-lottie';
 // import animationData from '../../images/Spheres/anim/cat-hand-1.json';
-
+import React from "react";
 import Marketing from "../../images/Spheres/Marketing.png";
 import Management from "../../images/Spheres/Management.png";
 import Developing from "../../images/Spheres/Developing.png";
