@@ -11,48 +11,42 @@ import cl from "./footer.module.scss";
 import Logo from "../../images/Footer/logo.png";
 import { FooterIconsSVG } from "../../icons/footer/FooterIconsSVG";
 import { useStateContext } from "../../context/StateContext";
-import { FOOTER } from "../../database/common/footer";
 
 export const Footer = () => {
-  const { localization } = useStateContext();
-
-  const localizedFooterData = FOOTER.find(
-    (el: any) => el.language === localization
-  )?.data;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { localization, footerData } = useStateContext();
 
   return (
     <footer className={cl.Footer}>
       <div className={cl.Footer__links}>
         <img src={Logo} alt="Logo" className={cl.Footer__logo} />
         <div className={cl.Footer__socialWrapper}>
-          <a href="https://www.instagram.com/remotemployees/" target="_blank" rel="noreferrer" className={cl.Footer__link}>
+          <a href={footerData?.footerInsta} target="_blank" rel="noreferrer" className={cl.Footer__link}>
             <FooterIconsSVG id="inst" />
           </a>
-          <a href="https://fb.com/remotemployees" target="_blank" rel="noreferrer" className={cl.Footer__link}>
+          <a href={footerData?.footerFB} target="_blank" rel="noreferrer" className={cl.Footer__link}>
             <FooterIconsSVG id="face" />
           </a>
         </div>
       </div>
       <div className={cl.Footer__contacts}>
-        <h4 className={cl.Footer__title}>{localizedFooterData?.label}</h4>
-        <a
-          target="_blank"
-          href="https://goo.gl/maps/PXsdBHfVXmeLcZGt5"
+        <h4 className={cl.Footer__title}>{footerData?.footerContacts}</h4>
+        <span
           className={cl.Footer__contactsText}
-          rel="noreferrer"
         >
-          {localizedFooterData?.address}
-        </a>
-        <a href="tel:+380980000000" className={cl.Footer__contactsText}>
-          {localizedFooterData?.phone}
+          {footerData?.footerAdress}
+        </span>
+        <a href={`viber://chat?number=${footerData?.footerNumber}`} className={cl.Footer__contactsText}>
+          +
+          {footerData?.footerNumber}
         </a>
         <a
           target="_blank"
-          href="mailto:info@remote.employees.com.ua"
+          href={`mailto: ${footerData?.footerMail}`}
           className={cl.Footer__contactsText}
           rel="noreferrer"
         >
-          {localizedFooterData?.email}
+          {footerData?.footerMail}
         </a>
       </div>
     </footer>

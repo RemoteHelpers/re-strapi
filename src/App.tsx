@@ -113,10 +113,9 @@ const App: React.FC = () => {
       )
       .then((res) => {
         setFooterData(res.data.data.attributes);
-        // console.log(res.data.data);
       })
       .catch((err) => {
-        // console.log(err);
+        console.log(err);
       });
   }, [localization]);
 

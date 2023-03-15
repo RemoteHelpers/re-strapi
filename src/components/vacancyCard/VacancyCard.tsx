@@ -5,6 +5,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 import "./vacancyCard.scss";
 import FireIcon from "../../images/fireIcon.svg";
 import { VACANCYLIST } from "../../database/common/vacancyList";
@@ -13,7 +14,7 @@ import { useStateContext } from "../../context/StateContext";
 interface Props {
   title: string;
   slug: string;
-  isHot: string;
+  isHot: boolean;
   cardDescription: string;
   categorySlug: string;
 }
@@ -63,9 +64,10 @@ const VacancyCard: React.FC<Props> = ({
         <div className="VacancyCard__info">
           <h3 className="VacancyCard__title">{title}</h3>
           <p className="VacancyCard__salary">{data?.salary}</p>
-          <p className="VacancyCard__description">
-            {cardDescription ? `${cardDescription.slice(0, 100)}...` : ""}
-          </p>
+          {cardDescription
+            // eslint-disable-next-line react/no-children-prop
+            ? <ReactMarkdown children={`${cardDescription.slice(0, 107)}...`} className="VacancyCard__description" />
+            : ''}
         </div>
         <button type="button" className="VacancyCard__button">
           {data?.button}
