@@ -1,17 +1,40 @@
 @import "../../../utils/mixins.scss";
 @import "../../../global-styles/colors.scss";
 @import "../../../global-styles/fonts.scss";
+
 * {
   box-sizing: border-box;
+
   &:after,
   &:before {
     box-sizing: border-box;
   }
 }
 
+.feedback_form_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem 0;
+}
+
+.toTopButton {
+  align-self: center;
+
+  @include onTablet {
+    align-self: flex-end;
+  }
+}
+
+.form_wrapper {
+  padding: 0 0 3.5rem 0;
+
+
+}
+
 .feedback {
   position: relative;
   width: 100%;
+
   &_wr {
     display: flex;
     align-items: center;
@@ -33,6 +56,7 @@
     }
   }
 }
+
 .img_wr_desktop {
   width: 80%;
   margin: -8rem 0 0 0;
@@ -41,11 +65,13 @@
   @include onDesktop {
     display: block;
   }
+
   @include on1920 {
     margin: -10rem 0 0 0;
     width: 50%;
     display: block;
   }
+
   img {
     width: 100%;
     height: auto;
@@ -95,25 +121,5 @@
 
   @include onTablet {
     margin-bottom: 2rem;
-  }
-}
-
-.toTopButton {
-  position: absolute;
-  width: 100%;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  bottom: -7%;
-  border: none;
-  background: transparent;
-
-  @include onTablet {
-    right: -45% !important;
-    bottom: -8%;
-  }
-  @include onDesktop {
-    right: -94%;
-    bottom: -15%;
   }
 }

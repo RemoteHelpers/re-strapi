@@ -7,11 +7,7 @@ img {
 }
 
 .section {
-  padding: 3.5rem 0 7rem 0;
-
-  @include onDesktop {
-    padding: 3.5rem 0 10rem 0;
-  }
+  padding: 12rem 0;
 }
 .container {
   width: 90%;

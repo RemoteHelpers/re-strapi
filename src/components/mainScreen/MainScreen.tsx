@@ -28,10 +28,6 @@ const MainScreen = () => {
     <div className={cl.mainScreen} id="mainScreen">
       <div className={cl.info}>
         <h3 className={cl.title}>{localizadHeroSectionData?.title}</h3>
-        {/* <ReactMarkdown
-          children={data.subtitle}
-          className={cl.paragraph}
-        /> */}
         <p className={cl.paragraph}>{localizadHeroSectionData?.subtitle}</p>
         <button
           type="button"

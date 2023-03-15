@@ -1,4 +1,5 @@
 @import "./global-styles/colors.scss";
+@import "./utils/mixins.scss";
 
 body {
   width: 100%;
@@ -23,3 +24,13 @@ main.desktopMenuOpened + footer > * {
 // * {
 //   cursor: url(./icons/cursor.svg), auto;
 // }
+
+
+.container {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+  @include onTablet {
+    width: 80%;
+  }
+}

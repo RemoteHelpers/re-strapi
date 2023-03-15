@@ -30,7 +30,7 @@ function FeedbackForm() {
   const urlRu = window.location.pathname === `/videoInterview`;
 
   return (
-    <>
+    <div className={cl.feedback_form_wrapper}>
       <h1
         ref={scrollToHomeForm}
         className={url ? cl.feedback_video_form_title : cl.feedback_form_title}
@@ -52,7 +52,7 @@ function FeedbackForm() {
       <div className={cl.toTopButton}>
         <ToTopButton />
       </div>
-    </>
+    </div>
   );
 }
 

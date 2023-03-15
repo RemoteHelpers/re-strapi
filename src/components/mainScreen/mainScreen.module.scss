@@ -23,7 +23,8 @@
   }
 
   @include onDesktop {
-    height: 85vh;
+    padding-top: 10rem !important;
+    height: 100vh;
     flex-direction: row;
     gap: 8rem;
     align-items: center;
@@ -33,29 +34,6 @@
     background-position: top -15% left 0;
   }
 }
-
-// .headerBg {
-//   position: absolute;
-//   transition: 0.1s all;
-//   top: 0;
-//   left: 0;
-//   opacity: 1;
-//   visibility: visible;
-//   width: 100vw;
-//   height: 100vh;
-//   background: rgba(10, 69, 79, 0.4);
-//   z-index: 2;
-// }
-
-// .headerBgNone {
-//   height: 0;
-//   transition: 0.1s all;
-//   width: 0;
-//   opacity: 0;
-//   visibility: hidden;
-//   pointer-events: none;
-//   position: absolute;
-// }
 
 .image {
   width: 22rem;

@@ -39,6 +39,7 @@ import NotFoundPage from "./pages/notFoundPage/notFoundPage";
 import axios from "axios";
 import ChooseLanguageModal from "./components/chooseLanguageModal";
 import FormSubmitErrorPage from "./pages/formSubmitErrorPage";
+import ContactPage from "./pages/ContactPage";
 
 import { API } from "./constants";
 
@@ -94,11 +95,11 @@ const App: React.FC = () => {
   useEffect(() => {
     axios
       .get(
-        `${API}/header?locale=${localization === "ua" ? "uk" : localization}`
+        `${API}/header?locale=${localization === "ua" ? "uk" : localization}&populate=*`
       )
       .then((res) => {
-        setHeaderData(res.data.data);
-        // console.log(res.data.data);
+        setHeaderData(res.data.data.attributes);
+        console.log(res.data.data.attributes);
       })
       .catch((err) => {
         // console.log(err);
@@ -111,7 +112,7 @@ const App: React.FC = () => {
         `${API}/footer?locale=${localization === "ua" ? "uk" : localization}`
       )
       .then((res) => {
-        setFooterData(res.data.data);
+        setFooterData(res.data.data.attributes);
         // console.log(res.data.data);
       })
       .catch((err) => {
@@ -164,6 +165,10 @@ const App: React.FC = () => {
             <Route
               path={routingRule ? "/about" : "/:lng/about"}
               element={<AboutPage />}
+            />
+            <Route
+              path={routingRule ? "/contacts" : "/:lng/contacts"}
+              element={<ContactPage />}
             />
             <Route
               path={routingRule ? "/videoInterview" : "/:lng/videoInterview"}

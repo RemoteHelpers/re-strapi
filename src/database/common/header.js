@@ -63,6 +63,10 @@ export const HEADER = [
         title: "О нас",
       },
       {
+        path_id: "contacts",
+        title: "Контакты",
+      },
+      {
         path_id: "videoInterview",
         title: "Видеоинтервью",
       },
