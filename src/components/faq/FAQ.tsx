@@ -1,3 +1,5 @@
+/* eslint-disable react/no-children-prop */
+/* eslint-disable react/no-unused-prop-types */
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -7,16 +9,29 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from "react";
+import ReactMarkdown from "react-markdown";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
+import { useStateContext } from "../../context/StateContext";
 
 import { ArrowSvg } from "../../pages/videoInterview/ArrowSvg";
 
 import cl from "./faq.module.scss";
 
-const FAQ = ({ localizedData }: any) => {
+interface FaqQuestionsTypes {
+  Answer: string;
+  Question: string;
+  id: number;
+}
+
+interface FaqQuestionsProps {
+  faqData: [];
+}
+
+const FAQ = ({ faqData }: FaqQuestionsProps) => {
+  const { homeData } = useStateContext();
   const [expanded, setExpanded] = React.useState<string | false>(false);
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -25,11 +40,11 @@ const FAQ = ({ localizedData }: any) => {
 
   return (
     <div className={cl.FAQ__accordion}>
-      {localizedData?.faq.map((item: any, i: any) => (
+      {faqData.map(({ Answer, Question, id }: FaqQuestionsTypes) => (
         <Accordion
-          key={i}
-          expanded={expanded === `panel${i}`}
-          onChange={handleChange(`panel${i}`)}
+          key={id}
+          expanded={expanded === `panel${id}`}
+          onChange={handleChange(`panel${id}`)}
           sx={{
             boxShadow: 0,
             "&::before": {
@@ -49,19 +64,19 @@ const FAQ = ({ localizedData }: any) => {
             <Typography className={cl.accordion_title}>
               <div
                 className={
-                  expanded === `panel${i}`
+                  expanded === `panel${id}`
                     ? cl.expanded_show
                     : cl.accordion_arrow
                 }
               >
                 <ArrowSvg id="arrow" />
               </div>
-              <h1>{item.question}</h1>
+              <h1>{Question}</h1>
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography className={cl.accordion_content}>
-              <p>{item.answer}</p>
+              <ReactMarkdown children={Answer} />
             </Typography>
           </AccordionDetails>
         </Accordion>

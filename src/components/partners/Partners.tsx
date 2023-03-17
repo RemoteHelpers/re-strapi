@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react/no-unused-prop-types */
 /* eslint-disable comma-dangle */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react/no-array-index-key */
@@ -5,23 +7,20 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import cl from "./partners.module.scss";
-import { HOME_PAGE } from "../../database/home_page";
+
 // Import Swiper styles
 import "swiper/swiper.scss";
 import "swiper/modules/autoplay/autoplay";
 
 import { useStateContext } from "../../context/StateContext";
+import { PhotoAPI } from "../../constants";
 
 const Partners = () => {
-  const { localization } = useStateContext();
-
-  const localizadPartnersData = HOME_PAGE.find(
-    (el) => el.language === localization
-  )?.data.partners_section;
+  const { homeData } = useStateContext();
 
   return (
     <div className={cl.container}>
-      <h3 className={cl.title}>{localizadPartnersData?.title}</h3>
+      <h3 className={cl.title}>{homeData?.partnersTitle}</h3>
       <Swiper
         modules={[Autoplay]}
         spaceBetween={60}
@@ -44,10 +43,14 @@ const Partners = () => {
           },
         }}
       >
-        {localizadPartnersData?.partners.map((el, i) => (
-          <SwiperSlide key={i}>
+        {homeData.partnersSlider?.data.map((item: any) => (
+          <SwiperSlide key={item.id}>
             <div className={cl.imageWrapper}>
-              <img src={el.image} alt="company" className={cl.image} />
+              <img
+                src={PhotoAPI + item.attributes.url}
+                alt={item.attributes.name}
+                className={cl.image}
+              />
             </div>
           </SwiperSlide>
         ))}

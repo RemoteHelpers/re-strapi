@@ -3,7 +3,7 @@
 @import "../../global-styles/fonts.scss";
 
 .section {
-  padding: 10rem 0;
+  padding: 10rem 0 3rem 0;
 }
 .container {
   width: 90%;
@@ -137,7 +137,7 @@
 
   @include onDesktop {
     width: 90%;
-    margin-top: 0;
+    margin-top: 2rem;
   }
 
   .video_iframe {
@@ -173,15 +173,8 @@ section {
 
 .what_we_do {
   width: 100%;
-  padding: 3rem 0;
+  padding: 2rem 0;
 
-  @include onTablet {
-    padding: 5rem 0;
-  }
-
-  @include on1920 {
-    padding: 7rem 0;
-  }
   h1 {
     color: $typographyColor2;
     font-size: $typography2;

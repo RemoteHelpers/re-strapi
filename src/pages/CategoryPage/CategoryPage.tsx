@@ -26,9 +26,15 @@ const CategoryPage = () => {
   const [filteredVacancies, setFilteredVacancies] = useState([]);
   const formSection = useRef<HTMLDivElement>(null);
 
-  const { currentGlobalVacancies, localization, globalCategories } = useStateContext();
+  const {
+    currentGlobalVacancies, localization, globalCategories, scrollToTop
+  } = useStateContext();
 
   const { categoryID } = useParams();
+
+  useEffect(() => {
+    scrollToTop?.current?.scrollIntoView({ block: "start" });
+  }, []);
 
   useEffect(() => {
     axios

@@ -15,31 +15,22 @@ import Partners from "../../components/partners/Partners";
 import Spheres from "../../components/spheres";
 import Testimonials from "../../components/testimonials";
 import cl from "./HomePage.module.scss";
-import { HOME_PAGE } from "../../database/home_page";
 import Loader from "../../components/loader";
 
 import { API } from "../../constants";
 
 export const HomePage = () => {
-  const { setHomeData, localization } = useStateContext();
+  const { setHomeData, localization, homeData } = useStateContext();
   const [isLoading, setIsLoading] = useState(true);
-
-  const localizadSpheresData = HOME_PAGE.find(
-    (el) => el.language === localization
-  )?.data.spheres_section;
-
-  const localizedHomePageFAQData = HOME_PAGE.find(
-    (el) => el.language === localization
-  )?.data.faq_section;
 
   useEffect(() => {
     axios
       .get(
-        `${API}/home-page?locale=${localization === "ua" ? "uk" : localization}`
+        `${API}/home-page?locale=${localization === "ua" ? "uk" : localization}&populate=Testimonials.personImg,Faq_Question,partnersSlider`
       )
       .then((res) => {
-        setHomeData(res.data.data);
-        // console.log(res.data.data);
+        setHomeData(res.data.data.attributes);
+        // console.log(res.data.data.attributes);
       })
       .catch(() => {
         // console.log(err);
@@ -66,15 +57,15 @@ export const HomePage = () => {
           <div className={cl.container}>
             <div className={cl.content_wrapper}>
               <div className={cl.spheres_wrapper}>
-                <h1 className={cl.mainTitle}>{localizadSpheresData?.title}</h1>
+                <h1 className={cl.mainTitle}>{homeData?.spheresTitle}</h1>
                 <Spheres />
               </div>
               <VacancyList />
               <div className={cl.faq_wrapper}>
                 <h2 className={cl.faq_title}>
-                  {localizedHomePageFAQData?.title}
+                  {homeData?.faqTitle}
                 </h2>
-                <FAQ localizedData={localizedHomePageFAQData} />
+                <FAQ faqData={homeData?.Faq_Question} />
               </div>
 
               <Partners />

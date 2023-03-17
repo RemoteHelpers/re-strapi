@@ -14,11 +14,13 @@ export const StateContext = ({ children }) => {
     false
   );
 
-  const [isDesktopMenuOpened, setIsDesktopMenuOpened] = useState(false);
-  const [currentVacancy, setCurrentVacancy] = useState();
+  // Pages Data
   const [headerData, setHeaderData] = useState();
   const [homeData, setHomeData] = useState();
   const [footerData, setFooterData] = useState();
+
+  const [isDesktopMenuOpened, setIsDesktopMenuOpened] = useState(false);
+  const [currentVacancy, setCurrentVacancy] = useState();
   const [isFormSubmited, setIsFormSubmited] = useState(false);
   const scrollToTop = useRef(null);
   const scrollToTopVacancies = useRef(null);

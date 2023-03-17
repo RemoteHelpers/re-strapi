@@ -99,7 +99,7 @@ const App: React.FC = () => {
       )
       .then((res) => {
         setHeaderData(res.data.data.attributes);
-        console.log(res.data.data.attributes);
+        // console.log(res.data.data.attributes);
       })
       .catch((err) => {
         // console.log(err);

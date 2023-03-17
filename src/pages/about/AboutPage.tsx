@@ -1,9 +1,12 @@
+/* eslint-disable react/no-children-prop */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable max-len */
 import React, { useState, useEffect } from "react";
+import axios from 'axios';
+import ReactMarkdown from "react-markdown";
 import ReactPlayer from "react-player/youtube";
 import cl from "./aboutPage.module.scss";
 import kitekat from "../../icons/kitekat.png";
@@ -11,25 +14,34 @@ import FeedbackForm from "../../components/forms/feedbackForm";
 
 import Spheres from "../../components/spheres";
 // import aboutPreview from "../../images/aboutPage/about-preview.png";
-import { ABOUT_PAGE } from "../../database/aboutPage";
 import { useStateContext } from "../../context/StateContext";
 import Loader from "../../components/loader";
+
+import { API } from "../../constants";
 
 export const AboutPage = () => {
   const { localization } = useStateContext();
   // const [previewVideoImage, setPreviewVideoImage] = useState(true);
-  const [data, setData] = useState<any>();
   const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const res = ABOUT_PAGE.filter((el) => el.language === localization);
-
-    setData(res[0]);
-  }, [localization]);
+  const [aboutData, setAboutData] = useState<any>([]);
 
   // const playVideo = () => {
   //   setPreviewVideoImage(false);
   // };
+
+  useEffect(() => {
+    axios
+      .get(
+        `${API}/about-us?locale=${localization === 'ua' ? 'uk' : localization}`,
+      )
+      .then((res) => {
+        setAboutData(res.data.data.attributes);
+        // console.log(res.data.data.attributes);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [localization]);
 
   useEffect(() => {
     document.title = "Remote Employees";
@@ -50,8 +62,8 @@ export const AboutPage = () => {
           <div className={cl.container}>
             <div className={cl.intro_wrapper}>
               <div className={cl.into_information}>
-                <h1>{data?.title}</h1>
-                <p>{data?.titleDescription}</p>
+                <h1>{aboutData?.title}</h1>
+                <ReactMarkdown children={aboutData?.firstDescription} />
                 <button
                   type="button"
                   className={cl.video_intro}
@@ -61,7 +73,7 @@ export const AboutPage = () => {
                     <img src={aboutPreview} alt="video about us" />
                   ) : ( */}
                   <ReactPlayer
-                    url="https://www.youtube.com/watch?v=WWqF-1vRSRk"
+                    url={aboutData?.videoUrl}
                     className={cl.video_iframe}
                     controls
                   />
@@ -73,8 +85,8 @@ export const AboutPage = () => {
               </div>
             </div>
             <div className={cl.what_we_do}>
-              <h1>{data?.title2}</h1>
-              <p>{data?.title2Description}</p>
+              <h1>{aboutData?.WhatWeDoTitle}</h1>
+              <ReactMarkdown children={aboutData?.SecondDescription} />
               <Spheres />
             </div>
             <div className={cl.footer_decoration}>

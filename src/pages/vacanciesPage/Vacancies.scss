@@ -11,7 +11,7 @@
 }
 
 .section {
-  padding: 12rem 0;
+  padding: 12rem 0 3rem;
 }
 .container {
   width: 90%;
@@ -267,6 +267,9 @@
     font-size: $typography4;
     line-height: 1.5;
     color: $typographyColor1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem 0;
   }
   &__img {
     display: block;
@@ -373,4 +376,14 @@
     background-color: #d8faff;
     z-index: -1;
   }
+}
+
+
+
+.descr {
+  margin-bottom: 6rem;
+}
+
+.last_title {
+  margin: 4rem 0 0 0 !important;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable react/jsx-filename-extension */
@@ -16,32 +17,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 
-import React, { useCallback, useEffect, useState, useRef } from "react";
-import ReactPaginate from "react-paginate";
+import React, { useEffect, useState, useRef } from "react";
+import ReactMarkdown from "react-markdown";
 import { useWindowWidth } from "@react-hook/window-size";
 import "./Vacancies.scss";
 import "../../global-styles/search.scss";
 import axios from "axios";
-import Select, { components } from "react-select";
 import { Category, Vacancy, Collection, VacancyArray } from "../../types/types";
-import { VACANCIES_PAGE } from "../../database/vacanciesPage";
 
-import SelectIcon from "../../images/selectArrow.svg";
 import useOutsideAlerter from "../../hooks/useClickOutside";
 
-import cat1 from "../../images/vacancy_list/cat1_vacancy_list.png";
-import cat2 from "../../images/vacancy_list/cat2_vacancy_list.png";
-import cat3 from "../../images/vacancy_list/cat3_vacancy_list.png";
 import FeedbackForm from "../../components/forms/feedbackForm";
-import formImg from "../../images/formImg.png";
 import VacanciesList from "../../components/vacanciesList";
 import { useStateContext } from "../../context/StateContext";
 import Loader from "../../components/loader";
-import { API } from "../../constants";
+import { API, PhotoAPI } from "../../constants";
 
 const itemsPerPage = 6;
 
-let searchTime: any;
 let vacationTime: any;
 
 export const VacaniesPage = () => {
@@ -66,33 +59,29 @@ export const VacaniesPage = () => {
   const [itemOffset, setItemOffset] = useState(0);
   const [data, setData] = useState<any>();
   const [isLoading, setIsLoading] = useState(true);
+  const [vacancyData, setVacancyData] = useState<any>();
 
   useEffect(() => {
     scrollToTop?.current?.scrollIntoView({ block: "start" });
   }, []);
 
-  const selectCategories = categories.map((category) => ({
-    value: category.attributes.categoryTitle.toLowerCase(),
-    label: category.attributes.categoryTitle,
-  }));
-
-  const DropdownIndicator = (props: any) => {
-    return (
-      <components.DropdownIndicator {...props}>
-        <img src={SelectIcon} alt="dropdown" />
-      </components.DropdownIndicator>
-    );
-  };
+  useEffect(() => {
+    axios
+      .get(
+        `${API}/vacancy-page?locale=${localization === "ua" ? "uk" : localization}&populate=*`
+      )
+      .then((res) => {
+        setVacancyData(res.data.data.attributes);
+        // console.log(res.data.data.attributes);
+      })
+      .catch((err) => {
+        // console.log(err);
+      });
+  }, [localization]);
 
   useOutsideAlerter(searchRef, () => {
     setIsDropdown(false);
   });
-
-  useEffect(() => {
-    const res = VACANCIES_PAGE.filter((el) => el.language === localization);
-    setData(res[0]);
-    console.log(data);
-  }, [localization]);
 
   useEffect(() => {
     axios
@@ -117,13 +106,6 @@ export const VacaniesPage = () => {
         console.log(err);
       });
   }, []);
-
-  // useEffect(() => {
-  //   vacancies.map(vacancy => {
-  //     setCurrentVacancy(vacancy.attributes.vacancySlug);
-  //     console.log(vacancy.attributes.vacancySlug);
-  //   });
-  // }, [vacancies]);
 
   useEffect(() => {
     clearTimeout(vacationTime);
@@ -159,52 +141,12 @@ export const VacaniesPage = () => {
     }, 400);
   }, [query, currentCategory]);
 
-  const handleCategorySelect = useCallback((selected: any) => {
-    setCurrentCategory(selected.label);
-  }, []);
-
-  const handleClear = useCallback(() => {
-    setQuery("");
-  }, []);
-
-  const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value);
-    clearTimeout(searchTime);
-    searchTime = setTimeout(async () => {
-      const res = await axios.get(
-        `${API}/keyword-tags?filters[keyPhrase][$contains]=${event.target.value}`
-      );
-
-      setIsDropdown(true);
-      setSearchCollection(res?.data?.data || []);
-    }, 300);
-  };
-
-  const onCollection = (collection: Collection) => {
-    setQuery(collection.attributes.keyPhrase);
-    // setSelectedCollection(collection);
-    setIsDropdown(false);
-  };
-
-  const getCategory = () => {
-    return currentCategory
-      ? selectCategories.find((c) => c.value === currentCategory)
-      : "";
-  };
-
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
 
     setCurrentItems(selectedVacancies.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(selectedVacancies.length / itemsPerPage));
   }, [itemOffset, itemsPerPage, selectedVacancies]);
-
-  const handlePageClick = (event: { selected: number }) => {
-    const newOffset =
-      (event.selected * itemsPerPage) % selectedVacancies.length;
-
-    setItemOffset(newOffset);
-  };
 
   const onlyWidth = useWindowWidth();
 
@@ -226,10 +168,10 @@ export const VacaniesPage = () => {
                 <li className="Vacancies__about__item">
                   <div className="Vacancies__about__textWrapper">
                     <h1 className="Vacancies__about__title bold">
-                      {data?.title}
+                      {vacancyData?.title}
                     </h1>
                     <p className="Vacancies__about__text">
-                      {data?.titleDescription}
+                      <ReactMarkdown children={vacancyData?.description} />
                     </p>
                   </div>
 
@@ -237,7 +179,7 @@ export const VacaniesPage = () => {
                     <div className="Vacancies__about__decoration--small"></div>
                     <img
                       className="Vacancies__about__img"
-                      src={cat1}
+                      src={PhotoAPI + vacancyData?.firstImage.data.attributes.url}
                       alt="Сat in front of the computer"
                     />
                   </div>
@@ -247,61 +189,60 @@ export const VacaniesPage = () => {
                   {onlyWidth >= 1430 && (
                     <img
                       className="Vacancies__about__img"
-                      src={cat2}
+                      src={PhotoAPI + vacancyData?.secondImage.data.attributes.url}
                       alt="Сat works at the keyboard"
                     />
                   )}
 
                   <div className="Vacancies__about__textWrapper">
-                    <h2 className="Vacancies__about__title">{data?.title2}</h2>
+                    <h2 className="Vacancies__about__title">{vacancyData?.secondTitle}</h2>
                     <p className="Vacancies__about__text">
-                      {data?.title2Description}
+                    <ReactMarkdown
+                      children={vacancyData?.secondDescription}
+                      className="descr"
+                    />
                     </p>
                   </div>
                 </li>
                 <li className="Vacancies__about__item">
                   <div className="Vacancies__about__textWrapper--short">
-                    <h2 className="Vacancies__about__title">{data?.title3}</h2>
+                    <h2 className="Vacancies__about__title">{vacancyData?.thirdTitle}</h2>
                     <p className="Vacancies__about__text">
-                      {data?.title3Description}
+                    <ReactMarkdown
+                      children={vacancyData?.thirdDescription}
+                      className="descr"
+                    />
                     </p>
                   </div>
                 </li>
                 <li className="Vacancies__about__item accent">
                   <img
                     className="Vacancies__about__item__img"
-                    src={cat3}
+                    src={PhotoAPI + vacancyData?.thirdImage.data.attributes.url}
                     alt="Impressed cat"
                   />
                   <div className="Vacancies__about__textWrapper">
                     <h2 className="Vacancies__about__title">
-                      {data?.listTitle}
+                      {vacancyData?.listTitle}
                     </h2>
                     <ul className="Vacancies__about__item__requirements__list">
-                      {data?.list?.map((el: string, index: any) => (
-                        <li
-                          className="Vacancies__about__item__requirements__item"
-                          key={index}
-                        >
-                          {el}
-                        </li>
-                      ))}
+                    <ReactMarkdown children={vacancyData?.requirements} />
                     </ul>
                   </div>
                 </li>
                 <li className="Vacancies__about__item">
                   <div className="Vacancies__about__textWrapper--short">
-                    <h2 className="Vacancies__about__title">{data?.title4}</h2>
+                    <h2 className="Vacancies__about__title last_title">{vacancyData?.fouthTitle}</h2>
                     <p className="Vacancies__about__text">
-                      {data?.title4Description}
+                      <ReactMarkdown children={vacancyData?.forthDescription} />
                     </p>
                   </div>
                 </li>
                 <li className="Vacancies__about__item">
                   <div className="Vacancies__about__textWrapper--short">
-                    <h2 className="Vacancies__about__title">{data?.title5}</h2>
+                    <h2 className="Vacancies__about__title last_title">{vacancyData?.fifthTitle}</h2>
                     <p className="Vacancies__about__text">
-                      {data?.title5Description}
+                      <ReactMarkdown children={vacancyData?.fifthDescription} />
                     </p>
                   </div>
                   <div className="Vacancies__about__decoration--big"></div>
