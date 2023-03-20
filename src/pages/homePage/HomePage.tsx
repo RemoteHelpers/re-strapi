@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-boolean-value */
+/* eslint-disable react/jsx-no-comment-textnodes */
 /* eslint-disable object-curly-newline */
 /* eslint-disable comma-dangle */
 /* eslint-disable operator-linebreak */
@@ -60,7 +62,7 @@ export const HomePage = () => {
                 <h1 className={cl.mainTitle}>{homeData?.spheresTitle}</h1>
                 <Spheres />
               </div>
-              <VacancyList />
+              <VacancyList isShowHot={true} />
               <div className={cl.faq_wrapper}>
                 <h2 className={cl.faq_title}>
                   {homeData?.faqTitle}

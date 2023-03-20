@@ -33,7 +33,7 @@ import { useStateContext } from "../../context/StateContext";
 import Loader from "../../components/loader";
 import { API, PhotoAPI } from "../../constants";
 
-const itemsPerPage = 6;
+const itemsPerPage = 10;
 
 let vacationTime: any;
 
@@ -184,7 +184,7 @@ export const VacaniesPage = () => {
                     />
                   </div>
                 </li>
-                <VacanciesList />
+                <VacanciesList isShowHot={false} />
                 <li className="Vacancies__about__item">
                   {onlyWidth >= 1430 && (
                     <img
