@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-tag-spacing */
 /* eslint-disable array-callback-return */
 /* eslint-disable padding-line-between-statements */
@@ -38,17 +39,23 @@ const itemsPerPage = 9;
 let searchTime: any;
 let vacationTime: any;
 
-export default function Vacancies() {
+const DropdownIndicator = (props: any) => {
+  return (
+    <components.DropdownIndicator {...props}>
+      <img src={SelectIcon} alt="dropdown" />
+    </components.DropdownIndicator>
+  );
+};
+
+export default function Vacancies(props: any) {
   const searchRef = useRef<HTMLDivElement>(null);
-  const { localization, scrollToTopVacancies, setCategorySlug } =
+  const { localization, scrollToTopVacancies, setCategorySlug, globalCategories, currentGlobalVacancies } =
     useStateContext();
 
   const [categories, setCategories] = useState<Category[]>([]);
-  const [vacancies, setVacancies] = useState<VacancyArray[]>([]);
   const [currentCategory, setCurrentCategory] = useState<string>("");
   const [selectedVacancies, setSelectedVacancies] = useState<Vacancy[]>([]);
   const [query, setQuery] = useState<string>("");
-  const [searchCollection, setSearchCollection] = useState<Collection[]>([]);
   const [isDropdown, setIsDropdown] = useState<boolean>(false);
   const [currentItems, setCurrentItems] = useState<any>([]);
   const [pageCount, setPageCount] = useState(0);
@@ -59,14 +66,6 @@ export default function Vacancies() {
     value: category.attributes.categoryTitle.toLowerCase(),
     label: category.attributes.categoryTitle,
   }));
-
-  const DropdownIndicator = (props: any) => {
-    return (
-      <components.DropdownIndicator {...props}>
-        <img src={SelectIcon} alt="dropdown" />
-      </components.DropdownIndicator>
-    );
-  };
 
   useOutsideAlerter(searchRef, () => {
     setIsDropdown(false);
@@ -79,39 +78,10 @@ export default function Vacancies() {
   }, [localization]);
 
   useEffect(() => {
-    axios
-      .get(
-        `${API}/categories?locale=${
-          localization === "ua" ? "uk" : localization
-        }`
-      )
-      .then((res) => {
-        setCategories(res.data.data);
-        // console.log("Categories from vacancy list", res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    setCategories(globalCategories);
   }, [localization]);
 
   setCategorySlug(currentItems);
-
-  useEffect(() => {
-    axios
-      .get(
-        `${API}/vacancies?populate=*&locale=${
-          localization === "ua" ? "uk" : localization
-        }`
-      )
-      .then((res) => {
-        setVacancies(res.data.data);
-        // console.log(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
   useEffect(() => {
     clearTimeout(vacationTime);
     vacationTime = setTimeout(async () => {
@@ -120,22 +90,21 @@ export default function Vacancies() {
       if (currentCategory) {
         queryFilters += `&filters[categories][categoryTitle][$contains]=${currentCategory}`;
       }
-
-      if (query.length > 0) {
-        queryFilters += `&filters[keyword_tags][keyPhrase][$contains]=${query}`;
+      console.log(query, query.length);
+      if (query.length >= 2) {
+        queryFilters += `&filters[$or][0][title][$contains]=${query}&filters[$or][1][keyword_tags][keyPhrase][$contains]=${query}`;
       }
-
       if (!currentCategory && query.length === 0) {
         const res = await axios.get(
           `${API}/vacancies?locale=${
             localization === "ua" ? "uk" : localization
           }&filters[isHot][$eq]=${true}&populate=*`
         );
-
+          console.log(res);
         setSelectedVacancies(res.data.data);
       } else {
         const res = await axios.get(
-          `${API}/vacancies?populate=*&locale=${
+          `${API}/vacancies?$pagintaion[limit]=-1&populate=*&locale=${
             localization === "ua" ? "uk" : localization
           }${queryFilters}`
         );
@@ -152,14 +121,14 @@ export default function Vacancies() {
           })
         );
       }
-
-      // const res = await axios.get(`${API}/vacancies?
-      // locale=${localization}&populate=*${queryFilters}`);
-
-      // setSelectedVacancies(res.data.data);
+      const showHot = props.isShowHot;
+      if (!showHot) {
+        const sortedVacancies = currentGlobalVacancies;
+        setSelectedVacancies(sortedVacancies.sort((a:any, b:any) => new Date(b.attributes.updatedAt).getTime() - new Date(a.attributes.updatedAt).getTime()));
+      }
     }, 400);
-  }, [query, currentCategory]);
-
+  }, [query, currentCategory, currentGlobalVacancies]);
+  console.log(currentGlobalVacancies);
   const handleCategorySelect = useCallback(
     (selected: any) => {
       if (currentCategory !== selected.label) {
@@ -177,18 +146,20 @@ export default function Vacancies() {
   }, []);
 
   const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value);
+    console.log(event.target.value, event.target.value.length);
 
-    // поменять теги
-    clearTimeout(searchTime);
-    searchTime = setTimeout(async () => {
-      const res = await axios.get(
-        `${API}/keyword-tags?filters[keyPhrase][$contains]=${event.target.value}`
-      );
-
-      setIsDropdown(true);
-      setSearchCollection(res?.data?.data || []);
-    }, 300);
+      setQuery(event.target.value);
+      // поменять теги
+      clearTimeout(searchTime);
+      searchTime = setTimeout(async () => {
+        const res = await axios.get(
+        //   `${API}/vacancies?locale=${
+        // localization === "ua" ? "uk" : localization}&pagination[limit]=-1&filters[title][$contains]=${event.target.value}`
+           `${API}/keyword-tags?filters[keyPhrase][$contains]=${event.target.value}`
+        );
+        // setIsDropdown(true);
+        console.log(res.data);
+      }, 300);
   };
 
   const onCollection = (collection: Collection) => {
@@ -261,25 +232,6 @@ export default function Vacancies() {
                     <img src={Close} alt="close" />
                   </button>
                 )}
-                <div className="search__dropdown">
-                  {query ? (
-                    <>
-                      {isDropdown &&
-                        searchCollection.slice(0, 10).map((collection) => (
-                          <button
-                            type="button"
-                            key={collection.id}
-                            onClick={() => onCollection(collection)}
-                            className="search__dropdown-row"
-                          >
-                            {collection.attributes.keyPhrase}
-                          </button>
-                        ))}
-                    </>
-                  ) : (
-                    ""
-                  )}
-                </div>
               </div>
               {/* <button
                 className="search__button"
@@ -300,9 +252,7 @@ export default function Vacancies() {
               onChange={handleCategorySelect}
               placeholder={data?.categoriesTitle}
               isSearchable={false}
-              components={{
-                DropdownIndicator,
-              }}
+              components={{ DropdownIndicator, }}
             />
           </div>
         </div>
