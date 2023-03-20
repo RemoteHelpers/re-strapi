@@ -65,6 +65,7 @@ export interface IFeedbackFormData {
   eMail: string;
   CV: FileList;
   pageFrom: string;
+  cv_link: string;
 }
 
 export interface VacancyArray {

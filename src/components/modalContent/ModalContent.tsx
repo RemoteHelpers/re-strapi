@@ -18,15 +18,15 @@ import { useNavigate } from "react-router-dom";
 import cl from "./modalContent.module.scss";
 
 import ua from "../../images/languages/ukrainian.png";
-import pl from "../../images/languages/polski.png";
+// import pl from "../../images/languages/polski.png";
 import en from "../../images/languages/english.png";
-import sk from "../../images/languages/slovenskiy.png";
+// import sk from "../../images/languages/slovenskiy.png";
 import ru from "../../images/languages/ru.png";
 
 import uaGif from "../../images/languages/ua.gif";
-import plGif from "../../images/languages/pl.gif";
+// import plGif from "../../images/languages/pl.gif";
 import enGif from "../../images/languages/en.gif";
-import skGif from "../../images/languages/sk.gif";
+// import skGif from "../../images/languages/sk.gif";
 import ruGif from "../../images/languages/ru.gif";
 
 import languageCat from "../../images/languages/languageCat.png";
@@ -34,9 +34,9 @@ import { useStateContext } from "../../context/StateContext";
 
 const selectLocalization = [
   { value: "ua", label: "Українська", img: ua, gif: uaGif },
-  { value: "pl", label: "Polski", img: pl, gif: plGif },
+  // { value: "pl", label: "Polski", img: pl, gif: plGif },
   { value: "en", label: "English", img: en, gif: enGif },
-  { value: "sk", label: "Slovenský", img: sk, gif: skGif },
+  // { value: "sk", label: "Slovenský", img: sk, gif: skGif },
   { value: "ru", label: "російська", img: ru, gif: ruGif },
 ];
 

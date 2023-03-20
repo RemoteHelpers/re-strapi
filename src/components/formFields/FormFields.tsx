@@ -5,10 +5,9 @@
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Select from "react-select";
-import InputMask from "react-input-mask";
 import { useForm } from "react-hook-form";
 import cl from "./formFields.module.scss";
 import Api from "../../api";
@@ -19,6 +18,7 @@ import feedbackCat from "../../images/formImg.png";
 import interviewCat from "../../icons/interview_form_kitekat.png";
 import Loader from "../loader/Loader";
 import { FORM_FIELDS } from "../../database/common/formFields";
+import LangSelect from "../langSelect/LangSelect";
 
 type TOption = {
   value: string;
@@ -26,7 +26,9 @@ type TOption = {
 };
 
 export const FormFields = () => {
-  const { localization, setIsFormSubmitError } = useStateContext();
+  const {
+    localization, setIsFormSubmitError, langInputValue
+  } = useStateContext();
   const { vacancyID } = useParams();
 
   const routingRule = localization === "ru";
@@ -54,7 +56,7 @@ export const FormFields = () => {
     setValue,
   } = useForm<IFeedbackFormData>();
 
-  const [number, setNumber] = useState("");
+  // const [number, setNumber] = useState("");
 
   const onSubmit = handleSubmit(async (data: IFeedbackFormData) => {
     try {
@@ -65,9 +67,9 @@ export const FormFields = () => {
       await Api.feedBackForm({
         ...data,
         CV: arrFile[0].id,
-        pageFrom: window.location.href
+        pageFrom: window.location.href,
+        number: langInputValue
       });
-      setNumber("");
       setSelectedOption(null);
       reset();
       routingRule
@@ -82,9 +84,6 @@ export const FormFields = () => {
     register("englishLevel", {
       required: true,
     });
-    register("number", {
-      required: true,
-    });
     register("CV", {
       required: true,
     });
@@ -95,13 +94,7 @@ export const FormFields = () => {
     setSelectedOption(value);
   };
 
-  const changePhone = (e: any) => {
-    setValue("number", e.target.value, { shouldValidate: true });
-    setNumber(e.target.value);
-  };
-
-  const url =
-    window.location.pathname === `/${localization}/${vacancyID}`;
+  const url = window.location.pathname === `/${localization}/${vacancyID}`;
   const interviewUrl =
     window.location.pathname === `/${localization}/videoInterview`;
 
@@ -126,17 +119,7 @@ export const FormFields = () => {
                 />
               </div>
               <div className={cl.input_phone}>
-                <InputMask
-                  mask="+38 (099) 999-99-99"
-                  value={number}
-                  className={`${errors.number ? cl.invalid : ""} ${
-                    watch("number") && cl.valid
-                  } + ${url ? cl.white : cl.main}`}
-                  placeholder={
-                    localizedFormFieldData?.fields.number.placeholder
-                  }
-                  onChange={changePhone}
-                />
+                <LangSelect mask="(099) 999-99-99" />
               </div>
               <div className={cl.input_email}>
                 <input
@@ -178,6 +161,37 @@ export const FormFields = () => {
                 options={EnglishLevel}
               />
             </div>
+            <div className={cl.input_cvLink}>
+              <input
+                type="text"
+                className={`${errors.cv_link ? cl.invalid : ""} ${
+                  watch("cv_link") && cl.valid
+                } + ${url ? cl.white : cl.main}`}
+                placeholder="Add CV link of file..."
+                {...register("cv_link", { required: true })}
+              />
+              <div className={cl.cv_submit}>
+                <label className={cl.label_file}>
+                  <input
+                    type="text"
+                    name="fileName"
+                    readOnly
+                    required
+                    className={`${errors.CV ? cl.invalid : ""} ${
+                      watch("CV" as any)?.[0]?.name && cl.valid
+                    } ${cl.download_btn}`}
+                    placeholder={localizedFormFieldData?.fields.cv.placeholder}
+                    value={watch("CV" as any)?.[0]?.name || ""}
+                  />
+                  <input
+                    className={cl.attach_CV_btn}
+                    type="file"
+                    required
+                    {...register("CV", { required: true })}
+                  />
+                </label>
+              </div>
+            </div>
             {interviewUrl ? (
               <div className={cl.vacancy_mobile_cat}>
                 <img src={interviewCat} alt="" />
@@ -196,25 +210,6 @@ export const FormFields = () => {
               </div>
             )}
             <div className={cl.buttons_wr}>
-              <label className={cl.label_file}>
-                <input
-                  type="text"
-                  name="fileName"
-                  readOnly
-                  required
-                  className={`${errors.CV ? cl.invalid : ""} ${
-                    watch("CV" as any)?.[0]?.name && cl.valid
-                  } ${cl.download_btn}`}
-                  placeholder={localizedFormFieldData?.fields.cv.placeholder}
-                  value={watch("CV" as any)?.[0]?.name || ""}
-                />
-                <input
-                  className={cl.attach_CV_btn}
-                  type="file"
-                  required
-                  {...register("CV", { required: true })}
-                />
-              </label>
               <button
                 type="submit"
                 className={cl.submit_btn}

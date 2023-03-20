@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable function-paren-newline */
@@ -480,18 +481,26 @@ const Header = () => {
                     </Link>
                   )}
                   {!query &&
-                    categories.map((category) => (
-                      <span
-                        key={category.id}
-                        className="Header__link_mobile"
-                        onClick={handleCategorySelect}
-                      >
-                        {chooseImage(
-                          category.attributes.categorySlug as string
-                        )}
-                        <span>{category.attributes.categoryTitle}</span>
-                      </span>
-                    ))}
+                    // TODO Переписать на тернарник
+                    categories.map((category) => {
+                      if (category.attributes.categorySlug === "other") {
+                        return null;
+                      }
+
+                      return (
+                        <span
+                          key={category.id}
+                          className="Header__link_mobile"
+                          onClick={handleCategorySelect}
+                        >
+                          {chooseImage(
+                            category.attributes.categorySlug as string
+                          )}
+                          <span>{category.attributes.categoryTitle}</span>
+                        </span>
+                      );
+                    }
+                    )}
                   {query &&
                     selectedVacancies.map((vacancy) => (
                       <Link
@@ -564,31 +573,38 @@ const Header = () => {
           >
             {query.length === 0 && (
               <div className="Header__dropMenuDesktop_categories">
-                {categories.map((category) => (
-                  <div
-                    className="Header__dropMenuDesktop_category_item"
-                    key={category.id}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={
-                        currentCategory === category.attributes.categoryTitle
-                      }
+                {categories.map((category) => {
+                  if (category.attributes.categorySlug === "other") {
+                    return null;
+                  }
+
+                  return (
+                    <div
+                      className="Header__dropMenuDesktop_category_item"
                       key={category.id}
-                      id={category.id}
-                      name={category.attributes.categoryTitle}
-                      value={currentCategory}
-                      onChange={handleCategoryMenuSelect}
-                      className={classNames("Header__link_desktop")}
-                    />
-                    <label className="label" htmlFor={category.id}>
-                      {chooseImage(category.attributes.categorySlug as string)}
-                      <span className="label-title">
-                        {category.attributes.categoryTitle}
-                      </span>
-                    </label>
-                  </div>
-                ))}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={
+                          currentCategory === category.attributes.categoryTitle
+                        }
+                        key={category.id}
+                        id={category.id}
+                        name={category.attributes.categoryTitle}
+                        value={currentCategory}
+                        onChange={handleCategoryMenuSelect}
+                        className={classNames("Header__link_desktop")}
+                      />
+                      <label className="label" htmlFor={category.id}>
+                        {chooseImage(category.attributes.categorySlug as string)}
+                        <span className="label-title">
+                          {category.attributes.categoryTitle}
+                        </span>
+                      </label>
+                    </div>
+                  );
+                }
+                )}
               </div>
             )}
             <div className="Header__dropMenuDesktop_vacancies">

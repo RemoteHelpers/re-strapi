@@ -26,7 +26,7 @@ import { useStateContext } from "../../context/StateContext";
 const Spheres = () => {
   const { localization, globalCategories } = useStateContext();
 
-  const routingRule = localization === 'ru';
+  const routingRule = localization === "ru";
 
   function chooseImage(id: string | number) {
     switch (id) {
@@ -50,26 +50,32 @@ const Spheres = () => {
   return (
     <div className="Spheres">
       <div className="Spheres__block">
-        {globalCategories.map((sphere: any) => (
-          <Link
-            key={sphere.id}
-            to={
-              routingRule
-                ? `/${sphere.attributes.categorySlug}`
-                : `/${localization}/${sphere.attributes.categorySlug}`
-            }
-            className="Spheres__sphere"
-          >
-            <img
-              src={chooseImage(sphere.attributes.categorySlug as string)}
-              alt="sphere"
-              className="Spheres__icon"
-            />
-            <h5 className="Spheres__sphere-title">
-              {sphere.attributes.categoryTitle}
-            </h5>
-          </Link>
-        ))}
+        {globalCategories.map((sphere: any) => {
+          if (sphere.attributes.categorySlug === "other") {
+            return null;
+          }
+
+          return (
+            <Link
+              key={sphere.id}
+              to={
+                routingRule
+                  ? `/${sphere.attributes.categorySlug}`
+                  : `/${localization}/${sphere.attributes.categorySlug}`
+              }
+              className="Spheres__sphere"
+            >
+              <img
+                src={chooseImage(sphere.attributes.categorySlug as string)}
+                alt="sphere"
+                className="Spheres__icon"
+              />
+              <h5 className="Spheres__sphere-title">
+                {sphere.attributes.categoryTitle}
+              </h5>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

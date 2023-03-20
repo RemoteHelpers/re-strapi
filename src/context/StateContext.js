@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable object-curly-newline */
 /* eslint-disable comma-dangle */
 /* eslint-disable @typescript-eslint/quotes */
@@ -30,10 +31,13 @@ export const StateContext = ({ children }) => {
   const [categorySlug, setCategorySlug] = useState([]);
   const [currentGlobalVacancies, setCurrentGlobalVacancies] = useState([]);
   const [globalCategories, setGlobalCategories] = useState([]);
+  const [langInputValue, setLangInputValue] = useState('');
 
   return (
     <Context.Provider
       value={{
+        langInputValue,
+        setLangInputValue,
         globalCategories,
         setGlobalCategories,
         currentGlobalVacancies,

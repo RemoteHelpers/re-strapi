@@ -31,7 +31,7 @@ export const FORM_FIELDS = [
         },
         cv: {
           id: "cv",
-          placeholder: "Прикріпити резюме",
+          placeholder: "Прикріпити CV",
         },
         englishLevel: {
           id: "englishLevel",
@@ -70,7 +70,7 @@ export const FORM_FIELDS = [
         },
         cv: {
           id: "cv",
-          placeholder: "Attach resume",
+          placeholder: "Attach CV",
         },
         englishLevel: {
           id: "englishLevel",
@@ -97,7 +97,7 @@ export const FORM_FIELDS = [
         },
         number: {
           id: "number",
-          placeholder: "+38 (099) 999-99-99",
+          placeholder: "(099) 999-99-99",
         },
         email: {
           id: "email",
@@ -109,7 +109,7 @@ export const FORM_FIELDS = [
         },
         cv: {
           id: "cv",
-          placeholder: "Прикрепите резюме",
+          placeholder: "Выбрать CV",
         },
         englishLevel: {
           id: "englishLevel",

@@ -39,6 +39,7 @@
 }
 
 .buttons_wr {
+  width: 100% !important;
   display: flex;
   width: fit-content;
   flex-direction: column;
@@ -57,10 +58,10 @@
     margin: 0;
     margin-top: 2.5rem;
     justify-content: space-between;
-    width: 80%;
+    width: 50%;
   }
   @include on1920 {
-    width: 60%;
+    width: 30%;
   }
 }
 
@@ -113,11 +114,13 @@
   left: 0;
   height: 100%;
   display: block;
+  cursor: pointer;
 }
 
 .submit_btn {
   display: block;
   width: 100%;
+  cursor: pointer;
 
   background: #ff6501;
   padding: 0.9rem;
@@ -195,6 +198,48 @@
     }
   }
 
+  &_cvLink {
+    width: 100%;
+    margin-top: 1rem;
+    position: relative;
+
+    input:first-of-type,
+    textarea:first-of-type {
+      width: 100%;
+      display: block;
+      padding: 1.1rem;
+      font-size: $typography4;
+      font-weight: 500;
+      border: 0.1rem #00dcff solid;
+      border-radius: 0.5rem;
+      background: #d8faff;
+      resize: none;
+      @include onTablet {
+        padding: 1.1rem;
+      }
+      &::placeholder {
+        color: rgba(#616161, 0.6);
+      }
+      &:focus,
+      &.valid {
+        background: #fff;
+        color: #000;
+        &::placeholder {
+          color: rgba(#616161, 0.6);
+        }
+      }
+      &.invalid {
+        border-color: red;
+      }
+      &.white {
+        background-color: #fff;
+      }
+      &.main {
+        background-color: #d8faff;
+      }
+    }
+  }
+
   &_phone {
     width: 100%;
     @include onDesktop {
@@ -236,4 +281,12 @@
 
 .mainInput {
   background-color: #d8faff;
+}
+
+
+.cv_submit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
 }
