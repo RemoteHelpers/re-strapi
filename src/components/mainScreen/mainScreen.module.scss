@@ -18,6 +18,10 @@
   height: 100%;
   position: relative;
 
+  .info {
+    margin-top: 6rem;
+  }
+
   @include onTablet {
     padding: 3.1rem 2.5rem 3.6rem;
   }
@@ -32,6 +36,10 @@
     margin: 0 auto;
     background-image: url("../../images/mainScreen/background-desktop.png");
     background-position: top -15% left 0;
+
+    .info {
+      margin-top: 0;
+    }
   }
 }
 

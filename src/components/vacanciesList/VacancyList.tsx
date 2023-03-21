@@ -101,7 +101,7 @@ export default function Vacancies(props: any) {
             localization === "ua" ? "uk" : localization
           }&filters[isHot][$eq]=${true}&populate=*`
         );
-          console.log(res);
+          // console.log(res);
         setSelectedVacancies(res.data.data);
       } else {
         const res = await axios.get(
@@ -129,7 +129,7 @@ export default function Vacancies(props: any) {
       }
     }, 400);
   }, [query, currentCategory, currentGlobalVacancies]);
-  console.log(currentGlobalVacancies);
+  // console.log(currentGlobalVacancies);
   const handleCategorySelect = useCallback(
     (selected: any) => {
       if (currentCategory !== selected.label) {

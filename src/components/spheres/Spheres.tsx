@@ -1,15 +1,3 @@
-/* eslint-disable import/order */
-/* eslint-disable max-len */
-/* eslint-disable operator-linebreak */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-console */
-/* eslint-disable object-shorthand */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable comma-dangle */
-/* eslint-disable @typescript-eslint/quotes */
-// import Lottie from 'react-lottie';
-// import animationData from '../../images/Spheres/anim/cat-hand-1.json';
 import React from "react";
 import Marketing from "../../images/Spheres/Marketing.png";
 import Management from "../../images/Spheres/Management.png";

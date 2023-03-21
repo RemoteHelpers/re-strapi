@@ -1,22 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable max-len */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable consistent-return */
-/* eslint-disable comma-dangle */
-/* eslint-disable no-restricted-globals */
-/* eslint-disable @typescript-eslint/no-unused-expressions */
-/* eslint-disable prefer-const */
-/* eslint-disable object-curly-newline */
-/* eslint-disable react/jsx-closing-tag-location */
-/* eslint-disable import/order */
-/* eslint-disable operator-linebreak */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable padding-line-between-statements */
-/* eslint-disable @typescript-eslint/indent */
-/* eslint-disable react/jsx-tag-spacing */
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable react/jsx-no-bind */
 import React, { useEffect, useState } from "react";
 import { Route, Routes, BrowserRouter, useNavigate } from "react-router-dom";
 import { useStateContext } from "./context/StateContext";

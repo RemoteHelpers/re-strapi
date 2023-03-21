@@ -122,6 +122,10 @@
   width: 100%;
   cursor: pointer;
 
+  @include onTablet {
+    width: 40%;
+  }
+
   background: #ff6501;
   padding: 0.9rem;
   color: #fff;
