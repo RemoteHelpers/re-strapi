@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-children-prop */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
@@ -20,9 +21,13 @@ import Loader from "../../components/loader";
 import { API, PhotoAPI } from "../../constants";
 
 export const VideoInterview = () => {
-  const { localization } = useStateContext();
+  const { localization, scrollToTop } = useStateContext();
   const [isLoading, setIsLoading] = useState(true);
   const [videoData, setVideoData] = useState<any>([]);
+
+  useEffect(() => {
+    scrollToTop?.current?.scrollIntoView({ block: "start" });
+  }, []);
 
   useEffect(() => {
     axios

@@ -11,7 +11,11 @@
 }
 
 .section {
-  padding: 12rem 0 3rem;
+  padding: 8rem 0 3rem;
+
+  @include onTablet {
+    padding: 12rem 0 3rem;
+  }
 }
 .container {
   width: 90%;

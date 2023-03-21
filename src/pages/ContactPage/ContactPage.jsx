@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable max-len */
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-filename-extension */
@@ -16,9 +17,13 @@ import { API, PhotoAPI } from '../../constants';
 import cl from './ContactPage.module.scss';
 
 const ContactPage = () => {
-  const { localization } = useStateContext();
+  const { localization, scrollToTop } = useStateContext();
   const [isLoading, setIsLoading] = useState(true);
   const [team, setTeam] = useState([]);
+
+  useEffect(() => {
+    scrollToTop?.current?.scrollIntoView({ block: "start" });
+  }, []);
 
   useEffect(() => {
     axios

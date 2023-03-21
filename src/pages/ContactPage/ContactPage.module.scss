@@ -3,7 +3,11 @@
 @import "../../global-styles/fonts.scss";
 
 .our_team {
-  padding: 10rem 0 5rem;
+  padding: 8rem 0 3rem;
+
+  @include onTablet {
+    padding: 12rem 0 3rem;
+  }
 
   h1 {
     color: $typographyColor2;

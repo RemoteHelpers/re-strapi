@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-children-prop */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
@@ -20,7 +21,7 @@ import Loader from "../../components/loader";
 import { API } from "../../constants";
 
 export const AboutPage = () => {
-  const { localization } = useStateContext();
+  const { localization, scrollToTop } = useStateContext();
   // const [previewVideoImage, setPreviewVideoImage] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [aboutData, setAboutData] = useState<any>([]);
@@ -28,6 +29,10 @@ export const AboutPage = () => {
   // const playVideo = () => {
   //   setPreviewVideoImage(false);
   // };
+
+  useEffect(() => {
+    scrollToTop?.current?.scrollIntoView({ block: "start" });
+  }, []);
 
   useEffect(() => {
     axios

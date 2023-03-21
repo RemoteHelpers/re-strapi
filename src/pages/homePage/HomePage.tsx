@@ -23,8 +23,12 @@ import Loader from "../../components/loader";
 import { API } from "../../constants";
 
 export const HomePage = () => {
-  const { setHomeData, localization, homeData } = useStateContext();
+  const { setHomeData, localization, homeData, scrollToTop } = useStateContext();
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    scrollToTop?.current?.scrollIntoView({ block: "start" });
+  }, []);
 
   useEffect(() => {
     axios
