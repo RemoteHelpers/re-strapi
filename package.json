@@ -43,6 +43,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build"
   },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -60,6 +66,8 @@
     "@types/react-input-mask": "^3.0.1",
     "@types/react-lottie": "^1.2.6",
     "@types/react-select-country-list": "^2.2.1",
+    "eslint": "^7.25.0",
+    "eslint-config-react-app": "^7.0.1",
     "node-sass": "^5.0.0"
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-children-prop */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable react/jsx-indent */

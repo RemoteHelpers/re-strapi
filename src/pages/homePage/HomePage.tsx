@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-boolean-value */
 /* eslint-disable react/jsx-no-comment-textnodes */
 /* eslint-disable object-curly-newline */

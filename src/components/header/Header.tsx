@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-unused-expressions */

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-tag-spacing */
 /* eslint-disable array-callback-return */

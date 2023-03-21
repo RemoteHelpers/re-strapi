@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState, useEffect } from 'react';
