@@ -123,7 +123,7 @@ export default function Vacancies(props: any) {
         );
       }
       const showHot = props.isShowHot;
-      if (!showHot) {
+      if (!currentCategory && !showHot) {
         const sortedVacancies = currentGlobalVacancies;
         setSelectedVacancies(sortedVacancies.sort((a:any, b:any) => new Date(b.attributes.updatedAt).getTime() - new Date(a.attributes.updatedAt).getTime()));
       }
