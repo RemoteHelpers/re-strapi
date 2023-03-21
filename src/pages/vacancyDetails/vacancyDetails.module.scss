@@ -13,7 +13,7 @@ h2 {
   width: 90%;
   height: auto;
   margin: 0 auto;
-  padding: 3.5rem 0 7rem 0;
+  padding: 3.5rem 0;
   @include onTablet {
     width: 80%;
     padding: 3.5rem 0 10rem 0;
@@ -270,19 +270,13 @@ h2 {
 }
 
 .toTopButton {
-  position: absolute;
   width: 100%;
-  right: -47%;
-  bottom: 1%;
-  border: none;
-  background: transparent;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
 
   @include onTablet {
-    right: -48%;
-    bottom: 2%;
-  }
-  @include onDesktop {
-    right: -86%;
+    justify-content: flex-end;
   }
 }
 

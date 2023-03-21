@@ -68,8 +68,18 @@
 .label_file {
   position: relative;
   width: 100%;
+  cursor: pointer;
 
   font-size: $typography4;
+
+  input:first-of-type {
+    background-color: #fff !important;
+    padding: .5rem 0 !important;
+    border: 0 !important;
+    border: 0.1rem #00dcff solid !important;
+    font-size: clamp(12px, 2vw, 16px) !important;
+  }
+
   input {
     &::placeholder {
       color: #000;
@@ -111,7 +121,7 @@
   z-index: 1;
   top: 0;
   width: 100%;
-  left: 0;
+  right: 0;
   height: 100%;
   display: block;
   cursor: pointer;
@@ -161,8 +171,8 @@
   textarea {
     width: 100%;
     display: block;
-    padding: 1.1rem;
     font-size: $typography4;
+    padding: 1.1rem;
     font-weight: 500;
     border: 0.1rem #00dcff solid;
     border-radius: 0.5rem;
@@ -290,7 +300,13 @@
 
 .cv_submit {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  right: .5rem;
   z-index: 1;
+  width: 35%;
+
+  @include onTablet {
+    width: 30%;
+  }
 }

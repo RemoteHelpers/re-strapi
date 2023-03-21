@@ -68,7 +68,7 @@
   width: 90%;
   height: auto;
   margin: 0 auto;
-  padding: 3.5rem 0 7rem 0;
+  padding: 3.5rem 0;
 
   @include onTablet {
     width: 80%;
@@ -88,19 +88,31 @@
 }
 
 .toTopButton {
-  position: absolute;
   width: 100%;
-  right: -47%;
-  bottom: 1rem;
-  border: none;
-  background: transparent;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
 
   @include onTablet {
-    right: -48%;
-    bottom: 2rem;
+    justify-content: flex-end;
   }
+}
 
-  @include onDesktop {
-    right: -86%;
-  }
+
+.activeCrumb {
+  color: $primaryColorVacancy;
+  font-weight: 700 !important;
+  font-size: clamp(16px, 1vw, 20px);
+  line-height: 115%;
+  text-transform: capitalize;
+}
+.crumbArrow {
+  color: $primaryColorVacancy;
+}
+
+.normalCrumb {
+  color: $secondaryColor4;
+  font-weight: 500 !important;
+  font-size: clamp(16px, 1vw, 20px);
+  line-height: 115%;
 }
