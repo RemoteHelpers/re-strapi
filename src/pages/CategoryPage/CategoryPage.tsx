@@ -23,7 +23,7 @@ import { Breadcrumbs, Typography } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 const CategoryPage = () => {
-  const [category, setCategory] = useState([]);
+  const [category, setCategory] = useState<any>([]);
   const [filteredVacancies, setFilteredVacancies] = useState([]);
   const formSection = useRef<HTMLDivElement>(null);
 
@@ -131,7 +131,7 @@ const CategoryPage = () => {
                 })
               }
             >
-              Подать заявку
+              {category[0]?.attributes.categoryButton}
             </button>
             <div className={sl.category_vacancies}>
               {filteredVacancies.map((item: any) => (
