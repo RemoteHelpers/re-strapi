@@ -188,6 +188,7 @@ export const FormFields = () => {
                   <input
                     className={cl.attach_CV_btn}
                     type="file"
+                    accept=".doc,.docx,.xml,application/pdf"
                     required
                     {...register("CV", { required: true })}
                   />

@@ -1,12 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/jsx-boolean-value */
-/* eslint-disable react/jsx-no-comment-textnodes */
-/* eslint-disable object-curly-newline */
-/* eslint-disable comma-dangle */
-/* eslint-disable operator-linebreak */
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable react/jsx-filename-extension */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useStateContext } from "../../context/StateContext";
@@ -23,7 +15,8 @@ import Loader from "../../components/loader";
 import { API } from "../../constants";
 
 export const HomePage = () => {
-  const { setHomeData, localization, homeData, scrollToTop } = useStateContext();
+  const { setHomeData, localization, homeData, scrollToTop } =
+    useStateContext();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -33,7 +26,9 @@ export const HomePage = () => {
   useEffect(() => {
     axios
       .get(
-        `${API}/home-page?locale=${localization === "ua" ? "uk" : localization}&populate=Testimonials.personImg,Faq_Question,partnersSlider`
+        `${API}/home-page?locale=${
+          localization === "ua" ? "uk" : localization
+        }&populate=Testimonials.personImg,Faq_Question,partnersSlider`
       )
       .then((res) => {
         setHomeData(res.data.data.attributes);
@@ -63,23 +58,28 @@ export const HomePage = () => {
           <MainScreen />
           <div className={cl.container}>
             <div className={cl.content_wrapper}>
-              <div className={cl.spheres_wrapper}>
-                <h1 className={cl.mainTitle}>{homeData?.spheresTitle}</h1>
-                <Spheres />
-              </div>
+              {homeData?.spheresTitle && (
+                <div className={cl.spheres_wrapper}>
+                  <h1 className={cl.mainTitle}>{homeData?.spheresTitle}</h1>
+                  <Spheres />
+                </div>
+              )}
               <VacancyList isShowHot={true} />
-              <div className={cl.faq_wrapper}>
-                <h2 className={cl.faq_title}>
-                  {homeData?.faqTitle}
-                </h2>
-                <FAQ faqData={homeData?.Faq_Question} />
-              </div>
 
-              <Partners />
+              {homeData?.Faq_Question.length === 0 || (
+                <div className={cl.faq_wrapper}>
+                  <h2 className={cl.faq_title}>{homeData?.faqTitle}</h2>
+                  <FAQ faqData={homeData?.Faq_Question} />
+                </div>
+              )}
+
+              {homeData?.partnersSlider.data === null || <Partners />}
             </div>
-            <div className={cl.testimonials_wrapper}>
-              <Testimonials />
-            </div>
+            {homeData?.Testimonials.length === 0 || (
+              <div className={cl.testimonials_wrapper}>
+                <Testimonials />
+              </div>
+            )}
             <div className={cl.content_wrapper}>
               <div className={cl.form_wrapper}>
                 <FeedbackForm />

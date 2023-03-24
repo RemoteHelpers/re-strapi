@@ -91,7 +91,7 @@ export default function Vacancies(props: any) {
       if (currentCategory) {
         queryFilters += `&filters[categories][categoryTitle][$contains]=${currentCategory}`;
       }
-      console.log(query, query.length);
+      // console.log(query, query.length);
       if (query.length >= 2) {
         queryFilters += `&filters[$or][0][title][$contains]=${query}&filters[$or][1][keyword_tags][keyPhrase][$contains]=${query}`;
       }
