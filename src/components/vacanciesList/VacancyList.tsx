@@ -88,28 +88,35 @@ export default function Vacancies(props: any) {
     vacationTime = setTimeout(async () => {
       let queryFilters = "";
       const showHot = props.isShowHot;
-
       if (currentCategory) {
         queryFilters += `&filters[categories][categoryTitle][$contains]=${currentCategory}`;
       }
-      // console.log(query, query.length);
+
       if (query.length >= 2) {
         queryFilters += `&filters[$or][0][title][$contains]=${query}&filters[$or][1][keyword_tags][keyPhrase][$contains]=${query}&filters[$or][2][vacancySlug][$contains]=${query}`;
       }
-      if (!currentCategory && !showHot) {
+      if (!currentCategory && !showHot && query.length === 0) {
         const sortedVacancies = currentGlobalVacancies;
         setSelectedVacancies(sortedVacancies.sort((a:any, b:any) => new Date(b.attributes.updatedAt).getTime() - new Date(a.attributes.updatedAt).getTime()));
       }
-      if (!currentCategory && query.length === 0) {
+      else if(!showHot && query.length >= 2) {
+        const res = await axios.get(
+          `${API}/vacancies?$pagintaion[limit]=-1&populate=*&locale=${
+            localization === "ua" ? "uk" : localization
+          }${queryFilters}`
+        );
+        setSelectedVacancies(res.data.data);
+      }
+
+      if (!currentCategory && query.length === 0 && showHot) {
         const res = await axios.get(
           `${API}/vacancies?locale=${
             localization === "ua" ? "uk" : localization
           }&filters[isHot][$eq]=${true}&populate=*`
         );
-          // console.log(res);
         setSelectedVacancies(res.data.data);
-      } else {
-        console.log('else')
+      } else if(showHot && query.length >= 2) {
+
         const res = await axios.get(
           `${API}/vacancies?$pagintaion[limit]=-1&populate=*&locale=${
             localization === "ua" ? "uk" : localization
@@ -127,13 +134,31 @@ export default function Vacancies(props: any) {
             return 0;
           })
         );
-        console.log(selectedVacancies)
+      }
+      if (currentCategory){
+
+        const res = await axios.get(
+          `${API}/vacancies?$pagintaion[limit]=-1&populate=*&locale=${
+            localization === "ua" ? "uk" : localization
+          }${queryFilters}`
+        );
+
+        setSelectedVacancies(
+          res.data.data.sort((a: any, b: any) => {
+            if (a.attributes.isHot && !b.attributes.isHot) {
+              return -1;
+            }
+            if (!a.attributes.isHot && b.attributes.isHot) {
+              return 1;
+            }
+            return 0;
+          })
+        );
       }
       
 
     }, 400);
   }, [query, currentCategory, currentGlobalVacancies]);
-  // console.log(currentGlobalVacancies);
   const handleCategorySelect = useCallback(
     (selected: any) => {
       if (currentCategory !== selected.label) {
@@ -151,7 +176,6 @@ export default function Vacancies(props: any) {
   }, []);
 
   const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value, event.target.value.length);
 
       setQuery(event.target.value);
       // поменять теги
@@ -163,7 +187,6 @@ export default function Vacancies(props: any) {
            `${API}/keyword-tags?filters[keyPhrase][$contains]=${event.target.value}`
         );
         // setIsDropdown(true);
-        console.log(res.data);
       }, 300);
   };
 
@@ -186,7 +209,6 @@ export default function Vacancies(props: any) {
     setPageCount(Math.ceil(selectedVacancies.length / itemsPerPage));
   }, [itemOffset, itemsPerPage, selectedVacancies]);
 
-  // console.log(currentItems);
 
   const handlePageClick = (event: { selected: number }) => {
     const newOffset =
