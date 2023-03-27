@@ -87,13 +87,18 @@ export default function Vacancies(props: any) {
     clearTimeout(vacationTime);
     vacationTime = setTimeout(async () => {
       let queryFilters = "";
+      const showHot = props.isShowHot;
 
       if (currentCategory) {
         queryFilters += `&filters[categories][categoryTitle][$contains]=${currentCategory}`;
       }
       // console.log(query, query.length);
       if (query.length >= 2) {
-        queryFilters += `&filters[$or][0][title][$contains]=${query}&filters[$or][1][keyword_tags][keyPhrase][$contains]=${query}`;
+        queryFilters += `&filters[$or][0][title][$contains]=${query}&filters[$or][1][keyword_tags][keyPhrase][$contains]=${query}&filters[$or][2][vacancySlug][$contains]=${query}`;
+      }
+      if (!currentCategory && !showHot) {
+        const sortedVacancies = currentGlobalVacancies;
+        setSelectedVacancies(sortedVacancies.sort((a:any, b:any) => new Date(b.attributes.updatedAt).getTime() - new Date(a.attributes.updatedAt).getTime()));
       }
       if (!currentCategory && query.length === 0) {
         const res = await axios.get(
@@ -104,6 +109,7 @@ export default function Vacancies(props: any) {
           // console.log(res);
         setSelectedVacancies(res.data.data);
       } else {
+        console.log('else')
         const res = await axios.get(
           `${API}/vacancies?$pagintaion[limit]=-1&populate=*&locale=${
             localization === "ua" ? "uk" : localization
@@ -121,12 +127,10 @@ export default function Vacancies(props: any) {
             return 0;
           })
         );
+        console.log(selectedVacancies)
       }
-      const showHot = props.isShowHot;
-      if (!currentCategory && !showHot) {
-        const sortedVacancies = currentGlobalVacancies;
-        setSelectedVacancies(sortedVacancies.sort((a:any, b:any) => new Date(b.attributes.updatedAt).getTime() - new Date(a.attributes.updatedAt).getTime()));
-      }
+      
+
     }, 400);
   }, [query, currentCategory, currentGlobalVacancies]);
   // console.log(currentGlobalVacancies);
