@@ -78,6 +78,18 @@
     border: 0 !important;
     border: 0.1rem #00dcff solid !important;
     font-size: clamp(12px, 2vw, 16px) !important;
+    cursor: pointer;
+  }
+
+  input:last-of-type {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    width: 100%;
+    left: 0;
+    height: 100%;
+    display: block;
+    cursor: pointer;
   }
 
   input {
@@ -115,17 +127,18 @@
     background: #00dcff;
   }
 }
-.attach_CV_btn {
-  position: absolute;
-  opacity: 0;
-  z-index: 2 !important;
-  top: 0;
-  width: 100%;
-  right: 0;
-  height: 100%;
-  display: block;
-  cursor: pointer;
-}
+// .attach_CV_btn {
+  // cursor: pointer;
+  // position: absolute;
+  // opacity: 0;
+  // z-index: 2 !important;
+  // top: 0;
+  // width: 100%;
+  // right: 0;
+  // height: 100%;
+  // display: block;
+  // cursor: pointer;
+// }
 
 .submit_btn {
   display: block;
@@ -319,6 +332,9 @@
   right: .5rem;
   z-index: 1;
   width: 35%;
+  height: 100%;
+  display: flex;
+  align-items: center;
 
   @include onTablet {
     width: 30%;

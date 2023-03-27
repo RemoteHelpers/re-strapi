@@ -1,16 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable comma-dangle */
-/* eslint-disable padding-line-between-statements */
-/* eslint-disable no-console */
-/* eslint-disable react/jsx-curly-newline */
-/* eslint-disable implicit-arrow-linebreak */
-/* eslint-disable @typescript-eslint/quotes */
 import React from "react";
 import cl from "./footer.module.scss";
-
-import Logo from "../../images/Footer/logo.png";
 import { FooterIconsSVG } from "../../icons/footer/FooterIconsSVG";
 import { useStateContext } from "../../context/StateContext";
+import { Logo } from "../SVGSelector";
 
 export const Footer = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -19,7 +11,7 @@ export const Footer = () => {
   return (
     <footer className={cl.Footer}>
       <div className={cl.Footer__links}>
-        <img src={Logo} alt="Logo" className={cl.Footer__logo} />
+        <Logo id="logo" />
         <div className={cl.Footer__socialWrapper}>
           <a href={footerData?.footerInsta} target="_blank" rel="noreferrer" className={cl.Footer__link}>
             <FooterIconsSVG id="inst" />
