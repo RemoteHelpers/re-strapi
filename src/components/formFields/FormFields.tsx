@@ -69,6 +69,7 @@ export const FormFields = () => {
       await Api.feedBackForm({
         ...data,
         CV: arrFile[0].id,
+        CV_url: arrFile[0].url,
         pageFrom: window.location.href,
         number: langInputValue
       });
@@ -188,7 +189,6 @@ export const FormFields = () => {
                   <input
                     className={cl.attach_CV_btn}
                     type="file"
-                    accept=".doc,.docx,.xml,application/pdf"
                     required
                     {...register("CV", { required: true })}
                   />
