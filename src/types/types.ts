@@ -64,6 +64,7 @@ export interface IFeedbackFormData {
   englishLevel: string;
   eMail: string;
   CV: FileList;
+  CV_url: string;
   pageFrom: string;
   cv_link: string;
 }
