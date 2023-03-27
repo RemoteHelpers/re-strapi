@@ -1,3 +1,1 @@
-import { FormFields } from './FormFields';
-
-export default FormFields;
+export { default } from './FormFields';

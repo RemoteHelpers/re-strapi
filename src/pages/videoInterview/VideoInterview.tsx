@@ -13,7 +13,7 @@ import Loader from "../../components/loader";
 
 import { API, PhotoAPI } from "../../constants";
 
-export const VideoInterview = () => {
+const VideoInterview = () => {
   const { localization, scrollToTop } = useStateContext();
   const [isLoading, setIsLoading] = useState(true);
   const [videoData, setVideoData] = useState<any>([]);
@@ -149,3 +149,5 @@ export const VideoInterview = () => {
     </>
   );
 };
+
+export default VideoInterview;

@@ -1,13 +1,5 @@
-/* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unused-expressions */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable comma-dangle */
-/* eslint-disable operator-linebreak */
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-console */
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Select from "react-select";
 import { useForm } from "react-hook-form";
@@ -27,7 +19,7 @@ type TOption = {
   label: string;
 };
 
-export const FormFields = () => {
+const FormFields = () => {
   const {
     localization, setIsFormSubmitError, langInputValue
   } = useStateContext();
@@ -227,3 +219,5 @@ export const FormFields = () => {
     </>
   );
 };
+
+export default FormFields;
