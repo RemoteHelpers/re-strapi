@@ -11,6 +11,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   outline: none;
+
+  scrollbar-color: red;
+  scrollbar-width: .5rem;
 }
 
 code {

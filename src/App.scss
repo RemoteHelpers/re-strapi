@@ -45,26 +45,7 @@ main {
   z-index: 4;
 }
 
-/* width */
-::-webkit-scrollbar {
-  width: .5rem;
-}
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgb(196, 196, 196);
-  border-radius: 0.25rem;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: rgb(156, 156, 156);
-}
 
 .starter {
   font-size: 1.1rem;
