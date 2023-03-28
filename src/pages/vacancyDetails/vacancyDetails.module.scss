@@ -16,7 +16,6 @@ h2 {
   padding: 3.5rem 0;
   @include onTablet {
     width: 80%;
-    padding: 3.5rem 0 10rem 0;
   }
 }
 .card {
@@ -165,6 +164,11 @@ h2 {
 
 .cardContentWrapper {
   margin-top: 8rem;
+
+  a {
+    color: #333;
+    text-decoration: underline;
+  }
   h2 {
     margin: 3rem 0 1.5rem;
     &:first-of-type {

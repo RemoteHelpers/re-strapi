@@ -6,9 +6,7 @@ export const VACANCYLIST = [
     language: 'ua',
     title: (
       <>
-        Поточні
-        <br />
-        віддалені вакансії
+        Поточні віддалені вакансії
       </>
     ),
     placeholder: 'Пошук роботи',
@@ -24,9 +22,7 @@ export const VACANCYLIST = [
     language: 'ru',
     title: (
       <>
-        Текущие
-        <br />
-        удаленные вакансии
+        Текущие удаленные вакансии
       </>
     ),
     placeholder: 'Поиск работы',

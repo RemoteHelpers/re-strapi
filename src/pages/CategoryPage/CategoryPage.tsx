@@ -32,6 +32,7 @@ const CategoryPage = () => {
     localization,
     globalCategories,
     scrollToTop,
+    headerData,
   } = useStateContext();
 
   const { categoryID } = useParams();
@@ -131,7 +132,7 @@ const CategoryPage = () => {
                 })
               }
             >
-              {category[0]?.attributes.categoryButton}
+              {headerData?.categoryButton}
             </button>
             <div className={sl.category_vacancies}>
               {filteredVacancies.map((item: any) => (

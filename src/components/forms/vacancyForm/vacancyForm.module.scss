@@ -18,7 +18,8 @@
 .vacancy_form_cat {
   display: none;
   @include onDesktop {
-    display: block;
+    display: flex;
+    justify-content: center;
     width: 60%;
   }
 }

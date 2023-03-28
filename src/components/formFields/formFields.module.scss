@@ -289,6 +289,29 @@
     }
   }
 
+  &_phone_white {
+    width: 100%;
+    background-color: #fff !important;
+    border: 0.1rem #00dcff solid !important;
+    overflow: hidden !important;
+    border-radius: .5rem !important;
+    padding: 0 0 0 1rem;
+    input {
+      border: 0 !important;
+      outline: 0 !important;
+      outline-offset: 0 !important;
+      background-color: #fff !important;
+
+      &:focus {
+        background-color: #fff !important;
+      }
+    }
+    @include onDesktop {
+      width: calc(47% - 1rem);
+      margin-left: 1rem;
+    }
+  }
+
   &_email {
     width: 100%;
     @include onDesktop {

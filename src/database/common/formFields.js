@@ -8,8 +8,7 @@ export const FORM_FIELDS = [
     data: {
       title: (
         <>
-          Готові приєднатися
-          <br /> прямо зараз?
+          Готові приєднатися прямо зараз?
         </>
       ),
       fields: {
@@ -47,8 +46,7 @@ export const FORM_FIELDS = [
     data: {
       title: (
         <>
-          Ready to join <br />
-          right now?
+          Ready to join right now?
         </>
       ),
       fields: {
@@ -86,8 +84,7 @@ export const FORM_FIELDS = [
     data: {
       title: (
         <>
-          Готовы присоединиться
-          <br /> прямо сейчас?
+          Готовы присоединиться прямо сейчас?
         </>
       ),
       fields: {
@@ -125,8 +122,7 @@ export const FORM_FIELDS = [
     data: {
       title: (
         <>
-          Chcesz dołączyć
-          <br /> już teraz?
+          Chcesz dołączyć już teraz?
         </>
       ),
       fields: {
@@ -164,7 +160,7 @@ export const FORM_FIELDS = [
     data: {
       title: (
         <>
-          Ste pripravení pripojiť <br /> sa práve teraz?
+          Ste pripravení pripojiť sa práve teraz?
         </>
       ),
       fields: {

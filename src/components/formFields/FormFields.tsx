@@ -23,7 +23,7 @@ const FormFields = () => {
   const {
     localization, setIsFormSubmitError, langInputValue
   } = useStateContext();
-  const { vacancyID } = useParams();
+  const { vacancyID, categoryID } = useParams();
 
   const routingRule = localization === "ru";
 
@@ -89,7 +89,8 @@ const FormFields = () => {
     setSelectedOption(value);
   };
 
-  const url = window.location.pathname === `/${localization}/${vacancyID}`;
+  const url = window.location.pathname === `/${localization}/${categoryID}/${vacancyID}`;
+  const urlRU = window.location.pathname === `/${categoryID}/${vacancyID}`;
   const interviewUrl =
     window.location.pathname === `/${localization}/videoInterview`;
 
@@ -107,13 +108,13 @@ const FormFields = () => {
                 <input
                   className={`${errors.name && url ? cl.invalid : ""} ${
                     watch("name") && cl.valid
-                  } + ${url ? cl.white : cl.main}`}
+                  } + ${url || urlRU ? cl.white : cl.main}`}
                   type="text"
                   placeholder={localizedFormFieldData?.fields.name.placeholder}
                   {...register("name", { required: true })}
                 />
               </div>
-              <div className={cl.input_phone}>
+              <div className={url || urlRU ? cl.input_phone_white : cl.input_phone}>
                 <LangSelect mask="(099) 999-99-99" />
               </div>
               <div className={cl.input_email}>
@@ -121,7 +122,7 @@ const FormFields = () => {
                   type="email"
                   className={`${errors.eMail ? cl.invalid : ""} ${
                     watch("eMail") && cl.valid
-                  } + ${url ? cl.white : cl.main}`}
+                  } + ${url || urlRU ? cl.white : cl.main}`}
                   placeholder={localizedFormFieldData?.fields.email.placeholder}
                   {...register("eMail", { required: true })}
                 />
@@ -133,7 +134,7 @@ const FormFields = () => {
                   maxLength={2}
                   className={`${errors.age ? cl.invalid : ""} ${
                     watch("age") && cl.valid
-                  } + ${url ? cl.white : cl.main}`}
+                  } + ${url || urlRU ? cl.white : cl.main}`}
                   placeholder={localizedFormFieldData?.fields.age.placeholder}
                   {...register("age", { required: true })}
                 />
@@ -150,7 +151,7 @@ const FormFields = () => {
                 placeholder={
                   localizedFormFieldData?.fields.englishLevel.placeholder
                 }
-                classNamePrefix={url ? "react-select" : "select"}
+                classNamePrefix={url || urlRU ? "react-select" : "select"}
                 defaultValue={selectedOption}
                 onChange={changeEnglishLevel}
                 options={EnglishLevel}
@@ -161,7 +162,7 @@ const FormFields = () => {
                 type="text"
                 className={`${errors.cv_link ? cl.invalid : ""} ${
                   watch("cv_link") && cl.valid
-                } + ${url ? cl.white : cl.main}`}
+                } + ${url || urlRU ? cl.white : cl.main}`}
                 placeholder="Add CV link of file..."
                 {...register("cv_link", { required: true })}
               />
@@ -194,7 +195,7 @@ const FormFields = () => {
               </div>
             ) : (
               <div>
-                {url ? (
+                {url || urlRU ? (
                   <div className={cl.vacancy_mobile_cat}>
                     <img src={vacancyCat} alt="" />
                   </div>
