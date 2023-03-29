@@ -1,19 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react/jsx-closing-tag-location */
-/* eslint-disable import/extensions */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable max-len */
-/* eslint-disable object-curly-newline */
-/* eslint-disable comma-dangle */
-/* eslint-disable react/jsx-curly-newline */
-/* eslint-disable implicit-arrow-linebreak */
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable operator-linebreak */
-/* eslint-disable react/jsx-wrap-multilines */
-/* eslint-disable react/no-children-prop */
-/* eslint-disable no-console */
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
@@ -37,22 +22,18 @@ import { API } from "../../constants";
 import NotFoundPage from "../notFoundPage/notFoundPage";
 
 export const VacancyDetails = () => {
-  const {
-    localization,
-    scrollToTop,
-  } = useStateContext();
+  const { localization, scrollToTop, headerData } = useStateContext();
   const [localVacancy, setLocalVacancy] = useState<LocalVacancyType[]>([]);
   const [anotherVacancies, setAnotherVacancies] = useState([]);
   const [currentCategory, setCurrentCategory] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [previewVideoImage, setPreviewVideoImage] = useState(true);
   const formSection = useRef<HTMLDivElement>(null);
   const [data, setData] = useState<any>();
   const [errorReq, setErrorReq] = useState(false);
 
   const { categoryID, vacancyID } = useParams();
 
-  const routingRule = localization === 'ru';
+  const routingRule = localization === "ru";
 
   useEffect(() => {
     const res = VACANCY_DETAILS.filter((el) => el.language === localization);
@@ -66,7 +47,6 @@ export const VacancyDetails = () => {
         `${API}/vacancies?populate=*&locale=${
           localization === "ua" ? "uk" : localization
         }&filters[vacancySlug][$eq]=${vacancyID}`
-        // `${API}/vacancies?locale=${localization}&populate=*&filters[vacancySlug][$eq]=${vacancyID}`
       )
       .then((res) => {
         setIsLoading(true);
@@ -107,20 +87,8 @@ export const VacancyDetails = () => {
       });
   }, [currentCategory, vacancyID]);
 
-  // useEffect(() => {
-  //   setCurrentVacancy(vacancyID);
-  // }, []);
-
-  useEffect(() => {
-    setPreviewVideoImage(true);
-  }, [localVacancy]);
-
-  const playVideo = () => {
-    setPreviewVideoImage(false);
-  };
-
   if (errorReq) {
-    console.log('нема такого');
+    console.log("нема такого");
 
     return <NotFoundPage />;
   }
@@ -199,7 +167,9 @@ export const VacancyDetails = () => {
                       <h1>{localVacancyItem.attributes.titleH1}</h1>
                       {/* <p>{data?.salary}</p> */}
                       <p>{localVacancyItem.attributes.subTitle}</p>
-                      <ReactMarkdown children={localVacancyItem.attributes.cardDescription} />
+                      <ReactMarkdown
+                        children={localVacancyItem.attributes.cardDescription}
+                      />
                       <button
                         type="button"
                         onClick={() =>
@@ -213,23 +183,12 @@ export const VacancyDetails = () => {
                       </button>
                     </div>
                     {localVacancyItem.attributes.videoLink ? (
-                      <button
-                        type="button"
-                        className={cl.shortVacancyVideo}
-                        onClick={playVideo}
-                      >
-                        {/* {previewVideoImage ? (
-                          <img
-                            src={`${PhotoAPI}${localVacancyItem.attributes.videoPreview.data.attributes.url}`}
-                            alt="video preview"
-                          />
-                        ) : ( */}
+                      <button type="button" className={cl.shortVacancyVideo}>
                         <ReactPlayer
                           className={cl.video_iframe}
                           url={localVacancyItem.attributes.videoLink}
                           controls
                         />
-                        {/* )} */}
                       </button>
                     ) : (
                       ""
@@ -265,8 +224,13 @@ export const VacancyDetails = () => {
                       title={anotherVacancy.attributes.title}
                       slug={anotherVacancy.attributes.vacancySlug}
                       isHot={anotherVacancy.attributes.isHot}
-                      cardDescription={anotherVacancy.attributes.cardDescription}
-                      categorySlug={anotherVacancy.attributes.categories.data[0].attributes.categorySlug}
+                      cardDescription={
+                        anotherVacancy.attributes.cardDescription
+                      }
+                      categorySlug={
+                        anotherVacancy.attributes.categories.data[0].attributes
+                          .categorySlug
+                      }
                     />
                   )}
                 </div>
@@ -287,7 +251,7 @@ export const VacancyDetails = () => {
                 }
                 className={cl.see_more}
               >
-                Дивитися більше
+                {headerData?.seeMore}
               </RouterLink>
             </div>
           </div>
