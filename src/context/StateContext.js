@@ -1,9 +1,4 @@
-/* eslint-disable no-undef */
-/* eslint-disable object-curly-newline */
-/* eslint-disable comma-dangle */
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable react/jsx-filename-extension */
-import React, { createContext, useContext, useState, useRef } from "react";
+import { createContext, useContext, useState, useRef } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 const Context = createContext();

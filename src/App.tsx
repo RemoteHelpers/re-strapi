@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState } from "react";
-import { Route, Routes, BrowserRouter, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import axios from "axios";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { useStateContext } from "./context/StateContext";
 import { Helmet } from "react-helmet";
 import { META } from "./database/common/meta";
@@ -18,9 +19,7 @@ import VacancyDetails from "./pages/vacancyDetails";
 import VacanciesPage from "./pages/vacanciesPage";
 import ThankYouPage from "./pages/thankYouPage";
 import CategoryPage from "./pages/CategoryPage";
-// import ChooseLanguagePage from "./components/modalContent";
 import NotFoundPage from "./pages/notFoundPage/notFoundPage";
-import axios from "axios";
 import ChooseLanguageModal from "./components/chooseLanguageModal";
 import FormSubmitErrorPage from "./pages/formSubmitErrorPage";
 import ContactPage from "./pages/ContactPage";
@@ -41,24 +40,6 @@ const App: React.FC = () => {
   const navigate = useNavigate();
   const routingRule = localization === "ru";
 
-  // useEffect(() => {
-  //   axios
-  //   .get(
-  //     `${API}/i18n/locales`
-  //   )
-  //   .then((res) => {
-  //     console.log(res.data);
-  //     const getLocals = res.data.map((item: { code: any; }) => (item.code === 'uk' ? 'ua' : item.code));
-  //     console.log('get locals', getLocals);
-  //     console.log('1', setLocalizationArray);
-  //     setLocalizationArray([...getLocals]);
-  //     console.log('2', setLocalizationArray);
-  //     console.log('state array, no dep', localizationArray);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-  // }, []);
   // TODO rewrite logic
   useEffect(() => {
     const prevLanguage = window.location.pathname.split("/")[1];
@@ -79,7 +60,9 @@ const App: React.FC = () => {
   useEffect(() => {
     axios
       .get(
-        `${API}/header?locale=${localization === "ua" ? "uk" : localization}&populate=*`
+        `${API}/header?locale=${
+          localization === "ua" ? "uk" : localization
+        }&populate=*`
       )
       .then((res) => {
         setHeaderData(res.data.data.attributes);

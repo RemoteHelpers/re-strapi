@@ -50,13 +50,8 @@ main.desktopMenuOpened + footer > * {
 }
 
 .logo {
-  width: 150px;
-  height: 50px;
-
-  @include onMobile {
-    width: 200px;
-    height: 70px;
-  }
+  width: 200px;
+  height: 70px;
 
   @include onTablet {
     width: 280px;

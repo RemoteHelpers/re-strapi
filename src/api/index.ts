@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/quotes */
 import axios from "axios";
 import { IFeedbackFormData } from "../types/types";
+import { API } from "../constants";
 
-axios.defaults.baseURL = "https://admin.r-ez.com/api";
+axios.defaults.baseURL = API;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 type TUploadFile = {

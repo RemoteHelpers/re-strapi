@@ -7,11 +7,15 @@
 }
 
 .header_wrapper {
-  width: 90%;
+  width: 85%;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @include onDesktop {
+    width: 90%;
+  }
 }
 
 .Header {
@@ -19,8 +23,12 @@
   display: flex;
   margin: 0 auto;
   justify-content: space-between;
-  width: calc(100% - 1.05rem);
+  width: 100%;
   background-color: #fff;
+
+  @include onDesktop {
+    width: calc(100% - 1.05rem);
+  }
 
   padding: 1.1rem 0;
 
