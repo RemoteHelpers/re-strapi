@@ -35,7 +35,7 @@ const Testimonials = () => {
           },
         }}
       >
-        {homeData.Testimonials.map((people: any) => (
+        {homeData.Testimonials && homeData.Testimonials.map((people: any) => (
           <SwiperSlide key={people.id}>
             <div className="Testimonials__slide">
               <div className="Testimonials__slide-head">

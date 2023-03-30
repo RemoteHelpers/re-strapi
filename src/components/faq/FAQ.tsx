@@ -1,20 +1,9 @@
-/* eslint-disable react/no-children-prop */
-/* eslint-disable react/no-unused-prop-types */
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable operator-linebreak */
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
-import { useStateContext } from "../../context/StateContext";
 
 import { ArrowSvg } from "../../pages/videoInterview/ArrowSvg";
 
@@ -31,7 +20,6 @@ interface FaqQuestionsProps {
 }
 
 const FAQ = ({ faqData }: FaqQuestionsProps) => {
-  const { homeData } = useStateContext();
   const [expanded, setExpanded] = React.useState<string | false>(false);
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -40,7 +28,7 @@ const FAQ = ({ faqData }: FaqQuestionsProps) => {
 
   return (
     <div className={cl.FAQ__accordion}>
-      {faqData.map(({ Answer, Question, id }: FaqQuestionsTypes) => (
+      {faqData && faqData.map(({ Answer, Question, id }: FaqQuestionsTypes) => (
         <Accordion
           key={id}
           expanded={expanded === `panel${id}`}

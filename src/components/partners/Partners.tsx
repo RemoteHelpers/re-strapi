@@ -43,7 +43,7 @@ const Partners = () => {
           },
         }}
       >
-        {homeData.partnersSlider?.data.map((item: any) => (
+        {homeData.partnersSlider && homeData.partnersSlider?.data.map((item: any) => (
           <SwiperSlide key={item.id}>
             <div className={cl.imageWrapper}>
               <img
