@@ -52,8 +52,7 @@ export const VacancyDetails = () => {
         setIsLoading(true);
         setLocalVacancy(res.data.data);
         setCurrentCategory(
-          res.data.data[0].attributes.categories.data[0].attributes
-            .categoryTitle
+          res.data.data[0].attributes.categories.data[0].attributes.categoryTitle
         );
         document.title = res.data.data[0].attributes.title;
         // console.log(res.data.data);

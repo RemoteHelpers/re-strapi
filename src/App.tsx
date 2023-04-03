@@ -5,7 +5,6 @@ import axios from "axios";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { useStateContext } from "./context/StateContext";
 import { Helmet } from "react-helmet";
-import { META } from "./database/common/meta";
 
 import "./App.scss";
 
@@ -32,10 +31,12 @@ const App: React.FC = () => {
     localization,
     isSubmitLocalization,
     isDesktopMenuOpened,
+    headerData,
     setHeaderData,
     setFooterData,
     setIsOpenModal,
     isFormSubmitError,
+    setFormData,
   } = useStateContext();
   const navigate = useNavigate();
   const routingRule = localization === "ru";
@@ -66,7 +67,7 @@ const App: React.FC = () => {
       )
       .then((res) => {
         setHeaderData(res.data.data.attributes);
-        // console.log(res.data.data.attributes);
+        console.log(res.data.data.attributes);
       })
       .catch((err) => {
         // console.log(err);
@@ -86,21 +87,29 @@ const App: React.FC = () => {
       });
   }, [localization]);
 
+  useEffect(() => {
+    axios
+      .get(`${API}/form?locale=${localization === "ua" ? "uk" : localization}&populate=*`)
+      .then((res) => {
+        setFormData(res.data.data.attributes)
+        // console.log(res.data.data.attributes);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [localization]);
+
   if (!isSubmitLocalization) {
     setTimeout(() => {
       setIsOpenModal(true);
     }, 1000);
   }
 
-  const metaDatas = META.find((el) => el.language === localization)?.data;
-
   return (
     <>
-      {metaDatas?.map((item: any) => (
-        <Helmet key={item.id}>
-          <meta name="description" content={item.description} />
-        </Helmet>
-      ))}
+      <Helmet>
+        <meta name="description" content={headerData?.meta} />
+      </Helmet>
       <ChooseLanguageModal />
       <div ref={scrollToTop}></div>
       <Header />

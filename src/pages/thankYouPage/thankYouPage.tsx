@@ -1,41 +1,48 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable react/jsx-filename-extension */
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { useStateContext } from "../../context/StateContext";
 
-import img from "../../images/thankPage/cat_thankYouPage.png";
 import cl from "./thankYouPage.module.scss";
-import { THANKYOU_PAGE } from "../../database/thankYouPage";
+
+import { API, PhotoAPI } from "../../constants";
 
 export const ThankYouPage = () => {
   const { localization, scrollToTop, footerData } = useStateContext();
+  const [thankYouData, setThankYouData] = useState<any>();
 
   const routingRule = localization === "ru";
-
-  const [data, setData] = useState<any>();
 
   useEffect(() => {
     scrollToTop?.current?.scrollIntoView({ block: "start" });
   }, []);
 
   useEffect(() => {
-    const res = THANKYOU_PAGE.filter((el) => el.language === localization);
-
-    setData(res[0]);
+    axios
+      .get(
+        `${API}/thank-you?locale=${
+          localization === "ua" ? "uk" : localization
+        }&populate=*`
+      )
+      .then((res) => {
+        setThankYouData(res.data.data.attributes);
+        // console.log(res.data.data.attributes);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [localization]);
 
   return (
     <div className={cl.section}>
       <div className={cl.container}>
-        <h1 className={cl.title}>{data?.title}</h1>
+        <h1 className={cl.title}>{thankYouData?.title}</h1>
 
         <ul className={cl.list}>
           <li className={cl.item}>
-            <h2 className={cl.subtitle}>{data?.subTitle}</h2>
-            <p className={cl.text}>{data?.paragraph}</p>
+            <h2 className={cl.subtitle}>{thankYouData?.subTitle}</h2>
+            <p className={cl.text}>{thankYouData?.paragraph}</p>
             <NavLink
               end
               to={
@@ -45,18 +52,27 @@ export const ThankYouPage = () => {
               }
               className={cl.button}
             >
-              {data?.linkText}
+              {thankYouData?.linkText}
             </NavLink>
           </li>
           <li className={cl.item}>
-            <h2 className={cl.subtitle}>{data?.titleViber}</h2>
-            <p className={cl.text}>{data?.paragraphViber}</p>
-            <a href={`viber://chat?number=${footerData?.footerNumber}`} className={cl.button}>
-              {data?.linkViber}
+            <h2 className={cl.subtitle}>{thankYouData?.titleViber}</h2>
+            <p className={cl.text}>{thankYouData?.paragraphViber}</p>
+            <a
+              href={`viber://chat?number=${footerData?.footerNumber}`}
+              className={cl.button}
+            >
+              {thankYouData?.linkViber}
             </a>
           </li>
           <div className={cl.img_wr}>
-            <img alt="Cat with stars" src={img} className={cl.img} />
+            <img
+              alt="Cat with stars"
+              src={
+                PhotoAPI + thankYouData?.thankYouCat?.data[0]?.attributes.url
+              }
+              className={cl.img}
+            />
           </div>
         </ul>
       </div>

@@ -11,7 +11,6 @@ import vacancyCat from "../../icons/vacancyCat.png";
 import feedbackCat from "../../images/formImg.png";
 import interviewCat from "../../icons/interview_form_kitekat.png";
 import Loader from "../loader/Loader";
-import { FORM_FIELDS } from "../../database/common/formFields";
 import LangSelect from "../langSelect/LangSelect";
 
 type TOption = {
@@ -21,25 +20,14 @@ type TOption = {
 
 const FormFields = () => {
   const {
-    localization, setIsFormSubmitError, langInputValue
+    localization, setIsFormSubmitError, langInputValue, formData
   } = useStateContext();
   const { vacancyID, categoryID } = useParams();
 
   const routingRule = localization === "ru";
 
   const navigate = useNavigate();
-  const EnglishLevel = [
-    { value: "beginner", label: "Beginner" },
-    { value: "elementary ", label: "Elementary" },
-    { value: "pre-intermediate", label: "Pre-Intermediate" },
-    { value: "intermediate", label: "Intermediate" },
-    { value: "upper-intermediate", label: "Upper-Intermediate" },
-    { value: "advanced", label: "Advanced" },
-    { value: "Proficiency", label: "Proficiency" },
-  ];
-  const localizedFormFieldData = FORM_FIELDS.find(
-    (el: any) => el.language === localization
-  )?.data;
+
   const [selectedOption, setSelectedOption] = useState<TOption | null>();
   const {
     register,
@@ -49,8 +37,6 @@ const FormFields = () => {
     reset,
     setValue,
   } = useForm<IFeedbackFormData>();
-
-  // const [number, setNumber] = useState("");
 
   const onSubmit = handleSubmit(async (data: IFeedbackFormData) => {
     try {
@@ -110,12 +96,12 @@ const FormFields = () => {
                     watch("name") && cl.valid
                   } + ${url || urlRU ? cl.white : cl.main}`}
                   type="text"
-                  placeholder={localizedFormFieldData?.fields.name.placeholder}
+                  placeholder={formData?.name}
                   {...register("name", { required: true })}
                 />
               </div>
               <div className={url || urlRU ? cl.input_phone_white : cl.input_phone}>
-                <LangSelect mask="(099) 999-99-99" />
+                <LangSelect mask={formData?.number} />
               </div>
               <div className={cl.input_email}>
                 <input
@@ -123,7 +109,7 @@ const FormFields = () => {
                   className={`${errors.eMail ? cl.invalid : ""} ${
                     watch("eMail") && cl.valid
                   } + ${url || urlRU ? cl.white : cl.main}`}
-                  placeholder={localizedFormFieldData?.fields.email.placeholder}
+                  placeholder={formData?.email}
                   {...register("eMail", { required: true })}
                 />
               </div>
@@ -135,26 +121,26 @@ const FormFields = () => {
                   className={`${errors.age ? cl.invalid : ""} ${
                     watch("age") && cl.valid
                   } + ${url || urlRU ? cl.white : cl.main}`}
-                  placeholder={localizedFormFieldData?.fields.age.placeholder}
+                  placeholder={formData?.age}
                   {...register("age", { required: true })}
                 />
               </div>
             </div>
             <div className={cl.input_wr}>
               <div className={cl.input_text}>
-                {localizedFormFieldData?.fields.englishLevel.label}
+                {formData?.englishLabel}
               </div>
               <Select
                 className={`react-select-container ${
                   errors.englishLevel ? "invalid" : ""
                 } ${watch("englishLevel") ? "valid" : ""} `}
                 placeholder={
-                  localizedFormFieldData?.fields.englishLevel.placeholder
+                  formData?.englishLevel
                 }
                 classNamePrefix={url || urlRU ? "react-select" : "select"}
                 defaultValue={selectedOption}
                 onChange={changeEnglishLevel}
-                options={EnglishLevel}
+                options={formData?.enlishLevels}
               />
             </div>
             <div className={cl.input_cvLink}>
@@ -163,7 +149,7 @@ const FormFields = () => {
                 className={`${errors.cv_link ? cl.invalid : ""} ${
                   watch("cv_link") && cl.valid
                 } + ${url || urlRU ? cl.white : cl.main}`}
-                placeholder="Add CV link of file..."
+                placeholder={formData?.cvLink}
                 {...register("cv_link", { required: true })}
               />
               <div className={cl.cv_submit}>
@@ -176,7 +162,7 @@ const FormFields = () => {
                     className={`${errors.CV ? cl.invalid : ""} ${
                       watch("CV" as any)?.[0]?.name && cl.valid
                     } ${cl.download_btn}`}
-                    placeholder={localizedFormFieldData?.fields.cv.placeholder}
+                    placeholder={formData?.cv}
                     value={watch("CV" as any)?.[0]?.name || ""}
                   />
                   <input
@@ -212,7 +198,7 @@ const FormFields = () => {
                 className={cl.submit_btn}
                 disabled={isSubmitting}
               >
-                {localizedFormFieldData?.submit}
+                {formData?.submit}
               </button>
             </div>
           </div>

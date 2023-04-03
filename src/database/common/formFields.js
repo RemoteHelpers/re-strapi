@@ -1,7 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable @typescript-eslint/quotes */
 export const FORM_FIELDS = [
   {
     language: "ua",

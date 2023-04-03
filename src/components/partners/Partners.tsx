@@ -1,9 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react/no-unused-prop-types */
-/* eslint-disable comma-dangle */
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable react/no-array-index-key */
-import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import cl from "./partners.module.scss";
@@ -43,7 +37,7 @@ const Partners = () => {
           },
         }}
       >
-        {homeData.partnersSlider && homeData.partnersSlider?.data.map((item: any) => (
+        {homeData?.partnersSlider?.data && homeData?.partnersSlider?.data.map((item: any) => (
           <SwiperSlide key={item.id}>
             <div className={cl.imageWrapper}>
               <img

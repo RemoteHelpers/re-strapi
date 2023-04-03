@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useStateContext } from "../../context/StateContext";
 import VacancyList from "../../components/vacanciesList";
@@ -14,7 +14,7 @@ import Loader from "../../components/loader";
 
 import { API } from "../../constants";
 
-export const HomePage = () => {
+const HomePage = () => {
   const { setHomeData, localization, homeData, scrollToTop } =
     useStateContext();
   const [isLoading, setIsLoading] = useState(true);
@@ -37,7 +37,7 @@ export const HomePage = () => {
       .catch(() => {
         // console.log(err);
       });
-  }, []);
+  }, [localization]);
 
   useEffect(() => {
     document.title = "Remote Employees";
@@ -91,3 +91,5 @@ export const HomePage = () => {
     </>
   );
 };
+
+export default HomePage;

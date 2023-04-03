@@ -1,6 +1,4 @@
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable @typescript-eslint/quotes */
+
 export const THANKYOU_PAGE = [
   {
     language: 'ua',
@@ -17,9 +15,7 @@ export const THANKYOU_PAGE = [
     language: 'ru',
     title: (
       <>
-        Спасибо, что
-        <br></br>
-        оставили заявку!
+        Спасибо, что оставили заявку!
       </>
     ),
     subTitle: 'Запишите видеоинтервью',
