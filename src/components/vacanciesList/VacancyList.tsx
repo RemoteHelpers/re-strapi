@@ -1,28 +1,13 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable max-len */
-/* eslint-disable react/jsx-tag-spacing */
 /* eslint-disable array-callback-return */
-/* eslint-disable padding-line-between-statements */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable import/newline-after-import */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable object-curly-newline */
-/* eslint-disable comma-dangle */
-/* eslint-disable operator-linebreak */
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable react/jsx-indent */
-/* eslint-disable @typescript-eslint/indent */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-console */
-
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import ReactPaginate from "react-paginate";
-import { useWindowWidth } from "@react-hook/window-size";
 import "./vacancyList.scss";
 import "../../global-styles/search.scss";
 import axios from "axios";
 import Select, { components } from "react-select";
-import { Category, Vacancy, Collection, VacancyArray } from "../../types/types";
+import { Category, Vacancy } from "../../types/types";
 import VacancyCard from "../vacancyCard/VacancyCard";
 
 import Find from "../../images/findIcon.svg";
@@ -33,11 +18,7 @@ import NotFoundVacancies from "../notFoundVacancies";
 import { VACANCYLIST } from "../../database/common/vacancyList";
 import { useStateContext } from "../../context/StateContext";
 
-const API = "https://admin.r-ez.com/api";
-
 const itemsPerPage = 9;
-
-let searchTime: any;
 let vacationTime: any;
 
 const DropdownIndicator = (props: any) => {
@@ -48,10 +29,15 @@ const DropdownIndicator = (props: any) => {
   );
 };
 
-export default function Vacancies(props: any) {
+const Vacancies = ({ isShowHot }: any) => {
   const searchRef = useRef<HTMLDivElement>(null);
-  const { localization, scrollToTopVacancies, setCategorySlug, globalCategories, currentGlobalVacancies } =
-    useStateContext();
+  const {
+    localization,
+    scrollToTopVacancies,
+    setCategorySlug,
+    globalCategories,
+    currentGlobalVacancies,
+  } = useStateContext();
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [currentCategory, setCurrentCategory] = useState<string>("");
@@ -83,80 +69,69 @@ export default function Vacancies(props: any) {
   }, [localization]);
 
   setCategorySlug(currentItems);
+
   useEffect(() => {
     clearTimeout(vacationTime);
     vacationTime = setTimeout(async () => {
-      let queryFilters = "";
-      const showHot = props.isShowHot;
       if (currentCategory) {
-        queryFilters += `&filters[categories][categoryTitle][$contains]=${currentCategory}`;
+        setSelectedVacancies(
+          currentGlobalVacancies
+            .filter(
+              (el: any) =>
+                el.attributes.categories.data[0] &&
+                el.attributes.categories.data[0].attributes.categoryTitle ===
+                  currentCategory
+            )
+            .sort((a: any, b: any) => {
+              if (a.attributes.isHot && !b.attributes.isHot) {
+                return -1;
+              }
+              if (!a.attributes.isHot && b.attributes.isHot) {
+                return 1;
+              }
+              return 0;
+            })
+        );
       }
 
       if (query.length >= 2) {
-        queryFilters += `&filters[$or][0][title][$contains]=${query}&filters[$or][1][keyword_tags][keyPhrase][$contains]=${query}&filters[$or][2][vacancySlug][$contains]=${query}`;
-      }
-      if (!currentCategory && !showHot && query.length === 0) {
-        const sortedVacancies = currentGlobalVacancies;
-        setSelectedVacancies(sortedVacancies.sort((a:any, b:any) => new Date(b.attributes.updatedAt).getTime() - new Date(a.attributes.updatedAt).getTime()));
-      }
-      else if(!showHot && query.length >= 2) {
-        const res = await axios.get(
-          `${API}/vacancies?$pagintaion[limit]=-1&populate=*&locale=${
-            localization === "ua" ? "uk" : localization
-          }${queryFilters}`
-        );
-        setSelectedVacancies(res.data.data);
-      }
-
-      if (!currentCategory && query.length === 0 && showHot) {
-        const res = await axios.get(
-          `${API}/vacancies?locale=${
-            localization === "ua" ? "uk" : localization
-          }&filters[isHot][$eq]=${true}&populate=*`
-        );
-        setSelectedVacancies(res.data.data);
-      } else if(showHot && query.length >= 2) {
-
-        const res = await axios.get(
-          `${API}/vacancies?$pagintaion[limit]=-1&populate=*&locale=${
-            localization === "ua" ? "uk" : localization
-          }${queryFilters}`
-        );
-
         setSelectedVacancies(
-          res.data.data.sort((a: any, b: any) => {
-            if (a.attributes.isHot && !b.attributes.isHot) {
-              return -1;
-            }
-            if (!a.attributes.isHot && b.attributes.isHot) {
-              return 1;
-            }
-            return 0;
+          currentGlobalVacancies.filter((el: any) => {
+            return (
+              el.attributes.title
+                .toLowerCase()
+                .includes(query.toLocaleLowerCase()) ||
+              el.attributes.vacancySlug
+                .toLowerCase()
+                .includes(query.toLocaleLowerCase()) ||
+              el.attributes.keyword_tags.data.some((keyword: any) =>
+                keyword.attributes.keyPhrase
+                  .toLowerCase()
+                  .includes(query.toLowerCase())
+              )
+            );
           })
         );
       }
-      if (currentCategory){
 
-        const res = await axios.get(
-          `${API}/vacancies?$pagintaion[limit]=-1&populate=*&locale=${
-            localization === "ua" ? "uk" : localization
-          }${queryFilters}`
-        );
-
+      if (!currentCategory && !isShowHot && query.length === 0) {
         setSelectedVacancies(
-          res.data.data.sort((a: any, b: any) => {
-            if (a.attributes.isHot && !b.attributes.isHot) {
-              return -1;
-            }
-            if (!a.attributes.isHot && b.attributes.isHot) {
-              return 1;
-            }
-            return 0;
-          })
+          currentGlobalVacancies.sort(
+            (a: any, b: any) =>
+              new Date(b.attributes.updatedAt).getTime() -
+              new Date(a.attributes.updatedAt).getTime()
+          )
+        );
+        console.log(currentGlobalVacancies);
+      }
+
+      if (!currentCategory && query.length === 0 && isShowHot) {
+        setSelectedVacancies(
+          currentGlobalVacancies.filter(
+            (el: any) => el.attributes.isHot === isShowHot
+          )
         );
       }
-      
-
     }, 400);
   }, [query, currentCategory, currentGlobalVacancies]);
   const handleCategorySelect = useCallback(
@@ -176,24 +151,7 @@ export default function Vacancies(props: any) {
   }, []);
 
   const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-
-      setQuery(event.target.value);
-      // поменять теги
-      clearTimeout(searchTime);
-      searchTime = setTimeout(async () => {
-        const res = await axios.get(
-        //   `${API}/vacancies?locale=${
-        // localization === "ua" ? "uk" : localization}&pagination[limit]=-1&filters[title][$contains]=${event.target.value}`
-           `${API}/keyword-tags?filters[keyPhrase][$contains]=${event.target.value}`
-        );
-        // setIsDropdown(true);
-      }, 300);
-  };
-
-  const onCollection = (collection: Collection) => {
-    setQuery(collection.attributes.keyPhrase);
-    // setSelectedCollection(collection);
-    setIsDropdown(false);
+    setQuery(event.target.value);
   };
 
   const getCategory = () => {
@@ -208,7 +166,6 @@ export default function Vacancies(props: any) {
     setCurrentItems(selectedVacancies.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(selectedVacancies.length / itemsPerPage));
   }, [itemOffset, itemsPerPage, selectedVacancies]);
-
 
   const handlePageClick = (event: { selected: number }) => {
     const newOffset =
@@ -260,13 +217,6 @@ export default function Vacancies(props: any) {
                   </button>
                 )}
               </div>
-              {/* <button
-                className="search__button"
-                type="button"
-                onClick={handleSearch}
-              >
-                Знайти
-              </button> */}
             </div>
           </div>
 
@@ -279,7 +229,7 @@ export default function Vacancies(props: any) {
               onChange={handleCategorySelect}
               placeholder={data?.categoriesTitle}
               isSearchable={false}
-              components={{ DropdownIndicator, }}
+              components={{ DropdownIndicator }}
             />
           </div>
         </div>
@@ -314,9 +264,10 @@ export default function Vacancies(props: any) {
           previousLinkClassName="page-num"
           nextLinkClassName="page-num"
           activeLinkClassName="page-num--active"
-          // renderOnZeroPageCount={null}
         />
       </div>
     </>
   );
-}
+};
+
+export default Vacancies;

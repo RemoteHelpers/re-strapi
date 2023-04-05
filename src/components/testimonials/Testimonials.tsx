@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/quotes */
-import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper";
+import { Pagination, Autoplay } from "swiper";
 
 // Import Swiper styles
 import "swiper/swiper.scss";
 import "swiper/modules/pagination/pagination.scss";
-import "swiper/modules/navigation/navigation.scss";
+// import "swiper/modules/navigation/navigation.scss";
 
 import "./testimonials.scss";
 import { useStateContext } from "../../context/StateContext";
@@ -22,10 +21,12 @@ const Testimonials = () => {
 
       <Swiper
         className="Testimonials__slider"
-        modules={[Pagination, Navigation]}
-        navigation
+        modules={[Pagination, Autoplay]}
         centeredSlides
         loop
+        autoplay={{
+          delay: 2500
+        }}
         pagination={{ clickable: true }}
         spaceBetween={50}
         slidesPerView={1}

@@ -30,8 +30,6 @@ import illustrator from "../../images/header/categories-icons/illustrator.png";
 import teacher from "../../images/header/categories-icons/teacher.png";
 import { Logo } from "../SVGSelector";
 
-let searchTime: any;
-
 const Header = () => {
   function chooseImage(id: string | number) {
     switch (id) {
@@ -136,20 +134,6 @@ const Header = () => {
     vacancies.length < total ? fetchData() : "";
     setCurrentGlobalVacancies(vacancies);
   }, [vacancies, localization]);
-
-  const selectLocalization = [
-    { value: "ua", label: "UA" },
-    { value: "pl", label: "PL" },
-    { value: "en", label: "EN" },
-    { value: "sk", label: "SK" },
-    { value: "ru", label: "RU" },
-  ];
-
-  const getLocalization = () => {
-    return localization
-      ? selectLocalization.find((c) => c.value === localization)
-      : "";
-  };
 
   useOutsideAlerter(searchRef, () => {
     setIsDropdown(false);
