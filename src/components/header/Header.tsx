@@ -453,7 +453,6 @@ const Header = () => {
                 if (category.attributes.categorySlug === "other") {
                   return null;
                 }
-
                 return (
                   <div
                     className="Header__dropMenuDesktop_category_item"

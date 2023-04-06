@@ -5,7 +5,7 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import ReactPaginate from "react-paginate";
 import "./vacancyList.scss";
 import "../../global-styles/search.scss";
-import axios from "axios";
+import sl from "./vacancyList.module.scss";
 import Select, { components } from "react-select";
 import { Category, Vacancy } from "../../types/types";
 import VacancyCard from "../vacancyCard/VacancyCard";
@@ -48,6 +48,8 @@ const Vacancies = ({ isShowHot }: any) => {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const [data, setData] = useState<any>();
+  const [check, setCheck] = useState<any>(true);
+  const [visibleCheck, setVisibleCheck] = useState<boolean>(true);
 
   const selectCategories = categories.map((category) => ({
     value: category.attributes.categoryTitle.toLowerCase(),
@@ -69,6 +71,26 @@ const Vacancies = ({ isShowHot }: any) => {
   }, [localization]);
 
   setCategorySlug(currentItems);
+
+  useEffect(() => {
+    if (!currentCategory && check) {
+      setSelectedVacancies(
+        currentGlobalVacancies.filter((el: any) => el.attributes.isHot === true)
+      );
+    }else if (!check) {
+      setSelectedVacancies(currentGlobalVacancies);
+    } else if (currentCategory) {
+      setCheck(false);
+      setVisibleCheck(false);
+    }
+    
+    if (currentCategory) {
+      setVisibleCheck(false);
+    } else {
+      setCheck(true);
+      setVisibleCheck(true);
+    }
+  }, [check, currentCategory]);
 
   useEffect(() => {
     clearTimeout(vacationTime);
@@ -134,6 +156,7 @@ const Vacancies = ({ isShowHot }: any) => {
       }
     }, 400);
   }, [query, currentCategory, currentGlobalVacancies]);
+
   const handleCategorySelect = useCallback(
     (selected: any) => {
       if (currentCategory !== selected.label) {
@@ -188,6 +211,10 @@ const Vacancies = ({ isShowHot }: any) => {
     }),
   };
 
+  useEffect(() => {
+    console.log(check);
+  }, [check]);
+
   return (
     <>
       <div className="Vacancies">
@@ -220,7 +247,15 @@ const Vacancies = ({ isShowHot }: any) => {
             </div>
           </div>
 
-          <div className="Vacancies__selects">
+          <div className={sl.vacancies__filter}>
+            {visibleCheck && (
+              <input
+                className={sl.checkbox}
+                type="checkbox"
+                checked={check}
+                onChange={(e) => setCheck(e.target.checked)}
+              />
+            )}
             <Select
               styles={customStyles}
               classNamePrefix="custom-select"

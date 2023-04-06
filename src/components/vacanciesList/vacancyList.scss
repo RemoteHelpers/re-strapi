@@ -71,22 +71,6 @@
 			margin-bottom: 8.3rem;
 		}
 	}
-
-	&__selects {
-		position: relative !important;
-		z-index: 1 !important;
-		display: flex;
-		order: 2;
-		gap: 2.5rem !important;
-
-		@include onTablet {
-			order: 0;
-		}
-
-		@include on1920 {
-			gap: 3.1rem;
-		}
-	}
 }
 
 .custom-select {
@@ -194,7 +178,6 @@
 		font-weight: 600 !important;
 		font-size: 1rem !important;
 		line-height: 130% !important;
-		// height: max-content !important
 		overflow-y: hidden !important;
 		scrollbar-width: none !important;
 

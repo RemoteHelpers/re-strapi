@@ -87,20 +87,6 @@
     }
   }
 
-  &__selects {
-    display: flex;
-    order: 2;
-    gap: 40px !important;
-
-    @include onDesktop {
-      order: 0;
-      gap: 38px;
-    }
-
-    @include on1920 {
-      gap: 50px;
-    }
-  }
 }
 
 // .custom-select {
@@ -166,9 +152,6 @@
   font-weight: 700;
   font-size: $typography4;
   line-height: 115%;
-
-  &:hover {
-  }
 
   &--active {
     display: flex;
