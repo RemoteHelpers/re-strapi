@@ -79,15 +79,11 @@ const Vacancies = ({ isShowHot }: any) => {
       );
     }else if (!check) {
       setSelectedVacancies(currentGlobalVacancies);
-    } else if (currentCategory) {
-      setCheck(false);
-      setVisibleCheck(false);
     }
     
     if (currentCategory) {
       setVisibleCheck(false);
     } else {
-      setCheck(true);
       setVisibleCheck(true);
     }
   }, [check, currentCategory]);
