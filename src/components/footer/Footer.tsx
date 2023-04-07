@@ -2,7 +2,7 @@ import React from "react";
 import cl from "./footer.module.scss";
 import { FooterIconsSVG } from "../../icons/footer/FooterIconsSVG";
 import { useStateContext } from "../../context/StateContext";
-import { Logo } from "../SVGSelector";
+import { FooterLogo } from "../SVGSelector";
 
 export const Footer = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -11,7 +11,7 @@ export const Footer = () => {
   return (
     <footer className={cl.Footer}>
       <div className={cl.Footer__links}>
-        <Logo id="logo" />
+        <FooterLogo id="footer-logo" />
         <div className={cl.Footer__socialWrapper}>
           <a href={footerData?.footerInsta} target="_blank" rel="noreferrer" className={cl.Footer__link}>
             <FooterIconsSVG id="inst" />

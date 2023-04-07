@@ -1,13 +1,27 @@
+@import "../../utils/mixins.scss";
+
 
 .vacancies__filter {
+    position: relative;
+    width: 100%;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 0 1rem;
 }
 
 
 .checkbox {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
     width: 1.5rem;
     height: 1.5rem;
     cursor: pointer;
+
+    @include onTablet {
+        position: relative;
+        transform: translateY(0);
+    }
 }

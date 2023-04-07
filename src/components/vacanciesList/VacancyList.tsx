@@ -77,7 +77,9 @@ const Vacancies = ({ isShowHot }: any) => {
       setSelectedVacancies(
         currentGlobalVacancies.filter((el: any) => el.attributes.isHot === true)
       );
-    }else if (!check) {
+    }
+    
+    if (!check) {
       setSelectedVacancies(currentGlobalVacancies);
     }
     
