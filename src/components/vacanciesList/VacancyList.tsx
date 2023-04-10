@@ -48,7 +48,7 @@ const Vacancies = ({ isShowHot }: any) => {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const [data, setData] = useState<any>();
-  const [check, setCheck] = useState<any>(true);
+  const [check, setCheck] = useState<boolean>(false);
   const [visibleCheck, setVisibleCheck] = useState<boolean>(true);
 
   const selectCategories = categories.map((category) => ({
@@ -78,17 +78,14 @@ const Vacancies = ({ isShowHot }: any) => {
         currentGlobalVacancies.filter((el: any) => el.attributes.isHot === true)
       );
     }
-    
-    if (!check) {
-      setSelectedVacancies(currentGlobalVacancies);
-    }
-    
-    if (currentCategory) {
-      setVisibleCheck(false);
-    } else {
-      setVisibleCheck(true);
-    }
+
+    !check && setSelectedVacancies(currentGlobalVacancies);
+    currentCategory ? setVisibleCheck(false) : setVisibleCheck(true);
   }, [check, currentCategory]);
+
+  useEffect(() => {
+    isShowHot ? setCheck(true) : setCheck(false);
+  }, [isShowHot]);
 
   useEffect(() => {
     clearTimeout(vacationTime);
@@ -208,10 +205,6 @@ const Vacancies = ({ isShowHot }: any) => {
       },
     }),
   };
-
-  useEffect(() => {
-    console.log(check);
-  }, [check]);
 
   return (
     <>

@@ -152,8 +152,6 @@ const Header = () => {
 
   const handleCategorySelect = useCallback((event: any) => {
     setCurrentCategory(event.target.innerText);
-    console.log(event.target.innerText);
-    console.log(currentCategory);
     setActiveMenu("vacancies");
   }, []);
 
@@ -167,6 +165,34 @@ const Header = () => {
       )
     );
   }, [currentCategory, vacancies]);
+
+  // Initial load first category in desktop menu
+  useEffect(() => {
+    setSelectedVacancies(
+      vacancies.filter((el) =>
+        el.attributes.categories.data[0]
+          ? el.attributes.categories.data[0].attributes.categorySlug ===
+            "design"
+          : ""
+      )
+    );
+  }, [vacancies]);
+
+  const categoryItems = document.querySelectorAll(
+    ".Header__dropMenuDesktop_category_item label"
+  );
+
+  // document.querySelector(".Header__dropMenuDesktop_category_item label")?.classList.add("active_label");
+
+  categoryItems.forEach((item: Element) => {
+    item.addEventListener("click", () => {
+      categoryItems.forEach((item) => {
+        item.classList.remove("active_label");
+      });
+
+      item.classList.add("active_label");
+    });
+  });
 
   const handleCategoryMenuSelect = useCallback(
     (event: any) => {
@@ -190,6 +216,10 @@ const Header = () => {
   document.getElementById("vacancies")?.addEventListener("mouseover", () => {
     setIsDesktopMenuOpened(true);
   });
+
+  // console.log(document.querySelector(".Header__dropMenuDesktop_category_item label"));
+
+  // console.log(categories);
 
   return (
     <header id="header" className="Header">

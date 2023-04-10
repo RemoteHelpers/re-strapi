@@ -30,7 +30,11 @@
   }
 
   &__slide {
-    min-height: 250px;
+    min-height: 320px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   &__slide-head {
@@ -174,8 +178,8 @@
 
   .swiper-slide {
     padding: 2.5rem 1.6rem;
-    border: 3px solid $typographyColor1;
-    border-radius: 0.9rem;
+    border: 2.5px solid $typographyColor1;
+    border-radius: 0.5rem;
     opacity: 0.35;
 
     @include onDesktop {
