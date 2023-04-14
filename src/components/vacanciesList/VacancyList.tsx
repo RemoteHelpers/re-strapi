@@ -195,6 +195,7 @@ const Vacancies = ({ isShowHot }: any) => {
 
     setItemOffset(newOffset);
   };
+  
 
   const customStyles = {
     control: () => ({
@@ -240,12 +241,17 @@ const Vacancies = ({ isShowHot }: any) => {
 
           <div className={sl.vacancies__filter}>
             {visibleCheck && (
-              <input
-                className={sl.checkbox}
-                type="checkbox"
-                checked={check}
-                onChange={(e) => setCheck(e.target.checked)}
-              />
+              <label>
+                <input
+                  className={sl.native_checkbox}
+                  type="checkbox"
+                  checked={check}
+                  onChange={(e) => setCheck(e.target.checked)}
+                />
+                <span className={sl.custom_checkbox}>
+                  <span className={sl.checkbox_text}>{check ? 'Горячие' : 'Все'}</span>
+                </span>
+              </label>
             )}
             <Select
               styles={customStyles}

@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-concat */
+/* eslint-disable array-callback-return */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -166,14 +168,18 @@ const Header = () => {
     );
   }, [currentCategory, vacancies]);
 
-  // Initial load first category in desktop menu
+  // Initial load first active category in desktop menu
   useEffect(() => {
+    const firstElement = document.querySelector(
+      ".Header__dropMenuDesktop_category_item label"
+    );
+    
     setSelectedVacancies(
       vacancies.filter((el) =>
         el.attributes.categories.data[0]
           ? el.attributes.categories.data[0].attributes.categorySlug ===
-            "design"
-          : ""
+          'design' || firstElement?.classList.add("active_label")
+          : "" || firstElement?.classList.remove("active_label")
       )
     );
   }, [vacancies]);
@@ -181,8 +187,6 @@ const Header = () => {
   const categoryItems = document.querySelectorAll(
     ".Header__dropMenuDesktop_category_item label"
   );
-
-  // document.querySelector(".Header__dropMenuDesktop_category_item label")?.classList.add("active_label");
 
   categoryItems.forEach((item: Element) => {
     item.addEventListener("click", () => {
@@ -217,9 +221,7 @@ const Header = () => {
     setIsDesktopMenuOpened(true);
   });
 
-  // console.log(document.querySelector(".Header__dropMenuDesktop_category_item label"));
-
-  // console.log(categories);
+  // document.querySelector('.Header__link')?.classList.add('hide_link');
 
   return (
     <header id="header" className="Header">
@@ -239,7 +241,7 @@ const Header = () => {
                 id={path_id}
                 to={routingRule ? `/${path_id}` : `/${localization}/${path_id}`}
               >
-                {title}
+                {path_id === ' ' ? '' : title}
               </NavLink>
             ))}
           </nav>
@@ -297,7 +299,7 @@ const Header = () => {
               classNames="menu_primary"
             >
               <div className="menu">
-                <NavLink
+                {/* <NavLink
                   className={({ isActive }) =>
                     isActive
                       ? "active-link Header__link_mobile"
@@ -308,7 +310,7 @@ const Header = () => {
                   onClick={() => setIsMenuOpened(false)}
                 >
                   {headerData?.menu[0].title}
-                </NavLink>
+                </NavLink> */}
                 <a
                   className="Header__link_mobile"
                   onClick={() => "categories" && setActiveMenu("categories")}

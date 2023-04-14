@@ -14,8 +14,12 @@
   justify-content: space-between;
 
   @include onDesktop {
-    width: 90%;
+    width: 80%;
   }
+}
+
+.hide_link {
+  display: none;
 }
 
 .Header {
@@ -373,8 +377,6 @@
 
     @include onDesktop {
       top: 100%;
-      height: 90%;
-      min-height: 80vh;
       overflow-y: auto;
     }
   }

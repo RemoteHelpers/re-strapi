@@ -2,26 +2,100 @@
 
 
 .vacancies__filter {
-    position: relative;
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 0 1rem;
+    justify-content: space-between;
+
+    @include onTablet {
+        width: auto;
+        gap: 0 3rem;
+    }
 }
 
 
-.checkbox {
+.native_checkbox {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
     position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    width: 1.5rem;
-    height: 1.5rem;
     cursor: pointer;
+}
+
+.custom_checkbox {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    width: 8rem;
+    height: 2.5rem;
+    border-radius: .5rem;
+    background-color: #FBBF13;
 
     @include onTablet {
-        position: relative;
-        transform: translateY(0);
+        width: 10rem;
+        height: 3rem;
+    }
+
+    transition: .3s ease-in-out;
+
+    &::before {
+        content: url('../../images/fireSwitchOff.svg');
+        position: absolute;
+        top: .25rem;
+        left: .25rem;
+        background-color: #fff;
+        width: 2rem;
+        height: 2rem;
+        border-radius: .5rem;
+
+        @include onTablet {
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+
+        transition: .2s ease-in-out;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.checkbox_text {
+    line-height: 1;
+    font-weight: 600;
+    color: #000;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 4rem;
+    transition: .4s ease-in-out;
+
+    @include onTablet {
+        left: 5rem;
+    }
+}
+
+.native_checkbox:checked+.custom_checkbox {
+    background-color: #FF5757;
+
+    .checkbox_text {
+        color: #fff;
+        left: 1rem;
+
+        @include onTablet {
+            left: 2rem;
+        }
+    }
+
+    &::before {
+        content: url('../../images/fireSwitchOn.svg');
+        background-color: #D43131;
+        left: 5.8rem;
+
+        @include onTablet {
+            left: 7.3rem;
+        }
     }
 }

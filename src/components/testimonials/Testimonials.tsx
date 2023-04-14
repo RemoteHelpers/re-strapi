@@ -25,7 +25,6 @@ const Testimonials = () => {
         centeredSlides
         navigation
         loop
-        autoHeight
         speed={1000}
         autoplay={{
           delay: 3000,
