@@ -241,7 +241,7 @@ const Vacancies = ({ isShowHot }: any) => {
                 />
                 <span className={sl.custom_checkbox}>
                   <span className={sl.checkbox_text}>
-                    {check ? "Горячие" : "Все"}
+                    {check ? vacancyListData?.hotVacancies : vacancyListData?.allVacancies}
                   </span>
                 </span>
               </label>

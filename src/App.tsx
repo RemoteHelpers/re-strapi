@@ -111,6 +111,7 @@ const App: React.FC = () => {
           localization === "ua" ? "uk" : localization
         }&populate=*`
       )
+      
       .then((res) => {
         setVacancyListData(res.data.data.attributes);
         console.log(res.data.data.attributes);
