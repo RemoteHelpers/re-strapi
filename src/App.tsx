@@ -37,6 +37,7 @@ const App: React.FC = () => {
     setIsOpenModal,
     isFormSubmitError,
     setFormData,
+    setVacancyListData,
   } = useStateContext();
   const navigate = useNavigate();
   const routingRule = localization === "ru";
@@ -89,10 +90,30 @@ const App: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get(`${API}/form?locale=${localization === "ua" ? "uk" : localization}&populate=*`)
+      .get(
+        `${API}/form?locale=${
+          localization === "ua" ? "uk" : localization
+        }&populate=*`
+      )
       .then((res) => {
-        setFormData(res.data.data.attributes)
+        setFormData(res.data.data.attributes);
         // console.log(res.data.data.attributes);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [localization]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `${API}/vacancy-list-data?locale=${
+          localization === "ua" ? "uk" : localization
+        }&populate=*`
+      )
+      .then((res) => {
+        setVacancyListData(res.data.data.attributes);
+        console.log(res.data.data.attributes);
       })
       .catch((err) => {
         console.log(err);

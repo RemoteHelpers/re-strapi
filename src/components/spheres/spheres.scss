@@ -6,18 +6,19 @@
   &__block {
     display: grid;
     justify-content: space-around;
-    grid-template-columns: repeat(2, 120px);
-    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(120px, 160px));
+    gap: 2rem;
 
     @include onTablet {
-      grid-template-columns: repeat(3, 120px);
-      justify-content: space-around;
+      grid-template-columns: repeat(3, minmax(120px, 180px));
+      justify-content: space-between;
+      gap: 2rem;
     }
 
     @include onDesktop {
-      grid-template-columns: repeat(6, 120px);
+      grid-template-columns: repeat(6, 1fr);
       justify-content: space-between;
-      column-gap: 4.5rem;
+      column-gap: 3rem;
     }
   }
 
@@ -40,7 +41,10 @@
   }
 
   &__icon {
+    max-width: 100%;
     width: 100%;
+    aspect-ratio: 16 / 12;
+    object-fit: contain;
     cursor: pointer;
 
     border: 2px solid $primaryColor1;
@@ -48,6 +52,7 @@
   }
 
   &__sphere {
+    max-width: 100%;
     text-align: center;
     transition: all 0.3s;
     display: flex;

@@ -20,7 +20,6 @@ import SelectIcon from "../../images/selectArrow.svg";
 import useOutsideAlerter from "../../hooks/useClickOutside";
 import NextIcon from "../../images/header/nextIcon.svg";
 import Loader from "../loader/Loader";
-import { VACANCYLIST } from "../../database/common/vacancyList";
 
 import { API, requestPagStart, requestPagLimit } from "../../constants";
 
@@ -55,7 +54,6 @@ const Header = () => {
   const searchRef = useRef<HTMLDivElement>(null);
   const {
     localization,
-    setLocalization,
     isDesktopMenuOpened,
     setIsDesktopMenuOpened,
     setCurrentVacancy,
@@ -64,6 +62,8 @@ const Header = () => {
     setCurrentGlobalVacancies,
     setGlobalCategories,
   } = useStateContext();
+
+  
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [currentCategory, setCurrentCategory] = useState<string>();
@@ -74,21 +74,13 @@ const Header = () => {
   const [query, setQuery] = useState<string>("");
   const [isDropdown, setIsDropdown] = useState<boolean>(false);
   const [searchCollection, setSearchCollection] = useState<Collection[]>([]);
-  const [data, setData] = useState<any>();
   const [total, setTotal] = useState<number>(0);
-  const [paginationStart, setPaginationStart] = useState(0);
 
   const routingRule = localization === "ru";
 
   useOutsideAlerter(searchRef, () => {
     setIsDesktopMenuOpened(false);
   });
-
-  useEffect(() => {
-    const res = VACANCYLIST.filter((el) => el.language === localization);
-
-    setData(res[0]);
-  }, [localization]);
 
   useEffect(() => {
     axios

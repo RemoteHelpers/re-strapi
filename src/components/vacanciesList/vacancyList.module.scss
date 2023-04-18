@@ -71,6 +71,10 @@
     transform: translateY(-50%);
     left: 4rem;
     transition: .4s ease-in-out;
+    
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 
     @include onTablet {
         left: 5rem;

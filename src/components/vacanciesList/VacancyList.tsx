@@ -15,7 +15,6 @@ import Close from "../../images/close.svg";
 import SelectIcon from "../../images/selectArrow.svg";
 import useOutsideAlerter from "../../hooks/useClickOutside";
 import NotFoundVacancies from "../notFoundVacancies";
-import { VACANCYLIST } from "../../database/common/vacancyList";
 import { useStateContext } from "../../context/StateContext";
 
 const itemsPerPage = 9;
@@ -37,6 +36,7 @@ const Vacancies = ({ isShowHot }: any) => {
     setCategorySlug,
     globalCategories,
     currentGlobalVacancies,
+    vacancyListData,
   } = useStateContext();
 
   const [categories, setCategories] = useState<Category[]>([]);
@@ -47,7 +47,6 @@ const Vacancies = ({ isShowHot }: any) => {
   const [currentItems, setCurrentItems] = useState<any>([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
-  const [data, setData] = useState<any>();
   const [check, setCheck] = useState<boolean>(false);
   const [visibleCheck, setVisibleCheck] = useState<boolean>(true);
 
@@ -59,12 +58,6 @@ const Vacancies = ({ isShowHot }: any) => {
   useOutsideAlerter(searchRef, () => {
     setIsDropdown(false);
   });
-
-  useEffect(() => {
-    const res = VACANCYLIST.filter((el) => el.language === localization);
-
-    setData(res[0]);
-  }, [localization]);
 
   useEffect(() => {
     setCategories(globalCategories);
@@ -139,7 +132,6 @@ const Vacancies = ({ isShowHot }: any) => {
               new Date(a.attributes.updatedAt).getTime()
           )
         );
-        console.log(currentGlobalVacancies);
       }
 
       if (!currentCategory && query.length === 0 && isShowHot) {
@@ -195,7 +187,6 @@ const Vacancies = ({ isShowHot }: any) => {
 
     setItemOffset(newOffset);
   };
-  
 
   const customStyles = {
     control: () => ({
@@ -211,7 +202,7 @@ const Vacancies = ({ isShowHot }: any) => {
     <>
       <div className="Vacancies">
         <h2 ref={scrollToTopVacancies} className="Vacancies__title">
-          {data?.title}
+          {vacancyListData?.title}
         </h2>
         <div className="Vacancies__navigation">
           <div className="search-container" ref={searchRef}>
@@ -221,7 +212,7 @@ const Vacancies = ({ isShowHot }: any) => {
                   type="text"
                   value={query}
                   onChange={searchHandler}
-                  placeholder={data?.placeholder}
+                  placeholder={vacancyListData?.placeholder}
                   className="search-input"
                 />
                 {!query ? (
@@ -249,7 +240,9 @@ const Vacancies = ({ isShowHot }: any) => {
                   onChange={(e) => setCheck(e.target.checked)}
                 />
                 <span className={sl.custom_checkbox}>
-                  <span className={sl.checkbox_text}>{check ? 'Горячие' : 'Все'}</span>
+                  <span className={sl.checkbox_text}>
+                    {check ? "Горячие" : "Все"}
+                  </span>
                 </span>
               </label>
             )}
@@ -259,7 +252,7 @@ const Vacancies = ({ isShowHot }: any) => {
               options={selectCategories}
               value={getCategory()}
               onChange={handleCategorySelect}
-              placeholder={data?.categoriesTitle}
+              placeholder={vacancyListData?.categoriesTitle}
               isSearchable={false}
               components={{ DropdownIndicator }}
             />

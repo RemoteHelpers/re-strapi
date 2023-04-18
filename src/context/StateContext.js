@@ -15,6 +15,7 @@ export const StateContext = ({ children }) => {
   const [homeData, setHomeData] = useState();
   const [footerData, setFooterData] = useState();
   const [formData, setFormData] = useState();
+  const [vacancyListData, setVacancyListData] = useState();
 
   const [isDesktopMenuOpened, setIsDesktopMenuOpened] = useState(false);
   const [currentVacancy, setCurrentVacancy] = useState();
@@ -32,6 +33,8 @@ export const StateContext = ({ children }) => {
   return (
     <Context.Provider
       value={{
+        vacancyListData,
+        setVacancyListData,
         formData,
         setFormData,
         langInputValue,
