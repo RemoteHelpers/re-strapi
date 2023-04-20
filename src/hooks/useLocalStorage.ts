@@ -1,11 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable comma-dangle */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable operator-linebreak */
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable padding-line-between-statements */
-/* eslint-disable no-console */
-
 import { useEffect, useState } from "react";
 
 const useLocalStorage = (key: string, defaultValue: any) => {

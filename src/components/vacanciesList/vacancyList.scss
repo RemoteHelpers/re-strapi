@@ -81,6 +81,7 @@
 	}
 
 	&__control {
+		min-width: 200px;
 		width: 100%;
 		cursor: pointer;
 		white-space: nowrap;
@@ -103,7 +104,7 @@
 		}
 
 		&--menu-is-open .custom-select__indicators .custom-select__indicator {
-			transition: 0.2s all;
+			transition: 0.2s all ease-in-out;
 			transform: rotate(180deg);
 		}
 

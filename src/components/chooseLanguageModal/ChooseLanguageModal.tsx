@@ -25,7 +25,6 @@ const modalRoot = document.querySelector("#modal-root")!;
 
 export default function ChooseLanguageModal() {
   const {
-    isSubmitLocalization,
     setIsOpenModal,
     isOpenModal,
     setIsSubmitLocalization

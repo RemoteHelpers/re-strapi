@@ -231,21 +231,19 @@ const Vacancies = ({ isShowHot }: any) => {
           </div>
 
           <div className={sl.vacancies__filter}>
-            {visibleCheck && (
-              <label>
-                <input
-                  className={sl.native_checkbox}
-                  type="checkbox"
-                  checked={check}
-                  onChange={(e) => setCheck(e.target.checked)}
-                />
-                <span className={sl.custom_checkbox}>
-                  <span className={sl.checkbox_text}>
-                    {check ? vacancyListData?.hotVacancies : vacancyListData?.allVacancies}
-                  </span>
+            <label className={visibleCheck ? sl.show_switch : sl.hide_switch}>
+              <input
+                className={sl.native_checkbox}
+                type="checkbox"
+                checked={check}
+                onChange={(e) => setCheck(e.target.checked)}
+              />
+              <span className={sl.custom_checkbox}>
+                <span className={sl.checkbox_text}>
+                  {check ? vacancyListData?.hotVacancies : vacancyListData?.allVacancies}
                 </span>
-              </label>
-            )}
+              </span>
+            </label>
             <Select
               styles={customStyles}
               classNamePrefix="custom-select"
