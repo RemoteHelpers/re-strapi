@@ -9,7 +9,7 @@ import cl from "./thankYouPage.module.scss";
 import { API, PhotoAPI } from "../../constants";
 
 export const ThankYouPage = () => {
-  const { localization, scrollToTop, footerData } = useStateContext();
+  const { localization, scrollToTop } = useStateContext();
   const [thankYouData, setThankYouData] = useState<any>();
 
   const routingRule = localization === "ru";
@@ -27,7 +27,7 @@ export const ThankYouPage = () => {
       )
       .then((res) => {
         setThankYouData(res.data.data.attributes);
-        // console.log(res.data.data.attributes);
+        console.log(res.data.data.attributes);
       })
       .catch((err) => {
         console.log(err);
@@ -59,7 +59,7 @@ export const ThankYouPage = () => {
             <h2 className={cl.subtitle}>{thankYouData?.titleViber}</h2>
             <p className={cl.text}>{thankYouData?.paragraphViber}</p>
             <a
-              href={`viber://chat?number=${footerData?.footerNumber}`}
+              href={thankYouData?.buttonLink}
               className={cl.button}
             >
               {thankYouData?.linkViber}

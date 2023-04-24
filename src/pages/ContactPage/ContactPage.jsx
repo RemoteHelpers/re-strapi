@@ -1,7 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable max-len */
-/* eslint-disable no-console */
-/* eslint-disable react/jsx-filename-extension */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useStateContext } from '../../context/StateContext';
@@ -78,16 +75,18 @@ const ContactPage = () => {
                         {member.telegramNickname}
                       </a>
                     </div>
-                    <div>
-                      <AboutPageSvg id="viber" />
-                      <a
-                        href={`viber://chat?number=${member.phoneNumber}`}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {member.phoneNumber}
-                      </a>
-                    </div>
+                    {member.phoneNumber && (
+                      <div>
+                        <AboutPageSvg id="viber" />
+                        <a
+                          href={`viber://chat?number=${member.phoneNumber}`}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {member.phoneNumber}
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
