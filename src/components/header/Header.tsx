@@ -170,7 +170,7 @@ const Header = () => {
       vacancies.filter((el) =>
         el.attributes.categories.data[0]
           ? el.attributes.categories.data[0].attributes.categorySlug ===
-          'design' || firstElement?.classList.add("active_label")
+          'designers' || firstElement?.classList.add("active_label")
           : "" || firstElement?.classList.remove("active_label")
       )
     );
