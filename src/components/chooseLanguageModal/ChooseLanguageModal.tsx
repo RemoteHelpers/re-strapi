@@ -1,22 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable operator-linebreak */
-/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable comma-dangle */
-/* eslint-disable no-redeclare */
-/* eslint-disable import/no-duplicates */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable no-return-assign */
-/* eslint-disable padding-line-between-statements */
-/* eslint-disable @typescript-eslint/quotes */
-import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import { useEffect } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import cl from "./chooseLanguageModal.module.scss";
 import ModalContent from "../modalContent";
 import { useStateContext } from "../../context/StateContext";

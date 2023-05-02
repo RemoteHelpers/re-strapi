@@ -1,4 +1,3 @@
-import React from "react";
 import cl from "./footer.module.scss";
 import { FooterIconsSVG } from "../../icons/footer/FooterIconsSVG";
 import { useStateContext } from "../../context/StateContext";
@@ -28,10 +27,7 @@ export const Footer = () => {
         >
           {footerData?.footerAdress}
         </span>
-        <a href={`viber://chat?number=${footerData?.footerNumber}`} className={cl.Footer__contactsText}>
-          +
-          {footerData?.footerNumber}
-        </a>
+        <a href={`https://t.me/${footerData?.footerNumber}`} className={cl.Footer__contactsText}>{footerData?.footerNumber}</a>
         <a
           target="_blank"
           href={`mailto: ${footerData?.footerMail}`}

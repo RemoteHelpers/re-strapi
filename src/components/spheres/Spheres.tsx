@@ -18,11 +18,11 @@ const Spheres = () => {
 
   function chooseImage(id: string | number) {
     switch (id) {
-      case "development":
+      case "developers":
         return Developing;
-      case "design":
+      case "designers":
         return Design;
-      case "marketing":
+      case "marketers":
         return Marketing;
       case "managers":
         return Management;

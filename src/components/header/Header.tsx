@@ -34,11 +34,11 @@ import { Logo } from "../SVGSelector";
 const Header = () => {
   function chooseImage(id: string | number) {
     switch (id) {
-      case "development":
+      case "developers":
         return <img src={dev} alt="" />;
-      case "design":
+      case "designers":
         return <img src={illustrator} alt="" />;
-      case "marketing":
+      case "marketers":
         return <img src={marketing} alt="" />;
       case "managers":
         return <img src={management} alt="" />;
